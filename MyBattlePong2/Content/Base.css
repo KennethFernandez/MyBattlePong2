@@ -51,7 +51,9 @@ footer{
 }
 
 .input1:focus{
- box-shadow:0 0 15px #808080;
+     box-shadow:0 0 15px #808080;
+     color: #F90;
+     background-color:#FFF;
  }
 
 .main-box {
@@ -81,4 +83,125 @@ footer{
 	text-align:center;
 	text-shadow:1px 1px 0px #570e09;
     margin-left:-4px;
+}
+
+   .boton_base:focus {
+	
+	background-color: #FFF;
+	color:#F90;
+
+}
+
+   .Tabla_naranaja table{
+    
+    color: #F90;
+    background-color: #FFF;
+    border-color: #808080;
+    border-width: 4px;
+
+}
+
+.Tabla_naranaja tbody{
+
+    height:auto;
+    overflow: auto;
+    width:auto;
+    
+
+	font-size:17px;
+	font-family:Aleo;
+	font-weight:bold;
+	
+
+}
+
+.Tabla_naranaja tbody tr td{
+
+    text-align:center;
+    background-color:#FFF;
+    color:#808080;
+
+}
+
+.Tabla_naranaja thead{
+
+    width:auto;
+    height:auto;
+
+	font-size:17px;
+	font-family:Aleo;
+	font-weight:bold;
+
+}
+
+.Tabla_naranaja thead tr th{
+    
+	background-color:#F90;
+	text-align:center;
+	color:#ffffff;
+    padding: 10px 10px 10px 10px;
+
+}
+
+h1{
+
+    color: #808080;
+
+    font-size:29px;
+	font-family:Aleo;
+	font-weight:bold;
+
+}
+
+h3{
+
+    color: #570e09;
+
+    font-size:40px;
+	font-family:Aleo;
+	font-weight:bold;
+
+}
+
+h2 {
+
+    color: #F90;
+
+    font-size:18px;
+	font-family:Aleo;
+	font-weight:bold;
+
+}
+
+h4{
+
+    color: #ff6a00;
+
+    font-size:22px;
+	font-family:Aleo;
+	font-weight:bold;
+
+}
+
+
+.chat{
+
+    width: 600px; 
+    height: 100px; 
+    overflow: scroll; 
+    border: 1px solid grey;
+    color: #000036;
+    right:50px;
+    background-color: #fff;
+
+}
+
+select {
+
+    width:auto;
+    background-color: #F90;
+    color:#fff;
+    font-family:Aleo;
+    font-size:20px;
+
 }

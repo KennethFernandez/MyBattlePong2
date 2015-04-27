@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyBattlePong2.Twitter;
+using System.Threading.Tasks;
 
 
 namespace MyBattlePong2.Controllers
@@ -17,21 +19,19 @@ namespace MyBattlePong2.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            Session["Usuario"] = "f";
+      
+            Session["Usuario"] = "1";
             return View();
         }
 
         [HttpPost]
         public ActionResult Inicio(InicioModel model)
         {
+   
             // Si el modelo cumple con las condiciones
             // de largo y demas pasa
             if (ModelState.IsValid)
             {
-                // Imprime los usuarios y contraseñas para comprobar que sirve
-                System.Diagnostics.Debug.WriteLine(model.Contrasena);
-                System.Diagnostics.Debug.WriteLine(model.Usuario);
-                bool valido = true;// Metodo_externo
 
                 Session["Usuario"] = "3";
 
