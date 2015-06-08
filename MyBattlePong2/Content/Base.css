@@ -21,8 +21,8 @@ header, body{
 	font-family: kkberkbm;
 }
 
+
 #MenuBar1{
-    height:  ;
     background-color:white;
     background-size: contain;
 }
@@ -96,23 +96,22 @@ footer{
     
     color: #F90;
     background-color: #FFF;
-    border-color: #808080;
-    border-width: 4px;
+    border:ridge;
 
+}
+
+ .Tabla_naranaja  table, th, td {
+    border: 3px solid #808080;
 }
 
 .Tabla_naranaja tbody{
 
-    height:auto;
     overflow: auto;
     width:auto;
-    
-
 	font-size:17px;
 	font-family:Aleo;
 	font-weight:bold;
 	
-
 }
 
 .Tabla_naranaja tbody tr td{
@@ -126,8 +125,6 @@ footer{
 .Tabla_naranaja thead{
 
     width:auto;
-    height:auto;
-
 	font-size:17px;
 	font-family:Aleo;
 	font-weight:bold;
@@ -139,14 +136,13 @@ footer{
 	background-color:#F90;
 	text-align:center;
 	color:#ffffff;
-    padding: 10px 10px 10px 10px;
+    padding:5px 5px 5px 5px;
 
 }
 
 h1{
 
     color: #808080;
-
     font-size:29px;
 	font-family:Aleo;
 	font-weight:bold;
@@ -156,7 +152,6 @@ h1{
 h3{
 
     color: #570e09;
-
     font-size:40px;
 	font-family:Aleo;
 	font-weight:bold;
@@ -166,7 +161,6 @@ h3{
 h2 {
 
     color: #F90;
-
     font-size:18px;
 	font-family:Aleo;
 	font-weight:bold;
@@ -176,7 +170,6 @@ h2 {
 h4{
 
     color: #ff6a00;
-
     font-size:22px;
 	font-family:Aleo;
 	font-weight:bold;
@@ -203,5 +196,12 @@ select {
     color:#fff;
     font-family:Aleo;
     font-size:20px;
+
+}
+
+.centrar {
+
+    text-align: center;
+    position: center;
 
 }
