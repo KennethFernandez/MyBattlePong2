@@ -9,10 +9,7 @@ namespace MBP.Datos.Tests
         [TestMethod]
         public void TestMethod1()
         {   
-            ObtenerModelos datos = new ObtenerModelos();
-            string nombre = "alonso";
-            CuentaUser prueba = datos.ObtenerUser(nombre);
-            Assert.AreEqual(prueba.Password, "hola");  
+            
         }
     }
 }

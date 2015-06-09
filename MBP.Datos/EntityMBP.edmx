@@ -1,0 +1,859 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyBattlePongModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="idCuenta" />
+          </Key>
+          <Property Name="idCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estadistica">
+          <Key>
+            <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Jugador_Usuario_Cuenta_idCuenta" Type="int" Nullable="false" />
+          <Property Name="TotalPartidas" Type="int" Nullable="false" />
+          <Property Name="TotalGanadas" Type="int" Nullable="false" />
+          <Property Name="TotalDisparos" Type="int" Nullable="false" />
+          <Property Name="TotalAcertados" Type="int" Nullable="false" />
+          <Property Name="TotalPuntos" Type="int" Nullable="false" />
+          <Property Name="PuntosGanados" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistorialPartida">
+          <Key>
+            <PropertyRef Name="idHistorialPartida" />
+          </Key>
+          <Property Name="idHistorialPartida" Type="int" Nullable="false" />
+          <Property Name="Ganador" Type="int" />
+          <Property Name="NavesDestruidas1" Type="int" />
+          <Property Name="NavesDestruidas2" Type="int" />
+          <Property Name="Partida_idPartida" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jugador">
+          <Key>
+            <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Usuario_Cuenta_idCuenta" Type="int" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="45" />
+          <Property Name="DescripcionPersonal" Type="varchar" MaxLength="300" />
+          <Property Name="Pais_idPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jugador_Poder">
+          <Key>
+            <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+            <PropertyRef Name="Poder_idPoder" />
+          </Key>
+          <Property Name="Jugador_Usuario_Cuenta_idCuenta" Type="int" Nullable="false" />
+          <Property Name="Poder_idPoder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moderador">
+          <Key>
+            <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Usuario_Cuenta_idCuenta" Type="int" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Foto" Type="varchar" MaxLength="45" />
+          <Property Name="Local" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pais_idPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nave">
+          <Key>
+            <PropertyRef Name="idNave" />
+          </Key>
+          <Property Name="idNave" Type="int" Nullable="false" />
+          <Property Name="Tamano" Type="int" Nullable="false" />
+          <Property Name="Puntaje" Type="int" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="idPartida" />
+          </Key>
+          <Property Name="idPartida" Type="int" Nullable="false" />
+          <Property Name="Publico" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Disparos" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Jugador1_idCuenta" Type="int" Nullable="false" />
+          <Property Name="Jugador2_idCuenta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Poder">
+          <Key>
+            <PropertyRef Name="idPoder" />
+          </Key>
+          <Property Name="idPoder" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Experiencia" Type="int" Nullable="false" />
+          <Property Name="Victorias" Type="int" Nullable="false" />
+          <Property Name="Puntos" Type="int" Nullable="false" />
+          <Property Name="Derrotas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tablero_Virtual">
+          <Key>
+            <PropertyRef Name="x" />
+            <PropertyRef Name="y" />
+          </Key>
+          <Property Name="x" Type="int" Nullable="false" />
+          <Property Name="y" Type="int" Nullable="false" />
+          <Property Name="NumeroNave" Type="int" Nullable="false" />
+          <Property Name="Poder" Type="int" />
+          <Property Name="Destruido" Type="char" MaxLength="1" />
+          <Property Name="Nave_idNave" Type="int" Nullable="false" />
+          <Property Name="Partida_idPartida" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Cuenta_idCuenta" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FechaInscripcion" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Estadistica_Jugador1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Estadistica">
+              <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistorialPartida_Partida1">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+          <End Role="HistorialPartida" Type="Self.HistorialPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="idPartida" />
+            </Principal>
+            <Dependent Role="HistorialPartida">
+              <PropertyRef Name="Partida_idPartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Jugador_has_Poder_Jugador1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Jugador_Poder" Type="Self.Jugador_Poder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Jugador_Poder">
+              <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Jugador_has_Poder_Poder1">
+          <End Role="Poder" Type="Self.Poder" Multiplicity="1" />
+          <End Role="Jugador_Poder" Type="Self.Jugador_Poder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Poder">
+              <PropertyRef Name="idPoder" />
+            </Principal>
+            <Dependent Role="Jugador_Poder">
+              <PropertyRef Name="Poder_idPoder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Jugador_Pais1">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Jugador">
+              <PropertyRef Name="Pais_idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Jugador_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Moderador_Pais1">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Moderador" Type="Self.Moderador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Moderador">
+              <PropertyRef Name="Pais_idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Partida_Jugador1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="Jugador1_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Partida_Jugador2">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="Jugador2_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_table1_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Moderador" Type="Self.Moderador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Moderador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tablero_Virtual_Nave1">
+          <End Role="Nave" Type="Self.Nave" Multiplicity="1" />
+          <End Role="Tablero_Virtual" Type="Self.Tablero_Virtual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nave">
+              <PropertyRef Name="idNave" />
+            </Principal>
+            <Dependent Role="Tablero_Virtual">
+              <PropertyRef Name="Nave_idNave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tablero_Virtual_Partida1">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+          <End Role="Tablero_Virtual" Type="Self.Tablero_Virtual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="idPartida" />
+            </Principal>
+            <Dependent Role="Tablero_Virtual">
+              <PropertyRef Name="Partida_idPartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyBattlePongModelStoreContainer">
+          <EntitySet Name="Cuenta" EntityType="Self.Cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estadistica" EntityType="Self.Estadistica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialPartida" EntityType="Self.HistorialPartida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jugador" EntityType="Self.Jugador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jugador_Poder" EntityType="Self.Jugador_Poder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moderador" EntityType="Self.Moderador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nave" EntityType="Self.Nave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Poder" EntityType="Self.Poder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tablero_Virtual" EntityType="Self.Tablero_Virtual" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Estadistica_Jugador1" Association="Self.fk_Estadistica_Jugador1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Estadistica" EntitySet="Estadistica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistorialPartida_Partida1" Association="Self.fk_HistorialPartida_Partida1">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="HistorialPartida" EntitySet="HistorialPartida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Jugador_has_Poder_Jugador1" Association="Self.fk_Jugador_has_Poder_Jugador1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Jugador_Poder" EntitySet="Jugador_Poder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Jugador_has_Poder_Poder1" Association="Self.fk_Jugador_has_Poder_Poder1">
+            <End Role="Poder" EntitySet="Poder" />
+            <End Role="Jugador_Poder" EntitySet="Jugador_Poder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Jugador_Pais1" Association="Self.fk_Jugador_Pais1">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Jugador" EntitySet="Jugador" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Jugador_Usuario1" Association="Self.fk_Jugador_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Jugador" EntitySet="Jugador" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Moderador_Pais1" Association="Self.fk_Moderador_Pais1">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Moderador" EntitySet="Moderador" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Partida_Jugador1" Association="Self.fk_Partida_Jugador1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Partida_Jugador2" Association="Self.fk_Partida_Jugador2">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_table1_Usuario1" Association="Self.fk_table1_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Moderador" EntitySet="Moderador" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tablero_Virtual_Nave1" Association="Self.fk_Tablero_Virtual_Nave1">
+            <End Role="Nave" EntitySet="Nave" />
+            <End Role="Tablero_Virtual" EntitySet="Tablero_Virtual" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tablero_Virtual_Partida1" Association="Self.fk_Tablero_Virtual_Partida1">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="Tablero_Virtual" EntitySet="Tablero_Virtual" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Cuenta" Association="Self.fk_Usuario_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuenta" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyBattlePongModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cuenta">
+          <Key>
+            <PropertyRef Name="idCuenta" />
+          </Key>
+          <Property Name="idCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contrasena" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_Cuenta" FromRole="Cuenta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Estadistica">
+          <Key>
+            <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Jugador_Usuario_Cuenta_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="TotalPartidas" Type="Int32" Nullable="false" />
+          <Property Name="TotalGanadas" Type="Int32" Nullable="false" />
+          <Property Name="TotalDisparos" Type="Int32" Nullable="false" />
+          <Property Name="TotalAcertados" Type="Int32" Nullable="false" />
+          <Property Name="TotalPuntos" Type="Int32" Nullable="false" />
+          <Property Name="PuntosGanados" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jugador" Relationship="Self.fk_Estadistica_Jugador1" FromRole="Estadistica" ToRole="Jugador" />
+        </EntityType>
+        <EntityType Name="HistorialPartida">
+          <Key>
+            <PropertyRef Name="idHistorialPartida" />
+          </Key>
+          <Property Name="idHistorialPartida" Type="Int32" Nullable="false" />
+          <Property Name="Ganador" Type="Int32" />
+          <Property Name="NavesDestruidas1" Type="Int32" />
+          <Property Name="NavesDestruidas2" Type="Int32" />
+          <Property Name="Partida_idPartida" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Partida" Relationship="Self.fk_HistorialPartida_Partida1" FromRole="HistorialPartida" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="Jugador">
+          <Key>
+            <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Usuario_Cuenta_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DescripcionPersonal" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Pais_idPais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estadistica" Relationship="Self.fk_Estadistica_Jugador1" FromRole="Jugador" ToRole="Estadistica" />
+          <NavigationProperty Name="Pai" Relationship="Self.fk_Jugador_Pais1" FromRole="Jugador" ToRole="Pais" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Jugador_Usuario1" FromRole="Jugador" ToRole="Usuario" />
+          <NavigationProperty Name="Partidas" Relationship="Self.fk_Partida_Jugador1" FromRole="Jugador" ToRole="Partida" />
+          <NavigationProperty Name="Partidas1" Relationship="Self.fk_Partida_Jugador2" FromRole="Jugador" ToRole="Partida" />
+          <NavigationProperty Name="Poders" Relationship="Self.Jugador_Poder" FromRole="Jugador" ToRole="Poder" />
+        </EntityType>
+        <EntityType Name="Moderador">
+          <Key>
+            <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Usuario_Cuenta_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Genero" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Foto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Local" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pais_idPais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pai" Relationship="Self.fk_Moderador_Pais1" FromRole="Moderador" ToRole="Pais" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_table1_Usuario1" FromRole="Moderador" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Nave">
+          <Key>
+            <PropertyRef Name="idNave" />
+          </Key>
+          <Property Name="idNave" Type="Int32" Nullable="false" />
+          <Property Name="Tamano" Type="Int32" Nullable="false" />
+          <Property Name="Puntaje" Type="Int32" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tablero_Virtual" Relationship="Self.fk_Tablero_Virtual_Nave1" FromRole="Nave" ToRole="Tablero_Virtual" />
+        </EntityType>
+        <EntityType Name="Pai">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Jugadors" Relationship="Self.fk_Jugador_Pais1" FromRole="Pais" ToRole="Jugador" />
+          <NavigationProperty Name="Moderadors" Relationship="Self.fk_Moderador_Pais1" FromRole="Pais" ToRole="Moderador" />
+        </EntityType>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="idPartida" />
+          </Key>
+          <Property Name="idPartida" Type="Int32" Nullable="false" />
+          <Property Name="Publico" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Disparos" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Jugador1_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="Jugador2_idCuenta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HistorialPartidas" Relationship="Self.fk_HistorialPartida_Partida1" FromRole="Partida" ToRole="HistorialPartida" />
+          <NavigationProperty Name="Jugador" Relationship="Self.fk_Partida_Jugador1" FromRole="Partida" ToRole="Jugador" />
+          <NavigationProperty Name="Jugador1" Relationship="Self.fk_Partida_Jugador2" FromRole="Partida" ToRole="Jugador" />
+          <NavigationProperty Name="Tablero_Virtual" Relationship="Self.fk_Tablero_Virtual_Partida1" FromRole="Partida" ToRole="Tablero_Virtual" />
+        </EntityType>
+        <EntityType Name="Poder">
+          <Key>
+            <PropertyRef Name="idPoder" />
+          </Key>
+          <Property Name="idPoder" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Experiencia" Type="Int32" Nullable="false" />
+          <Property Name="Victorias" Type="Int32" Nullable="false" />
+          <Property Name="Puntos" Type="Int32" Nullable="false" />
+          <Property Name="Derrotas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jugadors" Relationship="Self.Jugador_Poder" FromRole="Poder" ToRole="Jugador" />
+        </EntityType>
+        <EntityType Name="Tablero_Virtual">
+          <Key>
+            <PropertyRef Name="x" />
+            <PropertyRef Name="y" />
+          </Key>
+          <Property Name="x" Type="Int32" Nullable="false" />
+          <Property Name="y" Type="Int32" Nullable="false" />
+          <Property Name="NumeroNave" Type="Int32" Nullable="false" />
+          <Property Name="Poder" Type="Int32" />
+          <Property Name="Destruido" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Nave_idNave" Type="Int32" Nullable="false" />
+          <Property Name="Partida_idPartida" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nave" Relationship="Self.fk_Tablero_Virtual_Nave1" FromRole="Tablero_Virtual" ToRole="Nave" />
+          <NavigationProperty Name="Partida" Relationship="Self.fk_Tablero_Virtual_Partida1" FromRole="Tablero_Virtual" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Cuenta_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FechaInscripcion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cuenta" Relationship="Self.fk_Usuario_Cuenta" FromRole="Usuario" ToRole="Cuenta" />
+          <NavigationProperty Name="Jugador" Relationship="Self.fk_Jugador_Usuario1" FromRole="Usuario" ToRole="Jugador" />
+          <NavigationProperty Name="Moderador" Relationship="Self.fk_table1_Usuario1" FromRole="Usuario" ToRole="Moderador" />
+        </EntityType>
+        <Association Name="fk_Usuario_Cuenta">
+          <End Role="Cuenta" Type="Self.Cuenta" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cuenta">
+              <PropertyRef Name="idCuenta" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Estadistica_Jugador1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Estadistica">
+              <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_HistorialPartida_Partida1">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+          <End Role="HistorialPartida" Type="Self.HistorialPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="idPartida" />
+            </Principal>
+            <Dependent Role="HistorialPartida">
+              <PropertyRef Name="Partida_idPartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Jugador_Pais1">
+          <End Role="Pais" Type="Self.Pai" Multiplicity="1" />
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Jugador">
+              <PropertyRef Name="Pais_idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Jugador_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Partida_Jugador1">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="Jugador1_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Partida_Jugador2">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
+          <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="Jugador2_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Moderador_Pais1">
+          <End Role="Pais" Type="Self.Pai" Multiplicity="1" />
+          <End Role="Moderador" Type="Self.Moderador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Moderador">
+              <PropertyRef Name="Pais_idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_table1_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Moderador" Type="Self.Moderador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Moderador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tablero_Virtual_Nave1">
+          <End Role="Nave" Type="Self.Nave" Multiplicity="1" />
+          <End Role="Tablero_Virtual" Type="Self.Tablero_Virtual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nave">
+              <PropertyRef Name="idNave" />
+            </Principal>
+            <Dependent Role="Tablero_Virtual">
+              <PropertyRef Name="Nave_idNave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Tablero_Virtual_Partida1">
+          <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+          <End Role="Tablero_Virtual" Type="Self.Tablero_Virtual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partida">
+              <PropertyRef Name="idPartida" />
+            </Principal>
+            <Dependent Role="Tablero_Virtual">
+              <PropertyRef Name="Partida_idPartida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Jugador_Poder">
+          <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
+          <End Role="Poder" Type="Self.Poder" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="MBPentity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cuentas" EntityType="Self.Cuenta" />
+          <EntitySet Name="Estadisticas" EntityType="Self.Estadistica" />
+          <EntitySet Name="HistorialPartidas" EntityType="Self.HistorialPartida" />
+          <EntitySet Name="Jugadors" EntityType="Self.Jugador" />
+          <EntitySet Name="Moderadors" EntityType="Self.Moderador" />
+          <EntitySet Name="Naves" EntityType="Self.Nave" />
+          <EntitySet Name="Pais" EntityType="Self.Pai" />
+          <EntitySet Name="Partidas" EntityType="Self.Partida" />
+          <EntitySet Name="Poders" EntityType="Self.Poder" />
+          <EntitySet Name="Tablero_Virtual" EntityType="Self.Tablero_Virtual" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <AssociationSet Name="fk_Usuario_Cuenta" Association="Self.fk_Usuario_Cuenta">
+            <End Role="Cuenta" EntitySet="Cuentas" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Estadistica_Jugador1" Association="Self.fk_Estadistica_Jugador1">
+            <End Role="Jugador" EntitySet="Jugadors" />
+            <End Role="Estadistica" EntitySet="Estadisticas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_HistorialPartida_Partida1" Association="Self.fk_HistorialPartida_Partida1">
+            <End Role="Partida" EntitySet="Partidas" />
+            <End Role="HistorialPartida" EntitySet="HistorialPartidas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Jugador_Pais1" Association="Self.fk_Jugador_Pais1">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Jugador" EntitySet="Jugadors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Jugador_Usuario1" Association="Self.fk_Jugador_Usuario1">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Jugador" EntitySet="Jugadors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Partida_Jugador1" Association="Self.fk_Partida_Jugador1">
+            <End Role="Jugador" EntitySet="Jugadors" />
+            <End Role="Partida" EntitySet="Partidas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Partida_Jugador2" Association="Self.fk_Partida_Jugador2">
+            <End Role="Jugador" EntitySet="Jugadors" />
+            <End Role="Partida" EntitySet="Partidas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Moderador_Pais1" Association="Self.fk_Moderador_Pais1">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Moderador" EntitySet="Moderadors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_table1_Usuario1" Association="Self.fk_table1_Usuario1">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Moderador" EntitySet="Moderadors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tablero_Virtual_Nave1" Association="Self.fk_Tablero_Virtual_Nave1">
+            <End Role="Nave" EntitySet="Naves" />
+            <End Role="Tablero_Virtual" EntitySet="Tablero_Virtual" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Tablero_Virtual_Partida1" Association="Self.fk_Tablero_Virtual_Partida1">
+            <End Role="Partida" EntitySet="Partidas" />
+            <End Role="Tablero_Virtual" EntitySet="Tablero_Virtual" />
+          </AssociationSet>
+          <AssociationSet Name="Jugador_Poder" Association="Self.Jugador_Poder">
+            <End Role="Jugador" EntitySet="Jugadors" />
+            <End Role="Poder" EntitySet="Poders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyBattlePongModelStoreContainer" CdmEntityContainer="MBPentity">
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Cuenta">
+              <MappingFragment StoreEntitySet="Cuenta">
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadisticas">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Estadistica">
+              <MappingFragment StoreEntitySet="Estadistica">
+                <ScalarProperty Name="Jugador_Usuario_Cuenta_idCuenta" ColumnName="Jugador_Usuario_Cuenta_idCuenta" />
+                <ScalarProperty Name="TotalPartidas" ColumnName="TotalPartidas" />
+                <ScalarProperty Name="TotalGanadas" ColumnName="TotalGanadas" />
+                <ScalarProperty Name="TotalDisparos" ColumnName="TotalDisparos" />
+                <ScalarProperty Name="TotalAcertados" ColumnName="TotalAcertados" />
+                <ScalarProperty Name="TotalPuntos" ColumnName="TotalPuntos" />
+                <ScalarProperty Name="PuntosGanados" ColumnName="PuntosGanados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialPartidas">
+            <EntityTypeMapping TypeName="MyBattlePongModel.HistorialPartida">
+              <MappingFragment StoreEntitySet="HistorialPartida">
+                <ScalarProperty Name="idHistorialPartida" ColumnName="idHistorialPartida" />
+                <ScalarProperty Name="Ganador" ColumnName="Ganador" />
+                <ScalarProperty Name="NavesDestruidas1" ColumnName="NavesDestruidas1" />
+                <ScalarProperty Name="NavesDestruidas2" ColumnName="NavesDestruidas2" />
+                <ScalarProperty Name="Partida_idPartida" ColumnName="Partida_idPartida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jugadors">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Jugador">
+              <MappingFragment StoreEntitySet="Jugador">
+                <ScalarProperty Name="Usuario_Cuenta_idCuenta" ColumnName="Usuario_Cuenta_idCuenta" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="DescripcionPersonal" ColumnName="DescripcionPersonal" />
+                <ScalarProperty Name="Pais_idPais" ColumnName="Pais_idPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moderadors">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Moderador">
+              <MappingFragment StoreEntitySet="Moderador">
+                <ScalarProperty Name="Usuario_Cuenta_idCuenta" ColumnName="Usuario_Cuenta_idCuenta" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Local" ColumnName="Local" />
+                <ScalarProperty Name="Pais_idPais" ColumnName="Pais_idPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Naves">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Nave">
+              <MappingFragment StoreEntitySet="Nave">
+                <ScalarProperty Name="idNave" ColumnName="idNave" />
+                <ScalarProperty Name="Tamano" ColumnName="Tamano" />
+                <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Pai">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partidas">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Partida">
+              <MappingFragment StoreEntitySet="Partida">
+                <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+                <ScalarProperty Name="Publico" ColumnName="Publico" />
+                <ScalarProperty Name="Disparos" ColumnName="Disparos" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Jugador1_idCuenta" ColumnName="Jugador1_idCuenta" />
+                <ScalarProperty Name="Jugador2_idCuenta" ColumnName="Jugador2_idCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Poders">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Poder">
+              <MappingFragment StoreEntitySet="Poder">
+                <ScalarProperty Name="idPoder" ColumnName="idPoder" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Experiencia" ColumnName="Experiencia" />
+                <ScalarProperty Name="Victorias" ColumnName="Victorias" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+                <ScalarProperty Name="Derrotas" ColumnName="Derrotas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tablero_Virtual">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Tablero_Virtual">
+              <MappingFragment StoreEntitySet="Tablero_Virtual">
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="NumeroNave" ColumnName="NumeroNave" />
+                <ScalarProperty Name="Poder" ColumnName="Poder" />
+                <ScalarProperty Name="Destruido" ColumnName="Destruido" />
+                <ScalarProperty Name="Nave_idNave" ColumnName="Nave_idNave" />
+                <ScalarProperty Name="Partida_idPartida" ColumnName="Partida_idPartida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Cuenta_idCuenta" ColumnName="Cuenta_idCuenta" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="FechaInscripcion" ColumnName="FechaInscripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Jugador_Poder" TypeName="MyBattlePongModel.Jugador_Poder" StoreEntitySet="Jugador_Poder">
+            <EndProperty Name="Jugador">
+              <ScalarProperty Name="Usuario_Cuenta_idCuenta" ColumnName="Jugador_Usuario_Cuenta_idCuenta" />
+            </EndProperty>
+            <EndProperty Name="Poder">
+              <ScalarProperty Name="idPoder" ColumnName="Poder_idPoder" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

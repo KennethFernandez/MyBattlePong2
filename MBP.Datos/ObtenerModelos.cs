@@ -9,13 +9,13 @@ namespace MBP.Datos
 {
     public class ObtenerModelos 
     {
-        public  CuentaUser ObtenerUser(string username)  {
-            using (var db = new MyBattlePongEntities2())
+        public  Cuenta ObtenerUser(string username)  {
+            using (var db = new MBPentity())
             {
-                var query = (from st in db.CuentaUsers
+                var query = (from st in db.Cuentas
                                where st.Username == username
                                select st);
-                CuentaUser us = new CuentaUser();
+                Cuenta us = new Cuenta();
                 us = query.FirstOrDefault();
                 return us;
             }
