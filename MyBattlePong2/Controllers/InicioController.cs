@@ -1,4 +1,5 @@
-﻿using MyBattlePong2.Models;
+﻿using MBP.Logica;
+using MyBattlePong2.Models;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -40,7 +41,8 @@ namespace MyBattlePong2.Controllers
                 
                 // solo deja pasar si son iguales si no regresa a la página de inicio.
                 // , new { modelo =  UsuarioModel}
-                if (model.Contrasena == model.Usuario)
+                IngresaUsuario comprueba = new IngresaUsuario();
+                if (comprueba.VerificarIngreso(model.Usuario, model.Contrasena))
                 {
                     FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     Session["MyMenu"] = null;
