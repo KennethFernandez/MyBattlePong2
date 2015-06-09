@@ -13,7 +13,6 @@ namespace MBP.Datos.Tests
             string nombre = "alonso";
             CuentaUser prueba = datos.ObtenerUser(nombre);
             Assert.AreEqual(prueba.Password, "hola");  
-  
         }
     }
 }

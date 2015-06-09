@@ -12,7 +12,7 @@ namespace MBP.Logica
         {
             return contrasena;
         }
-        public string desecriptar(string contrasena)
+        public string desencriptar(string contrasena)
         {
             return contrasena;
         }

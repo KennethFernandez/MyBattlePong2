@@ -8,7 +8,7 @@ namespace MBP.Logica
 {
     public interface IEncriptacion
     {
-        public string encriptar(string contrasena);
-        public string desencriptar(string contrasena);
+        string encriptar(string contrasena);
+        string desencriptar(string contrasena);
     }
 }
