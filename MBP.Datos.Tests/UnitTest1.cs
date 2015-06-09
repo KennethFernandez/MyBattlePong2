@@ -12,10 +12,8 @@ namespace MBP.Datos.Tests
             ObtenerModelos datos = new ObtenerModelos();
             string nombre = "alonso";
             CuentaUser prueba = datos.ObtenerUser(nombre);
-            Assert.AreEqual(prueba.Password, "hola");
-            
-
-            
+            Assert.AreEqual(prueba.Password, "hola");  
+  
         }
     }
 }

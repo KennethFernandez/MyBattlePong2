@@ -18,7 +18,6 @@ namespace MBP.Datos
                 CuentaUser us = new CuentaUser();
                 us = query.FirstOrDefault();
                 return us;
-                
             }
             
         }

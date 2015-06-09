@@ -48,9 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarModelos.cs" />
     <Compile Include="CuentaUser.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModificarModelos.cs" />
     <Compile Include="ObtenerModelos.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>

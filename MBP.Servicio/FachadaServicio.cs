@@ -1,4 +1,5 @@
 ﻿using MBP.CapaTrasversal.ModelsMVC;
+using MBP.EjeVertical;
 using MBP.Logica;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,17 @@ namespace MBP.Servicio
         {
             IngresaUsuario comp = new IngresaUsuario();
             return comp.VerificarIngreso(Modelo.Usuario,Modelo.Contrasena);
+        }
+        public bool agregarNave(NaveModel nave)
+        {
+            GestionarNave gestionarNave = new GestionarNave();
+            return gestionarNave.agregarNave(nave);
+        }
+
+        public bool desactivarNave(int idNave)
+        {
+            GestionarNave gestionarNave = new GestionarNave();
+            return gestionarNave.desactivarNave(idNave);
         }
     }
 }
