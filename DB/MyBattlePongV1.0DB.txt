@@ -1,0 +1,315 @@
+
+CREATE SCHEMA IF NOT EXISTS dbo DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE dbo ;
+
+
+
+CREATE TABLE [dbo].[Cuenta]
+(
+  
+  idCuenta INT NOT NULL IDENTITY(1,1) UNIQUE,
+
+  Contrasena VARCHAR(10) NOT NULL ,
+
+  Cuenta VARCHAR(20) NOT NULL UNIQUE,
+
+  Estado CHAR(1) NOT NULL,
+
+  PRIMARY KEY (idCuenta)
+)
+
+
+
+
+
+CREATE TABLE [dbo].[Usuario]
+(
+  
+Cuenta_idCuenta INT NOT NULL UNIQUE,
+  
+Nombre VARCHAR(30) NOT NULL,
+  
+Apellido VARCHAR(30) NOT NULL,
+  
+Email VARCHAR(30) NOT NULL,
+  
+Tipo CHAR(1) NOT NULL,
+  
+FechaInscripcion DATE NOT NULL,
+  
+PRIMARY KEY (Cuenta_idCuenta),
+  
+CONSTRAINT fk_Usuario_Cuenta
+    
+FOREIGN KEY (Cuenta_idCuenta)
+    
+REFERENCES dbo.Cuenta (idCuenta)
+)
+
+
+
+
+
+CREATE TABLE [dbo].[Pais]
+(
+  
+idPais INT NOT NULL IDENTITY(1,1) UNIQUE,
+  
+Nombre VARCHAR(45) NULL,
+  
+PRIMARY KEY (idPais)
+)
+
+
+
+
+
+
+CREATE TABLE [dbo].[Moderador]
+(
+  
+Usuario_Cuenta_idCuenta INT NOT NULL UNIQUE,
+  
+FechaNacimiento DATE NULL,
+  
+Genero CHAR(1) NOT NULL,
+  
+Foto VARCHAR(45) NULL,
+  
+Local VARCHAR(30) NOT NULL,
+  
+Pais_idPais INT NOT NULL,
+  
+PRIMARY KEY (Usuario_Cuenta_idCuenta),
+  
+CONSTRAINT fk_table1_Usuario1
+    
+FOREIGN KEY (Usuario_Cuenta_idCuenta)
+    
+REFERENCES dbo.Usuario (Cuenta_idCuenta),
+  
+CONSTRAINT fk_Moderador_Pais1
+    
+FOREIGN KEY (Pais_idPais)
+    
+REFERENCES dbo.Pais (idPais)
+)
+
+
+
+
+
+CREATE TABLE [dbo].[Jugador]
+(
+  
+Usuario_Cuenta_idCuenta INT NOT NULL UNIQUE,
+  
+FechaNacimiento DATE NULL,
+  
+Genero CHAR(1) NOT NULL,
+  
+Foto VARCHAR(45) NULL,
+  
+DescripcionPersonal VARCHAR(300) NULL,
+  
+Pais_idPais INT NOT NULL,
+  
+PRIMARY KEY (Usuario_Cuenta_idCuenta),
+  
+CONSTRAINT fk_Jugador_Usuario1
+    
+FOREIGN KEY (Usuario_Cuenta_idCuenta)
+    
+REFERENCES dbo.Usuario (Cuenta_idCuenta),
+  
+CONSTRAINT fk_Jugador_Pais1
+    
+FOREIGN KEY (Pais_idPais)
+    
+REFERENCES dbo.Pais (idPais)
+)
+
+
+
+
+
+CREATE TABLE [dbo].[Estadistica]
+(
+  Jugador_Usuario_Cuenta_idCuenta INT NOT NULL UNIQUE,
+  
+TotalPartidas INT NOT NULL DEFAULT 0,
+  
+TotalGanadas INT NOT NULL DEFAULT 0,
+  
+TotalDisparos INT NOT NULL DEFAULT 0,
+  
+TotalAcertados INT NOT NULL DEFAULT 0,
+  
+TotalPuntos INT NOT NULL DEFAULT 0,
+  
+PuntosGanados INT NOT NULL DEFAULT 0,
+  
+PRIMARY KEY (Jugador_Usuario_Cuenta_idCuenta),
+  
+CONSTRAINT fk_Estadistica_Jugador1
+    
+FOREIGN KEY (Jugador_Usuario_Cuenta_idCuenta)
+    
+REFERENCES dbo.Jugador (Usuario_Cuenta_idCuenta)
+)
+
+
+
+
+
+
+CREATE TABLE [dbo].[Poder]
+(
+  
+idPoder INT NOT NULL UNIQUE,
+  
+Nombre VARCHAR(30) NOT NULL,
+  
+Experiencia INT NOT NULL,
+  
+Victorias INT NOT NULL,
+  
+Puntos INT NOT NULL,
+  
+Derrotas INT NOT NULL,
+  
+PRIMARY KEY (idPoder)
+)
+
+
+
+
+
+CREATE TABLE [dbo].[Jugador_Poder]
+(
+  
+Jugador_Usuario_Cuenta_idCuenta INT NOT NULL,
+  
+Poder_idPoder INT NOT NULL,
+  
+PRIMARY KEY (Jugador_Usuario_Cuenta_idCuenta, Poder_idPoder),
+  
+CONSTRAINT fk_Jugador_has_Poder_Jugador1
+    
+FOREIGN KEY (Jugador_Usuario_Cuenta_idCuenta)
+    
+REFERENCES dbo.Jugador (Usuario_Cuenta_idCuenta),
+  
+CONSTRAINT fk_Jugador_has_Poder_Poder1
+    
+FOREIGN KEY (Poder_idPoder)
+    
+REFERENCES dbo.Poder (idPoder)
+)
+
+
+
+
+CREATE TABLE [dbo].[Nave]
+(
+  idNave INT NOT NULL UNIQUE,
+  
+Tamano INT NOT NULL,
+  
+Puntaje INT NOT NULL,
+  
+Imagen VARCHAR(45) NOT NULL,
+  
+Nombre VARCHAR(30) NOT NULL,
+  
+PRIMARY KEY (idNave)
+)
+
+
+
+CREATE TABLE [dbo].[Partida]
+(
+  
+idPartida INT NOT NULL UNIQUE,
+  
+Publico CHAR(1) NOT NULL,
+  
+Disparos INT NOT NULL,
+  
+Fecha DATE NOT NULL,
+  
+Jugador1_idCuenta INT NOT NULL,
+  
+Jugador2_idCuenta INT NOT NULL,
+  
+PRIMARY KEY (idPartida),
+  
+CONSTRAINT fk_Partida_Jugador1
+    
+FOREIGN KEY (Jugador1_idCuenta)
+    
+REFERENCES dbo.Jugador (Usuario_Cuenta_idCuenta),
+  
+CONSTRAINT fk_Partida_Jugador2
+    
+FOREIGN KEY (Jugador2_idCuenta)
+    
+REFERENCES dbo.Jugador (Usuario_Cuenta_idCuenta)
+)
+
+
+CREATE TABLE [dbo].[Tablero_Virtual]
+(
+  
+x INT NOT NULL,
+
+y INT NOT NULL,
+  
+NumeroNave INT NOT NULL,
+  
+Poder INT NULL,
+  
+Destruido CHAR(1) NULL,
+  
+Nave_idNave INT NOT NULL,
+  
+Partida_idPartida INT NOT NULL,
+  
+PRIMARY KEY (x, y),
+  
+CONSTRAINT fk_Tablero_Virtual_Nave1
+    
+FOREIGN KEY (Nave_idNave)
+    
+REFERENCES dbo.Nave (idNave),
+  
+CONSTRAINT fk_Tablero_Virtual_Partida1
+    
+FOREIGN KEY (Partida_idPartida)
+    
+REFERENCES dbo.Partida (idPartida)
+)
+
+
+
+CREATE TABLE [dbo].[HistorialPartida]
+(
+  
+idHistorialPartida INT NOT NULL,
+  
+Ganador INT NULL,
+  
+NavesDestruidas1 INT NULL,
+  
+NavesDestruidas2 INT NULL,
+  
+Partida_idPartida INT NOT NULL,
+  
+PRIMARY KEY (idHistorialPartida),
+  
+CONSTRAINT fk_HistorialPartida_Partida1
+    
+FOREIGN KEY (Partida_idPartida)
+    
+REFERENCES dbo.Partida (idPartida)
+)
