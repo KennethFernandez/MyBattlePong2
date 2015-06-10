@@ -51,6 +51,7 @@
     <Compile Include="GestionarNave.cs" />
     <Compile Include="IEncriptacion.cs" />
     <Compile Include="IngresaUsuario.cs" />
+    <Compile Include="ProcesarDisparo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
