@@ -16,7 +16,13 @@ namespace MBP.Servicio
             IngresaUsuario comp = new IngresaUsuario();
             return comp.VerificarIngreso(Modelo.Usuario,Modelo.Contrasena);
         }
-        public bool agregarNave(NaveModel nave)
+        public string agregarNave(NaveModel nave)
+        {
+            GestionarNave gestionarNave = new GestionarNave();
+            return gestionarNave.agregarNave(nave);
+        }
+
+        public string modificarNave(NaveModel nave)
         {
             GestionarNave gestionarNave = new GestionarNave();
             return gestionarNave.agregarNave(nave);
@@ -26,6 +32,11 @@ namespace MBP.Servicio
         {
             GestionarNave gestionarNave = new GestionarNave();
             return gestionarNave.desactivarNave(idNave);
+        }
+        public bool IngresarPartidaVivo()
+        {
+            GestionarPartidaVivo partidaVIvo = new GestionarPartidaVivo();
+            return true;
         }
     }
 }

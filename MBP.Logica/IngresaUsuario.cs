@@ -14,7 +14,7 @@ namespace MBP.Logica
         public bool VerificarIngreso(string nombre, string contra)
         {
             ObtenerModelos obtenerDatos = new ObtenerModelos();
-            Cuenta usuario = obtenerDatos.ObtenerUser(nombre);
+            Cuenta usuario = obtenerDatos.ObtenerCuenta(nombre);
             if (usuario==null)
             {
                 Debug.Write("usuario no existe");

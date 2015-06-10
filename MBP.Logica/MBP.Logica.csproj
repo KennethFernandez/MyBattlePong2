@@ -50,6 +50,8 @@
     <Compile Include="AES.cs" />
     <Compile Include="GestionarDispositivos.cs" />
     <Compile Include="GestionarNave.cs" />
+    <Compile Include="GestionarPartidaOnline.cs" />
+    <Compile Include="GestionarPartidaVivo.cs" />
     <Compile Include="IEncriptacion.cs" />
     <Compile Include="IngresaUsuario.cs" />
     <Compile Include="ProcesarDisparo.cs" />
