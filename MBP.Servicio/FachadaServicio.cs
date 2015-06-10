@@ -38,5 +38,9 @@ namespace MBP.Servicio
             GestionarPartidaVivo partidaVIvo = new GestionarPartidaVivo();
             return true;
         }
+
+        public bool IngresarPartidaOnline(PartidaModel partida)
+        {
+        }
     }
 }

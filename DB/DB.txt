@@ -1,0 +1,162 @@
+
+
+CREATE TABLE [dbo].[Cuenta] (
+    [idCuenta]   INT          IDENTITY (1, 1) NOT NULL,
+    [Contrasena] VARCHAR (10) NOT NULL,
+    [Login]      VARCHAR (20) NOT NULL,
+    [Estado]     CHAR (1)     NOT NULL,
+    PRIMARY KEY CLUSTERED ([idCuenta] ASC),
+    UNIQUE NONCLUSTERED ([idCuenta] ASC),
+    UNIQUE NONCLUSTERED ([Login] ASC)
+);
+
+CREATE TABLE [dbo].[Dispositivo] (
+    [Id]             INT      IDENTITY (1, 1) NOT NULL,
+    [UltimaConexion] DATETIME NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Estadistica] (
+    [Jugador_Usuario_Cuenta_idCuenta] INT NOT NULL,
+    [TotalPartidas]                   INT DEFAULT ((0)) NOT NULL,
+    [TotalGanadas]                    INT DEFAULT ((0)) NOT NULL,
+    [TotalDisparos]                   INT DEFAULT ((0)) NOT NULL,
+    [TotalAcertados]                  INT DEFAULT ((0)) NOT NULL,
+    [TotalPuntos]                     INT DEFAULT ((0)) NOT NULL,
+    [PuntosGanados]                   INT DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Jugador_Usuario_Cuenta_idCuenta] ASC),
+    UNIQUE NONCLUSTERED ([Jugador_Usuario_Cuenta_idCuenta] ASC),
+    CONSTRAINT [fk_Estadistica_Jugador1] FOREIGN KEY ([Jugador_Usuario_Cuenta_idCuenta]) REFERENCES [dbo].[Jugador] ([Usuario_Cuenta_idCuenta])
+);
+
+CREATE TABLE [dbo].[HistorialPartida] (
+    [idHistorialPartida] INT NOT NULL,
+    [Ganador]            INT NULL,
+    [NavesDestruidas1]   INT NULL,
+    [NavesDestruidas2]   INT NULL,
+    [Partida_idPartida]  INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([idHistorialPartida] ASC),
+    CONSTRAINT [fk_HistorialPartida_Partida1] FOREIGN KEY ([Partida_idPartida]) REFERENCES [dbo].[Partida] ([idPartida])
+);
+
+CREATE TABLE [dbo].[Jugador] (
+    [Usuario_Cuenta_idCuenta] INT           NOT NULL,
+    [FechaNacimiento]         DATE          NULL,
+    [Genero]                  CHAR (1)      NOT NULL,
+    [Foto]                    VARCHAR (45)  NULL,
+    [DescripcionPersonal]     VARCHAR (300) NULL,
+    [Pais_idPais]             INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([Usuario_Cuenta_idCuenta] ASC),
+    UNIQUE NONCLUSTERED ([Usuario_Cuenta_idCuenta] ASC),
+    CONSTRAINT [fk_Jugador_Usuario1] FOREIGN KEY ([Usuario_Cuenta_idCuenta]) REFERENCES [dbo].[Usuario] ([Cuenta_idCuenta]),
+    CONSTRAINT [fk_Jugador_Pais1] FOREIGN KEY ([Pais_idPais]) REFERENCES [dbo].[Pais] ([idPais])
+);
+
+
+CREATE TABLE [dbo].[Jugador_Poder] (
+    [Jugador_Usuario_Cuenta_idCuenta] INT NOT NULL,
+    [Poder_idPoder]                   INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Jugador_Usuario_Cuenta_idCuenta] ASC, [Poder_idPoder] ASC),
+    CONSTRAINT [fk_Jugador_has_Poder_Jugador1] FOREIGN KEY ([Jugador_Usuario_Cuenta_idCuenta]) REFERENCES [dbo].[Jugador] ([Usuario_Cuenta_idCuenta]),
+    CONSTRAINT [fk_Jugador_has_Poder_Poder1] FOREIGN KEY ([Poder_idPoder]) REFERENCES [dbo].[Poder] ([idPoder])
+);
+
+
+CREATE TABLE [dbo].[Moderador] (
+    [Usuario_Cuenta_idCuenta] INT          NOT NULL,
+    [FechaNacimiento]         DATE         NULL,
+    [Genero]                  CHAR (1)     NOT NULL,
+    [Foto]                    VARCHAR (45) NULL,
+    [Local]                   VARCHAR (30) NOT NULL,
+    [Pais_idPais]             INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([Usuario_Cuenta_idCuenta] ASC),
+    UNIQUE NONCLUSTERED ([Usuario_Cuenta_idCuenta] ASC),
+    CONSTRAINT [fk_table1_Usuario1] FOREIGN KEY ([Usuario_Cuenta_idCuenta]) REFERENCES [dbo].[Usuario] ([Cuenta_idCuenta]),
+    CONSTRAINT [fk_Moderador_Pais1] FOREIGN KEY ([Pais_idPais]) REFERENCES [dbo].[Pais] ([idPais])
+);
+
+CREATE TABLE [dbo].[Nave] (
+    [idNave]  INT          NOT NULL,
+    [TamanoX] INT          DEFAULT ((0)) NOT NULL,
+    [Puntaje] INT          NOT NULL,
+    [Imagen]  VARCHAR (45) NOT NULL,
+    [Nombre]  VARCHAR (30) NOT NULL,
+    [TamanoY] INT          DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([idNave] ASC),
+    UNIQUE NONCLUSTERED ([idNave] ASC)
+);
+
+
+CREATE TABLE [dbo].[Pais] (
+    [idPais] INT          IDENTITY (1, 1) NOT NULL,
+    [Nombre] VARCHAR (45) NULL,
+    PRIMARY KEY CLUSTERED ([idPais] ASC),
+    UNIQUE NONCLUSTERED ([idPais] ASC)
+);
+
+CREATE TABLE [dbo].[Partida] (
+    [idPartida]         INT      NOT NULL,
+    [Publico]           CHAR (1) NOT NULL,
+    [Disparos]          INT      NOT NULL,
+    [Fecha]             DATETIME NOT NULL,
+    [Jugador1_idCuenta] INT      NOT NULL,
+    [Jugador2_idCuenta] INT      NOT NULL,
+    [Tamano]            INT      DEFAULT ((0)) NOT NULL,
+    [Estado]            CHAR (1) DEFAULT ('D') NOT NULL,
+    PRIMARY KEY CLUSTERED ([idPartida] ASC),
+    UNIQUE NONCLUSTERED ([idPartida] ASC),
+    CONSTRAINT [fk_Partida_Jugador1] FOREIGN KEY ([Jugador1_idCuenta]) REFERENCES [dbo].[Jugador] ([Usuario_Cuenta_idCuenta]),
+    CONSTRAINT [fk_Partida_Jugador2] FOREIGN KEY ([Jugador2_idCuenta]) REFERENCES [dbo].[Jugador] ([Usuario_Cuenta_idCuenta])
+);
+
+
+CREATE TABLE [dbo].[PartidaVivo] (
+    [idPartida]         INT      NOT NULL,
+    [Publico]           CHAR (1) NOT NULL,
+    [Disparos]          INT      NOT NULL,
+    [Fecha]             DATETIME NOT NULL,
+    [Jugador1_idCuenta] INT      NOT NULL,
+    [Jugador2_idCuenta] INT      NOT NULL,
+    [Tamano]            INT      DEFAULT ((0)) NOT NULL,
+    [Estado]            CHAR (1) DEFAULT ('D') NOT NULL,
+    PRIMARY KEY CLUSTERED ([idPartida] ASC),
+    UNIQUE NONCLUSTERED ([idPartida] ASC),
+    CONSTRAINT [fk_Partida_Jugador3] FOREIGN KEY ([Jugador1_idCuenta]) REFERENCES [dbo].[Jugador] ([Usuario_Cuenta_idCuenta]),
+    CONSTRAINT [fk_Partida_Jugador4] FOREIGN KEY ([Jugador2_idCuenta]) REFERENCES [dbo].[Jugador] ([Usuario_Cuenta_idCuenta])
+);
+
+CREATE TABLE [dbo].[Poder] (
+    [idPoder]     INT          NOT NULL,
+    [Nombre]      VARCHAR (30) NOT NULL,
+    [Experiencia] INT          NULL,
+    [Victorias]   INT          NULL,
+    [Puntos]      INT          NULL,
+    [Derrotas]    INT          NULL,
+    [Ranking]     INT          NULL,
+    PRIMARY KEY CLUSTERED ([idPoder] ASC),
+    UNIQUE NONCLUSTERED ([idPoder] ASC)
+);
+
+CREATE TABLE [dbo].[Tablero_Virtual] (
+    [x]                 INT      NOT NULL,
+    [y]                 INT      NOT NULL,
+    [NumeroNave]        INT      NOT NULL,
+    [Poder]             INT      NULL,
+    [Destruido]         CHAR (1) NULL,
+    [Nave_idNave]       INT      NOT NULL,
+    [Partida_idPartida] INT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([x] ASC, [y] ASC),
+    CONSTRAINT [fk_Tablero_Virtual_Nave1] FOREIGN KEY ([Nave_idNave]) REFERENCES [dbo].[Nave] ([idNave])
+);
+
+CREATE TABLE [dbo].[Usuario] (
+    [Cuenta_idCuenta]  INT          NOT NULL,
+    [Nombre]           VARCHAR (30) NOT NULL,
+    [Apellido]         VARCHAR (30) NOT NULL,
+    [Email]            VARCHAR (30) NOT NULL,
+    [Tipo]             CHAR (1)     NOT NULL,
+    [FechaInscripcion] DATE         NOT NULL,
+    PRIMARY KEY CLUSTERED ([Cuenta_idCuenta] ASC),
+    UNIQUE NONCLUSTERED ([Cuenta_idCuenta] ASC),
+    CONSTRAINT [fk_Usuario_Cuenta] FOREIGN KEY ([Cuenta_idCuenta]) REFERENCES [dbo].[Cuenta] ([idCuenta])
+);

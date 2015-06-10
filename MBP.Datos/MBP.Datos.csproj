@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregarModelos.cs" />
+    <Compile Include="ConsultarModelos.cs" />
     <Compile Include="Cuenta.cs">
       <DependentUpon>EntityMBP.tt</DependentUpon>
     </Compile>
     <Compile Include="DispositivoModel.cs" />
+    <Compile Include="EliminarModelos.cs" />
     <Compile Include="EntityMBP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

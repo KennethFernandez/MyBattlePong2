@@ -44,8 +44,22 @@ namespace MBP.Datos
 
             }
 
+        /**
+         * Agrega una nueva partida en vivo a la DB 
+         * 
+         **/
         public void agregaPartidaVivo() { 
         
+        }
+
+        /**
+         * Agrega una nueva partida online a la DB 
+         * 
+         **/
+        public bool agregaPartidaOnline(Partida partida)
+        {
+            Console.WriteLine("MBP.Datos-AgregarModelos-agregaPartidaOnline:Partida Agregada");
+            return true;
         }
 
 
