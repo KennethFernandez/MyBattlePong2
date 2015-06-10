@@ -41,6 +41,7 @@ namespace MBP.Servicio
 
         public bool IngresarPartidaOnline(PartidaModel partida)
         {
+               return new GestionarPartidaOnline().ingresarPartidaOnline(partida);
         }
     }
 }
