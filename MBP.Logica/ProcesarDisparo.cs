@@ -10,13 +10,15 @@ namespace MBP.Logica
     {
         public bool ProcesarDisapro(int numVaso, int idDispositivo)
         {
+            // Verifica un disparo
             if ((numVaso >= 0) && (idDispositivo >= 0))
             {
                 return true;
             }
+            // Anuncia Precencia
             else
             {
-                return false;
+                return new GestionarDispositivos().actualizarDispositivo(idDispositivo);
             }
         }
     }

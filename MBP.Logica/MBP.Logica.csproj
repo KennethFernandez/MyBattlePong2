@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AES.cs" />
+    <Compile Include="GestionarDispositivos.cs" />
     <Compile Include="GestionarNave.cs" />
     <Compile Include="IEncriptacion.cs" />
     <Compile Include="IngresaUsuario.cs" />

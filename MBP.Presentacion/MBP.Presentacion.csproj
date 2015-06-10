@@ -117,7 +117,6 @@
   <ItemGroup>
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\MBPLController.cs" />
-    <Compile Include="Controllers\ProcesarDisparoMPLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
