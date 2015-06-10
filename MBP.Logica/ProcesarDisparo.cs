@@ -15,7 +15,7 @@ namespace MBP.Logica
             {
                 return true;
             }
-            // Anuncia Precencia
+            // Anuncia precencia
             else
             {
                 return new GestionarDispositivos().actualizarDispositivo(idDispositivo);

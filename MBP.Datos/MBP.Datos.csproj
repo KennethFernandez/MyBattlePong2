@@ -52,6 +52,7 @@
     <Compile Include="Cuenta.cs">
       <DependentUpon>EntityMBP.tt</DependentUpon>
     </Compile>
+    <Compile Include="DispositivoModel.cs" />
     <Compile Include="EntityMBP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,6 +71,7 @@
     <Compile Include="Estadistica.cs">
       <DependentUpon>EntityMBP.tt</DependentUpon>
     </Compile>
+    <Compile Include="GestionarDispositivosDatos.cs" />
     <Compile Include="HistorialPartida.cs">
       <DependentUpon>EntityMBP.tt</DependentUpon>
     </Compile>
