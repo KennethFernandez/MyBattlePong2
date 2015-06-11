@@ -1,0 +1,32 @@
+﻿#container {
+    border: 1px solid red;
+    width: 100%;
+     min-width:200px;
+}
+
+#main {
+    border: 1px dotted #f0f;
+    margin: 0 -240px 0 0;    
+}
+
+#left {
+     background-color: #ffffff;
+}
+
+#right {
+     background-color: #ffffff;
+}
+
+#left,#right {
+    display: inline-block;
+    vertical-align:top;
+    margin: 20px;
+    width:auto;
+    height:auto;        
+}
+
+#cont{
+
+
+}
+

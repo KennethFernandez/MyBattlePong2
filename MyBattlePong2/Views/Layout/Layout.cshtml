@@ -15,12 +15,13 @@
     <link href="~/Content/Untitled-2.css" rel="stylesheet" type="text/css">
     <link href="~/Content/SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css">
     <link href="~/Content/Base.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Lados.css" rel="stylesheet" type="text/css">
     <script src="~/Scripts/respond.min.js"></script>
     <script src="~/Content/SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")" type="text/javascript"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript" src="../javascripts/Calendar.js"></script>
-    <script type="text/javascript" src="../javascripts/chat.js"></script>
     <!--Script references. -->
     <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
     <!--Reference the SignalR library. -->
@@ -60,11 +61,9 @@
     <p>&nbsp; </p>
     <div id="body">
         @RenderSection("featured", required: false)
-        <div class="main-box" align="center">
+        <div class="main-box">
             <br /><br />
-            <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
-            </section>
         </div>
     </div>
     <footer>

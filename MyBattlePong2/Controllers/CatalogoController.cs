@@ -13,5 +13,21 @@ namespace MyBattlePong2.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file)
+        {
+
+            file.SaveAs("e:\\" + file.FileName);
+
+            return Json(new
+            {
+                Success = true,
+                FileName = file.FileName,
+                FileSize = file.ContentLength
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
+
+    
 }

@@ -5,7 +5,7 @@
 
 
 <!--La división principal de la página-->
-
+<div align="center">
 
     @model MyBattlePong2.Models.InicioModel
     @using (Html.BeginForm("Inicio", "Inicio", FormMethod.Post,
@@ -26,13 +26,18 @@
     <br />
 
 
-    <table class="Tabla_naranaja"><thead><tr><th>Jugador</th><th>Ranking</th></tr></thead>
-            <tbody><tr><td>UsuarioX</td><td>120</td></tr></tbody></table>                 
+    <table class="Tabla_naranaja">
+        <thead><tr><th>Jugador</th><th>Ranking</th></tr></thead>
+        <tbody><tr><td>UsuarioX</td><td>120</td></tr></tbody>
+    </table>
 
     <div class='calendar'></div>
 
 
     <h2>Tipo</h2><select>
-    <option>Costa Rica</option>
-    <option>Estados Unidos</option>
-    <option>Mexico</option></select>
+        <option>Costa Rica</option>
+        <option>Estados Unidos</option>
+        <option>Mexico</option>
+    </select>
+
+</div>
