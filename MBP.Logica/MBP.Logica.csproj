@@ -53,7 +53,8 @@
     <Compile Include="GestionarPartidaOnline.cs" />
     <Compile Include="GestionarPartidaVivo.cs" />
     <Compile Include="IEncriptacion.cs" />
-    <Compile Include="IngresaUsuario.cs" />
+    <Compile Include="MapperUsuario.cs" />
+    <Compile Include="UsuarioLogica.cs" />
     <Compile Include="MapperModelos.cs" />
     <Compile Include="ProcesarDisparo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

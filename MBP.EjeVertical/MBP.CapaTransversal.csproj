@@ -113,6 +113,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelsMVC\InicioModel.cs" />
+    <Compile Include="ModelsMVC\UsuarioModel.cs" />
     <Compile Include="NaveModel.cs" />
     <Compile Include="PartidaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

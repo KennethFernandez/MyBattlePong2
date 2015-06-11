@@ -1,5 +1,6 @@
 ﻿using MBP.CapaTrasversal.ModelsMVC;
 using MBP.EjeVertical;
+using MBP.EjeVertical.ModelsMVC;
 using MBP.Logica;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace MBP.Servicio
 {
     public class FachadaServicio
     {
-        public bool verificarLogin(InicioModel Modelo)
+        public UsuarioModel verificarLogin(InicioModel Modelo)
         {
-            IngresaUsuario comp = new IngresaUsuario();
-            return comp.VerificarIngreso(Modelo.Usuario, Modelo.Contrasena);
+            UsuarioLogica comp = new UsuarioLogica();
+            return comp.verificarIngreso(Modelo);
         }
         public string agregarNave(NaveModel nave)
         {

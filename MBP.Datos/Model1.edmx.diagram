@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="MyBattlePongModel.PartidaVivo" Width="1.5" PointX="5.25" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Poder" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Tablero_Virtual" Width="1.5" PointX="7.5" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.Usuario" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyBattlePongModel.Usuario" Width="1.5" PointX="1.125" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="MyBattlePongModel.fk_Usuario_Cuenta" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Estadistica_Jugador1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_HistorialPartida_Partida1" ManuallyRouted="false" />

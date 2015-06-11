@@ -9,7 +9,7 @@ namespace MBP.Datos
 {
     public class ObtenerModelos 
     {
-        public  Cuenta ObtenerCuenta(string username)  {
+        public  Cuenta obtenerCuenta(string username)  {
             using (var db = new MyBattlePongEntities())
             {
                 var query = (from st in db.Cuenta
@@ -22,50 +22,73 @@ namespace MBP.Datos
             
         }
 
-        public void obtienePais(int id){
+        public Pais obtenerPais(int id){
             using (var db = new MyBattlePongEntities())
             {
                  //pais
                 var query = (from st in db.Pais
                                where st.idPais == id
-                               select st).FirstOrDefault();
+                               select st);
+                Pais us = new Pais();
+                us = query.FirstOrDefault();
+                return us;
             }
         }
 
-        public void obtieneUsuario(int id)
+        public Usuario obtenerUsuario(int id)
         {
             using (var db = new MyBattlePongEntities())
             {
                 //pais
                 var query = (from st in db.Usuario
                              where st.Cuenta_idCuenta == id
-                             select st).FirstOrDefault();
+                             select st);
+                Usuario us = new Usuario();
+                us = query.FirstOrDefault();
+                return us;
             }
         }
 
-        public void obtieneJugador(int id)
+        public Jugador obtenerJugador(int id)
         {
             using (var db = new MyBattlePongEntities())
             {
                 //pais
                 var query = (from st in db.Jugador
                              where st.Usuario_Cuenta_idCuenta == id
-                             select st).FirstOrDefault();
+                             select st);
+                Jugador us = new Jugador();
+                us = query.FirstOrDefault();
+                return us;
             }
         }
 
-        public void obtieneModerador(int id)
+        public Moderador obtenerModerador(int id)
         {
             using (var db = new MyBattlePongEntities())
             {
                 //pais
                 var query = (from st in db.Moderador
                              where st.Usuario_Cuenta_idCuenta == id
-                             select st).FirstOrDefault();
+                             select st);
+                Moderador us = new Moderador();
+                us = query.FirstOrDefault();
+                return us;
             }
         }
 
-        
-
+        public Estadistica obtenerEstadistica(int id)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                //pais
+                var query = (from st in db.Estadistica
+                             where st.Jugador_Usuario_Cuenta_idCuenta == id
+                             select st);
+                Estadistica us = new Estadistica();
+                us = query.FirstOrDefault();
+                return us;
+            }
+        }
     }
 }

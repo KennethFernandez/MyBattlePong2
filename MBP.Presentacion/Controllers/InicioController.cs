@@ -7,6 +7,7 @@ using System.Web.Security;
 using MBP.Servicio;
 using System.Diagnostics;
 using MBP.CapaTrasversal.ModelsMVC;
+using MBP.EjeVertical.ModelsMVC;
 
 namespace MBP.Presentacion.Controllers
 {
@@ -55,7 +56,8 @@ namespace MBP.Presentacion.Controllers
                 // solo deja pasar si son iguales si no regresa a la página de inicio.
                 // , new { modelo =  UsuarioModel}
                 FachadaServicio comprueba = new FachadaServicio();
-                if (comprueba.verificarLogin(model))
+                UsuarioModel datos = comprueba.verificarLogin(model);
+                if (datos.datos[0,0] != "-1")
                 {
                     Debug.Write("OK");
                     return View();
