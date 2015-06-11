@@ -11,10 +11,10 @@ namespace MBP.Servicio
 {
     public class FachadaServicio
     {
-        public bool VerificarLogin(InicioModel Modelo)
+        public bool verificarLogin(InicioModel Modelo)
         {
             IngresaUsuario comp = new IngresaUsuario();
-            return comp.VerificarIngreso(Modelo.Usuario,Modelo.Contrasena);
+            return comp.VerificarIngreso(Modelo.Usuario, Modelo.Contrasena);
         }
         public string agregarNave(NaveModel nave)
         {
