@@ -14,7 +14,7 @@ namespace MBP.Servicio
         public bool VerificarLogin(InicioModel Modelo)
         {
             IngresaUsuario comp = new IngresaUsuario();
-            return comp.VerificarIngreso(Modelo);
+            return comp.VerificarIngreso(Modelo.Usuario,Modelo.Contrasena);
         }
         public string agregarNave(NaveModel nave)
         {

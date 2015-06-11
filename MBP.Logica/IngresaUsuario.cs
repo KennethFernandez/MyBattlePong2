@@ -1,6 +1,4 @@
-﻿using MBP.CapaTrasversal.ModelsMVC;
-using MBP.Datos;
-using MBP.EjeVertical;
+﻿using MBP.Datos;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,17 +11,27 @@ namespace MBP.Logica
     public class IngresaUsuario
     {
 
-        public bool VerificarIngreso(InicioModel cuenta)
+        public bool VerificarIngreso(string nombre, string contra)
         {
             ObtenerModelos obtenerDatos = new ObtenerModelos();
-            Cuenta usuario = obtenerDatos.ObtenerCuenta(cuenta.Usuario, cuenta.Contrasena);
-            if (usuario == null) return false;
-            else return true;
-        }
-
-        public bool modificarUsuario(string id) //Modelo Usuario con datos del usuario, primer dato tipo usuario, segundo dato cuenta activa, etc.
-        {
-            return true;
+            Cuenta usuario = obtenerDatos.ObtenerCuenta(nombre);
+            if (usuario==null)
+            {
+                Debug.Write("usuario no existe");
+                return false;
+            }
+            else
+            {
+                if (usuario.Contrasena == contra)
+                {
+                    return true;
+                }
+                else
+                {
+                    Debug.Write("Error en password");
+                    return false;
+                }
+            }
         }
     }
 }

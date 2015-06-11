@@ -9,11 +9,11 @@ namespace MBP.Datos
 {
     public class ObtenerModelos 
     {
-        public  Cuenta ObtenerCuenta(string username, string password)  {
+        public  Cuenta ObtenerCuenta(string username)  {
             using (var db = new MyBattlePongEntities())
             {
                 var query = (from st in db.Cuenta
-                               where st.Login == username && st.Contrasena == password
+                               where st.Login == username
                                select st);
                 Cuenta us = new Cuenta();
                 us = query.FirstOrDefault();
