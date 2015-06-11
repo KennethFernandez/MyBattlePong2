@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,24 +81,16 @@ namespace MBP.Datos
             {
                 using (var db = new MyBattlePongEntities())
                 {
-                    Partida p = new Partida();
-                    p.Disparos = 8;
-                    p.Estado = "2";
-                    p.Fecha = DateTime.Now;
-                    p.idPartida = 0;
-                    p.Jugador1_idCuenta = 2;
-                    p.Publico = "T";
-                    p.Tamano = 10;
-                    db.Partida.Add(p);
-                        db.SaveChanges();
-                        Console.WriteLine("Partida Agregada");
-                        return true;
+                    db.Partida.Add(partida);
+                    db.SaveChanges();
+                    Debug.Write("Partida Agregada");
+                    return true;
                 }
             }
             catch(Exception e)
             {
                 //error en base de datos
-                Console.WriteLine(e);
+                Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
                 return false;
             }
         }

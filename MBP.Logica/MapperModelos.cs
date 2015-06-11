@@ -25,8 +25,10 @@ namespace MBP.Logica
                partida.Publico = "F";
             }
             partida.Tamano = partidaModel.tamano;
+            partida.Jugador2_idCuenta = 2;
             partida.Jugador1_idCuenta = partidaModel.idJugadorCreador;
             partida.Estado = "D";
+
             return partida;
         }
     }

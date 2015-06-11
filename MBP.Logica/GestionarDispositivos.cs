@@ -13,7 +13,7 @@ namespace MBP.Logica
         public bool actualizarDispositivo(int idDispositivo)
         {
             Dispositivo dispositivo = new Dispositivo();
-            dispositivo.Id = idDispositivo;        // Asigna el id del dispositivo
+            dispositivo.idDispositivo = idDispositivo;        // Asigna el id del dispositivo
             dispositivo.UltimaConexion = DateTime.Now;      // Asigna el tiempo en el que se hace la conexion
             return new GestionarDispositivosDatos().agregarDispositivo(dispositivo); // Agrega o actualiza el dispositivo
         }

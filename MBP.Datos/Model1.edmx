@@ -18,8 +18,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UltimaConexion" Type="datetime" Nullable="false" />
+          <Property Name="idDispositivo" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Estadistica">
           <Key>
@@ -95,14 +96,14 @@
           <Key>
             <PropertyRef Name="idPartida" />
           </Key>
-          <Property Name="idPartida" Type="int" Nullable="false" />
-          <Property Name="Publico" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="idPartida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Publico" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Disparos" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="Jugador1_idCuenta" Type="int" Nullable="false" />
           <Property Name="Jugador2_idCuenta" Type="int" Nullable="false" />
           <Property Name="Tamano" Type="int" Nullable="false" />
-          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Partida_Nave">
           <Key>
@@ -455,6 +456,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UltimaConexion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idDispositivo" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Estadistica">
           <Key>
@@ -539,13 +541,13 @@
             <PropertyRef Name="idPartida" />
           </Key>
           <Property Name="idPartida" Type="Int32" Nullable="false" />
-          <Property Name="Publico" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Publico" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Disparos" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="Jugador1_idCuenta" Type="Int32" Nullable="false" />
           <Property Name="Jugador2_idCuenta" Type="Int32" Nullable="false" />
           <Property Name="Tamano" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="HistorialPartida" Relationship="Self.fk_HistorialPartida_Partida1" FromRole="Partida" ToRole="HistorialPartida" />
           <NavigationProperty Name="Jugador" Relationship="Self.fk_Partida_Jugador1" FromRole="Partida" ToRole="Jugador" />
           <NavigationProperty Name="Jugador1" Relationship="Self.fk_Partida_Jugador2" FromRole="Partida" ToRole="Jugador" />
@@ -885,6 +887,7 @@
           <EntitySetMapping Name="Dispositivo">
             <EntityTypeMapping TypeName="MyBattlePongModel.Dispositivo">
               <MappingFragment StoreEntitySet="Dispositivo">
+                <ScalarProperty Name="idDispositivo" ColumnName="idDispositivo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
               </MappingFragment>
