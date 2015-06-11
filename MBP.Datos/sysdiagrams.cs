@@ -12,13 +12,12 @@ namespace MBP.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Partida_Nave
+    public partial class sysdiagrams
     {
-        public int Partida_idPartida { get; set; }
-        public int Nave_idNave { get; set; }
-        public int Cantidad { get; set; }
-    
-        public virtual Nave Nave { get; set; }
-        public virtual Partida Partida { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

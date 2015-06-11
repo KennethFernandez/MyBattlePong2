@@ -14,7 +14,6 @@ namespace MBP.Datos
     
     public partial class Poder
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Poder()
         {
             this.Jugador = new HashSet<Jugador>();
@@ -22,13 +21,11 @@ namespace MBP.Datos
     
         public int idPoder { get; set; }
         public string Nombre { get; set; }
-        public Nullable<int> Experiencia { get; set; }
-        public Nullable<int> Victorias { get; set; }
-        public Nullable<int> Puntos { get; set; }
-        public Nullable<int> Derrotas { get; set; }
-        public Nullable<int> Ranking { get; set; }
+        public int Experiencia { get; set; }
+        public int Victorias { get; set; }
+        public int Puntos { get; set; }
+        public int Derrotas { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jugador> Jugador { get; set; }
     }
 }
