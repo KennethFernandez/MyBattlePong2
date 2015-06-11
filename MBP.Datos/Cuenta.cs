@@ -16,7 +16,7 @@ namespace MBP.Datos
     {
         public int idCuenta { get; set; }
         public string Contrasena { get; set; }
-        public string Username { get; set; }
+        public string Login { get; set; }
         public string Estado { get; set; }
     
         public virtual Usuario Usuario { get; set; }

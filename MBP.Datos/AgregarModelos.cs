@@ -11,9 +11,9 @@ namespace MBP.Datos
         public string agregarNave(string nombre, int puntaje, int tam,string pathIma)
         {
             try{
-                using (var db = new MBPentity())
+                using (var db = new MyBattlePongEntities())
                 {
-                    var query = (from st in db.Naves
+                    var query = (from st in db.Nave
                                  where st.Nombre == nombre
                                  select st);
                     Nave nuevaNave = new Nave();
@@ -22,9 +22,10 @@ namespace MBP.Datos
                     {
                         nuevaNave.Nombre = nombre;
                         nuevaNave.Puntaje = puntaje;
-                        nuevaNave.Tamano = tam;
+                        nuevaNave.TamanoX = tam;
+                        nuevaNave.TamanoY = tam;
                         nuevaNave.Imagen = pathIma;
-                        db.Naves.Add(nuevaNave);
+                        db.Nave.Add(nuevaNave);
                         db.SaveChanges();
                         return "Nave agregada";
 
@@ -48,8 +49,25 @@ namespace MBP.Datos
          * Agrega una nueva partida en vivo a la DB 
          * 
          **/
-        public void agregaPartidaVivo() { 
-        
+        public void agregaPais() {
+            try
+            {
+                var context = new MyBattlePongEntities();
+
+                var t = new Pais //Make sure you have a table called test in DB
+                {
+                    idPais = 10,
+                    Nombre = "pppppppp",
+                };
+
+                context.Pais.Add(t);
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                //error en base de datos
+                Console.WriteLine(e);
+            }
         }
 
         /**
@@ -58,13 +76,31 @@ namespace MBP.Datos
          **/
         public bool agregaPartidaOnline(Partida partida)
         {
-            Console.WriteLine("MBP.Datos-AgregarModelos-agregaPartidaOnline:Partida Agregada");
-            return true;
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    Partida p = new Partida();
+                    p.Disparos = 8;
+                    p.Estado = "2";
+                    p.Fecha = DateTime.Now;
+                    p.idPartida = 0;
+                    p.Jugador1_idCuenta = 2;
+                    p.Publico = "T";
+                    p.Tamano = 10;
+                    db.Partida.Add(p);
+                        db.SaveChanges();
+                        Console.WriteLine("Partida Agregada");
+                        return true;
+                }
+            }
+            catch(Exception e)
+            {
+                //error en base de datos
+                Console.WriteLine(e);
+                return false;
+            }
         }
-
-
-            // Verificar si el nombre de la nave ya existe
-            // Agregar la nave
         }
     }
 

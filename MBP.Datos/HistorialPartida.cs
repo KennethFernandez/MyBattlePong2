@@ -15,9 +15,9 @@ namespace MBP.Datos
     public partial class HistorialPartida
     {
         public int idHistorialPartida { get; set; }
-        public Nullable<int> Ganador { get; set; }
-        public Nullable<int> NavesDestruidas1 { get; set; }
-        public Nullable<int> NavesDestruidas2 { get; set; }
+        public int Ganador { get; set; }
+        public int NavesDestruidas1 { get; set; }
+        public int NavesDestruidas2 { get; set; }
         public int Partida_idPartida { get; set; }
     
         public virtual Partida Partida { get; set; }

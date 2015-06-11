@@ -17,15 +17,19 @@ namespace MBP.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nave()
         {
+            this.Partida_Nave = new HashSet<Partida_Nave>();
             this.Tablero_Virtual = new HashSet<Tablero_Virtual>();
         }
     
         public int idNave { get; set; }
-        public int Tamano { get; set; }
+        public int TamanoX { get; set; }
         public int Puntaje { get; set; }
         public string Imagen { get; set; }
         public string Nombre { get; set; }
+        public int TamanoY { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Partida_Nave> Partida_Nave { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tablero_Virtual> Tablero_Virtual { get; set; }
     }

@@ -10,10 +10,10 @@ namespace MBP.Datos
     public class ObtenerModelos 
     {
         public  Cuenta ObtenerCuenta(string username)  {
-            using (var db = new MBPentity())
+            using (var db = new MyBattlePongEntities())
             {
-                var query = (from st in db.Cuentas
-                               where st.Username == username
+                var query = (from st in db.Cuenta
+                               where st.Login == username
                                select st);
                 Cuenta us = new Cuenta();
                 us = query.FirstOrDefault();
@@ -23,7 +23,7 @@ namespace MBP.Datos
         }
 
         public void obtienePais(int id){
-             using (var db = new MBPentity())
+            using (var db = new MyBattlePongEntities())
             {
                  //pais
                 var query = (from st in db.Pais
@@ -34,10 +34,10 @@ namespace MBP.Datos
 
         public void obtieneUsuario(int id)
         {
-            using (var db = new MBPentity())
+            using (var db = new MyBattlePongEntities())
             {
                 //pais
-                var query = (from st in db.Usuarios
+                var query = (from st in db.Usuario
                              where st.Cuenta_idCuenta == id
                              select st).FirstOrDefault();
             }
@@ -45,10 +45,10 @@ namespace MBP.Datos
 
         public void obtieneJugador(int id)
         {
-            using (var db = new MBPentity())
+            using (var db = new MyBattlePongEntities())
             {
                 //pais
-                var query = (from st in db.Jugadors
+                var query = (from st in db.Jugador
                              where st.Usuario_Cuenta_idCuenta == id
                              select st).FirstOrDefault();
             }
@@ -56,10 +56,10 @@ namespace MBP.Datos
 
         public void obtieneModerador(int id)
         {
-            using (var db = new MBPentity())
+            using (var db = new MyBattlePongEntities())
             {
                 //pais
-                var query = (from st in db.Moderadors
+                var query = (from st in db.Moderador
                              where st.Usuario_Cuenta_idCuenta == id
                              select st).FirstOrDefault();
             }

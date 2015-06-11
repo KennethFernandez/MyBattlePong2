@@ -12,21 +12,21 @@ namespace MBP.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Pai
+    public partial class Pais
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pai()
+        public Pais()
         {
-            this.Jugadors = new HashSet<Jugador>();
-            this.Moderadors = new HashSet<Moderador>();
+            this.Jugador = new HashSet<Jugador>();
+            this.Moderador = new HashSet<Moderador>();
         }
     
         public int idPais { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Jugador> Jugadors { get; set; }
+        public virtual ICollection<Jugador> Jugador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Moderador> Moderadors { get; set; }
+        public virtual ICollection<Moderador> Moderador { get; set; }
     }
 }

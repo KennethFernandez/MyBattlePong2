@@ -20,13 +20,14 @@ namespace MBP.Datos
         public string modificaNave(int id,string nombre, int puntaje, int tam, string pathIma)
         {
             try{
-                using (var db = new MBPentity())
+                using (var db = new MyBattlePongEntities())
                 {
   
-                    Nave nave = db.Naves.Find(id);
+                    Nave nave = db.Nave.Find(id);
                     nave.Nombre=nombre;
                     nave.Puntaje=puntaje;
-                    nave.Tamano=tam;
+                    nave.TamanoX= tam;
+                    nave.TamanoY = tam;
                     nave.Imagen=pathIma;
                     db.SaveChanges();
                     return "Nave modificada";

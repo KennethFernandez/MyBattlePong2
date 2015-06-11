@@ -23,6 +23,5 @@ namespace MBP.Datos
         public int Partida_idPartida { get; set; }
     
         public virtual Nave Nave { get; set; }
-        public virtual Partida Partida { get; set; }
     }
 }

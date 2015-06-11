@@ -12,16 +12,18 @@ namespace MBP.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Moderador
+    public partial class PartidaVivo
     {
-        public int Usuario_Cuenta_idCuenta { get; set; }
-        public Nullable<System.DateTime> FechaNacimiento { get; set; }
-        public string Genero { get; set; }
-        public string Foto { get; set; }
-        public string Local { get; set; }
-        public int Pais_idPais { get; set; }
+        public int idPartida { get; set; }
+        public string Publico { get; set; }
+        public int Disparos { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public int Jugador1_idCuenta { get; set; }
+        public int Jugador2_idCuenta { get; set; }
+        public int Tamano { get; set; }
+        public string Estado { get; set; }
     
-        public virtual Pais Pais { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual Jugador Jugador { get; set; }
+        public virtual Jugador Jugador1 { get; set; }
     }
 }

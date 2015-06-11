@@ -18,15 +18,15 @@ namespace MBP.Logica
             partida.idPartida = 0;
             if (partidaModel.permisos)
             {
-               // partida.Publico = 'T';
+                partida.Publico = "T";
             }
             else
             {
-               // partida.Publico = 'F';
+               partida.Publico = "F";
             }
-            //partida.Tamano = partidaModel.tamano;
+            partida.Tamano = partidaModel.tamano;
             partida.Jugador1_idCuenta = partidaModel.idJugadorCreador;
-            //partida.estado = 'D';
+            partida.Estado = "D";
             return partida;
         }
     }

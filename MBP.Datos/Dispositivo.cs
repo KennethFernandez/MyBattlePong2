@@ -12,16 +12,9 @@ namespace MBP.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Moderador
+    public partial class Dispositivo
     {
-        public int Usuario_Cuenta_idCuenta { get; set; }
-        public Nullable<System.DateTime> FechaNacimiento { get; set; }
-        public string Genero { get; set; }
-        public string Foto { get; set; }
-        public string Local { get; set; }
-        public int Pais_idPais { get; set; }
-    
-        public virtual Pais Pais { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public int Id { get; set; }
+        public System.DateTime UltimaConexion { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using MBP.EjeVertical;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,33 +8,58 @@ namespace MBP.Datos
 {
     public class GestionarDispositivosDatos
     {
-        public bool agregarDispositivo(DispositivoModel dispositivo){
-            if (dispositivo.idDisposito == 1) // verifica si el dispositivo no existe
+        public bool agregarDispositivo(Dispositivo dispositivo){
+
+            try
             {
-                return true; // Si el dispositivo no esta en la tabla lo agrega
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Dispositivo
+                                 where st.Id == dispositivo.Id
+                                 select st);
+                    Dispositivo dispositivo2 = query.FirstOrDefault();
+                    if (dispositivo2 == null)
+                    {
+                        db.Dispositivo.Add(dispositivo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        //nombre de nave ya existe
+                        dispositivo2.UltimaConexion = dispositivo.UltimaConexion;
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
             }
-            else
+            catch
             {
-                return false; // Si el dispositivo ya existe actualiza el tiempo de este
+                //error en base de datos
+                return false;
             }
         }
 
         /**
          * Retorna el ultimo tiempo en el que se actualizo el dispositivo
          **/
-        public DispositivoModel buscarDispositivo(int idDispositivo)
+        public Dispositivo buscarDispositivo(int idDispositivo)
         {
-            DispositivoModel dispositivo = new DispositivoModel();
-            if(idDispositivo == 1) // existe
+            try
             {
-                dispositivo.idDisposito = idDispositivo;
-                dispositivo.ultimaConexion = DateTime.Now;
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Dispositivo
+                                 where st.Id == idDispositivo
+                                 select st);
+                    Dispositivo dispositivo = query.FirstOrDefault();
+                    return dispositivo; 
+                }
             }
-            else
+            catch (Exception e)
             {
-                dispositivo.idDisposito = -1;
+                return null;
             }
-            return dispositivo; 
         }
 
 
