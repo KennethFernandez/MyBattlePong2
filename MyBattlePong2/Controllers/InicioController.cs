@@ -42,7 +42,7 @@ namespace MyBattlePong2.Controllers
                 // solo deja pasar si son iguales si no regresa a la página de inicio.
                 // , new { modelo =  UsuarioModel}
                 IngresaUsuario comprueba = new IngresaUsuario();
-                if (comprueba.VerificarIngreso(model.Usuario, model.Contrasena))
+                if (comprueba.VerificarIngreso(model))
                 {
                     FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     Session["MyMenu"] = null;
