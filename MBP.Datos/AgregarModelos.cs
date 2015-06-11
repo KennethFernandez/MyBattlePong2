@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,27 +81,70 @@ namespace MBP.Datos
             {
                 using (var db = new MyBattlePongEntities())
                 {
-                    Partida p = new Partida();
-                    p.Disparos = 8;
-                    p.Estado = "2";
-                    p.Fecha = DateTime.Now;
-                    p.idPartida = 0;
-                    p.Jugador1_idCuenta = 2;
-                    p.Publico = "T";
-                    p.Tamano = 10;
-                    db.Partida.Add(p);
-                        db.SaveChanges();
-                        Console.WriteLine("Partida Agregada");
-                        return true;
+                    db.Partida.Add(partida);
+                    db.SaveChanges();
+                    Debug.Write("Partida Agregada");
+                    return true;
                 }
             }
             catch(Exception e)
             {
                 //error en base de datos
-                Console.WriteLine(e);
+                Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
                 return false;
             }
         }
+
+        public bool agregarDispositivo(Dispositivo dispositivo)
+        {
+
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Dispositivo
+                                 where st.idDispositivo == dispositivo.idDispositivo
+                                 select st);
+                    Dispositivo dispositivo2 = query.FirstOrDefault();
+                    if (dispositivo2 == null)
+                    {
+                        db.Dispositivo.Add(dispositivo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        //nombre de nave ya existe
+                        dispositivo2.UltimaConexion = dispositivo.UltimaConexion;
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
         }
-    }
+
+        public void agregarCasillaTableroVirtual(Tablero_Virtual casilla)
+        {
+             try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Tablero_Virtual.Add(casilla);
+                    db.SaveChanges();
+                    Debug.Write("Casilla Agregada");
+                }
+            }
+            catch(Exception e)
+            {
+                //error en base de datos
+                Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
+            }
+        }
+        }
+}
 

@@ -44,5 +44,14 @@ namespace MBP.Servicio
         {
                return new GestionarPartidaOnline().ingresarPartidaOnline(partida);
         }
+        public bool AgregarTableroOnline(TableroModel tablero)
+        {
+            return new ArmarTablero().armarTableroJuego(tablero);
+        }
+
+        public PartidaModel[] partidasDisponiblesOnline()
+        {
+            return null;
+        }
     }
 }

@@ -10,8 +10,14 @@ namespace MBP.Datos
     {
         public bool eliminarPartidasDeJugador(int idJugador)
         {
-            // Elimina las partidas de un jugador
-            return true;
+            using (var db = new MyBattlePongEntities())
+            {
+                    var list = db.Partida.Where(m => m.Jugador1_idCuenta == idJugador);
+                    foreach (Partida bar in list)
+                        db.Partida.Remove(bar);
+                        db.SaveChanges();
+             }  
+                return true;
+            }
         }
     }
-}
