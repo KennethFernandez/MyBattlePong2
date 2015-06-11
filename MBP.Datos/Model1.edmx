@@ -84,6 +84,7 @@
           <Property Name="Imagen" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="TamanoY" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -141,14 +142,14 @@
         </EntityType>
         <EntityType Name="Tablero_Virtual">
           <Key>
-            <PropertyRef Name="x" />
-            <PropertyRef Name="y" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="x" Type="int" Nullable="false" />
           <Property Name="y" Type="int" Nullable="false" />
           <Property Name="NumeroNave" Type="int" Nullable="false" />
           <Property Name="Poder" Type="int" />
-          <Property Name="Destruido" Type="char" MaxLength="1" />
+          <Property Name="Destruido" Type="varchar" MaxLength="3" />
           <Property Name="Nave_idNave" Type="int" Nullable="false" />
           <Property Name="Partida_idPartida" Type="int" Nullable="false" />
         </EntityType>
@@ -525,7 +526,8 @@
           <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TamanoY" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Partida_Nave" Relationship="Self.fk_Partida_has_Nave_Nave1" FromRole="Nave" ToRole="Partida_Nave" />
-          <NavigationProperty Name="Tablero_Virtual" Relationship="Self.fk_Tablero_Virtual_Nave1" FromRole="Nave" ToRole="Tablero_Virtual" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tablero_Virtual" Relationship="MyBattlePongModel.fk_Tablero_Virtual_Nave1" FromRole="Nave" ToRole="Tablero_Virtual" />
         </EntityType>
         <EntityType Name="Pais">
           <Key>
@@ -591,20 +593,6 @@
           <Property Name="Derrotas" Type="Int32" />
           <Property Name="Ranking" Type="Int32" />
           <NavigationProperty Name="Jugador" Relationship="Self.Jugador_Poder" FromRole="Poder" ToRole="Jugador" />
-        </EntityType>
-        <EntityType Name="Tablero_Virtual">
-          <Key>
-            <PropertyRef Name="x" />
-            <PropertyRef Name="y" />
-          </Key>
-          <Property Name="x" Type="Int32" Nullable="false" />
-          <Property Name="y" Type="Int32" Nullable="false" />
-          <Property Name="NumeroNave" Type="Int32" Nullable="false" />
-          <Property Name="Poder" Type="Int32" />
-          <Property Name="Destruido" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Nave_idNave" Type="Int32" Nullable="false" />
-          <Property Name="Partida_idPartida" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Nave" Relationship="Self.fk_Tablero_Virtual_Nave1" FromRole="Tablero_Virtual" ToRole="Nave" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -764,18 +752,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Tablero_Virtual_Nave1">
-          <End Role="Nave" Type="Self.Nave" Multiplicity="1" />
-          <End Role="Tablero_Virtual" Type="Self.Tablero_Virtual" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nave">
-              <PropertyRef Name="idNave" />
-            </Principal>
-            <Dependent Role="Tablero_Virtual">
-              <PropertyRef Name="Nave_idNave" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Partida_has_Nave_Partida1">
           <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
           <End Role="Partida_Nave" Type="Self.Partida_Nave" Multiplicity="*" />
@@ -805,7 +781,6 @@
           <EntitySet Name="Partida_Nave" EntityType="Self.Partida_Nave" />
           <EntitySet Name="PartidaVivo" EntityType="Self.PartidaVivo" />
           <EntitySet Name="Poder" EntityType="Self.Poder" />
-          <EntitySet Name="Tablero_Virtual" EntityType="Self.Tablero_Virtual" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="fk_Usuario_Cuenta" Association="Self.fk_Usuario_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
@@ -855,10 +830,6 @@
             <End Role="Nave" EntitySet="Nave" />
             <End Role="Partida_Nave" EntitySet="Partida_Nave" />
           </AssociationSet>
-          <AssociationSet Name="fk_Tablero_Virtual_Nave1" Association="Self.fk_Tablero_Virtual_Nave1">
-            <End Role="Nave" EntitySet="Nave" />
-            <End Role="Tablero_Virtual" EntitySet="Tablero_Virtual" />
-          </AssociationSet>
           <AssociationSet Name="fk_Partida_has_Nave_Partida1" Association="Self.fk_Partida_has_Nave_Partida1">
             <End Role="Partida" EntitySet="Partida" />
             <End Role="Partida_Nave" EntitySet="Partida_Nave" />
@@ -867,7 +838,38 @@
             <End Role="Jugador" EntitySet="Jugador" />
             <End Role="Poder" EntitySet="Poder" />
           </AssociationSet>
+          <EntitySet Name="Tablero_Virtual" EntityType="MyBattlePongModel.Tablero_Virtual" />
+          <AssociationSet Name="fk_Tablero_Virtual_Nave1" Association="MyBattlePongModel.fk_Tablero_Virtual_Nave1">
+            <End Role="Nave" EntitySet="Nave" />
+            <End Role="Tablero_Virtual" EntitySet="Tablero_Virtual" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Tablero_Virtual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="x" Type="Int32" Nullable="false" />
+          <Property Name="y" Type="Int32" Nullable="false" />
+          <Property Name="NumeroNave" Type="Int32" Nullable="false" />
+          <Property Name="Poder" Type="Int32" />
+          <Property Name="Destruido" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Nave_idNave" Type="Int32" Nullable="false" />
+          <Property Name="Partida_idPartida" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Nave" Relationship="MyBattlePongModel.fk_Tablero_Virtual_Nave1" FromRole="Tablero_Virtual" ToRole="Nave" />
+        </EntityType>
+        <Association Name="fk_Tablero_Virtual_Nave1">
+          <End Type="MyBattlePongModel.Nave" Role="Nave" Multiplicity="1" />
+          <End Type="MyBattlePongModel.Tablero_Virtual" Role="Tablero_Virtual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nave">
+              <PropertyRef Name="idNave" />
+            </Principal>
+            <Dependent Role="Tablero_Virtual">
+              <PropertyRef Name="Nave_idNave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -944,6 +946,7 @@
           <EntitySetMapping Name="Nave">
             <EntityTypeMapping TypeName="MyBattlePongModel.Nave">
               <MappingFragment StoreEntitySet="Nave">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="idNave" ColumnName="idNave" />
                 <ScalarProperty Name="TamanoX" ColumnName="TamanoX" />
                 <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
@@ -1011,19 +1014,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tablero_Virtual">
-            <EntityTypeMapping TypeName="MyBattlePongModel.Tablero_Virtual">
-              <MappingFragment StoreEntitySet="Tablero_Virtual">
-                <ScalarProperty Name="x" ColumnName="x" />
-                <ScalarProperty Name="y" ColumnName="y" />
-                <ScalarProperty Name="NumeroNave" ColumnName="NumeroNave" />
-                <ScalarProperty Name="Poder" ColumnName="Poder" />
-                <ScalarProperty Name="Destruido" ColumnName="Destruido" />
-                <ScalarProperty Name="Nave_idNave" ColumnName="Nave_idNave" />
-                <ScalarProperty Name="Partida_idPartida" ColumnName="Partida_idPartida" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="MyBattlePongModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
@@ -1044,6 +1034,20 @@
               <ScalarProperty Name="idPoder" ColumnName="Poder_idPoder" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Tablero_Virtual">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Tablero_Virtual">
+              <MappingFragment StoreEntitySet="Tablero_Virtual">
+                <ScalarProperty Name="Partida_idPartida" ColumnName="Partida_idPartida" />
+                <ScalarProperty Name="Nave_idNave" ColumnName="Nave_idNave" />
+                <ScalarProperty Name="Destruido" ColumnName="Destruido" />
+                <ScalarProperty Name="Poder" ColumnName="Poder" />
+                <ScalarProperty Name="NumeroNave" ColumnName="NumeroNave" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

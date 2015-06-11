@@ -94,6 +94,57 @@ namespace MBP.Datos
                 return false;
             }
         }
+
+        public bool agregarDispositivo(Dispositivo dispositivo)
+        {
+
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Dispositivo
+                                 where st.idDispositivo == dispositivo.idDispositivo
+                                 select st);
+                    Dispositivo dispositivo2 = query.FirstOrDefault();
+                    if (dispositivo2 == null)
+                    {
+                        db.Dispositivo.Add(dispositivo);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        //nombre de nave ya existe
+                        dispositivo2.UltimaConexion = dispositivo.UltimaConexion;
+                        db.SaveChanges();
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
         }
-    }
+
+        public void agregarCasillaTableroVirtual(Tablero_Virtual casilla)
+        {
+             try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Tablero_Virtual.Add(casilla);
+                    db.SaveChanges();
+                    Debug.Write("Casilla Agregada");
+                }
+            }
+            catch(Exception e)
+            {
+                //error en base de datos
+                Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
+            }
+        }
+        }
+}
 

@@ -11,7 +11,6 @@ namespace MBP.EjeVertical
         public bool permisos { get; set; }
         public int disparos { get; set; }
         public DateTime fechaCreacion { get; set; }
-        public int[,] navesTipo { get; set; }
         public int tamano { get; set; }
     }
 }

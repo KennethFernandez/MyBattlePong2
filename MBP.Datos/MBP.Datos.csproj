@@ -56,12 +56,10 @@
     <Compile Include="Dispositivo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DispositivoModel.cs" />
     <Compile Include="EliminarModelos.cs" />
     <Compile Include="Estadistica.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="GestionarDispositivosDatos.cs" />
     <Compile Include="HistorialPartida.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

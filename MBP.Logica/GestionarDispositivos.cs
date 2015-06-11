@@ -1,5 +1,4 @@
 ﻿using MBP.Datos;
-using MBP.EjeVertical;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +14,15 @@ namespace MBP.Logica
             Dispositivo dispositivo = new Dispositivo();
             dispositivo.idDispositivo = idDispositivo;        // Asigna el id del dispositivo
             dispositivo.UltimaConexion = DateTime.Now;      // Asigna el tiempo en el que se hace la conexion
-            return new GestionarDispositivosDatos().agregarDispositivo(dispositivo); // Agrega o actualiza el dispositivo
+            return new AgregarModelos().agregarDispositivo(dispositivo); // Agrega o actualiza el dispositivo
         }
 
         public bool verificarPresenciaDispositivo(int idDispositivo)
         {
-            Dispositivo dispositivo = new GestionarDispositivosDatos().buscarDispositivo(idDispositivo);
-            if (dispositivo != null)       // verifica si el dispositivo existe
+            Dispositivo dispositivo = new ObtenerModelos().buscarDispositivo(idDispositivo); // Obtiene la ultima conexion del dispoditivo si existe
+            if (dispositivo != null)                                    // verifica si el dispositivo existe
             {
-                if (dispositivo.UltimaConexion <= DateTime.Now) // Verifica que el dispositivo se encuentre concetado desde antes
+                if (verificarFecha(dispositivo.UltimaConexion, DateTime.Now))         // Verifica que el dispositivo se encuentre concetado desde antes
                 {
                     return true;
                 }
@@ -36,6 +35,18 @@ namespace MBP.Logica
             else
             {
                 return false; // Dispositivo no existe
+            }
+        }
+
+        public bool verificarFecha(DateTime tiempoAlmacenado, DateTime tiempoActual)
+        {
+            if (tiempoAlmacenado <= tiempoActual)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

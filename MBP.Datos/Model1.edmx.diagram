@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="MyBattlePongModel.Partida_Nave" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.PartidaVivo" Width="1.5" PointX="5.25" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Poder" Width="1.5" PointX="5.25" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.Tablero_Virtual" Width="1.5" PointX="7.5" PointY="24.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Usuario" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <AssociationConnector Association="MyBattlePongModel.fk_Usuario_Cuenta" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Estadistica_Jugador1" ManuallyRouted="false" />
@@ -31,9 +30,10 @@
         <AssociationConnector Association="MyBattlePongModel.fk_Moderador_Pais1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_table1_Usuario1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Partida_has_Nave_Nave1" ManuallyRouted="false" />
-        <AssociationConnector Association="MyBattlePongModel.fk_Tablero_Virtual_Nave1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Partida_has_Nave_Partida1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.Jugador_Poder" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyBattlePongModel.Tablero_Virtual" Width="1.5" PointX="7.5" PointY="24.875" />
+        <AssociationConnector Association="MyBattlePongModel.fk_Tablero_Virtual_Nave1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

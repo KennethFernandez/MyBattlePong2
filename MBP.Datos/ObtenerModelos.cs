@@ -43,6 +43,38 @@ namespace MBP.Datos
             }
         }
 
+        public List<Partida> obtieneUsuario()
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                Partida[] partidas;
+                //pais
+                var query = (from st in db.Partida
+                             where st.Estado == "D"
+                             select st);    
+                return null;
+            }
+        }
+
+        public Dispositivo buscarDispositivo(int idDispositivo)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Dispositivo
+                                 where st.Id == idDispositivo
+                                 select st);
+                    Dispositivo dispositivo = query.FirstOrDefault();
+                    return dispositivo;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public void obtieneJugador(int id)
         {
             using (var db = new MyBattlePongEntities())

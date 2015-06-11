@@ -10,9 +10,9 @@ namespace MBP.Logica
 {
     public class GestionarPartidaOnline
     {
-        public void ObtenerPartidasOnline()
+        public List<PartidaModel> ObtenerPartidasOnline()
         {
-
+            return null;
         }
         public bool ingresarPartidaOnline(PartidaModel partida)
         {
