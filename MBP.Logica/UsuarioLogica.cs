@@ -1,6 +1,5 @@
-﻿using MBP.CapaTrasversal.ModelsMVC;
+﻿using MBP.CapaTransversal.ModelsMVC;
 using MBP.Datos;
-using MBP.EjeVertical.ModelsMVC;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

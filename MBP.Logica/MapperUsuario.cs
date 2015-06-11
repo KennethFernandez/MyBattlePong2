@@ -1,5 +1,5 @@
-﻿using MBP.Datos;
-using MBP.EjeVertical.ModelsMVC;
+﻿using MBP.CapaTransversal.ModelsMVC;
+using MBP.Datos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +26,10 @@ namespace MBP.Logica
             {"fecha de inscripcion al sistema",usuario.FechaInscripcion.ToString()},{"descripcion personal",jugador.DescripcionPersonal},
             {"total de partidas jugadas",estadistica.TotalPartidas.ToString()},
             {"total de partidas ganadas/perdidas",estadistica.TotalGanadas+"/"+(estadistica.TotalPartidas-estadistica.TotalGanadas)},
-            {"porcentaje de efectividad de partidas",(estadistica.TotalGanadas/estadistica.TotalPartidas)*100 + "%"},
+            {"porcentaje de efectividad de partidas",((estadistica.TotalPartidas) == 0 ? 0 : estadistica.TotalGanadas/estadistica.TotalPartidas)*100 + "%"},
             {"total de disparos",estadistica.TotalDisparos.ToString()},{"disparos acertados/fallados",estadistica.TotalAcertados+"/"+(estadistica.TotalDisparos-estadistica.TotalAcertados)},
-            {"porcentaje de efectividad en disparos",(estadistica.TotalAcertados/estadistica.TotalDisparos)*100 + "%"},
-            {"puntos ganados",estadistica.PuntosGanados.ToString()},{"porcentaje de puntos ganados",estadistica.PuntosGanados/estadistica.TotalPuntos*100 + "%"}};
+            {"porcentaje de efectividad en disparos",((estadistica.TotalDisparos) == 0 ? 0 : estadistica.TotalAcertados/estadistica.TotalDisparos)*100 + "%"},
+            {"puntos ganados",estadistica.PuntosGanados.ToString()},{"porcentaje de puntos ganados", ((estadistica.TotalPuntos) == 0 ? 0 : estadistica.PuntosGanados/estadistica.TotalPuntos*100) + "%"}};
             usuarioModel.datos = data;
             return usuarioModel;
         }

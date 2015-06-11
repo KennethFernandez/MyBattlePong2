@@ -108,16 +108,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CasillaModel.cs" />
+    <Compile Include="ModelsMVC\CasillaModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelsMVC\InicioModel.cs" />
     <Compile Include="ModelsMVC\UsuarioModel.cs" />
-    <Compile Include="NaveModel.cs" />
-    <Compile Include="PartidaModel.cs" />
+    <Compile Include="ModelsMVC\NaveModel.cs" />
+    <Compile Include="ModelsMVC\PartidaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TableroModel.cs" />
+    <Compile Include="ModelsMVC\TableroModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

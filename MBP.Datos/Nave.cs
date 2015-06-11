@@ -25,7 +25,6 @@ namespace MBP.Datos
         public string Imagen { get; set; }
         public string Nombre { get; set; }
         public int TamanoY { get; set; }
-        public bool Estado { get; set; }
     
         public virtual ICollection<Tablero_Virtual> Tablero_Virtual { get; set; }
     }

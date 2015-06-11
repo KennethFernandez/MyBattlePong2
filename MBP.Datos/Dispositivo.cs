@@ -16,6 +16,5 @@ namespace MBP.Datos
     {
         public int Id { get; set; }
         public System.DateTime UltimaConexion { get; set; }
-        public int idDispositivo { get; set; }
     }
 }

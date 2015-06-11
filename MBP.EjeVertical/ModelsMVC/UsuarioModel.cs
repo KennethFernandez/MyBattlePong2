@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MBP.EjeVertical.ModelsMVC
+namespace MBP.CapaTransversal.ModelsMVC
 {
     public class UsuarioModel
     {

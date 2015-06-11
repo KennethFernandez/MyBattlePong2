@@ -66,6 +66,18 @@
       <Project>{a7bda9f0-d641-461c-b3b0-5fb0868b69eb}</Project>
       <Name>MBP.Datos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MBP.EjeVertical\MBP.CapaTransversal.csproj">
+      <Project>{401f2650-4598-4035-a810-4bffb62fb0aa}</Project>
+      <Name>MBP.CapaTransversal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MBP.Logica\MBP.Logica.csproj">
+      <Project>{11f86344-b117-4a54-8639-0acdd144230f}</Project>
+      <Name>MBP.Logica</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MBP.Servicio\MBP.Servicio.csproj">
+      <Project>{c4688873-a90b-481f-932f-f0fc6b9aab8e}</Project>
+      <Name>MBP.Servicio</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

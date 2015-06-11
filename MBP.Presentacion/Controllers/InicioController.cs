@@ -6,8 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using MBP.Servicio;
 using System.Diagnostics;
-using MBP.CapaTrasversal.ModelsMVC;
-using MBP.EjeVertical.ModelsMVC;
+using MBP.CapaTransversal.ModelsMVC;
 
 namespace MBP.Presentacion.Controllers
 {

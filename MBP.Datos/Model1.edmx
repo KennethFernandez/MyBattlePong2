@@ -674,7 +674,7 @@
           <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
           <End Role="Poder" Type="Self.Poder" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="MyBattlePongEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MyBattlePongEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
           <EntitySet Name="Dispositivo" EntityType="Self.Dispositivo" />
           <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />
@@ -742,7 +742,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MyBattlePongModelStoreContainer" CdmEntityContainer="MyBattlePongEntities">
+        <EntityContainerMapping StorageEntityContainer="MyBattlePongModelStoreContainer" CdmEntityContainer="MyBattlePongEntities1">
           <EntitySetMapping Name="Cuenta">
             <EntityTypeMapping TypeName="MyBattlePongModel.Cuenta">
               <MappingFragment StoreEntitySet="Cuenta">

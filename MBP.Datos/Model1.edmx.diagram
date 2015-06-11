@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c044f1da2eb645bb893651f47bb7c1b9" Name="Diagram1">
+      <Diagram DiagramId="eeb5b0fc291546408da41d2cd68277bf" Name="Diagram1">
         <EntityTypeShape EntityType="MyBattlePongModel.Cuenta" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Dispositivo" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Estadistica" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />

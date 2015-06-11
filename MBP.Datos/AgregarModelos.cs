@@ -103,7 +103,7 @@ namespace MBP.Datos
                 using (var db = new MyBattlePongEntities())
                 {
                     var query = (from st in db.Dispositivo
-                                 where st.idDispositivo == dispositivo.idDispositivo
+                                 where st.Id == dispositivo.Id
                                  select st);
                     Dispositivo dispositivo2 = query.FirstOrDefault();
                     if (dispositivo2 == null)

@@ -1,4 +1,4 @@
-﻿using MBP.EjeVertical;
+﻿using MBP.CapaTransversal.ModelsMVC;
 using MBP.Servicio;
 using System;
 using System.Collections.Generic;
