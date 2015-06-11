@@ -17,11 +17,11 @@ namespace MBP.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Jugador()
         {
-            this.Partida = new HashSet<Partida>();
-            this.Partida1 = new HashSet<Partida>();
             this.PartidaVivo = new HashSet<PartidaVivo>();
             this.PartidaVivo1 = new HashSet<PartidaVivo>();
             this.Poder = new HashSet<Poder>();
+            this.Partida = new HashSet<Partida>();
+            this.Partida1 = new HashSet<Partida>();
         }
     
         public int Usuario_Cuenta_idCuenta { get; set; }
@@ -35,14 +35,14 @@ namespace MBP.Datos
         public virtual Pais Pais { get; set; }
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Partida> Partida { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Partida> Partida1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PartidaVivo> PartidaVivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PartidaVivo> PartidaVivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Poder> Poder { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Partida> Partida { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Partida> Partida1 { get; set; }
     }
 }

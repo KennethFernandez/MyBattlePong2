@@ -17,19 +17,11 @@ namespace MBP.Logica
             partida.Disparos = partidaModel.disparos;
             partida.Fecha = DateTime.Now;
             partida.idPartida = 0;
-            if (partidaModel.permisos)
-            {
-                partida.Publico = "T";
-            }
-            else
-            {
-               partida.Publico = "F";
-            }
+            partida.Publico = partidaModel.permisos;
             partida.Tamano = partidaModel.tamano;
             partida.Jugador2_idCuenta = 2;
             partida.Jugador1_idCuenta = partidaModel.idJugadorCreador;
-            partida.Estado = "D";
-
+            partida.Estado = Constantes.partidaCreada;
             return partida;
         }
 
@@ -43,14 +35,7 @@ namespace MBP.Logica
                 partida.disparos = partidas[i].Disparos;
                 partida.fechaCreacion = partidas[i].Fecha;
                 partida.idJugadorCreador = partidas[i].Jugador1_idCuenta;
-                if (partidas[i].Publico == "T")
-                {
-                    partida.permisos = true;
-                }
-                else
-                {
-                    partida.permisos = false;
-                }
+                partida.permisos = partidas[i].Publico; 
                 nuevasPartitas[i] = partida;
             }
             return nuevasPartitas;

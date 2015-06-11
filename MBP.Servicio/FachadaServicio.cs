@@ -48,9 +48,9 @@ namespace MBP.Servicio
             return new ArmarTablero().armarTableroJuego(tablero);
         }
 
-        public PartidaModel[] partidasDisponiblesOnline()
+        public int Disparo(DisparoModel disparo)
         {
-            return null;
+            return new ProcesarDisparo().procesarDisparoOnline(disparo);
         }
     }
 }

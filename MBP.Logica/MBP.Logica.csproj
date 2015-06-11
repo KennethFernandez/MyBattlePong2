@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="AES.cs" />
     <Compile Include="ArmarTablero.cs" />
+    <Compile Include="Constantes.cs" />
+    <Compile Include="FinalizarPartida.cs" />
     <Compile Include="GestionarDispositivos.cs" />
     <Compile Include="GestionarNave.cs" />
     <Compile Include="GestionarPartidaOnline.cs" />

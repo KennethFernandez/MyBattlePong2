@@ -28,10 +28,5 @@ namespace MBP.Logica
             AgregarModelos agregar = new AgregarModelos();
             return agregar.agregaPartidaOnline(partidaDatos);
         }
-
-        public bool diparo()
-        {
-            return false;
-        }
     }
 }

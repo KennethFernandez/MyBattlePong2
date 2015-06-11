@@ -15,13 +15,11 @@ namespace MBP.Presentacion.Controllers
         public string Get(int numVaso, int idDispositivo)
         {
             Debug.Write("Prueba iniciada");
-            //PartidaModel partida = new PartidaModel();
-            //partida.disparos = 12;
-            //partida.idJugadorCreador = 4;
-            //partida.permisos = true;
-            //int[,] naves = new int[7, 2] { { 1, 3 }, { 2, 4 }, { 3, 1 }, { 4, 4 }, { 5, 3 }, { 6, 3 }, { 4, 5 } };
-            //partida.navesTipo = naves;
-            //partida.tamano = 10;
+            PartidaModel partida = new PartidaModel();
+            partida.disparos = 5;
+            partida.idJugadorCreador = 4;
+            partida.permisos = true;
+            partida.tamano = 10;
             //new FachadaServicio().IngresarPartidaOnline(partida);
 
             // Primera nave
@@ -114,13 +112,22 @@ namespace MBP.Presentacion.Controllers
             casillas.Add(casilla10);
             casillas.Add(casilla11);
             casillas.Add(casilla12);
+
+
             TableroModel tablero = new TableroModel();
-            tablero.idJugador = 2;
-            tablero.idPartida = 4;
+            tablero.idJugador = 4;
+            tablero.idPartida = 11;
             tablero.tablero = casillas;
-            new FachadaServicio().AgregarTableroOnline(tablero);
+            //new FachadaServicio().AgregarTableroOnline(tablero);
+            DisparoModel disparo = new DisparoModel();
+            disparo.x = numVaso;
+            disparo.y = idDispositivo;
+            disparo.idPartida = 11;
+            disparo.idJugador = 4;
             Debug.Write("Prueba iniciada");
-            return "respuesta: " + new FachadaServicioMPL().ProcesarDisapro(numVaso, idDispositivo);
+            return "respuesta" + new FachadaServicio().Disparo(disparo);
+
+            //return "respuesta: " + new FachadaServicioMPL().ProcesarDisapro(numVaso, idDispositivo);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MBP.Logica
         public void jugadorTienePartida(int idCuenta)
         {
             // Verifica si ya tiene una partida creada y si es asi la borra;
-            ConsultarModelos consulta = new ConsultarModelos();
+            ObtenerModelos consulta = new ObtenerModelos();
             if (consulta.existePartidaJugador(idCuenta))
             {
                 EliminarModelos eliminar = new EliminarModelos();

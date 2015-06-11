@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MBP.Datos
+namespace MBP.Logica
 {
-    public class ConsultarModelos
+    public class FinalizarPartida
     {
-        public bool existePartidaJugador(int idCuenta)
+        public bool finalizarPartida()
+        {
+            return true;
+        }
+
+        public bool cancelarPartida()
         {
             return true;
         }

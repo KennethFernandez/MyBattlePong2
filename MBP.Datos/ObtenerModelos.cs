@@ -9,18 +9,97 @@ namespace MBP.Datos
 {
     public class ObtenerModelos 
     {
-        public  Cuenta ObtenerCuenta(string username)  {
+
+
+        public Cuenta ObtenerCuenta(string username)
+        {
             using (var db = new MyBattlePongEntities())
             {
                 var query = (from st in db.Cuenta
-                               where st.Login == username
-                               select st);
+                             where st.Login == username
+                             select st);
                 Cuenta us = new Cuenta();
                 us = query.FirstOrDefault();
                 return us;
             }
+        }
+            
+        
+
+
+    public  Tablero_Virtual obtenerCasillaTablero(int tabla,int idPartida, int X, int Y)  {
+            using (var db = new MyBattlePongEntities())
+            {
+                if (tabla == 1)
+                {
+                    var query = (from st in db.Tablero_Virtual_1
+                                 where st.Partida_idPartida == idPartida && st.x == X && st.y == Y
+                                 select st);
+                    Tablero_Virtual_1 us = new Tablero_Virtual_1();
+                    if (us != null)
+                    {
+                        Tablero_Virtual casilla = new Tablero_Virtual();
+                        casilla.Destruido = us.Destruido;
+                        casilla.Id = us.Id;
+                        casilla.Nave_idNave = us.Nave_idNave;
+                        casilla.NumeroNave = us.NumeroNave;
+                        casilla.Poder = us.Poder;
+                        us = query.FirstOrDefault();
+                        return casilla;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var query = (from st in db.Tablero_Virtual_2
+                                 where st.Partida_idPartida == idPartida && st.x == X && st.y == Y
+                                 select st);
+                    Tablero_Virtual_2 us = new Tablero_Virtual_2();
+                    if (us != null)
+                    {
+                        Tablero_Virtual casilla = new Tablero_Virtual();
+                        casilla.Destruido = us.Destruido;
+                        casilla.Id = us.Id;
+                        casilla.Nave_idNave = us.Nave_idNave;
+                        casilla.NumeroNave = us.NumeroNave;
+                        casilla.Poder = us.Poder;
+                        us = query.FirstOrDefault();
+                        return casilla;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
             
         }
+
+
+public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tablero)
+{
+    using (var db = new MyBattlePongEntities())
+    {
+        if (tablero == 1)
+        {
+            var query = (from st in db.Tablero_Virtual_1
+                         where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == idNaveTablero
+                         select st);
+            return query.Count();
+        }
+        else
+        {
+            var query = (from st in db.Tablero_Virtual_2
+                         where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == idNaveTablero
+                         select st);
+            return query.Count();
+        }
+    }
+
+}
 
         public void obtienePais(int id){
             using (var db = new MyBattlePongEntities())
@@ -50,11 +129,12 @@ namespace MBP.Datos
                 Partida[] partidas;
                 //pais
                 var query = (from st in db.Partida
-                             where st.Estado == "D"
+                             where st.Estado == 2
                              select st);    
                 return null;
             }
         }
+
 
         public Dispositivo buscarDispositivo(int idDispositivo)
         {
@@ -67,6 +147,26 @@ namespace MBP.Datos
                                  select st);
                     Dispositivo dispositivo = query.FirstOrDefault();
                     return dispositivo;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+
+        public Partida buscarPartida(int idPartida)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Partida
+                                 where st.idPartida == idPartida
+                                 select st);
+                    Partida partida = query.FirstOrDefault();
+                    return partida;
                 }
             }
             catch (Exception e)
@@ -97,6 +197,21 @@ namespace MBP.Datos
             }
         }
 
+        public bool existePartidaJugador(int idJugador)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                //pais
+                var query = (from st in db.Partida
+                             where st.Jugador1_idCuenta == idJugador
+                             select st);
+                if(query.Count()>0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
         
 
     }

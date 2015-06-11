@@ -22,13 +22,13 @@ namespace MBP.Datos
         }
     
         public int idPartida { get; set; }
-        public string Publico { get; set; }
+        public bool Publico { get; set; }
         public int Disparos { get; set; }
         public System.DateTime Fecha { get; set; }
         public int Jugador1_idCuenta { get; set; }
         public int Jugador2_idCuenta { get; set; }
         public int Tamano { get; set; }
-        public string Estado { get; set; }
+        public int Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistorialPartida> HistorialPartida { get; set; }

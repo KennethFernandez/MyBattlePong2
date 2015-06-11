@@ -128,13 +128,13 @@ namespace MBP.Datos
             }
         }
 
-        public void agregarCasillaTableroVirtual(Tablero_Virtual casilla)
+        public void agregarCasillaTableroVirtual1(Tablero_Virtual_1 casilla)
         {
              try
             {
                 using (var db = new MyBattlePongEntities())
                 {
-                    db.Tablero_Virtual.Add(casilla);
+                    db.Tablero_Virtual_1.Add(casilla);
                     db.SaveChanges();
                     Debug.Write("Casilla Agregada");
                 }
@@ -143,6 +143,24 @@ namespace MBP.Datos
             {
                 //error en base de datos
                 Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
+            }
+        }
+
+        public void agregarCasillaTableroVirtual2(Tablero_Virtual_2 casilla)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Tablero_Virtual_2.Add(casilla);
+                    db.SaveChanges();
+                    Debug.Write("Casilla Agregada");
+                }
+            }
+            catch (Exception e)
+            {
+                //error en base de datos
+                Debug.Write("----------------------" + e.InnerException + "-------------------------------------\n");
             }
         }
         }
