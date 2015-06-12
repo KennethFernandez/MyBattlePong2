@@ -13,12 +13,18 @@ require(['src/html5Upload', 'domReady', 'knockout-models'], function (html5Uploa
     domReady(function () {
         if (html5Upload.fileApiSupported()) {
 
+            var fileName = window.location.pathname.toString().split("/");
+            fileName =  "/" + fileName[1] + "/" + fileName[2] + "/Upload";
+            console.log(fileName);
+
             var context = document.getElementById('upload-liveuploads'),
                 uploadsModel = new models.UploadsViewModel();
 
             html5Upload.initialize({
+
+                
                 // URL that handles uploaded files
-                uploadUrl: '/MyBattlePong2/Catalogo/Upload',
+                uploadUrl: fileName,
 
                 // HTML element on which files should be dropped (optional)
                 dropContainer: document.getElementById('dragndropimage'),

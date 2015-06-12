@@ -8,7 +8,7 @@
 <div align="center">
 
     @model MyBattlePong2.Models.InicioModel
-    @using (Html.BeginForm("Inicio", "Inicio", FormMethod.Post,
+    @using (Html.BeginForm("Catalogo", "Catalogo", FormMethod.Post,
                 new { enctype = "multipart/form-data" }))
     {
 
@@ -24,20 +24,5 @@
 
     <p><a href="Registrarse/Registrarse">Registrarse</a></p>
     <br />
-
-
-    <table class="Tabla_naranaja">
-        <thead><tr><th>Jugador</th><th>Ranking</th></tr></thead>
-        <tbody><tr><td>UsuarioX</td><td>120</td></tr></tbody>
-    </table>
-
-    <div class='calendar'></div>
-
-
-    <h2>Tipo</h2><select>
-        <option>Costa Rica</option>
-        <option>Estados Unidos</option>
-        <option>Mexico</option>
-    </select>
 
 </div>

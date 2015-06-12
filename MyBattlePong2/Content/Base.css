@@ -10,7 +10,7 @@ header,td,th {
 }
 header, body{
 	background-color: #FFF;
-	background-image: url(Images/Fondo.jpg);
+	background-image: url(images/Fondo.jpg);
 	background-repeat: repeat;
 	background-size: contain;
     width:auto;
@@ -36,7 +36,7 @@ footer{
     position:relative;
 }
 
-.input1{
+.input1, .datepicker, .input2{
 
 	font-family: kkberkbm;
     background-color: #F90;
@@ -50,7 +50,9 @@ footer{
 
 }
 
-.input1:focus{
+.input2{ height: 30px;}
+
+.input1:focus, .datepicker:focus, .input2:focus{
      box-shadow:0 0 15px #808080;
      color: #F90;
      background-color:#FFF;

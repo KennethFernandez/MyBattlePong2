@@ -16,7 +16,7 @@ namespace MyBattlePong2.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            
+
             return View();
         }
 

@@ -209,12 +209,19 @@
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\JugarController.cs" />
+    <Compile Include="Controllers\RegistrarseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\Startup.cs" />
+    <Compile Include="Models\CompositeRegModel.cs" />
     <Compile Include="Models\InicioModel.cs" />
+    <Compile Include="Models\JugadorModel.cs" />
+    <Compile Include="Models\ModeradorModel.cs" />
+    <Compile Include="Models\RegistrarseExtModel.cs" />
+    <Compile Include="Models\RegistrarseModel.cs" />
+    <Compile Include="Models\TipoUsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Twitter\Twitear.cs" />
   </ItemGroup>
@@ -230,7 +237,17 @@
     <Content Include="Content\Fuentes\Belmongo\stylesheet.css" />
     <Content Include="Content\Fuentes\digiffiti\stylesheet.css" />
     <Content Include="Content\Fuentes\kkberkbm\stylesheet.css" />
-    <Content Include="Content\Images\Fondo.jpg" />
+    <Content Include="Content\images\Fondo.jpg" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\Lados.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\SpryAssets\SpryMenuBar.js" />
@@ -315,6 +332,8 @@
     <Content Include="javascripts\DragDrop.js" />
     <Content Include="javascripts\header.js" />
     <Content Include="javascripts\Colspan.js" />
+    <Content Include="javascripts\ObtenerRuta.js" />
+    <Content Include="javascripts\OcultarOpciones.js" />
     <Content Include="javascripts\redips-drag-min.js" />
     <Content Include="javascripts\redips-drag-source.js" />
     <Content Include="javascripts\redips-table-min.js" />
@@ -336,6 +355,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -365,11 +385,16 @@
     <Content Include="Views\Jugar\Jugar.cshtml" />
     <Content Include="Views\_Menu.cshtml" />
     <Content Include="Views\Catalogo\Catalogo.cshtml" />
+    <Content Include="Views\Registrarse\Registrarse.cshtml" />
+    <Content Include="Views\Buscar\Buscar.cshtml" />
+    <Content Include="Views\JugarEnVivo\JugarEnVivo.cshtml" />
+    <Content Include="Views\Crear\Crear.cshtml" />
+    <Content Include="Views\Colocacion\Colocacion.cshtml" />
+    <Content Include="Views\Perfil\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ImagenesUser\" />
-    <Folder Include="Views\JugarEnVivo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

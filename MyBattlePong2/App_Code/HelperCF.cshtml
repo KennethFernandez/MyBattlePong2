@@ -2,13 +2,14 @@
 
 
     <script type="text/javascript" src="~/Scripts/knockout-2.1.0.js"></script>
+    <script type="text/javascript" src="~/javascripts/ObtenerRuta.js"></script>
 
     <div class="upload">
 
         <div id="dragndropimage" class="uploadimage-dragndrop">
             <label>Imagen: DragNDrop</label>
             <div class="uploadimage-input">
-                <input type="file" multiple="multiple" name="uploadFiles" id="upload-input" />
+                <input type="file" name="uploadFiles" id="upload-input" />
             </div>
         </div>
         <div id="upload-liveuploads" data-bind="template: { name: 'template-uploads' }"></div>
