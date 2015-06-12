@@ -17,35 +17,35 @@ namespace MBP.Logica
             ObtenerModelos obtenerDatos = new ObtenerModelos();
             Cuenta cuenta = obtenerDatos.obtenerCuenta(model.Usuario);
             UsuarioModel result = new UsuarioModel();
-            MapperUsuario mapper = new MapperUsuario();
-            Pais pais;
+            MapperUsuario mapper = null;
+            Usuario usuario = null;
             if (cuenta != null)
             {
-                Usuario usuario = obtenerDatos.obtenerUsuario(cuenta.idCuenta);
+                usuario = obtenerDatos.obtenerUsuario(cuenta.idCuenta);
                 switch (usuario.Tipo)
 	            {
                     case "1":   //jugador
-                        Jugador jugador = obtenerDatos.obtenerJugador(cuenta.idCuenta);
-                        pais = obtenerDatos.obtenerPais(jugador.Pais_idPais);
-                        Estadistica estadistica = obtenerDatos.obtenerEstadistica(cuenta.idCuenta);
-                        result = mapper.mapper(usuario, jugador, pais, estadistica);
+                        mapper = new MapperJugador(mapper);
+                        result = mapper.mapper(cuenta, usuario);
                         break;
                     case "2":   //moderador
-                        Moderador moderador = obtenerDatos.obtenerModerador(cuenta.idCuenta);
-                        pais = obtenerDatos.obtenerPais(moderador.Pais_idPais);
-                        result = mapper.mapper(usuario, moderador, pais);
+                        mapper = new MapperModerador(mapper);
+                        result = mapper.mapper(cuenta, usuario);
                         break;
                     case "3":   //administrador
-                        result = mapper.mapper(usuario);
+                        mapper = new MapperAdministrador();
+                        result = mapper.mapper(cuenta, usuario);
                         break;
 		            default:    //cuenta nula
-                        result = mapper.mapper();
+                        mapper = new MapperNull();
+                        result = mapper.mapper(cuenta, usuario);
                         break;
 	            }
             }
             else
             {
-                result = mapper.mapper();
+                mapper = new MapperNull();
+                result = mapper.mapper(cuenta, usuario);
             }
             return result;
         }
