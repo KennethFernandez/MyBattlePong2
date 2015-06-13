@@ -30,12 +30,17 @@ namespace MBP.Logica
         // El disparo elimino la ultima nave
         public static int disparoFinal = 4;
         // El disparo elimino la ultima nave
-        public static int disparoNaveDestruida = 5;
+        public static int disparoNoEsSuTurno = 5;
+        // El disparo elimino la ultima nave
+        public static int disparoAPartidaNoExiste = 6;
 
         // Numero que representa el tablero de cada jugador
         // jugador 1
         public static int tableroJugador1 = 1;
         // Jugador 2
         public static int tableroJugador2 = 2;
+
+        // Cuenta por defecto de la partida en espera
+        public static int cuentaPorDefectoPartidaEspera = 2;
     }
 }

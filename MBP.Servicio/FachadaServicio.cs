@@ -39,18 +39,29 @@ namespace MBP.Servicio
             return true;
         }
 
-        public int IngresarPartidaOnline(PartidaModel partida)
+        public int ingresarPartidaOnline(PartidaModel partida)
         {
                return new GestionarPartidaOnline().ingresarPartidaOnline(partida);
         }
-        public bool AgregarTableroOnline(TableroModel tablero)
+        public bool agregarTableroOnline(TableroModel tablero)
         {
             return new ArmarTablero().armarTableroJuego(tablero);
         }
 
-        public int Disparo(DisparoModel disparo)
+        public int disparo(DisparoModel disparo)
         {
             return new ProcesarDisparo().procesarDisparoOnline(disparo);
         }
+
+        public bool eliminarPartida(int idJugador)
+        {
+            return true;
+        }
+
+        public bool pasarTurnoPartida(int idPartida)
+        {
+            return true;
+        }
+
     }
 }

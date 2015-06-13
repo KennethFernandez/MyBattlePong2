@@ -11,28 +11,46 @@ namespace MBP.Logica
 {
     public class MapperModelos
     {
+        /**
+         * Cambia el modelo de la partida MVC a el modelo de datos del entity
+         * Tambien asigna quien es el primer jugador en iniciar y los tiros disponibles para cada jugador
+         **/
         public Partida partidaViewModelAPartidaDataModel(PartidaModel partidaModel){
-            Console.WriteLine("MBP.Logica-MapperModelos-partidaViewModelAPartidaDataModel: Se realizo el cambio de modelos");
+
             Partida partida = new Partida();
-            partida.Disparos = partidaModel.disparos;
+            // Asigna la mima cantidad de disparos para cada jugador por que aun no se activa ningun poder
+            partida.DisparosJugador1 = partidaModel.disparos;
+            partida.DisparosJugador2 = partidaModel.disparos;
+            partida.DisparosRestantes = partidaModel.disparos;
+
+            // Selecciona quien es el primer jugador (Aplicar metodo aleatorio)
+            partida.TurnoActual = true;
+
+            // Asigna los datos del otro modelo
+
+            partida.Jugador2_idCuenta = Constantes.cuentaPorDefectoPartidaEspera;
             partida.Fecha = DateTime.Now;
-            partida.idPartida = 0;
             partida.Publico = partidaModel.permisos;
             partida.Tamano = partidaModel.tamano;
-            partida.Jugador2_idCuenta = 2;
             partida.Jugador1_idCuenta = partidaModel.idJugadorCreador;
+
+            // Coloca la partida como creada pero no lista
             partida.Estado = Constantes.partidaCreada;
             return partida;
         }
 
+
+        /**
+         * Tranforma un conjunto de partidas del modelo de datos al modelo del MVC
+         * 
+         **/
         public PartidaModel[] partidaDataModelApartidaViewModel(Partida[] partidas)
         {
-            Debug.Write("MBP.Logica-MapperModelos-PartidaDataModelApartidaViewModel: Se realizo el cambio de modelos");
             PartidaModel [] nuevasPartitas = new PartidaModel[partidas.Length-1];
             for (int i = 0; i < partidas.Length; i++)
             {
                 PartidaModel partida = new PartidaModel();
-                partida.disparos = partidas[i].Disparos;
+                partida.disparos = partidas[i].DisparosJugador1;
                 partida.fechaCreacion = partidas[i].Fecha;
                 partida.idJugadorCreador = partidas[i].Jugador1_idCuenta;
                 partida.permisos = partidas[i].Publico; 

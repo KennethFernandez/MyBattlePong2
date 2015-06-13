@@ -11,6 +11,7 @@ namespace MBP.Logica
 {
     public class ProcesarDisparo
     {
+        Partida partida;
         public bool ProcesarDisaproLive(int numVaso, int idDispositivo)
         {
             // Verifica un disparo
@@ -28,21 +29,55 @@ namespace MBP.Logica
 
         public int procesarDisparoOnline(DisparoModel disparo)
         {
-            Partida partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
-            if (partida.Jugador1_idCuenta == disparo.idJugador)
+
+            partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
+
+            if (partida != null)
             {
-                return this.procesarDisparoTablero(disparo, Constantes.tableroJugador1);
+                if (partida.Jugador1_idCuenta == disparo.idJugador && partida.TurnoActual)
+                {
+                    if (partida.DisparosRestantes == 1)
+                    {
+                        partida.TurnoActual = !partida.TurnoActual;
+                        partida.DisparosRestantes = partida.DisparosJugador2;
+                    }
+                    else
+                    {
+                        partida.DisparosRestantes--;
+                    }
+                    new ModificarModelos().actualizarPartida(partida);
+                    return this.procesarDisparoTablero(disparo, Constantes.tableroJugador1);
+                }
+                else if (partida.Jugador2_idCuenta == disparo.idJugador && !partida.TurnoActual)
+                {
+
+                    if (partida.DisparosRestantes == 1)
+                    {
+                        partida.TurnoActual = !partida.TurnoActual;
+                        partida.DisparosRestantes = partida.DisparosJugador1;
+                    }
+                    else
+                    {
+                        partida.DisparosRestantes--;
+                    }
+                    new ModificarModelos().actualizarPartida(partida);
+                    return this.procesarDisparoTablero(disparo, Constantes.tableroJugador2);
+                }
+                else
+                {
+                    return Constantes.disparoNoEsSuTurno;
+                }
             }
             else
             {
-                return this.procesarDisparoTablero(disparo, Constantes.tableroJugador2);
+                return Constantes.disparoAPartidaNoExiste;
             }
 
         }
 
 
 
-        public bool siNaveDestruida(Tablero_Virtual casilla, int tablero)
+        private bool siNaveDestruida(Tablero_Virtual casilla, int tablero)
         {
             if (new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida,tablero) > 0)
             {
@@ -61,7 +96,6 @@ namespace MBP.Logica
             Tablero_Virtual casilla = new ObtenerModelos().obtenerCasillaTablero(tablero, disparo.idPartida, disparo.x, disparo.y);
             if (casilla != null)
             {
-                //Debug.Write("................." + casilla.Destruido + " , " +casilla.Poder+ " , " + casilla.Id);
                 if (!casilla.Destruido)
                 {
                     if (casilla.Poder > 0)
@@ -74,14 +108,8 @@ namespace MBP.Logica
                     {
                         casilla.Destruido = true;
                         new ModificarModelos().actualizarCasilla(casilla, tablero);
-                        if (siNaveDestruida(casilla,tablero))
-                        {
-                            return Constantes.disparoNaveDestruida;
-                        }
-                        else
-                        {
-                            return Constantes.disparoExitoso;
-                        }
+                        this.siNaveDestruida(casilla, tablero);
+                        return Constantes.disparoExitoso;
                     }
                 }
                 else
@@ -91,7 +119,6 @@ namespace MBP.Logica
             }
             else
             {
-                Debug.Write("++++++++++++++++++++++Disparo Fallido++++++++++++++++++++++++++");
                 return Constantes.disparoFallido;
             }
         }

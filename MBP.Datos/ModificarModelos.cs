@@ -26,9 +26,7 @@ namespace MBP.Datos
                 {
 
                     Partida partidaAct = db.Partida.Find(partida.idPartida);
-                    partidaAct.Jugador1_idCuenta = partida.Jugador1_idCuenta;
-                    partidaAct.Jugador2_idCuenta = partida.Jugador2_idCuenta;
-                    partidaAct.Estado = partida.Estado;
+                    db.Entry(partidaAct).CurrentValues.SetValues(partida);
                     db.SaveChanges();
                     return true;
                 }

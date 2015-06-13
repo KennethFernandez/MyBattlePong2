@@ -12,14 +12,16 @@ namespace MBP.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class HistorialPartida
+    public partial class PartidaHistorica
     {
-        public int idHistorialPartida { get; set; }
+        public int idPartidaHistorica { get; set; }
         public int Ganador { get; set; }
         public int NavesDestruidas1 { get; set; }
         public int NavesDestruidas2 { get; set; }
-        public int Partida_idPartida { get; set; }
+        public int Jugador1_idCuenta { get; set; }
+        public int Jugador2_idCuenta { get; set; }
     
-        public virtual Partida Partida { get; set; }
+        public virtual Jugador Jugador { get; set; }
+        public virtual Jugador Jugador1 { get; set; }
     }
 }

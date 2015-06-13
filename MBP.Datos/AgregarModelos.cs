@@ -89,7 +89,7 @@ namespace MBP.Datos
             catch(Exception e)
             {
                 //error en base de datos
-                Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
+                //Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
                 return 0;
             }
         }

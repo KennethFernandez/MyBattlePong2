@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarEstadisticasJugador.cs" />
     <Compile Include="AES.cs" />
     <Compile Include="ArmarTablero.cs" />
     <Compile Include="Constantes.cs" />

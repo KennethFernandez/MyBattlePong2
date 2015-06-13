@@ -17,21 +17,23 @@ namespace MBP.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Partida()
         {
-            this.HistorialPartida = new HashSet<HistorialPartida>();
             this.Partida_Nave = new HashSet<Partida_Nave>();
         }
     
         public int idPartida { get; set; }
         public bool Publico { get; set; }
-        public int Disparos { get; set; }
+        public int DisparosJugador1 { get; set; }
         public System.DateTime Fecha { get; set; }
         public int Jugador1_idCuenta { get; set; }
         public int Jugador2_idCuenta { get; set; }
         public int Tamano { get; set; }
         public int Estado { get; set; }
+        public int DisparosJugador2 { get; set; }
+        public bool TurnoActual { get; set; }
+        public int DisparosRestantes { get; set; }
+        public int PuntajeJugador1 { get; set; }
+        public int PuntajeJugador2 { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistorialPartida> HistorialPartida { get; set; }
         public virtual Jugador Jugador { get; set; }
         public virtual Jugador Jugador1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

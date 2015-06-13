@@ -14,6 +14,8 @@ namespace MBP.Logica
         {
             return null;
         }
+
+
         public int ingresarPartidaOnline(PartidaModel partida)
         {
             // Verifica si el jugador ya tiene creada una partida antes y la borra
@@ -24,7 +26,7 @@ namespace MBP.Logica
             MapperModelos mapper = new MapperModelos();
             Partida partidaDatos = mapper.partidaViewModelAPartidaDataModel(partida);
 
-            // Agrega la partida a la tabla de partidas en espera
+            // Agrega la partida a la tabla de partidas
             AgregarModelos agregar = new AgregarModelos();
             return agregar.agregaPartidaOnline(partidaDatos);
         }
