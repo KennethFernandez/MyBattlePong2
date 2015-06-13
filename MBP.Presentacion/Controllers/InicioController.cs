@@ -56,9 +56,10 @@ namespace MBP.Presentacion.Controllers
                 // , new { modelo =  UsuarioModel}
                 FachadaServicio comprueba = new FachadaServicio();
                 UsuarioModel datos = comprueba.verificarLogin(model);
+                
                 if (datos.datos[0,0] != "-1")
                 {
-                    Debug.Write("OK");
+                    
                     return View();
                     // FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     //Session["MyMenu"] = null;
@@ -66,7 +67,7 @@ namespace MBP.Presentacion.Controllers
                 }
                 else
                 {
-                    Debug.Write("NO");
+                    
                     return View();
 
                 };// Mensaje de no valido, poner un label.

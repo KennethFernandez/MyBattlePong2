@@ -12,15 +12,8 @@ namespace MBP.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Partida
+    public partial class PartidaVivo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Partida()
-        {
-            this.HistorialPartida = new HashSet<HistorialPartida>();
-            this.Partida_Nave = new HashSet<Partida_Nave>();
-        }
-    
         public int idPartida { get; set; }
         public string Publico { get; set; }
         public int Disparos { get; set; }
@@ -30,11 +23,7 @@ namespace MBP.Datos
         public int Tamano { get; set; }
         public string Estado { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistorialPartida> HistorialPartida { get; set; }
         public virtual Jugador Jugador { get; set; }
         public virtual Jugador Jugador1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Partida_Nave> Partida_Nave { get; set; }
     }
 }

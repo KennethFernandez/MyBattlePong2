@@ -14,10 +14,8 @@ namespace MBP.Datos
             {
                 var query = (from st in db.Cuenta
                                where st.Login == username
-                               select st);
-                Cuenta us = new Cuenta();
-                us = query.FirstOrDefault();
-                return us;
+                               select st).FirstOrDefault();
+                return query;
             }
             
         }

@@ -12,8 +12,8 @@ namespace MBP.Datos.Tests
         public void TestMethod1()
         {
             InicioModel inicio = new InicioModel();
-            inicio.Usuario = "pollo";
-            inicio.Contrasena = "pollo";
+            inicio.Usuario = "alonso";
+            inicio.Contrasena = "hola";
             FachadaServicio fachada = new FachadaServicio();
             UsuarioModel usuario = fachada.verificarLogin(inicio);
             Assert.AreEqual(usuario.datos[0,1],"1");

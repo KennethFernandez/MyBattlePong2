@@ -14,8 +14,10 @@ namespace MBP.Datos
     
     public partial class Nave
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nave()
         {
+            this.Partida_Nave = new HashSet<Partida_Nave>();
             this.Tablero_Virtual = new HashSet<Tablero_Virtual>();
         }
     
@@ -25,7 +27,11 @@ namespace MBP.Datos
         public string Imagen { get; set; }
         public string Nombre { get; set; }
         public int TamanoY { get; set; }
+        public bool Estado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Partida_Nave> Partida_Nave { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tablero_Virtual> Tablero_Virtual { get; set; }
     }
 }

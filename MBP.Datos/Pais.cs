@@ -14,6 +14,7 @@ namespace MBP.Datos
     
     public partial class Pais
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pais()
         {
             this.Jugador = new HashSet<Jugador>();
@@ -23,7 +24,9 @@ namespace MBP.Datos
         public int idPais { get; set; }
         public string Nombre { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jugador> Jugador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Moderador> Moderador { get; set; }
     }
 }
