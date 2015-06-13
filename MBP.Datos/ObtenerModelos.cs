@@ -194,6 +194,18 @@ public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tabler
             }
         }
 
+        public Nave obtieneNave(int idNave)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                //nave
+                var query = (from st in db.Nave
+                             where st.idNave == idNave
+                             select st);
+                return query.FirstOrDefault();
+            }
+        }
+
         public void obtieneModerador(int id)
         {
             using (var db = new MyBattlePongEntities())

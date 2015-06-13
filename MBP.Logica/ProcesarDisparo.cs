@@ -31,7 +31,7 @@ namespace MBP.Logica
         {
 
             partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
-
+            int resultado = 0;
             if (partida != null)
             {
                 if (partida.Jugador1_idCuenta == disparo.idJugador && partida.TurnoActual)
@@ -45,8 +45,7 @@ namespace MBP.Logica
                     {
                         partida.DisparosRestantes--;
                     }
-                    new ModificarModelos().actualizarPartida(partida);
-                    return this.procesarDisparoTablero(disparo, Constantes.tableroJugador1);
+                    resultado = this.procesarDisparoTablero(disparo, Constantes.tableroJugador2);
                 }
                 else if (partida.Jugador2_idCuenta == disparo.idJugador && !partida.TurnoActual)
                 {
@@ -60,27 +59,36 @@ namespace MBP.Logica
                     {
                         partida.DisparosRestantes--;
                     }
-                    new ModificarModelos().actualizarPartida(partida);
-                    return this.procesarDisparoTablero(disparo, Constantes.tableroJugador2);
+                    resultado = this.procesarDisparoTablero(disparo, Constantes.tableroJugador1);
                 }
                 else
                 {
-                    return Constantes.disparoNoEsSuTurno;
+                    resultado = Constantes.disparoNoEsSuTurno;
                 }
             }
             else
             {
-                return Constantes.disparoAPartidaNoExiste;
+                resultado = Constantes.disparoAPartidaNoExiste;
             }
-
+            new ModificarModelos().actualizarPartida(partida);
+            return resultado;
         }
 
 
 
         private bool siNaveDestruida(Tablero_Virtual casilla, int tablero)
         {
-            if (new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida,tablero) > 0)
+            if (new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida,tablero) <= 0)
             {
+                Nave nave = new ObtenerModelos().obtieneNave(casilla.Nave_idNave);
+                if (tablero == Constantes.tableroJugador2)
+                {
+                    partida.PuntajeJugador1 += nave.Puntaje;
+                }
+                else
+                {
+                    partida.PuntajeJugador2 += nave.Puntaje;
+                }
                 return false;
             }
             else

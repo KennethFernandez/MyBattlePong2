@@ -146,6 +146,10 @@ namespace MBP.Datos.Tests
             disparo.y = 1;
             Assert.AreEqual(fachadaServicio.disparo(disparo),Constantes.disparoExitoso);
             Assert.AreEqual(fachadaServicio.disparo(disparo),Constantes.disparoFallido);
+
+
+            Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
+            Assert.AreEqual(partidaDatos.DisparosJugador1, new ObtenerModelos().obtieneNave(2).Puntaje);
         }
 
         [TestMethod]
