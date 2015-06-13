@@ -75,7 +75,7 @@ namespace MBP.Datos
          * Agrega una nueva partida online a la DB 
          * 
          **/
-        public bool agregaPartidaOnline(Partida partida)
+        public int agregaPartidaOnline(Partida partida)
         {
             try
             {
@@ -83,15 +83,14 @@ namespace MBP.Datos
                 {
                     db.Partida.Add(partida);
                     db.SaveChanges();
-                    Debug.Write("Partida Agregada");
-                    return true;
+                    return partida.idPartida;
                 }
             }
             catch(Exception e)
             {
                 //error en base de datos
                 Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
-                return false;
+                return 0;
             }
         }
 

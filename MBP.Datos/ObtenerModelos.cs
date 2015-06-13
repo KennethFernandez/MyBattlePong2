@@ -23,61 +23,69 @@ namespace MBP.Datos
                 return us;
             }
         }
-            
-        
 
 
-    public  Tablero_Virtual obtenerCasillaTablero(int tabla,int idPartida, int X, int Y)  {
-            using (var db = new MyBattlePongEntities())
+
+
+        public Tablero_Virtual obtenerCasillaTablero(int tabla, int idPartida, int X, int Y)
+        {
+            try
             {
-                if (tabla == 1)
+                using (var db = new MyBattlePongEntities())
                 {
-                    var query = (from st in db.Tablero_Virtual_1
-                                 where st.Partida_idPartida == idPartida && st.x == X && st.y == Y
-                                 select st);
-                    Tablero_Virtual_1 us = new Tablero_Virtual_1();
-                    if (us != null)
+                    if (tabla == 1)
                     {
-                        Tablero_Virtual casilla = new Tablero_Virtual();
-                        casilla.Destruido = us.Destruido;
-                        casilla.Id = us.Id;
-                        casilla.Nave_idNave = us.Nave_idNave;
-                        casilla.NumeroNave = us.NumeroNave;
-                        casilla.Poder = us.Poder;
-                        us = query.FirstOrDefault();
-                        return casilla;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-                else
-                {
-                    var query = (from st in db.Tablero_Virtual_2
-                                 where st.Partida_idPartida == idPartida && st.x == X && st.y == Y
-                                 select st);
-                    Tablero_Virtual_2 us = new Tablero_Virtual_2();
-                    if (us != null)
-                    {
-                        Tablero_Virtual casilla = new Tablero_Virtual();
-                        casilla.Destruido = us.Destruido;
-                        casilla.Id = us.Id;
-                        casilla.Nave_idNave = us.Nave_idNave;
-                        casilla.NumeroNave = us.NumeroNave;
-                        casilla.Poder = us.Poder;
-                        us = query.FirstOrDefault();
-                        return casilla;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-            }
-            
-        }
+                        var query = (from st in db.Tablero_Virtual_1
+                                     where st.Partida_idPartida == idPartida && st.x == X && st.y == Y
+                                     select st);
+                        Tablero_Virtual_1 us = query.FirstOrDefault();
 
+                        if (us != null)
+                        {
+                            Tablero_Virtual casilla = new Tablero_Virtual();
+                            casilla.Destruido = us.Destruido;
+                            casilla.Id = us.Id;
+                            casilla.Nave_idNave = us.Nave_idNave;
+                            casilla.NumeroNave = us.NumeroNave;
+                            casilla.Poder = us.Poder;
+                            us = query.FirstOrDefault();
+                            return casilla;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        var query = (from st in db.Tablero_Virtual_2
+                                     where st.Partida_idPartida == idPartida && st.x == X && st.y == Y
+                                     select st);
+                        Tablero_Virtual_2 us = query.FirstOrDefault();
+                        if (us != null)
+                        {
+                            Tablero_Virtual casilla = new Tablero_Virtual();
+                            casilla.Destruido = us.Destruido;
+                            casilla.Id = us.Id;
+                            casilla.Nave_idNave = us.Nave_idNave;
+                            casilla.NumeroNave = us.NumeroNave;
+                            casilla.Poder = us.Poder;
+                            us = query.FirstOrDefault();
+                            return casilla;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
 public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tablero)
 {

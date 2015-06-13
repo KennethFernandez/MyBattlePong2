@@ -18,7 +18,8 @@ namespace MBP.Datos
         public Nave()
         {
             this.Partida_Nave = new HashSet<Partida_Nave>();
-            this.Tablero_Virtual = new HashSet<Tablero_Virtual>();
+            this.Tablero_Virtual_1 = new HashSet<Tablero_Virtual_1>();
+            this.Tablero_Virtual_2 = new HashSet<Tablero_Virtual_2>();
         }
     
         public int idNave { get; set; }
@@ -32,6 +33,8 @@ namespace MBP.Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Partida_Nave> Partida_Nave { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tablero_Virtual> Tablero_Virtual { get; set; }
+        public virtual ICollection<Tablero_Virtual_1> Tablero_Virtual_1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tablero_Virtual_2> Tablero_Virtual_2 { get; set; }
     }
 }

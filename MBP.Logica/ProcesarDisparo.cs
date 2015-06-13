@@ -40,6 +40,8 @@ namespace MBP.Logica
 
         }
 
+
+
         public bool siNaveDestruida(Tablero_Virtual casilla, int tablero)
         {
             if (new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida,tablero) > 0)
@@ -52,11 +54,14 @@ namespace MBP.Logica
             }
         }
 
+
+
         private int procesarDisparoTablero(DisparoModel disparo, int tablero)
         {
             Tablero_Virtual casilla = new ObtenerModelos().obtenerCasillaTablero(tablero, disparo.idPartida, disparo.x, disparo.y);
             if (casilla != null)
             {
+                //Debug.Write("................." + casilla.Destruido + " , " +casilla.Poder+ " , " + casilla.Id);
                 if (!casilla.Destruido)
                 {
                     if (casilla.Poder > 0)

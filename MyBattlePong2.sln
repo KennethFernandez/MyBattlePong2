@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBP.CapaTransversal", "MBP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBP.Servicio", "MBP.Servicio\MBP.Servicio.csproj", "{C4688873-A90B-481F-932F-F0FC6B9AAB8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas", "Pruebas\Pruebas.csproj", "{C26879E2-79E5-4CD6-AA93-B2F524745591}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{C4688873-A90B-481F-932F-F0FC6B9AAB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4688873-A90B-481F-932F-F0FC6B9AAB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4688873-A90B-481F-932F-F0FC6B9AAB8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C26879E2-79E5-4CD6-AA93-B2F524745591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C26879E2-79E5-4CD6-AA93-B2F524745591}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C26879E2-79E5-4CD6-AA93-B2F524745591}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C26879E2-79E5-4CD6-AA93-B2F524745591}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

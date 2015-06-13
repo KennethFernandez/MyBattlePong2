@@ -14,7 +14,7 @@ namespace MBP.Logica
         {
             return null;
         }
-        public bool ingresarPartidaOnline(PartidaModel partida)
+        public int ingresarPartidaOnline(PartidaModel partida)
         {
             // Verifica si el jugador ya tiene creada una partida antes y la borra
             VerificarPartidaJugador verificar = new VerificarPartidaJugador();
