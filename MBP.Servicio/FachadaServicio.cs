@@ -2,6 +2,7 @@
 using MBP.Logica;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,12 @@ namespace MBP.Servicio
         {
             UsuarioLogica comp = new UsuarioLogica();
             return comp.verificarIngreso(Modelo);
+        }
+
+        public void ingresarSistema(CompositeRegModel modelo) {
+            if (modelo.ModeloBase.Tipo == "") { 
+                
+            }
         }
         public string agregarNave(NaveModel nave)
         {
@@ -50,6 +57,9 @@ namespace MBP.Servicio
         public PartidaModel[] partidasDisponiblesOnline()
         {
             return null;
+        }
+        public bool agregarNuevoUser(CompositeRegModel modelo) {
+            return true;
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using MBP.CapaTransversal.ModelsMVC;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MyBattlePong2.Controllers
+namespace MBP.Presentacion.Controllers
 {
     public class RegistrarseController : Controller
     {
@@ -13,23 +14,29 @@ namespace MyBattlePong2.Controllers
          [HttpGet]
         public ActionResult Registrarse()
         {
+            var model = new CompositeRegModel();
+
+             
+            model.ModeloBase = new RegistrarseModel();
+            model.ModeloExt = new RegistrarseExtModel();
+            model.ModeloJugador = new JugadorModel();
+            model.ModeloModerador = new ModeradorModel();
             TipoUsuarioModel tipo = new TipoUsuarioModel();
             ViewBag.CategoryID = tipo.TypeList;
-            return View();
+            return View(model);
         }
 
          [HttpPost]
          public ActionResult Registrarse(CompositeRegModel model)
         {
-
-            if (ModelState.IsValid )
-            {
-               
-                return (model.ModeloBase.PasswordConf ==  model.ModeloBase.Password) ?
-                        RedirectToAction("Inicio", "Inicio") : RedirectToAction("Registrarse", "Registrarse");
-            }
-
-            return View();
+            Debug.WriteLine("tipoooooooooooooooooooooooooooooo: ");
+             if (model.ModeloBase.PasswordConf == model.ModeloBase.Password) {
+                    Debug.WriteLine("igueleeees");
+                    return RedirectToAction("Inicio", "Inicio");
+                }
+                Debug.WriteLine("direfenteeeees");
+                    return RedirectToAction("Registrarse", "Registrarse");
+            
         }
 
          [HttpPost]

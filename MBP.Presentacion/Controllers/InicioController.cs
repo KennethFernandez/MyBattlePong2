@@ -49,6 +49,7 @@ namespace MBP.Presentacion.Controllers
             // return RedirectToAction("Jugar", "Jugar");
             // Si el modelo cumple con las condiciones
             // de largo y demas pasa
+
             if (ModelState.IsValid)
             {
 
@@ -56,10 +57,9 @@ namespace MBP.Presentacion.Controllers
                 // , new { modelo =  UsuarioModel}
                 FachadaServicio comprueba = new FachadaServicio();
                 UsuarioModel datos = comprueba.verificarLogin(model);
-                
                 if (datos.datos[0,0] != "-1")
                 {
-                    
+                    Debug.WriteLine("user valido");
                     return View();
                     // FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     //Session["MyMenu"] = null;
@@ -75,6 +75,7 @@ namespace MBP.Presentacion.Controllers
             }
             else
             {
+                Debug.WriteLine("datos: ");
                 return View();
             }
         }

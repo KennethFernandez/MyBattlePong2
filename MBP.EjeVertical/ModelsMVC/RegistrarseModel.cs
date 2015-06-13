@@ -32,7 +32,9 @@ namespace MBP.CapaTransversal.ModelsMVC
 
         [Required]
         [EmailAddress]
-        [StringLength(40, MinimumLength = 5, ErrorMessage = "E-Correo no Válido")]
+        [StringLength(40, MinimumLength = 1, ErrorMessage = "E-Correo no Válido")]
         public string Email { get; set; }
+        [Required]
+        public string Tipo {get; set; }
     }
 }

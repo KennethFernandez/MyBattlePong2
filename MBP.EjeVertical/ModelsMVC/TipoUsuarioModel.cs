@@ -12,9 +12,9 @@ namespace MBP.CapaTransversal.ModelsMVC
         {
 
             get{ return new List<SelectListItem>{
-                        new SelectListItem{ Text = "Administrador", Value= "1"},
-                        new SelectListItem{ Text = "Jugador",       Value= "2"},
-                        new SelectListItem{ Text = "Moderador",     Value= "3"},
+                        new SelectListItem{ Text = "Administrador", Value= "3"},
+                        new SelectListItem{ Text = "Jugador",       Value= "1"},
+                        new SelectListItem{ Text = "Moderador",     Value= "2"},
             };}
         }
 

@@ -31,5 +31,10 @@ namespace MBP.Logica
         {
             return true;
         }
+
+        public bool agregarUsuario(CompositeRegModel model) {
+            
+            return true;
+        }
     }
 }

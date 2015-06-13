@@ -8,10 +8,11 @@ namespace MBP.CapaTransversal.ModelsMVC
     public class CompositeRegModel
     {
 
-        public RegistrarseModel    ModeloBase       { set; get; }
-        public RegistrarseExtModel ModeloExt       { set; get; }
-        public JugadorModel        ModeloJugador   { set; get; }
-        public ModeradorModel      ModeloModerador { set; get; }
+        public RegistrarseModel ModeloBase { get; set; }
+        public RegistrarseExtModel ModeloExt { get; set; }
+        public JugadorModel ModeloJugador { get; set; }
+        public ModeradorModel ModeloModerador { get; set; }
+
 
     }
 }

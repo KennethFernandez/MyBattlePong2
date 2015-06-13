@@ -22,17 +22,21 @@
         <div id="left">
             <p>
                 Tipo:
-                @Html.DropDownList("TipoDeUsuario", new SelectList(ViewBag.CategoryID, "Value", "Text"), new { @id = "TipoDeUsuario" })
+                @Html.DropDownListFor(x => x.ModeloBase.Tipo, new SelectList(ViewBag.CategoryID, "Value", "Text"), new { @id = "TipoDeUsuario" })
             </p>
 
             <p>Usuario:</p>
-            @Html.TextBoxFor(x => x.ModeloBase.Nombre, new { @class = "input1" })
+            @Html.TextBoxFor(x => x.ModeloBase.Login, new { @class = "input1" })
             <p>Contraseña:</p>
             @Html.PasswordFor(x => x.ModeloBase.Password, new { @class = "input1" })
             <p>Repetir Contraseña:</p>
             @Html.PasswordFor(x => x.ModeloBase.PasswordConf, new { @class = "input1" })
             <p>Correo Electrónico:</p>
-            @Html.PasswordFor(x => x.ModeloBase.Email, new { @class = "input1" })
+            @Html.TextBoxFor(x => x.ModeloBase.Email, new { @class = "input1" })
+            <p>Nombre:</p>
+            @Html.TextBoxFor(x => x.ModeloBase.Nombre, new { @class = "input1" })
+            <p>Apellido:</p>
+            @Html.TextBoxFor(x => x.ModeloBase.Apellido, new { @class = "input1" })
             <br>
             <br>
             

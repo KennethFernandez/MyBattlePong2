@@ -9,8 +9,6 @@ namespace MBP.CapaTransversal.ModelsMVC
     public class JugadorModel
     {
 
-        [Required]
-        [StringLength(120, MinimumLength = 1, ErrorMessage = "UserName No Válido")]
         public string DescripcionPersonal { get; set; }
 
     }

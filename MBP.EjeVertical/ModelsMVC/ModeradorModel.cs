@@ -8,8 +8,8 @@ namespace MBP.CapaTransversal.ModelsMVC
 {
     public class ModeradorModel
     {
-        [Required]
-        [StringLength(20, MinimumLength = 1, ErrorMessage = "UserName No Válido")]
+        
+        
         public string Local { get; set; }
     }
 }
