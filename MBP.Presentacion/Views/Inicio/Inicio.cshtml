@@ -5,34 +5,26 @@
 
 
 <!--La división principal de la página-->
-@model MBP.CapaTransversal.ModelsMVC.InicioModel
-@using (Html.BeginForm("Inicio", "Inicio", FormMethod.Post,
+<div align="center">
+
+    @model MBP.CapaTransversal.ModelsMVC.InicioModel
+    @using (Html.BeginForm("Inicio", "Inicio", FormMethod.Post,
                 new { enctype = "multipart/form-data" }))
-{
+    {
 
-    <p>Usuario:</p>
-    @Html.TextBoxFor(x => x.Usuario, new { @class = "input1" })
+        <p>Usuario:</p>
+        @Html.TextBoxFor(x => x.Usuario, new { @class = "input1" })
+        <br />
+        <p>Contraseña:</p>
+        @Html.PasswordFor(x => x.Contrasena, new { @class = "input1" })
+
+        <br /><br />
+        <input type="submit" value="Ingresar" class="boton_base" />
+        <br />
+
+    }
+
+    <p><a href="../Registrarse/Registrarse">Registrarse</a></p>
     <br />
-    <p>Contraseña:</p>
-    @Html.PasswordFor(x => x.Contrasena, new { @class = "input1" })
 
-    <br /><br />
-    <input type="submit" value="Ingresar" class="boton_base" />
-    <br />}
-
-<p><a href="Registrarse/Registrarse">Registrarse</a></p>
-<br />
-
-
-<table class="Tabla_naranaja">
-    <thead><tr><th>Jugador</th><th>Ranking</th></tr></thead>
-    <tbody><tr><td>UsuarioX</td><td>120</td></tr></tbody>
-</table>
-
-<div class='calendar'></div>
-
-
-<h2>Tipo</h2>
-<select>
-    <option>Costa Rica</option>
-    <option>Estados Unidos</option>
+</div>
