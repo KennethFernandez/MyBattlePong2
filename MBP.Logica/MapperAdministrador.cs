@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MBP.Logica
 {
-    class MapperAdministrador : MapperUsuario
+    class MapperAdministrador : IMapperUsuario
     {
         public override UsuarioModel mapper(Cuenta cuenta, Usuario usuario)
         {

@@ -10,7 +10,7 @@ namespace MBP.Logica
 {
     class MapperJugador : MapperDecorator
     {
-        public MapperJugador(MapperUsuario mapperUsuario) : base(mapperUsuario) { }
+        public MapperJugador(IMapperUsuario mapperUsuario) : base(mapperUsuario) { }
         public override UsuarioModel mapper(Cuenta cuenta, Usuario usuario)
         {
             return mapperJugador(cuenta, usuario);

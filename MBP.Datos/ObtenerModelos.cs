@@ -9,16 +9,15 @@ namespace MBP.Datos
 {
     public class ObtenerModelos 
     {
-        public  Cuenta obtenerCuenta(string username)  {
-            using (var db = new MyBattlePongEntities())
-            {
-                var query = (from st in db.Cuenta
-                               where st.Login == username
-                               select st).FirstOrDefault();
-                return query;
+        public  Cuenta obtenerCuenta(string username, string password)  {
+                using (var db = new MyBattlePongEntities())
+                {
+                    var query = (from st in db.Cuenta
+                                 where st.Login == username && st.Contrasena == password
+                                 select st).FirstOrDefault();
+                    return query == null ? new Cuenta() : query;
+                }
             }
-            
-        }
 
         public Pais obtenerPais(int id){
             using (var db = new MyBattlePongEntities())
@@ -26,10 +25,8 @@ namespace MBP.Datos
                  //pais
                 var query = (from st in db.Pais
                                where st.idPais == id
-                               select st);
-                Pais us = new Pais();
-                us = query.FirstOrDefault();
-                return us;
+                             select st).FirstOrDefault();
+                return query == null ? new Pais() : query;
             }
         }
 
@@ -40,10 +37,8 @@ namespace MBP.Datos
                 //pais
                 var query = (from st in db.Usuario
                              where st.Cuenta_idCuenta == id
-                             select st);
-                Usuario us = new Usuario();
-                us = query.FirstOrDefault();
-                return us;
+                             select st).FirstOrDefault();
+                return query == null ? new Usuario() : query;
             }
         }
 
@@ -54,10 +49,8 @@ namespace MBP.Datos
                 //pais
                 var query = (from st in db.Jugador
                              where st.Usuario_Cuenta_idCuenta == id
-                             select st);
-                Jugador us = new Jugador();
-                us = query.FirstOrDefault();
-                return us;
+                             select st).FirstOrDefault();
+                return query == null ? new Jugador() : query;
             }
         }
 
@@ -68,10 +61,8 @@ namespace MBP.Datos
                 //pais
                 var query = (from st in db.Moderador
                              where st.Usuario_Cuenta_idCuenta == id
-                             select st);
-                Moderador us = new Moderador();
-                us = query.FirstOrDefault();
-                return us;
+                             select st).FirstOrDefault();
+                return query == null ? new Moderador() : query;
             }
         }
 
@@ -82,29 +73,19 @@ namespace MBP.Datos
                 //pais
                 var query = (from st in db.Estadistica
                              where st.Jugador_Usuario_Cuenta_idCuenta == id
-                             select st);
-                Estadistica us = new Estadistica();
-                us = query.FirstOrDefault();
-                return us;
+                             select st).FirstOrDefault();
+                return query == null ? new Estadistica() : query;
             }
         }
 
         public Dispositivo buscarDispositivo(int idDispositivo)
         {
-            try
+            using (var db = new MyBattlePongEntities())
             {
-                using (var db = new MyBattlePongEntities())
-                {
-                    var query = (from st in db.Dispositivo
-                                 where st.Id == idDispositivo
-                                 select st);
-                    Dispositivo dispositivo = query.FirstOrDefault();
-                    return dispositivo;
-                }
-            }
-            catch (Exception)
-            {
-                return null;
+                var query = (from st in db.Dispositivo
+                                where st.Id == idDispositivo
+                             select st).FirstOrDefault();
+                return query == null ? new Dispositivo() : query;
             }
         }
     }

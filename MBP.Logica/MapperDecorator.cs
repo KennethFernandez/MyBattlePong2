@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace MBP.Logica
 {
-    abstract class MapperDecorator : MapperUsuario
+    abstract class MapperDecorator : IMapperUsuario
     {
-        protected MapperUsuario toBeMapped;
-        public MapperDecorator(MapperUsuario toBeMapped)
+        protected IMapperUsuario toBeMapped;
+        public MapperDecorator(IMapperUsuario toBeMapped)
         {
             this.toBeMapped = toBeMapped;
         }

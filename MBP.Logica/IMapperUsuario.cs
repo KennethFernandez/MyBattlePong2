@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MBP.Logica
 {
-    abstract class MapperUsuario
+    public abstract class IMapperUsuario
     {
         protected string[,] data;
         protected UsuarioModel usuarioModel;
         protected ObtenerModelos obtenerDatos = new ObtenerModelos();
-        public MapperUsuario()
+        public IMapperUsuario()
         {
             this.usuarioModel = new UsuarioModel();
         }

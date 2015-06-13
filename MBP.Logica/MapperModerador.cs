@@ -10,7 +10,7 @@ namespace MBP.Logica
 {
     class MapperModerador : MapperDecorator
     {
-        public MapperModerador(MapperUsuario mapperUsuario) : base(mapperUsuario) { }
+        public MapperModerador(IMapperUsuario mapperUsuario) : base(mapperUsuario) { }
         public override UsuarioModel mapper(Cuenta cuenta, Usuario usuario)
         {
             return mapperModerador(cuenta, usuario);
