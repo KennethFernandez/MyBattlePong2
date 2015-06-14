@@ -40,7 +40,10 @@ namespace MBP.Logica
         // Jugador 2
         public static int tableroJugador2 = 2;
 
-        // Cuenta por defecto de la partida en espera
-        public static int cuentaPorDefectoPartidaEspera = 2;
+        // Tipos de diapros que se envian
+        public static int tipoDisparoSimple = 1;
+        public static int tipoDisparoBomba = 2;
+        public static int tipoDisparo_1V = 3;
+        public static int tipoDisparo_1H = 4;
     }
 }

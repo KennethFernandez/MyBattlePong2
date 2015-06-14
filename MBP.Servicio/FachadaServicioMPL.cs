@@ -11,7 +11,7 @@ namespace MBP.Servicio
     {
         public bool ProcesarDisapro(int numVaso, int idDispositivo)
         {
-            ProcesarDisparo procesarDisparo = new ProcesarDisparo();
+            ProcesarDisparoSimple procesarDisparo = new ProcesarDisparoSimple();
             return procesarDisparo.ProcesarDisaproLive(numVaso, idDispositivo);
         }
     }

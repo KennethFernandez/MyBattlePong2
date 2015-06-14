@@ -15,6 +15,14 @@ namespace MBP.Logica
             return null;
         }
 
+        public TableroModel2 obtenerPartidaOnline(int idPartida)
+        {
+            ObtenerModelos obtenerModelos = new ObtenerModelos();
+            Partida partida = obtenerModelos.buscarPartida(idPartida);
+            List<Tablero_Virtual> tablero1 = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador1,idPartida);
+            List<Tablero_Virtual> tablero2 = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador2, idPartida);
+            return new MapperModelos().partidaATableroModel2(tablero1,tablero2,partida);
+        }
 
         public int ingresarPartidaOnline(PartidaModel partida)
         {
@@ -29,6 +37,29 @@ namespace MBP.Logica
             // Agrega la partida a la tabla de partidas
             AgregarModelos agregar = new AgregarModelos();
             return agregar.agregaPartidaOnline(partidaDatos);
+        }
+
+        public bool cambiarTurnoJuego(int idPartida)
+        {
+            Partida partida = new ObtenerModelos().buscarPartida(idPartida);
+            if (partida != null)
+            {
+                if (partida.TurnoActual)
+                {
+                    partida.DisparosRestantes = partida.DisparosJugador2;
+                }
+                else
+                {
+                    partida.DisparosRestantes = partida.DisparosJugador1;
+                }
+                partida.TurnoActual = !partida.TurnoActual;
+                new ModificarModelos().actualizarPartida(partida);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

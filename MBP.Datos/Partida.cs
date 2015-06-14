@@ -33,6 +33,10 @@ namespace MBP.Datos
         public int DisparosRestantes { get; set; }
         public int PuntajeJugador1 { get; set; }
         public int PuntajeJugador2 { get; set; }
+        public int DisparosTotalesJugador1 { get; set; }
+        public int DisparosTotalesJugador2 { get; set; }
+        public int DisparosExitososJugador1 { get; set; }
+        public int DisparosExitososJugador2 { get; set; }
     
         public virtual Jugador Jugador { get; set; }
         public virtual Jugador Jugador1 { get; set; }

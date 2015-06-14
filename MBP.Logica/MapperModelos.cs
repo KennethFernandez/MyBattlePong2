@@ -27,12 +27,11 @@ namespace MBP.Logica
             partida.TurnoActual = true;
 
             // Asigna los datos del otro modelo
-
-            partida.Jugador2_idCuenta = Constantes.cuentaPorDefectoPartidaEspera;
             partida.Fecha = DateTime.Now;
             partida.Publico = partidaModel.permisos;
             partida.Tamano = partidaModel.tamano;
             partida.Jugador1_idCuenta = partidaModel.idJugadorCreador;
+            partida.Jugador2_idCuenta = partidaModel.idJugadorCreador;
 
             // Coloca la partida como creada pero no lista
             partida.Estado = Constantes.partidaCreada;
@@ -57,6 +56,36 @@ namespace MBP.Logica
                 nuevasPartitas[i] = partida;
             }
             return nuevasPartitas;
+        }
+
+        public RespuestaDisparoModel respuestaDisparoModel(Partida partida, int resultado)
+        {
+            RespuestaDisparoModel respuesta = new RespuestaDisparoModel();
+            if(partida.TurnoActual){
+                respuesta.idJugadorActual = partida.Jugador1_idCuenta;
+            }
+            else
+            {
+                respuesta.idJugadorActual = partida.Jugador2_idCuenta;
+            }
+            if (resultado == Constantes.disparoFinal)
+            {
+                respuesta.finalPartida = true;
+            }
+            else
+            {
+                respuesta.finalPartida = false;
+            }
+            respuesta.puntajeJugador1 = partida.PuntajeJugador1;
+            respuesta.puntajeJugador2 = partida.PuntajeJugador2;
+            respuesta.turnosRestantes = partida.DisparosRestantes;
+            respuesta.resultado = resultado;
+            return respuesta;
+        }
+
+        public TableroModel2 partidaATableroModel2(List<Tablero_Virtual> tablero1, List<Tablero_Virtual> tablero2, Partida partida)
+        {
+            return null;
         }
     }
 }

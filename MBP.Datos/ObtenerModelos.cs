@@ -25,12 +25,57 @@ namespace MBP.Datos
         }
 
 
+        public List<Tablero_Virtual> obtenerCasillasDeTablero(int tablero, int idPartida)
+        {
+            List<Tablero_Virtual> lista = new List<Tablero_Virtual>();
+
+            using (var db = new MyBattlePongEntities())
+            {
+                if (tablero == 1)
+                {
+                    var query = (from st in db.Tablero_Virtual_1
+                                 where st.Partida_idPartida == idPartida
+                                 select st);
+                    foreach (var item in query)
+                    {
+                            Tablero_Virtual casilla = new Tablero_Virtual();
+                            casilla.Destruido = item.Destruido;
+                            casilla.Id = item.Id;
+                            casilla.Nave_idNave = item.Nave_idNave;
+                            casilla.NumeroNave = item.NumeroNave;
+                            casilla.Partida_idPartida = item.Partida_idPartida;
+                            casilla.Poder = item.Poder;
+                            casilla.x = item.x;
+                            casilla.y = item.y;
+                            lista.Add(casilla);
+                    }
+                }
+                else
+                {
+                    var query = (from st in db.Tablero_Virtual_2
+                                 where st.Partida_idPartida == idPartida
+                                 select st);
+                    foreach (var item in query)
+                    {
+                        Tablero_Virtual casilla = new Tablero_Virtual();
+                        casilla.Destruido = item.Destruido;
+                        casilla.Id = item.Id;
+                        casilla.Nave_idNave = item.Nave_idNave;
+                        casilla.NumeroNave = item.NumeroNave;
+                        casilla.Partida_idPartida = item.Partida_idPartida;
+                        casilla.Poder = item.Poder;
+                        casilla.x = item.x;
+                        casilla.y = item.y;
+                        lista.Add(casilla);
+                    }
+                }
+            }
+            return lista;
+        }
 
 
         public Tablero_Virtual obtenerCasillaTablero(int tabla, int idPartida, int X, int Y)
         {
-            try
-            {
                 using (var db = new MyBattlePongEntities())
                 {
                     if (tabla == 1)
@@ -47,8 +92,8 @@ namespace MBP.Datos
                             casilla.Id = us.Id;
                             casilla.Nave_idNave = us.Nave_idNave;
                             casilla.NumeroNave = us.NumeroNave;
+                            casilla.Partida_idPartida = us.Partida_idPartida;
                             casilla.Poder = us.Poder;
-                            us = query.FirstOrDefault();
                             return casilla;
                         }
                         else
@@ -70,7 +115,7 @@ namespace MBP.Datos
                             casilla.Nave_idNave = us.Nave_idNave;
                             casilla.NumeroNave = us.NumeroNave;
                             casilla.Poder = us.Poder;
-                            us = query.FirstOrDefault();
+                            casilla.Partida_idPartida = us.Partida_idPartida;
                             return casilla;
                         }
                         else
@@ -79,12 +124,6 @@ namespace MBP.Datos
                         }
                     }
                 }
-
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
         }
 
 public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tablero)
@@ -102,6 +141,29 @@ public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tabler
         {
             var query = (from st in db.Tablero_Virtual_2
                          where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == idNaveTablero
+                         select st);
+            return query.Count();
+        }
+    }
+
+}
+
+
+public int consultarNavesSinDestruirTablero(int idPartida, int tablero)
+{
+    using (var db = new MyBattlePongEntities())
+    {
+        if (tablero == 1)
+        {
+            var query = (from st in db.Tablero_Virtual_1
+                         where st.Partida_idPartida == idPartida && st.Destruido == false
+                         select st);
+            return query.Count();
+        }
+        else
+        {
+            var query = (from st in db.Tablero_Virtual_2
+                         where st.Partida_idPartida == idPartida && st.Destruido == false
                          select st);
             return query.Count();
         }
@@ -130,16 +192,21 @@ public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tabler
             }
         }
 
-        public List<Partida> obtieneUsuario()
+        public List<Partida> obtenerListaPartidaOn()
         {
             using (var db = new MyBattlePongEntities())
             {
-                Partida[] partidas;
-                //pais
                 var query = (from st in db.Partida
-                             where st.Estado == 2
-                             select st);    
-                return null;
+                             select st);
+                List<Partida> lista = new List<Partida>();
+                foreach (var item in query)
+                {
+                    if (item.Estado == 2)
+                    {
+                        lista.Add(item);
+                    }
+                }
+                return lista;
             }
         }
 

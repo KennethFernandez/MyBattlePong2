@@ -48,9 +48,9 @@ namespace MBP.Servicio
             return new ArmarTablero().armarTableroJuego(tablero);
         }
 
-        public int disparo(DisparoModel disparo)
+        public RespuestaDisparoModel disparo(DisparoModel disparo)
         {
-            return new ProcesarDisparo().procesarDisparoOnline(disparo);
+            return new ProcesarDisparo().procesarDisparo(disparo);
         }
 
         public bool eliminarPartida(int idJugador)
@@ -58,9 +58,15 @@ namespace MBP.Servicio
             return true;
         }
 
+
         public bool pasarTurnoPartida(int idPartida)
         {
-            return true;
+            return new GestionarPartidaOnline().cambiarTurnoJuego(idPartida);
+        }
+
+        public TableroModel2 recuperarTableroPartida(int idPartida)
+        {
+            return null;
         }
 
     }

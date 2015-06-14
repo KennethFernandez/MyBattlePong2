@@ -51,6 +51,7 @@
     <Compile Include="AES.cs" />
     <Compile Include="ArmarTablero.cs" />
     <Compile Include="Constantes.cs" />
+    <Compile Include="IEstrategiaDisparo.cs" />
     <Compile Include="FinalizarPartida.cs" />
     <Compile Include="GestionarDispositivos.cs" />
     <Compile Include="GestionarNave.cs" />
@@ -59,7 +60,11 @@
     <Compile Include="IEncriptacion.cs" />
     <Compile Include="IngresaUsuario.cs" />
     <Compile Include="MapperModelos.cs" />
+    <Compile Include="ProcesarDisparo+1H.cs" />
+    <Compile Include="ProcesarDisparo+1V.cs" />
     <Compile Include="ProcesarDisparo.cs" />
+    <Compile Include="ProcesarDisparoBomba.cs" />
+    <Compile Include="ProcesarDisparoSimple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VerificarPartidaJugador.cs" />
   </ItemGroup>
@@ -76,6 +81,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfase\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

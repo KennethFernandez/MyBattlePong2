@@ -11,5 +11,6 @@ namespace MBP.EjeVertical
         public int y { get; set; }
         public int idPartida { get; set; }
         public int idJugador { get; set; }
+        public int tipoDisparo { get; set; }
     }
 }
