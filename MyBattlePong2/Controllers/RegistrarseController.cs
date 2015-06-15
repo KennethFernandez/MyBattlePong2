@@ -36,7 +36,7 @@ namespace MyBattlePong2.Controllers
          public ActionResult Upload(HttpPostedFileBase file)
          {
 
-             file.SaveAs("e:\\Perfil\\" + file.FileName);
+             file.SaveAs(Server.MapPath("../Upload/Perfil/" + file.FileName));
 
              return Json(new
              {

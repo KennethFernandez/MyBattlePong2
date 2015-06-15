@@ -72,7 +72,7 @@ footer{
 }
 
 
-   .boton_base {
+.boton_base, .boton_base2 {
 	
 	background-color: #F90;
 	color:#fff;
@@ -85,21 +85,75 @@ footer{
 	text-align:center;
 	text-shadow:1px 1px 0px #570e09;
     margin-left:-4px;
+
 }
 
-   .boton_base:focus {
+.boton_base2 {
+
+    width:100px;
+    height:40px;
+    margin-left:4px;
+    padding-bottom: 10px;
+    vertical-align: central;
+
+}
+
+.boton_base3 {
+
+    background-color: #F90;
+	color:#fff;
+	font-family:Belmongo;
+    width:150px;
+    height:40px;
+    padding-bottom: 10px;
+    vertical-align: central;
+	font-size:20px;
+
+}
+
+ .boton_base:focus, .boton_base2:focus {
 	
 	background-color: #FFF;
 	color:#F90;
 
 }
 
-   .Tabla_naranaja table{
+ .Tabla_naranaja table{
     
     color: #F90;
     background-color: #FFF;
     border:ridge;
 
+}
+
+.Poderes {
+
+    height: 250px;
+    overflow:scroll;
+
+}
+
+.Nave, .Nave2 {
+
+    display: block; width: 90px; margin: 10px; height:10px;
+    border: 2px solid #999999; border-radius: 10px;
+    position: absolute; top: 100px; bottom: 0px; right: 0px;
+    z-index: 1;
+
+}
+
+.Nave2 {
+
+    width: 10px;
+    top: 0px;
+
+}
+
+.NaveSta {
+    
+    position: absolute; 
+    left: 0; 
+    top: 0;
 }
 
  .Tabla_naranaja  table, th, td {
@@ -108,17 +162,19 @@ footer{
 
 .Tabla_naranaja tbody{
 
-    overflow: auto;
-    width:auto;
+    overflow:scroll;
 	font-size:17px;
 	font-family:Aleo;
 	font-weight:bold;
+    height:20px;
 	
 }
 
 .Tabla_naranaja tbody tr td{
 
     text-align:center;
+    height:20px;
+    width:20px;
     background-color:#FFF;
     color:#808080;
 
@@ -126,7 +182,6 @@ footer{
 
 .Tabla_naranaja thead{
 
-    width:auto;
 	font-size:17px;
 	font-family:Aleo;
 	font-weight:bold;
@@ -231,3 +286,12 @@ select {
 .uploadimage-totalprogressbar { background: #107EC2; height: 6px; }
 
 .description { margin: 40px 0; }
+
+.xd {
+
+width: 20px;
+height: 20px;
+position:absolute;
+margin-left: -10px;
+
+}

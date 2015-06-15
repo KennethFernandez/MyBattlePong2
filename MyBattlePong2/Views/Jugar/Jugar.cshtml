@@ -5,80 +5,111 @@
 
 @section Scripts{
 <script type="text/javascript" src="../javascripts/chat.js"></script>
-}
-
 <script type="text/javascript" src="../javascripts/redips-drag-min.js"></script>
 <script type="text/javascript" src="../javascripts/script1.js"></script>
 <script type="text/javascript" src="../javascripts/Colspan.js"></script>
 <script type="text/javascript" src="../javascripts/redips-table-min.js"></script>
+<script type="text/javascript" src="../javascripts/Contador.js"></script>
+<script type="text/javascript" src="../javascripts/AcomodadorDeNaves.js"></script>
+}
 
-<div id="main-container">
-    <!-- tables inside this DIV could have draggable content -->
-    <div id="redips-drag">
+<div align="center">
 
-        <!-- left container -->
-        <div id="left">
-            <table id="table1" class="Tabla_naranaja">
-                <colgroup>
-                    <col width="100" height="100" />
-                </colgroup>
+    <div id="left2" align="center">
+        <label for='name' id='name'>@Session["Usuario"]</label>
+        <br>
+        <img src="~/Upload/Perfil/fondo2.jpg" alt="Sample Image" width="200px" />
+        <br><br>
+        <div class="Poderes">
+            <table id="hk" class="Tabla_naranaja">
                 <tbody>
-                    <!-- clone 2 elements + last element -->
-                    <tr><td class="dark"><div id="a" class="redips-drag green redips-clone  climit1_1">A</div></td></tr>
-                    <tr><td class="dark"><div id="b" class="redips-drag green redips-clone  climit1_1">B</div></td></tr>
-                    <tr><td class="dark"><div id="c" class="redips-drag green redips-clone  climit1_2">C</div></td></tr>
-                    <tr><td class="dark"><div id="d" class="redips-drag green redips-clone  climit1_2">D</div></td></tr>
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr><td>Poder</td> </tr>}
                 </tbody>
             </table>
-        </div><!-- left container -->
-        <!-- right container -->
-        <div id="right">
-            <table id="table2" class="Tabla_naranaja">
-                <colgroup>
-                    <col width="100" height="100" />
-                    <col width="100" />
-                    <col width="100" />
-                    <col width="100" />
-                </colgroup>
-                <tbody>
-                    <tr>
-                        <td id="tableCellID"></td>
-                        <td></td>
-                        <td></td>
-                        <td class="upper-right"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td class="lower-left"></td>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </tbody>
-            </table>
-        </div><!-- right container -->
-    </div><!-- drag container -->
-</div><!-- main container -->
+        </div>
+    </div>
 
-<h2>Jugar</h2>
+    <div id="center" align="center">
 
-<p>Nombre:</p><p><label for='name' id='name'> Armando </label></p><br />
-<input type='hidden' name='sala' id='sala' value='1' />
-<p>Message:</p><input type='text' name='message' id='message' maxlength='140' />
-<input type='button' name='sendmessage' id='sendmessage' value='Send' />
-<input type='hidden' name='usuario' id='usuario' value='1' />
-<div id='chatWindow' class='chat'></div>
+        <div id="left2">
+            <div align="center">Tiros restantes: 2</div>
+            <div align="center">Turno: 3</div>
+        </div>
+        <div id="center2">
+            <div align="center">Tiempo restante <span id="time"></span>s</div>
+        </div>
+        <div id="right2">
+            <div align="center">Puntos: 3</div>
+        </div>
+        <div class="NavesSta" id="NavesSta">
+            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave" id="n1" />
+            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n2" />
+            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n3" />
+            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n4" />
+            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n5" />
+        </div>
+
+            <div id="left2">
+
+                <table id="table2" class="Tabla_naranaja">
+                    <tbody>
+
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < 10; j++)
+                                {
+                                    <td></td>}
+                            </tr>}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="right2">
+                <table id="table2" class="Tabla_naranaja">
+                    <tbody>
+
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <tr>
+                                @for (int j = 0; j < 10; j++)
+                                {
+                                    <td><button class="xd" width ="10px" height="10px"/></td>}
+                            </tr>}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <input type='hidden' name='sala' id='sala' value='1' />
+            <input type='text' class='input1' name='message' id='message' maxlength='140' />
+            <input type='button' class='boton_base2' name='sendmessage' id='sendmessage' value='Send' />
+            <br>
+            <br>
+            <input type='hidden' name='usuario' id='usuario' value='1' />
+            <div id='chatWindow' class='chat'></div>
+        </div>
+
+
+
+    <div id="right2" align="center">
+        <label>Miguel</label>
+        <br>
+        <img src="~/Upload/Perfil/fondo5.jpg" alt="Sample Image" width="200px" />
+        <br><br><br><br><br><br>
+        <input type="submit" value="Pasar Turno" class="boton_base3" />
+        <br><br>
+        <input type="submit" value="Rendirse" class="boton_base3" />
+        <br><br>
+    </div>
+
+</div>
+
+
+
+
+
 
 
 

@@ -43,8 +43,9 @@ namespace MyBattlePong2.Controllers
                 if (model.Contrasena == model.Usuario)
                 {
                     FormsAuthentication.SetAuthCookie(model.Usuario, true);
-                    Session["MyMenu"] = null;
-                    return RedirectToAction("Catalogo", "Catalogo"); 
+                    Session["MyMenu"]  = null;
+                    Session["Usuario"] = model.Usuario;
+                    return RedirectToAction("Jugar", "Jugar"); 
                 }
                 else {
                     

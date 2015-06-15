@@ -8,7 +8,7 @@
 <div align="center">
 
     @model MyBattlePong2.Models.InicioModel
-    @using (Html.BeginForm("Catalogo", "Catalogo", FormMethod.Post,
+    @using (Html.BeginForm("Inicio", "Inicio", FormMethod.Post,
                 new { enctype = "multipart/form-data" }))
     {
 
@@ -20,7 +20,9 @@
 
         <br /><br />
         <input type="submit" value="Ingresar" class="boton_base" />
-        <br />}
+        <br />
+    
+    }
 
     <p><a href="Registrarse/Registrarse">Registrarse</a></p>
     <br />

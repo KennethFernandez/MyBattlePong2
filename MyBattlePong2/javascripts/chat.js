@@ -9,7 +9,9 @@
         } else {
             var chatWin = $("#FanWindow");
         }
-        chatWin.html("<b>" + name + "</b>: " + msg + "<br/>" + chatWin.html());
+
+            chatWin.html("<b>" + name + "</b>:" + msg + "<br/>" + chatWin.html());
+        
     };
 
     $.connection.hub.start().done(function () {

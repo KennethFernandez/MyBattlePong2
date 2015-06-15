@@ -327,8 +327,10 @@
     <Content Include="App_Code\HelperCF.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\LogoMyBattlePong.png" />
+    <Content Include="javascripts\AcomodadorDeNaves.js" />
     <Content Include="javascripts\Calendar.js" />
     <Content Include="javascripts\chat.js" />
+    <Content Include="javascripts\Contador.js" />
     <Content Include="javascripts\DragDrop.js" />
     <Content Include="javascripts\header.js" />
     <Content Include="javascripts\Colspan.js" />
@@ -394,7 +396,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ImagenesUser\" />
+    <Folder Include="Upload\Perfil\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
