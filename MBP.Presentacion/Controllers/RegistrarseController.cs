@@ -30,6 +30,10 @@ namespace MBP.Presentacion.Controllers
          [HttpPost]
          public ActionResult Registrarse(CompositeRegModel model)
         {
+
+
+            HttpPostedFileBase file = (HttpPostedFileBase)Session["imagen"];
+            file.SaveAs("d:\\Perfil\\" + file.FileName);
             Debug.WriteLine("tipoooooooooooooooooooooooooooooo: ");
             if (model.ModeloBase.PasswordConf == model.ModeloBase.Password)
             {
@@ -56,8 +60,9 @@ namespace MBP.Presentacion.Controllers
          public ActionResult Upload(HttpPostedFileBase file)
          {
 
-             file.SaveAs("e:\\Perfil\\" + file.FileName);
-
+             
+             Session["imagen"] = file;
+             file.SaveAs("d:\\Perfil\\" + file.FileName);
              return Json(new
              {
                  Success = true,

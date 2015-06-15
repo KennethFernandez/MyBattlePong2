@@ -15,7 +15,20 @@ namespace MBP.Logica
             // verificar datos de la nave
             AgregarModelos agregarModelos = new AgregarModelos();
             Nave nuevaNave = new Nave();
+            if (nave.imagen == null)
+            {
+                nuevaNave.Imagen = " ";
+            }
+            else {
+                nuevaNave.Imagen = nave.imagen;
+            }
             
+            nuevaNave.Nombre = nave.nombre;
+            nuevaNave.Puntaje = nave.puntaje;
+            nuevaNave.TamanoX = nave.tamanoX;
+            nuevaNave.TamanoY = nave.tamanoY;
+            nuevaNave.Estado = nave.estado;
+
             return agregarModelos.agregarNave(nuevaNave);
         }
 
@@ -23,7 +36,16 @@ namespace MBP.Logica
         {
             // verificar datos de la nave
             ModificarModelos modificaModelos = new ModificarModelos();
-            return modificaModelos.modificaNave(nave.Id,nave.nombre, nave.puntaje, nave.tamano, nave.imagen);
+            Nave nuevaNave = new Nave();
+            nuevaNave.Nombre = nave.nombre;
+            nuevaNave.Puntaje = nave.puntaje;
+            nuevaNave.TamanoX = nave.tamanoX;
+            nuevaNave.Imagen = nave.imagen;
+            nuevaNave.TamanoY = nave.tamanoY;
+            nuevaNave.Estado = nave.estado;
+            nuevaNave.idNave = nave.Id;
+
+            return modificaModelos.modificaNave(nuevaNave);
         }
 
         public bool desactivarNave(int idNave)

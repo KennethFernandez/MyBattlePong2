@@ -36,6 +36,12 @@ namespace MBP.Logica
             return true;
         }
 
+        public bool desactivarCuenta(int idCuenta) { 
+            ModificarModelos modificar = new ModificarModelos();
+            return modificar.desactivarCuenta(idCuenta);
+            
+        }
+
         public bool agregarUsuario(CompositeRegModel model) {
             IAgregarUsuario nuevo = new FabricaAgregarUsuario().fabricaAgregUsuario(model.ModeloBase.Tipo);
             return nuevo.agregarUsuario(model);

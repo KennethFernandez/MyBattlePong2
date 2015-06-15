@@ -31,13 +31,21 @@ namespace MBP.Servicio
         public string modificarNave(NaveModel nave)
         {
             GestionarNave gestionarNave = new GestionarNave();
-            return gestionarNave.agregarNave(nave);
+            return gestionarNave.modificarNave(nave);
         }
+
+
 
         public bool desactivarNave(int idNave)
         {
-            GestionarNave gestionarNave = new GestionarNave();
-            return gestionarNave.desactivarNave(idNave);
+            GestionarNave gestionar = new GestionarNave();
+            return gestionar.desactivarNave(idNave);
+        }
+
+        public bool desactivarCuenta(int idCuenta)
+        {
+            UsuarioLogica gestionarUser = new UsuarioLogica();
+            return gestionarUser.desactivarCuenta(idCuenta);
         }
         public bool IngresarPartidaVivo()
         {

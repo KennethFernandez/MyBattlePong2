@@ -10,25 +10,69 @@ namespace MBP.Datos
     {
         public bool desactivarNave(int idNave)
         {
-            return true;
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+
+                    Nave NuevaNave = db.Nave.Find(idNave);
+                    if (NuevaNave.Estado == true)
+                    {
+                        NuevaNave.Estado = false;
+                    }
+                    else {
+                        NuevaNave.Estado = true;
+                    }
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
+        
         }
 
         public bool desactivarCuenta(int idCuenta)
         {
-            return true;
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+
+                    Cuenta cuenta = db.Cuenta.Find(idCuenta);
+                    if (cuenta.Estado == "1")
+                    {
+                        cuenta.Estado = "0";
+                    }
+                    else
+                    {
+                        cuenta.Estado = "1";
+                    }
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
         }
-        public string modificaNave(int id,string nombre, int puntaje, int tam, string pathIma)
+        public string modificaNave(Nave nave)
         {
             try{
                 using (var db = new MyBattlePongEntities())
                 {
   
-                    Nave nave = db.Nave.Find(id);
-                    nave.Nombre=nombre;
-                    nave.Puntaje=puntaje;
-                    nave.TamanoX= tam;
-                    nave.TamanoY = tam;
-                    nave.Imagen=pathIma;
+                    Nave NuevaNave = db.Nave.Find(nave.idNave);
+                    NuevaNave.Nombre = nave.Nombre;
+                    NuevaNave.Puntaje = nave.Puntaje;
+                    NuevaNave.TamanoX = nave.TamanoX;
+                    NuevaNave.TamanoY = nave.TamanoY;
+                    NuevaNave.Imagen = nave.Imagen;
                     db.SaveChanges();
                     return "Nave modificada";
                 }

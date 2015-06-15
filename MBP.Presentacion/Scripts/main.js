@@ -1,11 +1,6 @@
 ﻿/*global require, alert*/
 /*jslint browser:true*/
 
-require.config({
-    paths: {
-        knockout: '/MBP.Presentacion/Scripts/knockout-2.1.0'
-    }
-});
 
 require(['src/html5Upload', 'domReady', 'knockout-models'], function (html5Upload, domReady, models) {
     'use strict';

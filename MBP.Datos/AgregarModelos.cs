@@ -16,17 +16,11 @@ namespace MBP.Datos
                 {
                     var query = (from st in db.Nave
                                  where st.Nombre == nave.Nombre
-                                 select st);
-                    Nave nuevaNave = new Nave();
-                    nuevaNave = query.FirstOrDefault();
-                    if (nuevaNave == null)
+                                 select st).FirstOrDefault();
+                    if (query == null)
                     {
-                        nuevaNave.Nombre = nave.Nombre;
-                        nuevaNave.Puntaje = nave.Puntaje;
-                        nuevaNave.TamanoX = nave.TamanoX;
-                        nuevaNave.TamanoY = nave.TamanoY;
-                        nuevaNave.Imagen = nave.Imagen;
-                        db.Nave.Add(nuevaNave);
+                        nave.idNave = 0;
+                        db.Nave.Add(nave);
                         db.SaveChanges();
                         return "Nave agregada";
 
@@ -40,7 +34,7 @@ namespace MBP.Datos
             }
                 catch{
                     //error en base de datos
-                    return "Error en conectar con la base de datos";
+                    return "Error en la base de datos";
                 }
                 
 

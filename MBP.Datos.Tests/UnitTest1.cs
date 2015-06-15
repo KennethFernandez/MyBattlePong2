@@ -54,6 +54,32 @@ namespace MBP.Datos.Tests
             Assert.IsTrue(fachada.agregarNuevoUser(model));
             
         }
+        [TestMethod]
+        public void modificarNave()
+        {
+            FachadaServicio fachada = new FachadaServicio();
+            NaveModel model = new NaveModel();
+            model.Id=1;
+            model.nombre="ac120-2";
+            model.puntaje=6000;
+            model.tamanoX=1;
+            model.tamanoY=1;
+            model.estado=true;
+            Assert.AreEqual(fachada.modificarNave(model),"Nave modificada");
+
+        }
+        [TestMethod]
+        public void desactivarNave()
+        {
+            FachadaServicio fachada = new FachadaServicio();
+            Assert.IsTrue(fachada.desactivarNave(1));
+        }
+        [TestMethod]
+        public void desactivarCuenta()
+        {
+            FachadaServicio fachada = new FachadaServicio();
+            Assert.IsTrue(fachada.desactivarCuenta(3));
+        }
 
 
     }

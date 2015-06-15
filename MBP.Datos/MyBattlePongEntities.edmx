@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MBPdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MBPdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cuenta">
           <Key>
             <PropertyRef Name="idCuenta" />
@@ -77,10 +77,10 @@
           <Key>
             <PropertyRef Name="idNave" />
           </Key>
-          <Property Name="idNave" Type="int" Nullable="false" />
+          <Property Name="idNave" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TamanoX" Type="int" Nullable="false" />
           <Property Name="Puntaje" Type="int" Nullable="false" />
-          <Property Name="Imagen" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="45" />
           <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="TamanoY" Type="int" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
@@ -436,8 +436,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MBPdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -521,7 +520,7 @@
           <Property Name="idNave" Type="Int32" Nullable="false" />
           <Property Name="TamanoX" Type="Int32" Nullable="false" />
           <Property Name="Puntaje" Type="Int32" Nullable="false" />
-          <Property Name="Imagen" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TamanoY" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
