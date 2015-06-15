@@ -311,6 +311,46 @@ public int navesSinDestruir(int idPartida, int tablero)
                 }
             }
         }
+
+        public Poder obtenerPoder(int idPoder)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Poder
+                             where st.idPoder == idPoder
+                             select st);
+                return query.FirstOrDefault();
+            }
+        }
+
+
+        public List<Poder> obtenerPoderesJugador(int idJugador)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                Jugador jugador = db.Jugador.Find(idJugador);
+                List<Poder> listaPoder = new List<Poder>();
+                foreach (Poder item in jugador.Poder)
+                {
+                    listaPoder.Add(item);
+                }
+                return listaPoder;
+            }
+        }
+
+        public List<Poder> obtenerListaPoderes()
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var poderes = db.Poder;
+                List<Poder> listaPoder = new List<Poder>();
+                foreach (Poder item in poderes)
+                {
+                    listaPoder.Add(item);
+                }
+                return listaPoder;
+            }
+        }
         
 
     }

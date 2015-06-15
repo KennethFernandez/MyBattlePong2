@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="PruebaPoderes.cs" />
     <Compile Include="PruebasTablero.cs" />
     <Compile Include="PruebasTiros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

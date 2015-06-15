@@ -50,7 +50,9 @@
     <Compile Include="ActualizarEstadisticasJugador.cs" />
     <Compile Include="AES.cs" />
     <Compile Include="ArmarTablero.cs" />
+    <Compile Include="CalculoEstadisticas.cs" />
     <Compile Include="Constantes.cs" />
+    <Compile Include="GestionPoderesJugador.cs" />
     <Compile Include="IEstrategiaDisparo.cs" />
     <Compile Include="FinalizarPartida.cs" />
     <Compile Include="GestionarDispositivos.cs" />

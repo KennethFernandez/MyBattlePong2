@@ -71,6 +71,33 @@ namespace MBP.Datos
             }
         }
 
+ /**
+ * Agrega una nueva partida online a la DB 
+ * 
+ **/
+        public bool agregaPoderAjugador(int idJugador, int idPoder)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    Jugador jugador = db.Jugador.Find(idJugador);
+                    Poder poder = db.Poder.Find(idPoder);
+                    jugador.Poder.Add(poder);
+                    poder.Jugador.Add(jugador);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //error en base de datos
+                Debug.Write(e.InnerException);
+                return false;
+            }
+        }
+
+
         /**
          * Agrega una nueva partida online a la DB 
          * 

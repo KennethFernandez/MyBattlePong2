@@ -61,6 +61,11 @@ namespace MBP.Logica
 
 
 
+        /**
+         * Mapeo la partida y el resultado del disparo al modelo de respuesta para el controlador
+         * 
+         **/
+
         public DisparoModel2 respuestaDisparoModel(Partida partida, int resultado)
         {
             DisparoModel2 respuesta = new DisparoModel2();
@@ -85,6 +90,12 @@ namespace MBP.Logica
             respuesta.resultado = resultado;
             return respuesta;
         }
+
+        /**
+         * Mapea la lista de casillas y la info de la partida al modelo de tablero para el controlador
+         * 
+         * 
+         **/ 
 
         public TableroModel2 partidaATableroModel2(List<Tablero_Virtual> tablero, Partida partida, int numTablero)
         {
@@ -136,6 +147,25 @@ namespace MBP.Logica
                 }
             }
             respuesta.tableroJugador = listaNaves;
+            return respuesta;
+        }
+
+
+        /**
+         * Mapea la lista de poderes al modelo del controlador para ser mostrados
+         * 
+         **/
+
+        public List<PoderModel2> poderApoderModel2(List<Poder> poderes)
+        {
+            List<PoderModel2> respuesta = new List<PoderModel2>();
+            foreach (Poder item in poderes)
+            {
+                PoderModel2 poder = new PoderModel2();
+                poder.idPoder = item.idPoder;
+                poder.nombre = item.Nombre;
+                respuesta.Add(poder);
+            }
             return respuesta;
         }
     }

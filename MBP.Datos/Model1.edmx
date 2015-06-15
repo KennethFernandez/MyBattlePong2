@@ -143,11 +143,11 @@
           </Key>
           <Property Name="idPoder" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Experiencia" Type="int" />
-          <Property Name="Victorias" Type="int" />
-          <Property Name="Puntos" Type="int" />
-          <Property Name="Derrotas" Type="int" />
-          <Property Name="Ranking" Type="int" />
+          <Property Name="Experiencia" Type="int" Nullable="false" />
+          <Property Name="Victorias" Type="int" Nullable="false" />
+          <Property Name="Puntos" Type="int" Nullable="false" />
+          <Property Name="Derrotas" Type="int" Nullable="false" />
+          <Property Name="Ranking" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tablero_Virtual_1">
           <Key>
@@ -617,11 +617,11 @@
           </Key>
           <Property Name="idPoder" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Experiencia" Type="Int32" />
-          <Property Name="Victorias" Type="Int32" />
-          <Property Name="Puntos" Type="Int32" />
-          <Property Name="Derrotas" Type="Int32" />
-          <Property Name="Ranking" Type="Int32" />
+          <Property Name="Experiencia" Type="Int32" Nullable="false" />
+          <Property Name="Victorias" Type="Int32" Nullable="false" />
+          <Property Name="Puntos" Type="Int32" Nullable="false" />
+          <Property Name="Derrotas" Type="Int32" Nullable="false" />
+          <Property Name="Ranking" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Jugador" Relationship="Self.Jugador_Poder" FromRole="Poder" ToRole="Jugador" />
         </EntityType>
         <EntityType Name="Tablero_Virtual_1">

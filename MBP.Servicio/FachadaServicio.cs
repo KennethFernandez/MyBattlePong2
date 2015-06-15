@@ -69,5 +69,15 @@ namespace MBP.Servicio
             return new GestionarPartidaOnline().obtenerPartidaOnline(idPartida,idJugador);
         }
 
+
+        public IList<PoderModel2> desbloquearPoderes(int idJugador)
+        {
+            return new GestionPoderesJugador().actualizarPoderesJugador(idJugador);
+        }
+
+        public IList<PoderModel2> poderesDeJugador(int idJugador)
+        {
+            return new GestionPoderesJugador().poderesJugador(idJugador);
+        }
     }
 }

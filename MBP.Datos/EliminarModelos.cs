@@ -8,6 +8,9 @@ namespace MBP.Datos
 {
     public class EliminarModelos
     {
+
+
+
         public bool eliminarPartidasDeJugador(int idJugador)
         {
             using (var db = new MyBattlePongEntities())
@@ -23,6 +26,10 @@ namespace MBP.Datos
                 return true;
             }
 
+
+
+
+
         public bool eliminarPartida(int idPartida)
         {
             using (var db = new MyBattlePongEntities())
@@ -34,6 +41,10 @@ namespace MBP.Datos
             }
             return true;
         }
+
+
+
+
 
 
         private void eliminarTablerosPartida(int idPartida)
@@ -52,5 +63,5 @@ namespace MBP.Datos
             }
         }
 
-        }
     }
+}
