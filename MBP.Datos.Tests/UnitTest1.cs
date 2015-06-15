@@ -54,6 +54,43 @@ namespace MBP.Datos.Tests
             Assert.IsTrue(fachada.agregarNuevoUser(model));
             
         }
+
+        [TestMethod]
+        public void modificarUser()
+        {
+            FachadaServicio fachada = new FachadaServicio();
+            CompositeRegModel model = new CompositeRegModel();
+            model.ModeloBase = new RegistrarseModel();
+            model.ModeloExt = new RegistrarseExtModel();
+            model.ModeloJugador = new JugadorModel();
+            model.ModeloModerador = new ModeradorModel();
+            model.ModeloBase.Apellido = "Lopez2";
+            model.ModeloBase.Email = "rlopez@gmail.com";
+            model.ModeloBase.Login = "rlopez0380";
+            model.ModeloBase.Nombre = "rodrigo2";
+            model.ModeloBase.Password = "rlopez0380";
+            model.ModeloBase.PasswordConf = "rlopez0380";
+            model.ModeloBase.Tipo = "1";
+            model.ModeloBase.IdCuenta = 4;
+            model.ModeloExt.FechaNacimiento = "12/24/1991";
+            model.ModeloExt.Foto = "pathfoto";
+            model.ModeloExt.Genero = "F";
+            model.ModeloExt.Pais = "Costa Rica";
+            model.ModeloJugador.DescripcionPersonal = "ya no me gusta la pizza";
+            Assert.IsTrue(fachada.modificarUsuario(model));
+        }
+
+        [TestMethod]
+        public void modificarContrasena()
+        {
+            FachadaServicio fachada = new FachadaServicio();
+            UsuarioContraModel model = new UsuarioContraModel();
+            model.username = "rlopez";
+            model.contrasena = "rlopez1";
+            model.contrasenaConf = "rlopez1";
+            model.contrasenaVieja = "rlopez";
+            Assert.IsTrue(fachada.modificarContrasena(model));
+        }
         [TestMethod]
         public void modificarNave()
         {
@@ -61,7 +98,7 @@ namespace MBP.Datos.Tests
             NaveModel model = new NaveModel();
             model.Id=1;
             model.nombre="ac120-2";
-            model.puntaje=6000;
+            model.puntaje=10000;
             model.tamanoX=1;
             model.tamanoY=1;
             model.estado=true;

@@ -35,5 +35,6 @@ namespace MBP.CapaTransversal.ModelsMVC
         public string Email { get; set; }
         [Required]
         public string Tipo {get; set; }
+        public int IdCuenta { get; set; }
     }
 }

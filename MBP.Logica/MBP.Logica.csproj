@@ -54,6 +54,7 @@
     <Compile Include="AgregarModerador.cs" />
     <Compile Include="AgregarUsuarioNull.cs" />
     <Compile Include="ArmarTablero.cs" />
+    <Compile Include="CalculoEstadisticas.cs" />
     <Compile Include="EncriptacionNull.cs" />
     <Compile Include="FabricaAgregarUsuario.cs" />
     <Compile Include="FabricaEncriptacion.cs" />

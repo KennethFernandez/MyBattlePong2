@@ -17,10 +17,18 @@ namespace MBP.Servicio
             return comp.verificarIngreso(Modelo);
         }
 
-        public void ingresarSistema(CompositeRegModel modelo) {
-            if (modelo.ModeloBase.Tipo == "") { 
-                
+        public bool modificarUsuario(CompositeRegModel model) {
+            UsuarioLogica comp = new UsuarioLogica();
+            return comp.modificarUsuario(model);
+        }
+        public bool modificarContrasena(UsuarioContraModel model)
+        {
+            if (model.contrasena == model.contrasenaConf)
+            {
+                UsuarioLogica comp = new UsuarioLogica();
+                return comp.modificarContrasena(model);
             }
+            else return false;
         }
         public string agregarNave(NaveModel nave)
         {

@@ -31,9 +31,15 @@ namespace MBP.Logica
             return modificar.modificarUsuario(model);
         }
 
-        public bool modificarContrasena()
+        public bool modificarContrasena(UsuarioContraModel model)
         {
-            return true;
+            ModificarModelos modificar = new ModificarModelos();
+            ObtenerModelos obtener = new ObtenerModelos();
+            IEncriptacion encrip = new FabricaEncriptacion().fabricaEncripta(1);
+            model.contrasenaVieja = encrip.encriptar(model.contrasenaVieja);
+            Cuenta cuenta = obtener.obtenerCuenta(model.username, model.contrasenaVieja);
+            cuenta.Contrasena = encrip.encriptar(model.contrasena);
+            return modificar.modificarContrasena(cuenta);
         }
 
         public bool desactivarCuenta(int idCuenta) { 

@@ -13,15 +13,14 @@ namespace MBP.Logica
             switch (valor)
             {
                 case "1":
-                    break;
+                    return new ModificarJugador();
                 case "2":
-                    break;
+                    return new ModificarModerador();
                 case "3":
-                    break;
+                    return new ModificarAdministrador();
                 default:
-                    break;
+                    return new ModificarUsuarioNull();
             }
-            return null;
         }
     }
 }
