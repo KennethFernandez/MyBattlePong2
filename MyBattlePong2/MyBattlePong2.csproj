@@ -326,12 +326,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="App_Code\HelperCF.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Images\blanco.png" />
+    <Content Include="Images\verde.png" />
+    <Content Include="Images\rojo.jpg" />
     <Content Include="Images\LogoMyBattlePong.png" />
     <Content Include="javascripts\AcomodadorDeNaves.js" />
     <Content Include="javascripts\Calendar.js" />
     <Content Include="javascripts\chat.js" />
     <Content Include="javascripts\Contador.js" />
     <Content Include="javascripts\DragDrop.js" />
+    <Content Include="javascripts\GeneradorNaves.js" />
     <Content Include="javascripts\header.js" />
     <Content Include="javascripts\Colspan.js" />
     <Content Include="javascripts\ObtenerRuta.js" />

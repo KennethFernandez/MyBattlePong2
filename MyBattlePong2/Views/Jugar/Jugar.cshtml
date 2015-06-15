@@ -4,6 +4,7 @@
 }
 
 @section Scripts{
+
 <script type="text/javascript" src="../javascripts/chat.js"></script>
 <script type="text/javascript" src="../javascripts/redips-drag-min.js"></script>
 <script type="text/javascript" src="../javascripts/script1.js"></script>
@@ -16,6 +17,7 @@
 <div align="center">
 
     <div id="left2" align="center">
+        <input type="image" class="botonImagen2" id="TurnoAli" src="/MyBattlePong2/Images/verde.png">
         <label for='name' id='name'>@Session["Usuario"]</label>
         <br>
         <img src="~/Upload/Perfil/fondo2.jpg" alt="Sample Image" width="200px" />
@@ -44,11 +46,6 @@
             <div align="center">Puntos: 3</div>
         </div>
         <div class="NavesSta" id="NavesSta">
-            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave" id="n1" />
-            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n2" />
-            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n3" />
-            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n4" />
-            <img src="~/Upload/Perfil/fondo2.jpg" class="Nave2" id="n5" />
         </div>
 
             <div id="left2">
@@ -76,7 +73,7 @@
                             <tr>
                                 @for (int j = 0; j < 10; j++)
                                 {
-                                    <td><button class="xd" width ="10px" height="10px"/></td>}
+                                    <td><input src="/MyBattlePong2/Images/blanco.png" type="image" class="botonImagen" id="@(j +","+i)" /></td>}
                             </tr>}
                     </tbody>
                 </table>
@@ -94,6 +91,7 @@
 
 
     <div id="right2" align="center">
+        <input type="image" class="botonImagen2" id="TurnoAli" src="/MyBattlePong2/Images/rojo.jpg">
         <label>Miguel</label>
         <br>
         <img src="~/Upload/Perfil/fondo5.jpg" alt="Sample Image" width="200px" />
