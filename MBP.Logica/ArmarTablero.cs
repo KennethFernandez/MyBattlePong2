@@ -19,14 +19,14 @@ namespace MBP.Logica
                 partida.Jugador1_idCuenta = tablero.idJugador; // Asigna el jugador a la partida
                 partida.Estado = Constantes.partidaEnEspera; //coloca la partida en el estado para que pueda ser publicada
                 new ModificarModelos().actualizarPartida(partida); // Actualiza la partida
-                return armarTableroJuego1(tablero); // Arma el tablero de juego para el jugador 1
+                return armarTableroJuego(tablero,Constantes.tableroJugador1); // Arma el tablero de juego para el jugador 1
             }
             else if(partida.Estado == Constantes.partidaEnEspera)
             {
                 partida.Estado = Constantes.partidaEnJuego; // Actualiza la partida a estado en juego
                 partida.Jugador2_idCuenta = tablero.idJugador; // Asigna el jugador 2 a la partida
                 new ModificarModelos().actualizarPartida(partida); // Actualiza la partida
-                return armarTableroJuego2(tablero); // Arma el tablero de juego 2, coloca la partida en activa y asigna el jugador 2 a la partigda
+                return armarTableroJuego(tablero, Constantes.tableroJugador2); // Arma el tablero de juego 2, coloca la partida en activa y asigna el jugador 2 a la partigda
             }
             else
             {
@@ -39,39 +39,35 @@ namespace MBP.Logica
          * 
          * 
          **/
-        public bool armarTableroJuego1(TableroModel tablero)
+        public bool armarTableroJuego(TableroModel tablero, int numTablero)
         {
-            for (int i = 0; i < tablero.tablero.Count; i++)
+            int numNaveTablero = 1;
+            foreach(CasillaModel item in tablero.tablero)
 			{
-			    Tablero_Virtual_1 casilla = new Tablero_Virtual_1();
+			    Tablero_Virtual casilla = new Tablero_Virtual();
+                Nave nave = new ObtenerModelos().obtieneNave(item.idNave);
                 casilla.Partida_idPartida = tablero.idPartida;
-                casilla.x = tablero.tablero[i].X;
-                casilla.y = tablero.tablero[i].Y;
+                casilla.NumeroNave = numNaveTablero;
+                casilla.Nave_idNave = item.idNave;
                 casilla.Destruido = false;
-                casilla.Poder = tablero.tablero[i].poder;
-                casilla.Nave_idNave = tablero.tablero[i].idNave;
-                casilla.NumeroNave = tablero.tablero[i].idNaveTablero;
-                new AgregarModelos().agregarCasillaTableroVirtual1(casilla);
+                for (int i = 0; i < nave.TamanoX; i++)
+                {
+                    for (int j = 0; j < nave.TamanoY; j++)
+                    {
+                        casilla.x = i+item.X;
+                        casilla.y = j+item.Y;
+                        new AgregarModelos().agregarCasillaTableroVirtual(casilla, numTablero);  
+                    }
+                }
+                numNaveTablero++;
 			}
-            return true;
-        }
-
-        public bool armarTableroJuego2(TableroModel tablero)
-        {
-            for (int i = 0; i < tablero.tablero.Count; i++)
+            if (tablero.escudoX != -1 && tablero.escudoY != -1)
             {
-                Tablero_Virtual_2 casilla = new Tablero_Virtual_2();
-                casilla.Partida_idPartida = tablero.idPartida;
-                casilla.x = tablero.tablero[i].X;
-                casilla.y = tablero.tablero[i].Y;
-                casilla.Destruido = false;
-                casilla.Poder = tablero.tablero[i].poder;
-                casilla.Nave_idNave = tablero.tablero[i].idNave;
-                casilla.NumeroNave = tablero.tablero[i].idNaveTablero;
-                new AgregarModelos().agregarCasillaTableroVirtual2(casilla);
+                Tablero_Virtual casilla = new ObtenerModelos().obtenerCasillaTablero(numTablero, tablero.idPartida, tablero.escudoX, tablero.escudoY);
+                casilla.Poder++;
+                new ModificarModelos().actualizarCasilla(casilla, numTablero);
             }
             return true;
         }
-
     }
 }

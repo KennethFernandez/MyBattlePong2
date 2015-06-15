@@ -43,24 +43,27 @@ namespace MBP.Logica
          * Tranforma un conjunto de partidas del modelo de datos al modelo del MVC
          * 
          **/
-        public PartidaModel[] partidaDataModelApartidaViewModel(Partida[] partidas)
+        public List<PartidaModel> partidaDataModelApartidaViewModel(List<Partida> partidas)
         {
-            PartidaModel [] nuevasPartitas = new PartidaModel[partidas.Length-1];
-            for (int i = 0; i < partidas.Length; i++)
+            List<PartidaModel> nuevasPartitas = new List<PartidaModel>();
+            foreach(Partida item in partidas)
             {
                 PartidaModel partida = new PartidaModel();
-                partida.disparos = partidas[i].DisparosJugador1;
-                partida.fechaCreacion = partidas[i].Fecha;
-                partida.idJugadorCreador = partidas[i].Jugador1_idCuenta;
-                partida.permisos = partidas[i].Publico; 
-                nuevasPartitas[i] = partida;
+                partida.disparos = item.DisparosJugador1;
+                partida.fechaCreacion = item.Fecha;
+                partida.idJugadorCreador = item.Jugador1_idCuenta;
+                partida.permisos = item.Publico; 
+                nuevasPartitas.Add(partida);
             }
             return nuevasPartitas;
         }
 
-        public RespuestaDisparoModel respuestaDisparoModel(Partida partida, int resultado)
+
+
+
+        public DisparoModel2 respuestaDisparoModel(Partida partida, int resultado)
         {
-            RespuestaDisparoModel respuesta = new RespuestaDisparoModel();
+            DisparoModel2 respuesta = new DisparoModel2();
             if(partida.TurnoActual){
                 respuesta.idJugadorActual = partida.Jugador1_idCuenta;
             }
@@ -83,9 +86,57 @@ namespace MBP.Logica
             return respuesta;
         }
 
-        public TableroModel2 partidaATableroModel2(List<Tablero_Virtual> tablero1, List<Tablero_Virtual> tablero2, Partida partida)
+        public TableroModel2 partidaATableroModel2(List<Tablero_Virtual> tablero, Partida partida, int numTablero)
         {
-            return null;
+            TableroModel2 respuesta = new TableroModel2();
+            if (numTablero == Constantes.tableroJugador1)
+            {
+                respuesta.puntosLocal = partida.PuntajeJugador1;
+                respuesta.puntosRetador = partida.PuntajeJugador2;
+                respuesta.turnosRestantes = partida.DisparosRestantes;
+                if (partida.TurnoActual)
+                {
+                    respuesta.enMiTurno = true;
+                }
+                else
+                {
+                    respuesta.enMiTurno = false;
+                }
+            }
+            else
+            {
+                respuesta.puntosLocal = partida.PuntajeJugador1;
+                respuesta.puntosRetador = partida.PuntajeJugador2;
+                respuesta.turnosRestantes = partida.DisparosRestantes;
+                if (!partida.TurnoActual)
+                {
+                    respuesta.enMiTurno = true;
+                }
+                else
+                {
+                    respuesta.enMiTurno = false;
+                }
+            }
+            int numNaveAnterior = 0;
+            List<CasillaModel2> listaNaves = new List<CasillaModel2>();
+            foreach (Tablero_Virtual item in tablero)
+            {
+                if (item.NumeroNave != numNaveAnterior)
+                {
+                    numNaveAnterior = item.NumeroNave;
+                    CasillaModel2 casilla = new CasillaModel2();
+                    casilla.idNave = item.NumeroNave;
+                    casilla.X = item.x;
+                    casilla.Y = item.y;
+                    Nave nave = new ObtenerModelos().obtieneNave(item.Nave_idNave);
+                    casilla.mas_X = nave.TamanoX;
+                    casilla.mas_Y = nave.TamanoY;
+                    casilla.imagen = nave.Imagen;
+                    listaNaves.Add(casilla);
+                }
+            }
+            respuesta.tableroJugador = listaNaves;
+            return respuesta;
         }
     }
 }

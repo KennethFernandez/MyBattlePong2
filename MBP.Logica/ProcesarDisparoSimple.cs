@@ -40,8 +40,6 @@ namespace MBP.Logica
             partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
             int resultado = 0; // Resultado de la partida
             int tablero;
-            if (partida != null)    // Pregunta si la partida existe
-            {
                 // Verifica cual jugador es el que realiza el disparo
                 if (partida.Jugador1_idCuenta == disparo.idJugador && partida.TurnoActual)  // Disparo lo realiza el jugador 1
                 {
@@ -75,11 +73,6 @@ namespace MBP.Logica
                 {
                     resultado = Constantes.disparoNoEsSuTurno; // Notofica que el jugador no esta en su turno
                 }
-            }
-            else
-            {
-                resultado = Constantes.disparoAPartidaNoExiste; // Notofica que la partida ya no se encuentra disponible
-            }
             new ModificarModelos().actualizarPartida(partida); // Actualiza el modelo de la partida en la base de datos
             return resultado;
         }

@@ -7,9 +7,10 @@ namespace MBP.EjeVertical
 {
     public class TableroModel2
     {
-        public List<CasillaModel2> tableroJugador1{ get; set; }
-        public List<CasillaModel2> tableroJugador2 { get; set; }
-        public int idJugador { get; set; }
-        public int idPartida { get; set; }
+        public List<CasillaModel2> tableroJugador{ get; set; }
+        public int puntosLocal { get; set; }
+        public int puntosRetador { get; set; }
+        public int turnosRestantes { get; set; }
+        public bool enMiTurno { get; set; }
     }
 }

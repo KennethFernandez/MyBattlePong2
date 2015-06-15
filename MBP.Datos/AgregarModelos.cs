@@ -89,7 +89,7 @@ namespace MBP.Datos
             catch(Exception e)
             {
                 //error en base de datos
-                //Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
+                Debug.Write(e.InnerException);
                 return 0;
             }
         }
@@ -127,39 +127,46 @@ namespace MBP.Datos
             }
         }
 
-        public void agregarCasillaTableroVirtual1(Tablero_Virtual_1 casilla)
+        public void agregarCasillaTableroVirtual(Tablero_Virtual casilla, int tablero)
         {
              try
             {
                 using (var db = new MyBattlePongEntities())
                 {
-                    db.Tablero_Virtual_1.Add(casilla);
-                    db.SaveChanges();
-                    Debug.Write("Casilla Agregada");
+                    if (tablero == 1)
+                    {
+                        Tablero_Virtual_1 casillaNuev = new Tablero_Virtual_1();
+                        casillaNuev.Destruido = casilla.Destruido;
+                        casillaNuev.Nave_idNave = casilla.Nave_idNave;
+                        casillaNuev.NumeroNave = casilla.NumeroNave;
+                        casillaNuev.Partida_idPartida = casilla.Partida_idPartida;
+                        casillaNuev.Poder = casilla.Poder;
+                        casillaNuev.x = casilla.x;
+                        casillaNuev.y = casilla.y;
+                        db.Tablero_Virtual_1.Add(casillaNuev);
+                        db.SaveChanges();
+                        Debug.Write("Casilla Agregada");
+                    }
+                    else
+                    {
+                        Tablero_Virtual_2 casillaNuev = new Tablero_Virtual_2();
+                        casillaNuev.Destruido = casilla.Destruido;
+                        casillaNuev.Nave_idNave = casilla.Nave_idNave;
+                        casillaNuev.NumeroNave = casilla.NumeroNave;
+                        casillaNuev.Partida_idPartida = casilla.Partida_idPartida;
+                        casillaNuev.Poder = casilla.Poder;
+                        casillaNuev.x = casilla.x;
+                        casillaNuev.y = casilla.y;
+                        db.Tablero_Virtual_2.Add(casillaNuev);
+                        db.SaveChanges();
+                        Debug.Write("Casilla Agregada");
+                    }
                 }
             }
             catch(Exception e)
             {
                 //error en base de datos
-                Debug.Write("----------------------"+e.InnerException+"-------------------------------------\n");
-            }
-        }
-
-        public void agregarCasillaTableroVirtual2(Tablero_Virtual_2 casilla)
-        {
-            try
-            {
-                using (var db = new MyBattlePongEntities())
-                {
-                    db.Tablero_Virtual_2.Add(casilla);
-                    db.SaveChanges();
-                    Debug.Write("Casilla Agregada");
-                }
-            }
-            catch (Exception e)
-            {
-                //error en base de datos
-                Debug.Write("----------------------" + e.InnerException + "-------------------------------------\n");
+                Debug.Write(e.InnerException);
             }
         }
         }

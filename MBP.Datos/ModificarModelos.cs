@@ -38,6 +38,28 @@ namespace MBP.Datos
             }
         }
 
+        public bool actualizarEstadistica(Estadistica estadistica)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+
+                    Estadistica itemAct = db.Estadistica.Find(estadistica.Jugador_Usuario_Cuenta_idCuenta);
+                    db.Entry(itemAct).CurrentValues.SetValues(estadistica);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
+        }
+
+
+
         public bool actualizarCasilla(Tablero_Virtual casilla, int tablero)
         {
             try

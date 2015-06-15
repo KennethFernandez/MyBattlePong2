@@ -149,7 +149,7 @@ public int consultarSiNaveDestruida(int idNaveTablero, int idPartida, int tabler
 }
 
 
-public int consultarNavesSinDestruirTablero(int idPartida, int tablero)
+public int navesSinDestruir(int idPartida, int tablero)
 {
     using (var db = new MyBattlePongEntities())
     {
@@ -281,6 +281,18 @@ public int consultarNavesSinDestruirTablero(int idPartida, int tablero)
                 var query = (from st in db.Moderador
                              where st.Usuario_Cuenta_idCuenta == id
                              select st).FirstOrDefault();
+            }
+        }
+
+        public Estadistica obtieneEstadisticasJugador(int idJugador)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                //pais
+                var query = (from st in db.Estadistica
+                             where st.Jugador_Usuario_Cuenta_idCuenta == idJugador
+                             select st);
+                return query.FirstOrDefault();
             }
         }
 

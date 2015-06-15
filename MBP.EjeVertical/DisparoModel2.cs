@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MBP.EjeVertical
 {
-    public class RespuestaDisparoModel
+    public class DisparoModel2
     {
         public int resultado { get; set; }
         public int puntajeJugador1 { get; set; }

@@ -10,8 +10,6 @@ namespace MBP.EjeVertical
         public int X { get; set; }
         public int Y { get; set; }
         public int idNave { get; set; }
-        public int idNaveTablero { get; set; }
-        public int poder { get; set; }
 
     }
 }

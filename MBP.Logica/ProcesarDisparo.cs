@@ -10,7 +10,7 @@ namespace MBP.Logica
 {
     public class ProcesarDisparo
     {
-        public RespuestaDisparoModel procesarDisparo(DisparoModel disparo)
+        public DisparoModel2 procesarDisparo(DisparoModel disparo)
         {
             IEstrategiaDisparo procesadorDisparo;
             switch (disparo.tipoDisparo)
@@ -32,8 +32,23 @@ namespace MBP.Logica
                     break;
             }
             int resultado = procesadorDisparo.procesarDisparoOnline(disparo);
+            ObtenerModelos obtener = new ObtenerModelos();
             Partida partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
-            RespuestaDisparoModel respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
+
+            // Verifica si algun tablero se quedo sin naves
+            int navesTab1 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador1);
+            int navesTab2 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador2);
+            if (navesTab1 == 0)
+            {
+                resultado = Constantes.disparoFinal;
+                new FinalizarPartida().finalizarPartida(partida.idPartida,2);
+            }
+            else if (navesTab2 == 0)
+            {
+                resultado = Constantes.disparoFinal;
+                new FinalizarPartida().finalizarPartida(partida.idPartida, 1);
+            }
+            DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
             return respuesta;
         }
     }
