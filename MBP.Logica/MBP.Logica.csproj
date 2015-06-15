@@ -48,8 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AES.cs" />
+    <Compile Include="AgregarAdministrador.cs" />
+    <Compile Include="AgregarCuenta.cs" />
+    <Compile Include="AgregarJugador.cs" />
+    <Compile Include="AgregarModerador.cs" />
+    <Compile Include="AgregarUsuarioNull.cs" />
     <Compile Include="ArmarTablero.cs" />
     <Compile Include="EncriptacionNull.cs" />
+    <Compile Include="FabricaAgregarUsuario.cs" />
     <Compile Include="FabricaEncriptacion.cs" />
     <Compile Include="FabricaMapper.cs" />
     <Compile Include="FabricaModificarUsuario.cs" />
@@ -57,6 +63,7 @@
     <Compile Include="GestionarNave.cs" />
     <Compile Include="GestionarPartidaOnline.cs" />
     <Compile Include="GestionarPartidaVivo.cs" />
+    <Compile Include="IAgregarUsuario.cs" />
     <Compile Include="IEncriptacion.cs" />
     <Compile Include="IModificarUsuario.cs" />
     <Compile Include="MapperAdministrador.cs" />

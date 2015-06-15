@@ -15,15 +15,19 @@ namespace MBP.Logica
         public UsuarioModel verificarIngreso(InicioModel model)
         {
             ObtenerModelos obtenerDatos = new ObtenerModelos();
+            IEncriptacion encrip = new FabricaEncriptacion().fabricaEncripta(1);
+            model.Contrasena = encrip.encriptar(model.Contrasena);
             Cuenta cuenta = obtenerDatos.obtenerCuenta(model.Usuario, model.Contrasena);
+            Debug.WriteLine("idCuenta: " + cuenta.idCuenta);
             Usuario usuario = obtenerDatos.obtenerUsuario(cuenta.idCuenta);
+            Debug.WriteLine("tipo: " + usuario.Tipo);
             IMapperUsuario mapper = new FabricaMapper().getMapper(usuario.Tipo);
             return mapper.mapper(cuenta, usuario);
         }
         public bool modificarUsuario(CompositeRegModel model)
         {
             FabricaModificarUsuario fabrica = new FabricaModificarUsuario();
-            IModificarUsuario modificar = fabrica.fabricaUsuario(model.ModeloBase.tipo);
+            IModificarUsuario modificar = fabrica.fabricaModifUsuario(model.ModeloBase.Tipo);
             return modificar.modificarUsuario(model);
         }
 
@@ -33,8 +37,8 @@ namespace MBP.Logica
         }
 
         public bool agregarUsuario(CompositeRegModel model) {
-            
-            return true;
+            IAgregarUsuario nuevo = new FabricaAgregarUsuario().fabricaAgregUsuario(model.ModeloBase.Tipo);
+            return nuevo.agregarUsuario(model);
         }
     }
 }

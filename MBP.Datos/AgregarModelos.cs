@@ -9,23 +9,23 @@ namespace MBP.Datos
 {
     public class AgregarModelos
     {
-        public string agregarNave(string nombre, int puntaje, int tam,string pathIma)
+        public string agregarNave(Nave nave)
         {
             try{
                 using (var db = new MyBattlePongEntities())
                 {
                     var query = (from st in db.Nave
-                                 where st.Nombre == nombre
+                                 where st.Nombre == nave.Nombre
                                  select st);
                     Nave nuevaNave = new Nave();
                     nuevaNave = query.FirstOrDefault();
                     if (nuevaNave == null)
                     {
-                        nuevaNave.Nombre = nombre;
-                        nuevaNave.Puntaje = puntaje;
-                        nuevaNave.TamanoX = tam;
-                        nuevaNave.TamanoY = tam;
-                        nuevaNave.Imagen = pathIma;
+                        nuevaNave.Nombre = nave.Nombre;
+                        nuevaNave.Puntaje = nave.Puntaje;
+                        nuevaNave.TamanoX = nave.TamanoX;
+                        nuevaNave.TamanoY = nave.TamanoY;
+                        nuevaNave.Imagen = nave.Imagen;
                         db.Nave.Add(nuevaNave);
                         db.SaveChanges();
                         return "Nave agregada";
@@ -47,29 +47,113 @@ namespace MBP.Datos
             }
 
         /**
-         * Agrega una nueva partida en vivo a la DB 
+         * Agrega una nueva cuenta a la DB 
          * 
          **/
-        public void agregaPais() {
+
+        public bool agregarCuenta(Cuenta cuenta) {
             try
             {
-                var context = new MyBattlePongEntities();
-
-                var t = new Pais //Make sure you have a table called test in DB
+                using (var db = new MyBattlePongEntities())
                 {
-                    idPais = 10,
-                    Nombre = "pppppppp",
-                };
-
-                context.Pais.Add(t);
-                context.SaveChanges();
+                    db.Cuenta.Add(cuenta);
+                    db.SaveChanges();
+                    return true;
+                }
             }
-            catch (Exception e)
-            {
-                //error en base de datos
-                Console.WriteLine(e);
+            catch (Exception){
+                return false;
             }
         }
+
+        /**
+ * Agrega un nuevo Usuario o admin a la DB 
+ * 
+ **/
+
+        public bool agregarUsuario(Usuario user)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Usuario.Add(user);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /**
+* Agrega un nuevo Jugador a la DB 
+* 
+**/
+
+        public bool agregarJugador(Jugador jugador)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Jugador.Add(jugador);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /**
+* Agrega un nuevo moderador a la DB 
+* 
+**/
+
+        public bool agregarModerador(Moderador moderador)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Moderador.Add(moderador);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /**
+* Agrega estaddísticas de un jugador a la DB 
+* 
+**/
+
+        public bool agregarEstadistica(Estadistica estadistica)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Estadistica.Add(estadistica);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
 
         /**
          * Agrega una nueva partida online a la DB 

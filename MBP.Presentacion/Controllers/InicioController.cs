@@ -55,27 +55,46 @@ namespace MBP.Presentacion.Controllers
 
                 // solo deja pasar si son iguales si no regresa a la página de inicio.
                 // , new { modelo =  UsuarioModel}
-                FachadaServicio comprueba = new FachadaServicio();
-                UsuarioModel datos = comprueba.verificarLogin(model);
-                if (datos.datos[0,0] != "-1")
+
+                Debug.WriteLine("user: ,"+model.Usuario+",");
+                Debug.WriteLine("contra: " + model.Contrasena);
+
+                FachadaServicio fachada = new FachadaServicio();
+                UsuarioModel usuario = fachada.verificarLogin(model);
+                if (usuario.datos[1, 1] == "1")
                 {
                     Debug.WriteLine("user valido");
-                    return View();
+                    Debug.WriteLine("jugador");
+                   // Session["Tipo"] = "Jugador";
+                   // Debug.WriteLine(ViewBag.CategoryID);
+                    return RedirectToAction("Catalogo", "Catalogo");
                     // FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     //Session["MyMenu"] = null;
                     //return RedirectToAction("Catalogo", "Catalogo");
                 }
-                else
+                else if (usuario.datos[1, 1] == "2")
                 {
-                    
+                    Debug.WriteLine("user valido");
+                    Debug.WriteLine("moderador");
+                    ViewBag.CategoryID = "Moderador";
                     return View();
-
-                };// Mensaje de no valido, poner un label.
+                }
+                else if (usuario.datos[1, 1] == "3")
+                {
+                    Debug.WriteLine("user valido");
+                    Debug.WriteLine("administrador");
+                    ViewBag.CategoryID = "Administrador";
+                    return View();
+                }
+                else {
+                    Debug.WriteLine("user invalido");
+                    return View();
+                }
 
             }
             else
             {
-                Debug.WriteLine("datos: ");
+                Debug.WriteLine("modelo invalido");
                 return View();
             }
         }

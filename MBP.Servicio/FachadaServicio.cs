@@ -59,7 +59,8 @@ namespace MBP.Servicio
             return null;
         }
         public bool agregarNuevoUser(CompositeRegModel modelo) {
-            return true;
+            UsuarioLogica nuevoUser = new UsuarioLogica();
+            return nuevoUser.agregarUsuario(modelo);
         }
     }
 }

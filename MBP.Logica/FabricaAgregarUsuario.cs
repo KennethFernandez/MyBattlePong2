@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace MBP.Logica
 {
-    public class FabricaModificarUsuario
+    public class FabricaAgregarUsuario
     {
-        public IModificarUsuario fabricaModifUsuario(string valor)
+        public IAgregarUsuario fabricaAgregUsuario(string valor)
         {
             switch (valor)
             {
                 case "1":
-                    break;
+                    return new AgregarJugador();
                 case "2":
-                    break;
+                    return new AgregarModerador();
                 case "3":
-                    break;
+                    return new AgregarAdministrador();
                 default:
-                    break;
+                    return new AgregarUsuarioNull();
             }
-            return null;
         }
     }
 }

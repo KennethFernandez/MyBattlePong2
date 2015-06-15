@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.Title = "Catalogo";
+}
+
+@section scripts{
+    
+    <link href="~/Content/ButtonONOFF.css" rel="stylesheet" type="text/css">
+
+    }
+
+
+<div id="cont">
+    <div id="left">
+        <br />
+        <table id="table1" class="Tabla_naranaja">
+            <colgroup>
+                <col width="100" height="100" />
+            </colgroup>
+            <tbody>
+                <!-- clone 2 elements + last element
+                <!-- arroba Html.ActionLink("Ver Partido", "Narracion", objequipo)  -->
+                <tr><td><div>Nave1</div></td></tr>
+                <tr><td><div>Nave2</div></td></tr>
+                <tr><td><div>Nave3</div></td></tr>
+                <tr><td><div>Nave4</div></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="right">
+        <br />
+        <label>Nombre:</label>
+        <input type="text" class="input1" />
+        <br />
+        <br>
+        <label>Puntaje:    </label>
+        <input type="text" class="input1" />
+        <br /><br />
+        <label>Tamaño:</label>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <br /><br />
+        @HelperCF.AyudaCargarArchivos()
+        <br />
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <br />
+        <br />
+        <input type="submit" name="Crear" class="boton_base" value="Crear" />
+        <br />
+        <br />
+            <input type="submit" name="Modificar" class="boton_base" value="Modificar" />
+        </div>
+
+</div>
+

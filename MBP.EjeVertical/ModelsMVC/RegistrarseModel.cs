@@ -8,7 +8,6 @@ namespace MBP.CapaTransversal.ModelsMVC
 {
     public class RegistrarseModel
     {
-        public int tipo { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 1, ErrorMessage = "UserName No Válido")]

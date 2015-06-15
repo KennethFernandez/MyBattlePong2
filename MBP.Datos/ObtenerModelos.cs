@@ -29,6 +29,29 @@ namespace MBP.Datos
                 return query == null ? new Pais() : query;
             }
         }
+        public int obtenerIdPais(string nombre)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                //pais
+                var query = (from st in db.Pais
+                             where st.Nombre == nombre
+                             select st).FirstOrDefault();
+                return query == null ? -1 : query.idPais;
+            }
+        }
+
+        public int obtenerIdCuenta(string username)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                //pais
+                var query = (from st in db.Cuenta
+                             where st.Login == username
+                             select st).FirstOrDefault();
+                return query == null ? -1 : query.idCuenta;
+            }
+        }
 
         public Usuario obtenerUsuario(int id)
         {
@@ -88,5 +111,70 @@ namespace MBP.Datos
                 return query == null ? new Dispositivo() : query;
             }
         }
+
+        public List<Partida> obtenerListaPartidaOn() {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Partida
+                             select st);
+                List<Partida> lista = new List<Partida>();
+                foreach(var item in query){
+                    if(item.Estado=="T"){
+                    lista.Add(item);
+                    }
+                }
+                return lista;
+            }
+        }
+        public List<string> obtenerListaPaises()
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Pais
+                             select st);
+                List<string> lista = new List<string>();
+                foreach (var item in query)
+                {
+                    lista.Add(item.Nombre);
+                    
+                }
+                return lista;
+            }
+        }
+
+        public List<Nave> obtenerListaNavesActivas()
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Nave
+                             select st);
+                List<Nave> lista = new List<Nave>();
+                foreach (var item in query)
+                {
+                    if(item.Estado==true)
+                    lista.Add(item);
+
+                }
+                return lista;
+            }
+        }
+
+        public List<Nave> obtenerListaNaves()
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Nave
+                             select st);
+                List<Nave> lista = new List<Nave>();
+                foreach (var item in query)
+                {
+                    lista.Add(item);
+
+                }
+                return lista;
+            }
+        }
+
+
     }
 }

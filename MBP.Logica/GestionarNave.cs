@@ -14,7 +14,9 @@ namespace MBP.Logica
         {
             // verificar datos de la nave
             AgregarModelos agregarModelos = new AgregarModelos();
-            return agregarModelos.agregarNave(nave.nombre, nave.puntaje, nave.tamano,nave.imagen);
+            Nave nuevaNave = new Nave();
+            
+            return agregarModelos.agregarNave(nuevaNave);
         }
 
         public string modificarNave(NaveModel nave)

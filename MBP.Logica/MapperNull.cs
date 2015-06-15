@@ -12,7 +12,7 @@ namespace MBP.Logica
     {
         public override UsuarioModel mapper(Cuenta cuenta, Usuario usuario)
         {
-            data = new string[,]{{"-1","-1"}};
+            data = new string[,] { { "-1", "-1" }, { "-1", "-1" } };
             usuarioModel.datos = data;
             return usuarioModel;
         }
