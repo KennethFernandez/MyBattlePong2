@@ -93,7 +93,7 @@ namespace MBP.Logica
             {
                 respuesta.puntosLocal = partida.PuntajeJugador1;
                 respuesta.puntosRetador = partida.PuntajeJugador2;
-                respuesta.turnosRestantes = partida.DisparosRestantes;
+                respuesta.disparosRestantes = partida.DisparosRestantes;
                 if (partida.TurnoActual)
                 {
                     respuesta.enMiTurno = true;
@@ -107,7 +107,7 @@ namespace MBP.Logica
             {
                 respuesta.puntosLocal = partida.PuntajeJugador1;
                 respuesta.puntosRetador = partida.PuntajeJugador2;
-                respuesta.turnosRestantes = partida.DisparosRestantes;
+                respuesta.disparosRestantes = partida.DisparosRestantes;
                 if (!partida.TurnoActual)
                 {
                     respuesta.enMiTurno = true;

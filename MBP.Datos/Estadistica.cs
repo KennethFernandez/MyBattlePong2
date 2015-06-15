@@ -20,7 +20,6 @@ namespace MBP.Datos
         public int TotalDisparos { get; set; }
         public int TotalAcertados { get; set; }
         public int TotalPuntos { get; set; }
-        public int PuntosGanados { get; set; }
     
         public virtual Jugador Jugador { get; set; }
     }

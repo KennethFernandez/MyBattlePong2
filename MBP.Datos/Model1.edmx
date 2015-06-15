@@ -32,7 +32,6 @@
           <Property Name="TotalDisparos" Type="int" Nullable="false" />
           <Property Name="TotalAcertados" Type="int" Nullable="false" />
           <Property Name="TotalPuntos" Type="int" Nullable="false" />
-          <Property Name="PuntosGanados" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Jugador">
           <Key>
@@ -515,19 +514,6 @@
           <Property Name="UltimaConexion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idDispositivo" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Estadistica">
-          <Key>
-            <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
-          </Key>
-          <Property Name="Jugador_Usuario_Cuenta_idCuenta" Type="Int32" Nullable="false" />
-          <Property Name="TotalPartidas" Type="Int32" Nullable="false" />
-          <Property Name="TotalGanadas" Type="Int32" Nullable="false" />
-          <Property Name="TotalDisparos" Type="Int32" Nullable="false" />
-          <Property Name="TotalAcertados" Type="Int32" Nullable="false" />
-          <Property Name="TotalPuntos" Type="Int32" Nullable="false" />
-          <Property Name="PuntosGanados" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Jugador" Relationship="Self.fk_Estadistica_Jugador1" FromRole="Estadistica" ToRole="Jugador" />
-        </EntityType>
         <EntityType Name="Jugador">
           <Key>
             <PropertyRef Name="Usuario_Cuenta_idCuenta" />
@@ -538,7 +524,6 @@
           <Property Name="Foto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="DescripcionPersonal" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Pais_idPais" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estadistica" Relationship="Self.fk_Estadistica_Jugador1" FromRole="Jugador" ToRole="Estadistica" />
           <NavigationProperty Name="Pais" Relationship="Self.fk_Jugador_Pais1" FromRole="Jugador" ToRole="Pais" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_Jugador_Usuario1" FromRole="Jugador" ToRole="Usuario" />
           <NavigationProperty Name="PartidaVivo" Relationship="Self.fk_Partida_Jugador3" FromRole="Jugador" ToRole="PartidaVivo" />
@@ -548,6 +533,7 @@
           <NavigationProperty Name="Poder" Relationship="Self.Jugador_Poder" FromRole="Jugador" ToRole="Poder" />
           <NavigationProperty Name="Partida" Relationship="MyBattlePongModel.fk_Partida_Jugador1" FromRole="Jugador" ToRole="Partida" />
           <NavigationProperty Name="Partida1" Relationship="MyBattlePongModel.fk_Partida_Jugador2" FromRole="Jugador" ToRole="Partida" />
+          <NavigationProperty Name="Estadistica" Relationship="MyBattlePongModel.fk_Estadistica_Jugador1" FromRole="Jugador" ToRole="Estadistica" />
         </EntityType>
         <EntityType Name="Moderador">
           <Key>
@@ -692,18 +678,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Estadistica_Jugador1">
-          <End Role="Jugador" Type="Self.Jugador" Multiplicity="1" />
-          <End Role="Estadistica" Type="Self.Estadistica" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Jugador">
-              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
-            </Principal>
-            <Dependent Role="Estadistica">
-              <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Jugador_Pais1">
           <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
           <End Role="Jugador" Type="Self.Jugador" Multiplicity="*" />
@@ -843,7 +817,6 @@
         <EntityContainer Name="MyBattlePongEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cuenta" EntityType="Self.Cuenta" />
           <EntitySet Name="Dispositivo" EntityType="Self.Dispositivo" />
-          <EntitySet Name="Estadistica" EntityType="Self.Estadistica" />
           <EntitySet Name="Jugador" EntityType="Self.Jugador" />
           <EntitySet Name="Moderador" EntityType="Self.Moderador" />
           <EntitySet Name="Nave" EntityType="Self.Nave" />
@@ -858,10 +831,6 @@
           <AssociationSet Name="fk_Usuario_Cuenta" Association="Self.fk_Usuario_Cuenta">
             <End Role="Cuenta" EntitySet="Cuenta" />
             <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Estadistica_Jugador1" Association="Self.fk_Estadistica_Jugador1">
-            <End Role="Jugador" EntitySet="Jugador" />
-            <End Role="Estadistica" EntitySet="Estadistica" />
           </AssociationSet>
           <AssociationSet Name="fk_Jugador_Pais1" Association="Self.fk_Jugador_Pais1">
             <End Role="Pais" EntitySet="Pais" />
@@ -923,6 +892,11 @@
           <AssociationSet Name="fk_Partida_has_Nave_Partida1" Association="MyBattlePongModel.fk_Partida_has_Nave_Partida1">
             <End Role="Partida" EntitySet="Partida" />
             <End Role="Partida_Nave" EntitySet="Partida_Nave" />
+          </AssociationSet>
+          <EntitySet Name="Estadistica" EntityType="MyBattlePongModel.Estadistica" />
+          <AssociationSet Name="fk_Estadistica_Jugador1" Association="MyBattlePongModel.fk_Estadistica_Jugador1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Estadistica" EntitySet="Estadistica" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Partida">
@@ -986,6 +960,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Estadistica">
+          <Key>
+            <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+          </Key>
+          <Property Name="Jugador_Usuario_Cuenta_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="TotalPartidas" Type="Int32" Nullable="false" />
+          <Property Name="TotalGanadas" Type="Int32" Nullable="false" />
+          <Property Name="TotalDisparos" Type="Int32" Nullable="false" />
+          <Property Name="TotalAcertados" Type="Int32" Nullable="false" />
+          <Property Name="TotalPuntos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jugador" Relationship="MyBattlePongModel.fk_Estadistica_Jugador1" FromRole="Estadistica" ToRole="Jugador" />
+        </EntityType>
+        <Association Name="fk_Estadistica_Jugador1">
+          <End Type="MyBattlePongModel.Jugador" Role="Jugador" Multiplicity="1" />
+          <End Type="MyBattlePongModel.Estadistica" Role="Estadistica" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Estadistica">
+              <PropertyRef Name="Jugador_Usuario_Cuenta_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1008,19 +1006,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UltimaConexion" ColumnName="UltimaConexion" />
                 <ScalarProperty Name="idDispositivo" ColumnName="idDispositivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Estadistica">
-            <EntityTypeMapping TypeName="MyBattlePongModel.Estadistica">
-              <MappingFragment StoreEntitySet="Estadistica">
-                <ScalarProperty Name="Jugador_Usuario_Cuenta_idCuenta" ColumnName="Jugador_Usuario_Cuenta_idCuenta" />
-                <ScalarProperty Name="TotalPartidas" ColumnName="TotalPartidas" />
-                <ScalarProperty Name="TotalGanadas" ColumnName="TotalGanadas" />
-                <ScalarProperty Name="TotalDisparos" ColumnName="TotalDisparos" />
-                <ScalarProperty Name="TotalAcertados" ColumnName="TotalAcertados" />
-                <ScalarProperty Name="TotalPuntos" ColumnName="TotalPuntos" />
-                <ScalarProperty Name="PuntosGanados" ColumnName="PuntosGanados" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1185,6 +1170,18 @@
                 <ScalarProperty Name="DisparosJugador1" ColumnName="DisparosJugador1" />
                 <ScalarProperty Name="Publico" ColumnName="Publico" />
                 <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadistica">
+            <EntityTypeMapping TypeName="MyBattlePongModel.Estadistica">
+              <MappingFragment StoreEntitySet="Estadistica">
+                <ScalarProperty Name="TotalPuntos" ColumnName="TotalPuntos" />
+                <ScalarProperty Name="TotalAcertados" ColumnName="TotalAcertados" />
+                <ScalarProperty Name="TotalDisparos" ColumnName="TotalDisparos" />
+                <ScalarProperty Name="TotalGanadas" ColumnName="TotalGanadas" />
+                <ScalarProperty Name="TotalPartidas" ColumnName="TotalPartidas" />
+                <ScalarProperty Name="Jugador_Usuario_Cuenta_idCuenta" ColumnName="Jugador_Usuario_Cuenta_idCuenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

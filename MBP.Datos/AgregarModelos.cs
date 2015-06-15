@@ -94,6 +94,29 @@ namespace MBP.Datos
             }
         }
 
+        /**
+ * Agrega una nueva partida online a la DB 
+ * 
+ **/
+        public bool agregaPartidaHistorica(PartidaHistorica partidaHistorica)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.PartidaHistorica.Add(partidaHistorica);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //error en base de datos
+                Debug.Write(e.InnerException);
+                return false;
+            }
+        }
+
         public bool agregarDispositivo(Dispositivo dispositivo)
         {
 

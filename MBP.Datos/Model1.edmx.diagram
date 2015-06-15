@@ -7,7 +7,6 @@
       <Diagram DiagramId="8cf08bfc06034efd8e73126e5f6f6b4e" Name="Diagram1" ZoomLevel="99">
         <EntityTypeShape EntityType="MyBattlePongModel.Cuenta" Width="1.5" PointX="1.5" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Dispositivo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyBattlePongModel.Estadistica" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Jugador" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Moderador" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Nave" Width="1.5" PointX="5.25" PointY="27.25" IsExpanded="true" />
@@ -20,7 +19,6 @@
         <EntityTypeShape EntityType="MyBattlePongModel.Tablero_Virtual_2" Width="1.5" PointX="7.5" PointY="29" IsExpanded="true" />
         <EntityTypeShape EntityType="MyBattlePongModel.Usuario" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="MyBattlePongModel.fk_Usuario_Cuenta" ManuallyRouted="false" />
-        <AssociationConnector Association="MyBattlePongModel.fk_Estadistica_Jugador1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Jugador_Pais1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Jugador_Usuario1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Partida_Jugador3" ManuallyRouted="false" />
@@ -33,10 +31,12 @@
         <AssociationConnector Association="MyBattlePongModel.fk_Tablero_Virtual_Nave1" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.fk_Tablero_Virtual_Nave2" ManuallyRouted="false" />
         <AssociationConnector Association="MyBattlePongModel.Jugador_Poder" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MyBattlePongModel.Partida" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MyBattlePongModel.Partida" Width="1.5" PointX="4.125" PointY="0.5" />
         <AssociationConnector Association="MyBattlePongModel.fk_Partida_Jugador1" />
         <AssociationConnector Association="MyBattlePongModel.fk_Partida_Jugador2" />
         <AssociationConnector Association="MyBattlePongModel.fk_Partida_has_Nave_Partida1" />
+        <EntityTypeShape EntityType="MyBattlePongModel.Estadistica" Width="1.5" PointX="5.25" PointY="15" />
+        <AssociationConnector Association="MyBattlePongModel.fk_Estadistica_Jugador1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

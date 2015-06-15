@@ -27,7 +27,6 @@ namespace MBP.Datos
     
         public virtual DbSet<Cuenta> Cuenta { get; set; }
         public virtual DbSet<Dispositivo> Dispositivo { get; set; }
-        public virtual DbSet<Estadistica> Estadistica { get; set; }
         public virtual DbSet<Jugador> Jugador { get; set; }
         public virtual DbSet<Moderador> Moderador { get; set; }
         public virtual DbSet<Nave> Nave { get; set; }
@@ -40,5 +39,6 @@ namespace MBP.Datos
         public virtual DbSet<Tablero_Virtual_2> Tablero_Virtual_2 { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Partida> Partida { get; set; }
+        public virtual DbSet<Estadistica> Estadistica { get; set; }
     }
 }

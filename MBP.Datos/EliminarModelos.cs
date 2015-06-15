@@ -23,8 +23,20 @@ namespace MBP.Datos
                 return true;
             }
 
+        public bool eliminarPartida(int idPartida)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var list = db.Partida.Find(idPartida);
+                eliminarTablerosPartida(list.idPartida);
+                db.Partida.Remove(list);
+                db.SaveChanges();
+            }
+            return true;
+        }
 
-        public void eliminarTablerosPartida(int idPartida)
+
+        private void eliminarTablerosPartida(int idPartida)
         {
             using (var db = new MyBattlePongEntities())
             {
@@ -39,5 +51,6 @@ namespace MBP.Datos
                 db.SaveChanges();
             }
         }
+
         }
     }
