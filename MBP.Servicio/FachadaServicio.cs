@@ -1,8 +1,9 @@
-﻿using MBP.CapaTrasversal.ModelsMVC;
+﻿using MBP.CapaTransversal.ModelsMVC;
 using MBP.EjeVertical;
 using MBP.Logica;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,24 @@ namespace MBP.Servicio
 {
     public class FachadaServicio
     {
-        public bool VerificarLogin(InicioModel Modelo)
+        public UsuarioModel verificarLogin(InicioModel Modelo)
         {
-            IngresaUsuario comp = new IngresaUsuario();
-            return comp.VerificarIngreso(Modelo.Usuario,Modelo.Contrasena);
+            UsuarioLogica comp = new UsuarioLogica();
+            return comp.verificarIngreso(Modelo);
+        }
+
+        public bool modificarUsuario(CompositeRegModel model) {
+            UsuarioLogica comp = new UsuarioLogica();
+            return comp.modificarUsuario(model);
+        }
+        public bool modificarContrasena(UsuarioContraModel model)
+        {
+            if (model.contrasena == model.contrasenaConf)
+            {
+                UsuarioLogica comp = new UsuarioLogica();
+                return comp.modificarContrasena(model);
+            }
+            else return false;
         }
         public string agregarNave(NaveModel nave)
         {
@@ -25,13 +40,21 @@ namespace MBP.Servicio
         public string modificarNave(NaveModel nave)
         {
             GestionarNave gestionarNave = new GestionarNave();
-            return gestionarNave.agregarNave(nave);
+            return gestionarNave.modificarNave(nave);
         }
+
+
 
         public bool desactivarNave(int idNave)
         {
-            GestionarNave gestionarNave = new GestionarNave();
-            return gestionarNave.desactivarNave(idNave);
+            GestionarNave gestionar = new GestionarNave();
+            return gestionar.desactivarNave(idNave);
+        }
+
+        public bool desactivarCuenta(int idCuenta)
+        {
+            UsuarioLogica gestionarUser = new UsuarioLogica();
+            return gestionarUser.desactivarCuenta(idCuenta);
         }
         public bool IngresarPartidaVivo()
         {
@@ -39,9 +62,32 @@ namespace MBP.Servicio
             return true;
         }
 
-        public int ingresarPartidaOnline(PartidaModel partida)
+        public int IngresarPartidaOnline(PartidaModel partida)
         {
                return new GestionarPartidaOnline().ingresarPartidaOnline(partida);
+        }
+        public bool AgregarTableroOnline(TableroModel tablero)
+        {
+            return new ArmarTablero().armarTableroJuego(tablero);
+        }
+
+        public PartidaModel[] partidasDisponiblesOnline()
+        {
+            return null;
+        }
+        public bool agregarNuevoUser(CompositeRegModel modelo) {
+            UsuarioLogica nuevoUser = new UsuarioLogica();
+            return nuevoUser.agregarUsuario(modelo);
+        }
+
+        public List<string> obtenerListaPaises() {
+            UsuarioLogica obtener = new UsuarioLogica();
+            return obtener.obtenerListaPaises();
+        }
+
+        public int ingresarPartidaOnline(PartidaModel partida)
+        {
+            return new GestionarPartidaOnline().ingresarPartidaOnline(partida);
         }
         public bool agregarTableroOnline(TableroModel tablero)
         {
@@ -66,7 +112,7 @@ namespace MBP.Servicio
 
         public TableroModel2 recuperarTableroPartida(int idPartida, int idJugador)
         {
-            return new GestionarPartidaOnline().obtenerPartidaOnline(idPartida,idJugador);
+            return new GestionarPartidaOnline().obtenerPartidaOnline(idPartida, idJugador);
         }
 
 

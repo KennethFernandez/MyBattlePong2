@@ -41,7 +41,7 @@ namespace MBP.Logica
             if (navesTab1 == 0)
             {
                 resultado = Constantes.disparoFinal;
-                new FinalizarPartida().finalizarPartida(partida.idPartida,2);
+                new FinalizarPartida().finalizarPartida(partida.idPartida, 2);
             }
             else if (navesTab2 == 0)
             {

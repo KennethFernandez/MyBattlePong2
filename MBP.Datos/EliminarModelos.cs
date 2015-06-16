@@ -10,21 +10,20 @@ namespace MBP.Datos
     {
 
 
-
         public bool eliminarPartidasDeJugador(int idJugador)
         {
             using (var db = new MyBattlePongEntities())
             {
-                    var list = db.Partida.Where(m => m.Jugador1_idCuenta == idJugador);
-                    foreach (Partida bar in list)
-                    {
-                        eliminarTablerosPartida(bar.idPartida);
-                        db.Partida.Remove(bar);
-                    }
-                        db.SaveChanges();
-             }  
-                return true;
+                var list = db.Partida.Where(m => m.Jugador1_idCuenta == idJugador);
+                foreach (Partida bar in list)
+                {
+                    eliminarTablerosPartida(bar.idPartida);
+                    db.Partida.Remove(bar);
+                }
+                db.SaveChanges();
             }
+            return true;
+        }
 
 
 
@@ -62,6 +61,5 @@ namespace MBP.Datos
                 db.SaveChanges();
             }
         }
-
     }
 }

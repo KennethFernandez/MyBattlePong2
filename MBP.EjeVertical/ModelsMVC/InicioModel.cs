@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MBP.CapaTrasversal.ModelsMVC
+namespace MBP.CapaTransversal.ModelsMVC
 {
     public class InicioModel
     {

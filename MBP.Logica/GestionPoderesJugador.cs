@@ -32,13 +32,13 @@ namespace MBP.Logica
             List<Poder> poderesDesbloqueados = new List<Poder>();
             List<Poder> poderesDisponibles = new ObtenerModelos().obtenerListaPoderes();
             Estadistica estadisticas = new ObtenerModelos().obtieneEstadisticasJugador(idJugador);
-            AgregarModelos agregar =  new AgregarModelos();
+            AgregarModelos agregar = new AgregarModelos();
             int partidasPerdias = CalculoEstadisticas.perdidas(estadisticas.TotalPartidas, estadisticas.TotalGanadas);
-            int ranking = CalculoEstadisticas.ranking(estadisticas.TotalGanadas,partidasPerdias,estadisticas.TotalPuntos);
+            int ranking = CalculoEstadisticas.ranking(estadisticas.TotalGanadas, partidasPerdias, estadisticas.TotalPuntos);
             foreach (Poder item in poderesDisponibles)
             {
                 bool desbloqueado = false;
-                if (item.Puntos < estadisticas.TotalPuntos && item.Puntos > 0 )
+                if (item.Puntos < estadisticas.TotalPuntos && item.Puntos > 0)
                 {
                     desbloqueado = true;
                 }
@@ -56,9 +56,9 @@ namespace MBP.Logica
                 }
                 if (item.Experiencia < estadisticas.TotalPartidas && item.Experiencia > 0)
                 {
-                    
+
                 }
-                if (desbloqueado && !jugadorYaTienePoder(idJugador,item.idPoder))
+                if (desbloqueado && !jugadorYaTienePoder(idJugador, item.idPoder))
                 {
                     agregar.agregaPoderAjugador(idJugador, item.idPoder);
                     poderesDesbloqueados.Add(item);

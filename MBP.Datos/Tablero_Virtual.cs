@@ -16,6 +16,6 @@ namespace MBP.Datos
         public bool Destruido { get; set; }
         public int Nave_idNave { get; set; }
         public int Partida_idPartida { get; set; }
-    
+
     }
 }

@@ -6,8 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using MBP.Servicio;
 using System.Diagnostics;
-using MBP.CapaTrasversal.ModelsMVC;
-using MBP.EjeVertical;
+using MBP.CapaTransversal.ModelsMVC;
 
 namespace MBP.Presentacion.Controllers
 {
@@ -30,7 +29,6 @@ namespace MBP.Presentacion.Controllers
             partida.tamano = 10;
             new FachadaServicio().IngresarPartidaOnline(partida);
             Console.WriteLine("Prueba iniciada");
-
             **/
             return View();
         }
@@ -50,30 +48,55 @@ namespace MBP.Presentacion.Controllers
             // return RedirectToAction("Jugar", "Jugar");
             // Si el modelo cumple con las condiciones
             // de largo y demas pasa
+
             if (ModelState.IsValid)
             {
 
                 // solo deja pasar si son iguales si no regresa a la página de inicio.
                 // , new { modelo =  UsuarioModel}
-                FachadaServicio comprueba = new FachadaServicio();
-                if (comprueba.VerificarLogin(model))
+
+                Debug.WriteLine("user: ,"+model.Usuario+",");
+                Debug.WriteLine("contra: " + model.Contrasena);
+
+                FachadaServicio fachada = new FachadaServicio();
+                UsuarioModel usuario = fachada.verificarLogin(model);
+                if (usuario.datos[1, 1] == "1")
                 {
-                    Debug.Write("OK");
-                    return View();
+                    Debug.WriteLine("user valido");
+                    Debug.WriteLine("jugador");
+                    Session["usuario"] = usuario;
+                   // Session["Tipo"] = "Jugador";
+                   // Debug.WriteLine(ViewBag.CategoryID);
+                    return RedirectToAction("Perfil", "Perfil");
                     // FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     //Session["MyMenu"] = null;
                     //return RedirectToAction("Catalogo", "Catalogo");
                 }
-                else
+                else if (usuario.datos[1, 1] == "2")
                 {
-                    Debug.Write("NO");
+                    Debug.WriteLine("user valido");
+                    Debug.WriteLine("moderador");
+                    //ViewBag.CategoryID = "Moderador";
+                    Session["usuario"] = usuario;
+                    return RedirectToAction("Perfil", "Perfil");
+                }
+                else if (usuario.datos[1, 1] == "3")
+                {
+                    Debug.WriteLine("user valido");
+                    Debug.WriteLine("administrador");
+                    //ViewBag.CategoryID = "Administrador";
+                    Session["usuario"] = usuario;
+                    return RedirectToAction("Catalogo", "Catalogo");
+                }
+                else {
+                    Debug.WriteLine("user invalido");
                     return View();
-
-                };// Mensaje de no valido, poner un label.
+                }
 
             }
             else
             {
+                Debug.WriteLine("modelo invalido");
                 return View();
             }
         }

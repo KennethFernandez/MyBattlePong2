@@ -8,8 +8,7 @@ namespace MBP.Logica
 {
     public static class CalculoEstadisticas
     {
-        public static int perdidas(int total, int victorias)
-        {
+        public static int perdidas(int total, int victorias) {
             return total - victorias;
         }
         public static int porcentajeEfectividad(int total, int victorias)
@@ -21,6 +20,5 @@ namespace MBP.Logica
         {
             return (victorias * 1000) + (derrotas * 10) + puntos;
         }
-
     }
 }

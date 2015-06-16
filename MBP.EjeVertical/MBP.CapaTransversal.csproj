@@ -110,16 +110,24 @@
   <ItemGroup>
     <Compile Include="CasillaModel.cs" />
     <Compile Include="CasillaModel2.cs" />
-    <Compile Include="DisaproModel.cs" />
+    <Compile Include="DisaproModel2.cs" />
+    <Compile Include="DisparoModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelsMVC\CompositeRegModel.cs" />
     <Compile Include="ModelsMVC\InicioModel.cs" />
-    <Compile Include="NaveModel.cs" />
+    <Compile Include="ModelsMVC\JugadorModel.cs" />
+    <Compile Include="ModelsMVC\ModeradorModel.cs" />
+    <Compile Include="ModelsMVC\RegistrarseExtModel.cs" />
+    <Compile Include="ModelsMVC\RegistrarseModel.cs" />
+    <Compile Include="ModelsMVC\TipoUsuarioModel.cs" />
+    <Compile Include="ModelsMVC\UsuarioContraModel.cs" />
+    <Compile Include="ModelsMVC\UsuarioModel.cs" />
+    <Compile Include="ModelsMVC\NaveModel.cs" />
     <Compile Include="PartidaModel.cs" />
     <Compile Include="PoderModel2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DisparoModel2.cs" />
     <Compile Include="TableroModel.cs" />
     <Compile Include="TableroModel2.cs" />
   </ItemGroup>

@@ -2,7 +2,6 @@
 using MBP.EjeVertical;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +14,8 @@ namespace MBP.Logica
          * Cambia el modelo de la partida MVC a el modelo de datos del entity
          * Tambien asigna quien es el primer jugador en iniciar y los tiros disponibles para cada jugador
          **/
-        public Partida partidaViewModelAPartidaDataModel(PartidaModel partidaModel){
+        public Partida partidaViewModelAPartidaDataModel(PartidaModel partidaModel)
+        {
 
             Partida partida = new Partida();
             // Asigna la mima cantidad de disparos para cada jugador por que aun no se activa ningun poder
@@ -46,13 +46,13 @@ namespace MBP.Logica
         public List<PartidaModel> partidaDataModelApartidaViewModel(List<Partida> partidas)
         {
             List<PartidaModel> nuevasPartitas = new List<PartidaModel>();
-            foreach(Partida item in partidas)
+            foreach (Partida item in partidas)
             {
                 PartidaModel partida = new PartidaModel();
                 partida.disparos = item.DisparosJugador1;
                 partida.fechaCreacion = item.Fecha;
                 partida.idJugadorCreador = item.Jugador1_idCuenta;
-                partida.permisos = item.Publico; 
+                partida.permisos = item.Publico;
                 nuevasPartitas.Add(partida);
             }
             return nuevasPartitas;
@@ -69,7 +69,8 @@ namespace MBP.Logica
         public DisparoModel2 respuestaDisparoModel(Partida partida, int resultado)
         {
             DisparoModel2 respuesta = new DisparoModel2();
-            if(partida.TurnoActual){
+            if (partida.TurnoActual)
+            {
                 respuesta.idJugadorActual = partida.Jugador1_idCuenta;
             }
             else
@@ -95,7 +96,7 @@ namespace MBP.Logica
          * Mapea la lista de casillas y la info de la partida al modelo de tablero para el controlador
          * 
          * 
-         **/ 
+         **/
 
         public TableroModel2 partidaATableroModel2(List<Tablero_Virtual> tablero, Partida partida, int numTablero)
         {

@@ -10,33 +10,23 @@ namespace MBP.Logica
 {
     public class GestionarPartidaOnline
     {
-        public List<PartidaModel> ObtenerPartidasOnline()
-        {
-            return null;
-        }
-
-
-        /**
-         * 
-         * 
-         * 
-         **/
         public TableroModel2 obtenerPartidaOnline(int idPartida, int idJugador)
         {
             ObtenerModelos obtenerModelos = new ObtenerModelos();
             Partida partida = obtenerModelos.buscarPartida(idPartida);
             List<Tablero_Virtual> tablero;
             TableroModel2 respuesta;
-            if(partida.Jugador1_idCuenta == idJugador){
-                tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador1,idPartida);
-                respuesta = new MapperModelos().partidaATableroModel2(tablero,partida,Constantes.tableroJugador1);
+            if (partida.Jugador1_idCuenta == idJugador)
+            {
+                tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador1, idPartida);
+                respuesta = new MapperModelos().partidaATableroModel2(tablero, partida, Constantes.tableroJugador1);
             }
             else
             {
                 tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador2, idPartida);
                 respuesta = new MapperModelos().partidaATableroModel2(tablero, partida, Constantes.tableroJugador2);
             }
-            return respuesta; 
+            return respuesta;
         }
 
         public int ingresarPartidaOnline(PartidaModel partida)

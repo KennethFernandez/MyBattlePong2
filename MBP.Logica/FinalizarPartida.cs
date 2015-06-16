@@ -20,7 +20,7 @@ namespace MBP.Logica
             // Recupera los modelos de las estadisticas y la partida
             Estadistica J1;
             Estadistica J2;
-            ObtenerModelos obtener  =  new ObtenerModelos();
+            ObtenerModelos obtener = new ObtenerModelos();
             Partida partida = obtener.buscarPartida(idPartida);
             J1 = obtener.obtieneEstadisticasJugador(partida.Jugador1_idCuenta);
             J2 = obtener.obtieneEstadisticasJugador(partida.Jugador2_idCuenta);

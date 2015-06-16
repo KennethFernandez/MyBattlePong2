@@ -1,0 +1,128 @@
+﻿@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.Title = "Registro";
+}
+
+@section scripts{
+
+    <script type="text/javascript" src="../javascripts/Ocultar2.js"></script>
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" type="text/css">
+
+}
+
+<div id="cont" align="left">
+
+@model MBP.CapaTransversal.ModelsMVC.UsuarioModel
+@using (Html.BeginForm("Perfil", "Perfil", FormMethod.Post,
+                new { enctype = "multipart/form-data" }))
+{
+
+    <input type="hidden" value="@ViewBag.tipo" id="mode">
+    <div id="left">
+            
+        <p>
+            Usuario:
+            @ViewData["usuario"]
+        </p>
+        <p>
+            Nombre:
+            @ViewData["nombre"]
+        </p>
+        <p>
+            Apellido:
+            @ViewData["apellido"]
+        </p>
+        <p>
+            Email:
+            @ViewData["email"]
+        </p>
+        <p>
+            Fecha de inscripción:
+            @ViewData["Fecha Inscripcion"]
+        </p>
+        <div class="Administrador">
+
+            <p>
+                País:
+                @ViewData["pais"]
+            </p>
+            <p>
+                Genero:
+                @ViewData["genero"]
+            </p>
+            <p>
+                Fecha de Nacimiento:
+                @ViewData["fecha nacimiento"]
+            </p>
+            <br />
+
+            <p>Foto:</p>
+            <br>
+
+        </div>
+
+    </div>
+
+    <div id="right">
+
+        <div class="Administrador">
+            <div class="Jugador">
+                <p>
+                    Local:
+                    @ViewData["compartido"]
+                </p>
+
+
+            </div>
+
+            <div class="Moderador">
+                <p>Descripción Personal:
+                @ViewData["compartido"]
+                </p>
+                <h1> Estadísiticas</h1>
+                <table style="width:100%">
+                    <tr>
+                        <th>Partidas Ganadas:</th>
+                        <td>@ViewData["PartidasGanadas"]</td>
+                    </tr>
+                    <tr>
+                        <th>Relación Ganadas/perdidas:</th>
+                        <td>@ViewData["GanadasPerdidas"]</td>
+                    </tr>
+                    <tr>
+                        <th>Porcentaje de partidas ganadas:</th>
+                        <td>@ViewData["PorcentajePartidas"]</td>
+                    </tr>
+                    <tr>
+                        <th>Total Disparos:</th>
+                        <td>@ViewData["TotalDisparos"]</td>
+                    </tr>
+                    <tr>
+                        <th>Relación de disparos acertados/fallados:</th>
+                        <td>@ViewData["AcertadosFallados"]</td>
+                    </tr>
+                    <tr>
+                        <th>Porcentaje de disparos acertados:</th>
+                        <td>@ViewData["PorcentajeDisparos"]</td>
+                    </tr>
+                    <tr>
+                        <th>Puntos ganados:</th>
+                        <td>@ViewData["PuntoGanados"]</td>
+                    </tr>
+                    <tr>
+                        <th>Porcentaje de puntos ganados:</th>
+                        <td>@ViewData["PorcentajePuntoGanados"]</td>
+                    </tr>
+                </table>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+}
+
+</div>

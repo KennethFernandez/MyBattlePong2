@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Diagnostics;
 using MBP.Logica;
-using MBP.Servicio;
 
 namespace MBP.Datos.Tests
 {
@@ -13,7 +11,7 @@ namespace MBP.Datos.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            ObtenerModelos obtener  = new ObtenerModelos();
+            ObtenerModelos obtener = new ObtenerModelos();
             List<Poder> lista1 = obtener.obtenerPoderesJugador(2);
             List<Poder> lista2 = obtener.obtenerPoderesJugador(4);
             int resultado1 = lista1.Count;
@@ -31,8 +29,7 @@ namespace MBP.Datos.Tests
         [TestMethod]
         public void TestMethod2()
         {
-            Assert.AreEqual(0,new GestionPoderesJugador().actualizarPoderesJugador(2).Count);
+            Assert.AreEqual(0, new GestionPoderesJugador().actualizarPoderesJugador(2).Count);
         }
-
     }
 }

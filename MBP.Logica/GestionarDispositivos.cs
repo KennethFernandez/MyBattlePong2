@@ -30,7 +30,7 @@ namespace MBP.Logica
                 {
                     return false;
                 }
-                
+
             }
             else
             {

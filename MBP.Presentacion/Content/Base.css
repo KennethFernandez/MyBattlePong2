@@ -10,7 +10,7 @@ header,td,th {
 }
 header, body{
 	background-color: #FFF;
-	background-image: url(Images/Fondo.jpg);
+	background-image: url(images/Fondo.jpg);
 	background-repeat: repeat;
 	background-size: contain;
     width:auto;
@@ -36,7 +36,7 @@ footer{
     position:relative;
 }
 
-.input1{
+.input1, .datepicker, .input2{
 
 	font-family: kkberkbm;
     background-color: #F90;
@@ -50,7 +50,9 @@ footer{
 
 }
 
-.input1:focus{
+.input2{ height: 30px;}
+
+.input1:focus, .datepicker:focus, .input2:focus{
      box-shadow:0 0 15px #808080;
      color: #F90;
      background-color:#FFF;
@@ -158,6 +160,15 @@ h3{
 
 }
 
+label {
+
+    color: #F90;
+    font-size:20px;
+	font-family:Aleo;
+	font-weight:bold;
+
+}
+
 h2 {
 
     color: #F90;
@@ -205,3 +216,18 @@ select {
     position: center;
 
 }
+
+/* Upload image dialog */
+.uploadimage-dragndrop { border: 2px dashed #DDD; margin: 10px 0; padding: 10px 10px; text-align: center; color: #DDD; }
+.uploadimage-text { font-size: 32px; margin-bottom: 20px; }
+.uploadimage-input { margin: 20px 0; }
+.uploadimage-upload { background: #EEE; margin: 4px 0; }
+.uploadimage-uploadcompleted { background: #d1f4ac; }
+.uploadimage-fileinfo { padding: 5px; font-size: 11px; position: relative; }
+.uploadimage-progresspct { position: absolute; top: 5px; right: 5px; }
+.uploadimage-progress { background: #999; }
+.uploadimage-progressbar { background: maroon; height: 2px; }
+.uploadimage-totalprogress { background: #999; }
+.uploadimage-totalprogressbar { background: #107EC2; height: 6px; }
+
+.description { margin: 40px 0; }

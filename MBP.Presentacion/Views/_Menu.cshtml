@@ -1,7 +1,7 @@
 ﻿@{
     var menus = new[]
                 {
-                   new { LinkText="Home", ActionName="Index",ControllerName="Home",Roles="All"  },
+                   new { LinkText="Catálogo", ActionName="Catalogo",ControllerName="Catalogo",Roles="Administrador"  },
                    new { LinkText="About", ActionName="About",ControllerName="Home",Roles="Anonymous"  },
                    new { LinkText="Contact", ActionName="Contact",ControllerName="Home",Roles="Anonymous"  },
                    new { LinkText="Dashboard", ActionName="Index",ControllerName="Dealer",Roles="Dealer"  },
@@ -18,7 +18,7 @@
 <ul id="menu" class="MenuBarHorizontal">
     @if (true)
     {
-        String[] roles = { "Administrator" };
+        String[] roles = {"Administrador"};
         var links = from item in menus
                     where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                     .Any(x => roles.Contains(x) || x == "All")

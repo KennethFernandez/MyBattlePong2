@@ -1,17 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MBP.Datos;
-using MBP.Servicio;
-using System.Diagnostics;
 using MBP.EjeVertical;
-using System.Collections.Generic;
 using MBP.Logica;
+using MBP.Servicio;
+using System.Collections.Generic;
+
 namespace MBP.Datos.Tests
 {
     [TestClass]
     public class PruebasTiros
     {
-        public int armarTablero(int J1,int J2, int disparos)
+        public int armarTablero(int J1, int J2, int disparos)
         {
             PartidaModel partida = new PartidaModel();
             partida.disparos = disparos;
@@ -70,7 +69,7 @@ namespace MBP.Datos.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            int idPartida = armarTablero(2, 4 , 10);
+            int idPartida = armarTablero(2, 4, 10);
             FachadaServicio fachadaServicio = new FachadaServicio();
 
             DisparoModel disparo = new DisparoModel();
@@ -80,9 +79,9 @@ namespace MBP.Datos.Tests
             disparo.idJugador = 2;
             disparo.tipoDisparo = 1;
 
-            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado,Constantes.disparoExitoso);
+            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
             Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoFallido);
-            
+
             disparo.x = 1;
             disparo.y = 0;
             Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
@@ -100,13 +99,13 @@ namespace MBP.Datos.Tests
 
             Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
             Assert.AreEqual(partidaDatos.DisparosJugador1, new ObtenerModelos().obtieneNave(2).Puntaje);
-            
+
         }
 
         [TestMethod]
         public void TestMethod2()
         {
-            int idPartida = armarTablero(2, 4 , 4);
+            int idPartida = armarTablero(2, 4, 4);
             FachadaServicio fachadaServicio = new FachadaServicio();
 
             DisparoModel disparo = new DisparoModel();
@@ -257,7 +256,7 @@ namespace MBP.Datos.Tests
             int cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida, 2);
             Assert.AreEqual(0, cantidadCasillas);
             cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida, 1);
-//            Assert.AreEqual(4, cantidadCasillas);
+            //            Assert.AreEqual(4, cantidadCasillas);
             /**
             Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
             Assert.AreEqual(90,partidaDatos.PuntajeJugador1);
@@ -276,7 +275,7 @@ namespace MBP.Datos.Tests
         {
             int idPartida = armarTablero(2, 4, 5);
             FachadaServicio fachadaServicio = new FachadaServicio();
-            int cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida,1);
+            int cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida, 1);
             Assert.AreEqual(12, cantidadCasillas);
         }
     }

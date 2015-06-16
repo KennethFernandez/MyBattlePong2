@@ -2,7 +2,6 @@
 using MBP.EjeVertical;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,39 +39,39 @@ namespace MBP.Logica
             partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
             int resultado = 0; // Resultado de la partida
             int tablero;
-                // Verifica cual jugador es el que realiza el disparo
-                if (partida.Jugador1_idCuenta == disparo.idJugador && partida.TurnoActual)  // Disparo lo realiza el jugador 1
+            // Verifica cual jugador es el que realiza el disparo
+            if (partida.Jugador1_idCuenta == disparo.idJugador && partida.TurnoActual)  // Disparo lo realiza el jugador 1
+            {
+                tablero = Constantes.tableroJugador2;
+                if (partida.DisparosRestantes == 1)     // Cambia de turno si es necesario
                 {
-                    tablero = Constantes.tableroJugador2;
-                    if (partida.DisparosRestantes == 1)     // Cambia de turno si es necesario
-                    {
-                        partida.TurnoActual = !partida.TurnoActual;
-                        partida.DisparosRestantes = partida.DisparosJugador2;
-                    }
-                    else
-                    {
-                        partida.DisparosRestantes--;
-                    }
-                    resultado = this.procesarDisparoTablero(disparo,tablero); // Procesa el disparo en el tablero 2
-                }
-                else if (partida.Jugador2_idCuenta == disparo.idJugador && !partida.TurnoActual) // Disparo lo realiza el jugador 2
-                {
-                    tablero = Constantes.tableroJugador1;
-                    if (partida.DisparosRestantes == 1) // Cambia de turno si es necesario
-                    {
-                        partida.TurnoActual = !partida.TurnoActual;
-                        partida.DisparosRestantes = partida.DisparosJugador1;
-                    }
-                    else
-                    {
-                        partida.DisparosRestantes--; // Resta un turno a la partida
-                    }
-                    resultado = this.procesarDisparoTablero(disparo, tablero); // Procesa el disparo en el tablero 1
+                    partida.TurnoActual = !partida.TurnoActual;
+                    partida.DisparosRestantes = partida.DisparosJugador2;
                 }
                 else
                 {
-                    resultado = Constantes.disparoNoEsSuTurno; // Notofica que el jugador no esta en su turno
+                    partida.DisparosRestantes--;
                 }
+                resultado = this.procesarDisparoTablero(disparo, tablero); // Procesa el disparo en el tablero 2
+            }
+            else if (partida.Jugador2_idCuenta == disparo.idJugador && !partida.TurnoActual) // Disparo lo realiza el jugador 2
+            {
+                tablero = Constantes.tableroJugador1;
+                if (partida.DisparosRestantes == 1) // Cambia de turno si es necesario
+                {
+                    partida.TurnoActual = !partida.TurnoActual;
+                    partida.DisparosRestantes = partida.DisparosJugador1;
+                }
+                else
+                {
+                    partida.DisparosRestantes--; // Resta un turno a la partida
+                }
+                resultado = this.procesarDisparoTablero(disparo, tablero); // Procesa el disparo en el tablero 1
+            }
+            else
+            {
+                resultado = Constantes.disparoNoEsSuTurno; // Notofica que el jugador no esta en su turno
+            }
             new ModificarModelos().actualizarPartida(partida); // Actualiza el modelo de la partida en la base de datos
             return resultado;
         }
@@ -86,7 +85,7 @@ namespace MBP.Logica
 
         private bool siNaveDestruida(Tablero_Virtual casilla, int tablero)
         {
-            int cantidadCasillas  = new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida,tablero);
+            int cantidadCasillas = new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida, tablero);
             if (cantidadCasillas == 0) // Verifica que la nave no tengo mas casillas en no destruido
             {
                 Nave nave = new ObtenerModelos().obtieneNave(casilla.Nave_idNave);  // Obtiene el tipo de nave destruido
@@ -147,7 +146,7 @@ namespace MBP.Logica
             // Verifica si la nave fue destruida y aumenta los puntaje
             this.siNaveDestruida(casilla, tablero);
             // Aumenta la cantidad de tiros exitosos 
-            this.actualizarPuntajesJugadores(tablero,resultado);
+            this.actualizarPuntajesJugadores(tablero, resultado);
             return resultado;
         }
 
