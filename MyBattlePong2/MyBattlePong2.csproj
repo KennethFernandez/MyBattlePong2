@@ -206,7 +206,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BuscarController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
+    <Compile Include="Controllers\ColocacionController.cs" />
+    <Compile Include="Controllers\CrearController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\JugarController.cs" />
     <Compile Include="Controllers\RegistrarseController.cs" />
@@ -397,6 +400,8 @@
     <Content Include="Views\Crear\Crear.cshtml" />
     <Content Include="Views\Colocacion\Colocacion.cshtml" />
     <Content Include="Views\Perfil\Perfil.cshtml" />
+    <Content Include="Views\IniciarPartidaEnVivo\IniciarPartidaEnVivo.cshtml" />
+    <Content Include="Views\GestionarPoderes\GestionarPoderes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

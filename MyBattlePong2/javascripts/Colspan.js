@@ -1,5 +1,7 @@
 ﻿var i = 0;
-function button(){
+
+function button() {
+
     var td = document.getElementById("tableCellID");
 
     if(i==0){

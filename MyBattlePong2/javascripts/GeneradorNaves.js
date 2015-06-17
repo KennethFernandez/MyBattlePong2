@@ -1,7 +1,4 @@
 ﻿$(function(){
-   
-
-    $('.botonImagen').click(function () {
 
         var clicked_id = $(this).attr('id');
         var XY = clicked_id.toString().split(",");
@@ -41,5 +38,3 @@
         imagenPre.style.height = 20 + "px";
 
     });
-
-});

@@ -24,29 +24,9 @@ redips.init = function () {
 
 	};
 
-
-
-	rd.event.changed = function () {
-
-	    var pos = rd.getPosition();
-	    // display current row and current cell
-	    REDIPS.table.mark(true, 'table2', pos[1], pos[2]);
-	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] - 1);
-	    // and then split marked cell in table2
-	    REDIPS.table.split('h', 'table2');
-
-
-	};
-
 	rd.event.moved = function () {
 
 	    var pos = rd.getPosition();
-	    // display current row and current cell
-	    REDIPS.table.mark(true, 'table2', pos[1], pos[2]);
-	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] - 1);
-	    // and then split marked cell in table2
-	    REDIPS.table.split('h', 'table2');
-
 
 	};
 
@@ -56,14 +36,31 @@ redips.init = function () {
 	rd.event.dropped = function () { 
 	    // get target and source position (method returns positions as array)
 	    var pos = rd.getPosition();
-	    // display current row and current cell
+
 	    REDIPS.table.mark(true, 'table2', pos[1], pos[2]);
-	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] -1);
+	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] - 1);
+	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] + 1);
+	    REDIPS.table.merge('h', true, 'table2');
+
+	    REDIPS.table.mark(true, 'table2', pos[1] + 1, pos[2]);
+	    REDIPS.table.mark(true, 'table2', pos[1] + 1, pos[2] - 1);
+	    REDIPS.table.mark(true, 'table2', pos[1] + 1, pos[2] + 1);
+	    REDIPS.table.merge('h', true, 'table2');
 	    // merge cells:
 	    // 'h' - horizontally
 	    // true - clear mark after merging
 	    // 'table1' - table id
-	    REDIPS.table.merge('h', true, 'table2');
+
+	    // display current row and current cell
+	    REDIPS.table.mark(true, 'table2', pos[1], pos[2]);
+	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] - 1);
+	    REDIPS.table.mark(true, 'table2', pos[1], pos[2] + 1);
+	    REDIPS.table.mark(true, 'table2', pos[1] + 1, pos[2]);
+	    REDIPS.table.mark(true, 'table2', pos[1] + 1, pos[2] - 1);
+	    REDIPS.table.mark(true, 'table2', pos[1] + 1, pos[2] + 1);
+
+	    REDIPS.table.merge('v', true, 'table2');
+	    
 	};
 
 	// or cloned elements can be defined one by one

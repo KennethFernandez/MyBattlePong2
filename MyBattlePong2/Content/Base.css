@@ -133,6 +133,14 @@ footer{
 
 }
 
+.Buscar {
+
+    height: 350px;
+    width: auto;
+    overflow:scroll;
+
+}
+
 .Nave, .Nave2 {
 
     display: block; width: 90px; margin: 10px; height:10px;
