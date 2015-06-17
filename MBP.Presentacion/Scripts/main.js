@@ -1,6 +1,11 @@
 ﻿/*global require, alert*/
 /*jslint browser:true*/
 
+require.config({
+    paths: {
+        knockout: '/MyBattlePong2/Scripts/knockout-2.1.0'
+    }
+});
 
 require(['src/html5Upload', 'domReady', 'knockout-models'], function (html5Upload, domReady, models) {
     'use strict';
@@ -31,7 +36,7 @@ require(['src/html5Upload', 'domReady', 'knockout-models'], function (html5Uploa
                 key: 'File',
 
                 // Additional data submitted with file (optional)
-                data: { ProjectId: 1, ProjectName: 'MBP.Presentacion' },
+                data: { ProjectId: 1, ProjectName: 'MyBattlePong2' },
 
                 // Maximum number of simultaneous uploads
                 // Other uploads will be added to uploads queue (optional)

@@ -58,8 +58,13 @@ namespace MBP.Presentacion.Controllers
                 Debug.WriteLine("user: ,"+model.Usuario+",");
                 Debug.WriteLine("contra: " + model.Contrasena);
 
+                
+
                 FachadaServicio fachada = new FachadaServicio();
                 UsuarioModel usuario = fachada.verificarLogin(model);
+
+                Session["NombreUsuario"] = usuario.datos[3, 1];
+
                 if (usuario.datos[1, 1] == "1")
                 {
                     Debug.WriteLine("user valido");
@@ -86,7 +91,7 @@ namespace MBP.Presentacion.Controllers
                     Debug.WriteLine("administrador");
                     //ViewBag.CategoryID = "Administrador";
                     Session["usuario"] = usuario;
-                    return RedirectToAction("Catalogo", "Catalogo");
+                    return RedirectToAction("Jugar", "Jugar");
                 }
                 else {
                     Debug.WriteLine("user invalido");

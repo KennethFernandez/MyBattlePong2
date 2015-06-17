@@ -1,7 +1,7 @@
 ﻿/*jslint browser:true*/
 /*global define*/
 
-define(['knockout'], function (ko) {
+define([''], function (ko) {
     'use strict';
 
     function trimTrailingZeros(number) {

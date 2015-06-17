@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.Title = "Jugar";
+}
+
+@section Scripts{
+
+    <script type="text/javascript" src="../javascripts/chat.js"></script>
+    <script type="text/javascript" src="../javascripts/redips-drag-min.js"></script>
+    <script type="text/javascript" src="../javascripts/script1.js"></script>
+    <script type="text/javascript" src="../javascripts/Colspan.js"></script>
+    <script type="text/javascript" src="../javascripts/redips-table-min.js"></script>
+    <script type="text/javascript" src="../javascripts/Contador.js"></script>
+    <script type="text/javascript" src="../javascripts/AcomodadorDeNaves.js"></script>
+}
+
+<div align="center">
+
+    <div id="left2" align="center">
+        <input type="image" class="botonImagen2" id="TurnoAli" src="/MBP.Presentacion/Images/verde.png">
+        <label for='name' id='name'>@Session["NombreUsuario"]</label>
+        <br>
+        <img src="/MBP.Presentacion/Images/rojo.jpg" alt="Sample Image" width="100" />
+        <br><br>
+        <div class="Poderes">
+            <table id="hk" class="Tabla_naranaja">
+                <tbody>
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr><td>Poder</td> </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="center" align="center">
+
+        <div id="left2">
+            <div align="center">Tiros restantes: 2</div>
+            <div align="center">Turno: 3</div>
+        </div>
+        <div id="center2">
+            <div align="center">Tiempo restante <span id="time"></span>s</div>
+        </div>
+        <div id="right2">
+            <div align="center">Puntos: 3</div>
+        </div>
+        <div class="NavesSta" id="NavesSta">
+        </div>
+
+        <div id="left2">
+
+            <table id="table2" class="Tabla_naranaja">
+                <tbody>
+
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 10; j++)
+                            {
+                                <td></td>}
+                        </tr>}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="right2">
+            <table id="table2" class="Tabla_naranaja">
+                <tbody>
+
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 10; j++)
+                            {
+                                <td><input src="/MBP.Presentacion/Images/blanco.png" type="image" class="botonImagen" id="@(j +","+i)" /></td>}
+                        </tr>}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <input type='hidden' name='sala' id='sala' value='1' />
+        <input type='text' class='input1' name='message' id='message' maxlength='140' />
+        <input type='button' class='boton_base2' name='sendmessage' id='sendmessage' value='Send' />
+        <br>
+        <br>
+        <input type='hidden' name='usuario' id='usuario' value='1' />
+        <div id='chatWindow' class='chat'></div>
+    </div>
+
+
+
+    <div id="right2" align="center">
+        <input type="image" class="botonImagen2" id="TurnoAli" src="/MBP.Presentacion/Images/rojo.jpg">
+        <label>Miguel</label>
+        <br>
+        <img src="/MBP.Presentacion/Images/rojo.jpg" alt="Sample Image" width="100" />
+        <br><br><br><br><br><br>
+        <input type="submit" value="Pasar Turno" class="boton_base3" />
+        <br><br>
+        <input type="submit" value="Rendirse" class="boton_base3" />
+        <br><br>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+

@@ -7,18 +7,14 @@
     
         var value = $(this).val();
 
-        if (value == "1") {
-            $('.Administrador').show();
-            $('.Moderador').show();
-            $('.Jugador').hide();
-             }
-        else if (value == "2") {
-            $('.Administrador').show();
-            $('.Jugador').show();
-            $('.Moderador').hide();
+             if (value == "1") { $('.Administrador').hide();}
+        else if (value == "2") { $('.Administrador').show();
+                                 $('.Moderador').show();
+                                 $('.Jugador').hide();
         
-        } else {                 
-                                 $('.Administrador').hide();
+        } else {                 $('.Administrador').show();
+                                 $('.Jugador').show();
+                                 $('.Moderador').hide();
         }
     
     });
