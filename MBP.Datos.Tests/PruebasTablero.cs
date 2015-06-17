@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MBP.EjeVertical;
 using MBP.Servicio;
 using System.Collections.Generic;
+using MBP.CapaTransversal.ModelsMVC;
 
 namespace MBP.Datos.Tests
 {
@@ -17,6 +17,12 @@ namespace MBP.Datos.Tests
                 partida.idJugadorCreador = J1;
                 partida.permisos = true;
                 partida.tamano = 10;
+                List<int[]> naves = new List<int[]>();
+                int[] nave = new int[2];
+                nave[0] = 1;
+                nave[1] = 3;
+                naves.Add(nave);
+                partida.naves = naves;
                 FachadaServicio fachadaServicio = new FachadaServicio();
                 int idPartida = fachadaServicio.ingresarPartidaOnline(partida);
                 Assert.AreNotEqual(idPartida, 0);
@@ -68,11 +74,12 @@ namespace MBP.Datos.Tests
             [TestMethod]
             public void TestMethod1()
             {
-
+                //new EliminarModelos().eliminarNavesPartida(262);
                 int idPartida = armarTablero(2, 4, 10);
                 FachadaServicio fachadaServicio = new FachadaServicio();
                 TableroModel2 tablero = fachadaServicio.recuperarTableroPartida(idPartida, 2);
-
+                int x = new FachadaServicio().navesDePartida(idPartida).Count;
+                Assert.AreEqual(1, x);
                 Assert.AreEqual(4, tablero.tableroJugador.Count);
                 Assert.AreEqual(new ObtenerModelos().obtieneNave(1).Imagen, tablero.tableroJugador[0].imagen);
                 Assert.AreEqual(new ObtenerModelos().obtieneNave(2).Imagen, tablero.tableroJugador[1].imagen);
@@ -83,7 +90,7 @@ namespace MBP.Datos.Tests
                 Assert.AreEqual(new ObtenerModelos().obtieneNave(1).TamanoY, tablero.tableroJugador[0].mas_Y);
                 Assert.AreEqual(new ObtenerModelos().obtieneNave(2).TamanoY, tablero.tableroJugador[1].mas_Y);
                 Assert.AreEqual(new ObtenerModelos().obtieneNave(3).TamanoY, tablero.tableroJugador[2].mas_Y);
-
+                
             }
         }
 }

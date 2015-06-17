@@ -1,5 +1,5 @@
-﻿using MBP.Datos;
-using MBP.EjeVertical;
+﻿using MBP.CapaTransversal.ModelsMVC;
+using MBP.Datos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,16 +43,18 @@ namespace MBP.Logica
          * Tranforma un conjunto de partidas del modelo de datos al modelo del MVC
          * 
          **/
-        public List<PartidaModel> partidaDataModelApartidaViewModel(List<Partida> partidas)
+        public List<PartidaModel2> partidaDataModelApartidaViewModel(List<Partida> partidas)
         {
-            List<PartidaModel> nuevasPartitas = new List<PartidaModel>();
+            List<PartidaModel2> nuevasPartitas = new List<PartidaModel2>();
             foreach (Partida item in partidas)
             {
-                PartidaModel partida = new PartidaModel();
+                PartidaModel2 partida = new PartidaModel2();
                 partida.disparos = item.DisparosJugador1;
+                partida.tamano = item.Tamano;
                 partida.fechaCreacion = item.Fecha;
-                partida.idJugadorCreador = item.Jugador1_idCuenta;
+                partida.nombreJugador = "  "+item.Jugador1_idCuenta;
                 partida.permisos = item.Publico;
+                partida.idPartida = item.idPartida;
                 nuevasPartitas.Add(partida);
             }
             return nuevasPartitas;

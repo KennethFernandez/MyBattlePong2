@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MBP.EjeVertical
+namespace MBP.CapaTransversal.ModelsMVC
 {
     public class PartidaModel
     {
@@ -12,5 +12,6 @@ namespace MBP.EjeVertical
         public int disparos { get; set; }
         public DateTime fechaCreacion { get; set; }
         public int tamano { get; set; }
+        public List<int[]> naves { get; set; }
     }
 }

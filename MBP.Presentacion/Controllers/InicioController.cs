@@ -91,7 +91,7 @@ namespace MBP.Presentacion.Controllers
                     Debug.WriteLine("administrador");
                     //ViewBag.CategoryID = "Administrador";
                     Session["usuario"] = usuario;
-                    return RedirectToAction("Jugar", "Jugar");
+                    return RedirectToAction("Catalogo", "Catalogo");
                 }
                 else {
                     Debug.WriteLine("user invalido");

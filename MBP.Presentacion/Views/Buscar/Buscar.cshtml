@@ -1,1 +1,36 @@
-﻿
+﻿@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.Title = "Buscar";
+}
+
+<div align="center">
+
+    <div>
+@model List<MBP.CapaTransversal.ModelsMVC.PartidaModel2>
+@using (Html.BeginForm("Buscar", "Buscar", FormMethod.Post,new { enctype = "multipart/form-data" })){
+        <table class="Tabla_naranaja">
+            <tr>
+                <th>Usuario</th>
+                <th>Tamaño de tablero</th>
+                <th>Cantidad de disparos</th>
+                <th>Datos Públicos</th>
+                <th>Aceptar el reto</th>
+            </tr>
+            <tbody class="Buscar">
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.nombreJugador</td>
+                        <td>@item.tamano</td>
+                        <td>@item.disparos</td>
+                        <td>@item.permisos</td>
+                        <td><input value="Entrar" type="submit" class="boton_base3" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+    </div>
+    <input type="submit" value="<-" class="boton_base" />
+    <input type="submit" value="->" class="boton_base" />   
+</div>

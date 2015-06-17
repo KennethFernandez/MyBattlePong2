@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MBP.EjeVertical;
 using MBP.Logica;
 using MBP.Servicio;
 using System.Collections.Generic;
+using MBP.CapaTransversal.ModelsMVC;
 
 namespace MBP.Datos.Tests
 {

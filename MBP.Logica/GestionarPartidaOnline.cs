@@ -1,5 +1,6 @@
-﻿using MBP.Datos;
-using MBP.EjeVertical;
+﻿using MBP.CapaTransversal.ModelsMVC;
+using MBP.Datos;
+using MBP.EjeVertical.ModelsMVC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace MBP.Logica
 {
     public class GestionarPartidaOnline
     {
+
+        public List<PartidaModel2> obtenerPartidasDisponibles()
+        {
+            List<Partida> partidas = new ObtenerModelos().obtenerListaPartidaOn();
+            return new MapperModelos().partidaDataModelApartidaViewModel(partidas);
+        }
+
         public TableroModel2 obtenerPartidaOnline(int idPartida, int idJugador)
         {
             ObtenerModelos obtenerModelos = new ObtenerModelos();
@@ -41,7 +49,20 @@ namespace MBP.Logica
 
             // Agrega la partida a la tabla de partidas
             AgregarModelos agregar = new AgregarModelos();
-            return agregar.agregaPartidaOnline(partidaDatos);
+
+            // Agrega la partida a la base de datos
+            int idPartida =  agregar.agregaPartidaOnline(partidaDatos);
+
+            // Agrega las naves a la partida
+            foreach (int[] item in partida.naves)
+            {
+                Partida_Nave relacion = new Partida_Nave();
+                relacion.Nave_idNave = item[0];
+                relacion.Partida_idPartida = idPartida;
+                relacion.Cantidad = item[1];
+                agregar.agregarNavePartida(relacion);
+            }
+            return idPartida;
         }
 
         public bool cambiarTurnoJuego(int idPartida)
@@ -65,6 +86,13 @@ namespace MBP.Logica
             {
                 return false;
             }
+        }
+
+
+        public List<NaveModel2> navesDePartida(int idPartida)
+        {
+            List<Partida_Nave> lista =  new ObtenerModelos().obtenerNavesDePartida(idPartida);
+            return new MapperNavesPartida().mapperNavesDatosANavesModel2(lista);
         }
     }
 }

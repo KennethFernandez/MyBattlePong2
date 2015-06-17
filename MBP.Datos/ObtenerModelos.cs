@@ -115,13 +115,11 @@ namespace MBP.Datos
         public List<Partida> obtenerListaPartidaOn() {
             using (var db = new MyBattlePongEntities())
             {
-                var query = (from st in db.Partida
+                var query = (from st in db.Partida where st.Estado == 2
                              select st);
                 List<Partida> lista = new List<Partida>();
                 foreach(var item in query){
-                    if(item.Estado == 2){
                     lista.Add(item);
-                    }
                 }
                 return lista;
             }
@@ -443,6 +441,20 @@ namespace MBP.Datos
                     listaPoder.Add(item);
                 }
                 return listaPoder;
+            }
+        }
+
+        public List<Partida_Nave> obtenerNavesDePartida(int idPartida)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var naves = db.Partida_Nave.Where(m => m.Partida_idPartida == idPartida);
+                List<Partida_Nave> listaNaves = new List<Partida_Nave>();
+                foreach (Partida_Nave item in naves)
+                {
+                    listaNaves.Add(item);
+                }
+                return listaNaves;
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using MBP.CapaTransversal.ModelsMVC;
 using MBP.EjeVertical;
+using MBP.EjeVertical.ModelsMVC;
 using MBP.Logica;
 using System;
 using System.Collections.Generic;
@@ -71,9 +72,9 @@ namespace MBP.Servicio
             return new ArmarTablero().armarTableroJuego(tablero);
         }
 
-        public PartidaModel[] partidasDisponiblesOnline()
+        public List<PartidaModel2> partidasDisponiblesOnline()
         {
-            return null;
+            return new GestionarPartidaOnline().obtenerPartidasDisponibles();
         }
         public bool agregarNuevoUser(CompositeRegModel modelo) {
             UsuarioLogica nuevoUser = new UsuarioLogica();
@@ -124,6 +125,11 @@ namespace MBP.Servicio
         public IList<PoderModel2> poderesDeJugador(int idJugador)
         {
             return new GestionPoderesJugador().poderesJugador(idJugador);
+        }
+
+        public IList<NaveModel2> navesDePartida(int idPartida)
+        {
+            return new GestionarPartidaOnline().navesDePartida(idPartida);
         }
     }
 }

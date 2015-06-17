@@ -201,6 +201,26 @@ namespace MBP.Datos
         }
 
 
+        public bool agregarNavePartida(Partida_Nave relacion)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    db.Partida_Nave.Add(relacion);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //error en base de datos
+                Debug.Write(e.InnerException);
+                return false;
+            }
+        }
+
+
         /**
          * Agrega una nueva partida online a la DB 
          * 

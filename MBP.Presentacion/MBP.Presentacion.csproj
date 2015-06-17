@@ -149,8 +149,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BuscarController.cs" />
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\ColocacionController.cs" />
+    <Compile Include="Controllers\CrearController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\JugarController.cs" />
     <Compile Include="Controllers\MBPLController.cs" />
