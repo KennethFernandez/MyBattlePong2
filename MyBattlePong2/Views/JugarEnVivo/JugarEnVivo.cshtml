@@ -1,1 +1,133 @@
-﻿
+﻿@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.Title = "Jugar";
+}
+
+@section scripts{
+
+    <script type="text/javascript" src="../javascripts/redips-drag-min.js"></script>
+    <script type="text/javascript" src="../javascripts/script2.js"></script>
+    <script type="text/javascript" src="../javascripts/redips-table-min.js"></script>
+
+}
+
+<div align="center">
+    <div id="left2" align="center">
+        <div id="main-container">
+            <!-- tables inside this DIV could have draggable content -->
+            <div id="redips-drag">
+
+                <div id="left2" align="center">
+
+                    <label for='name' id='name'>@Session["Usuario"]</label>
+                    <br>
+                    <img src="~/Upload/Perfil/fondo2.jpg" alt="Sample Image" width="200" />
+                    <br>
+                    <label for='name' id='name'>Tablero: 10x10</label>
+                    <br>
+                    <label for='name' id='name'>Disparos: 2</label>
+                    <br><br>
+                    <table id="hk" class="Tabla_naranaja">
+                        <tbody>
+                            <tr><td>Poder1</td></tr>
+                            <tr><td>Poder2</td></tr>
+                            <tr><td>Poder3</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="left2" align="center">
+                    <div id="drag1">
+                        <table id="table2" class="Tabla_naranaja">
+                            <colgroup>
+                                @for (int j = 0; j < 10; j++)
+                                {
+                                    <col width="20" height="100" />}
+                            </colgroup>
+                            <tbody>
+                                @for (int j = 0; j < 10; j++)
+                                {
+                                    <tr>
+                                        @for (int i = 0; i < 10; i++)
+                                        {
+                                            <td id="tableCellID" class="dragUp"></td>}
+                                    </tr>}
+                            </tbody>
+                        </table>
+
+                        <br><br>
+                        <table id="table1" class="Tabla_naranaja">
+                            <colgroup>
+                                <col width="100" height="100" />
+                            </colgroup>
+                            <tbody>
+                                <!-- clone 2 elements + last element -->
+                                <tr><td class="dark"><div id="a" class="redips-drag green redips-clone  climit1_2">A</div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="right2" align="center">
+        <div id="main-container">
+            <!-- tables inside this DIV could have draggable content -->
+            <div id="redips-drag">
+                <div id="left2" align="center">
+                    <div id="drag2">
+                        <table id="table3" class="Tabla_naranaja">
+                            <colgroup>
+                                @for (int j = 0; j < 10; j++)
+                                {
+                                    <col width="20" height="100" />}
+                            </colgroup>
+                            <tbody>
+                                @for (int j = 0; j < 10; j++)
+                                {
+                                    <tr>
+                                        @for (int i = 0; i < 10; i++)
+                                        {
+                                            <td id="tableCellID" class="dragUp"></td>}
+                                    </tr>}
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <table id="table4" class="Tabla_naranaja">
+                            <colgroup>
+                                <col width="100" height="100" />
+                            </colgroup>
+                            <tbody>
+                                <!-- clone 2 elements + last element -->
+                                <tr><td class="dark"><div id="b" class="redips-drag green redips-clone  climit1_2">B</div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- main container -->
+
+                    <div id="right2" align="center">
+
+                        <label for='name' id='name'>@Session["Usuario"]</label>
+                        <br>
+                        <img src="~/Upload/Perfil/fondo2.jpg" alt="Sample Image" width="200" />
+                        <br>
+                        <label for='name' id='name'>Tablero: 10x10</label>
+                        <br>
+                        <label for='name' id='name'>Disparos: 2</label>
+                        <br><br>
+                        <table id="hk2" class="Tabla_naranaja">
+                            <tbody>
+                                <tr><td>Poder1</td></tr>
+                                <tr><td>Poder2</td></tr>
+                                <tr><td>Poder3</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

@@ -210,8 +210,11 @@
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\ColocacionController.cs" />
     <Compile Include="Controllers\CrearController.cs" />
+    <Compile Include="Controllers\GestionarPoderesController.cs" />
+    <Compile Include="Controllers\IniciarPartidaEnVivoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\JugarController.cs" />
+    <Compile Include="Controllers\JugarEnVivoController.cs" />
     <Compile Include="Controllers\RegistrarseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

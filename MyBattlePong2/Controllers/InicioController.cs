@@ -45,7 +45,7 @@ namespace MyBattlePong2.Controllers
                     FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     Session["MyMenu"]  = null;
                     Session["Usuario"] = model.Usuario;
-                    return RedirectToAction("Colocacion", "Colocacion"); 
+                    return RedirectToAction("GestionarPoderesController", "GestionarPoderesController"); 
                 }
                 else {
                     

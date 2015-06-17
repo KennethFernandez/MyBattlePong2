@@ -13,7 +13,10 @@ redips.init = function () {
 	// reference to the REDIPS.drag library
 	var rd = REDIPS.drag;
 	// initialization
-	rd.init();
+	rd.init('drag1');
+	rd.init('drag2');
+
+	rd.clone_shiftKey = true;
 	// set hover color
 	rd.hover.colorTd = '#9BB3DA';
 	// single element per cell
@@ -27,6 +30,7 @@ redips.init = function () {
 			rd.mark.exception[clonedId] = 'mark';
 		}
 	};
+
 };
 
 
