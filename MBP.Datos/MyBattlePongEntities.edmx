@@ -70,7 +70,7 @@
           <Property Name="idNave" Type="int" Nullable="false" />
           <Property Name="TamanoX" Type="int" Nullable="false" />
           <Property Name="Puntaje" Type="int" Nullable="false" />
-          <Property Name="Imagen" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="45" />
           <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="TamanoY" Type="int" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
@@ -103,6 +103,8 @@
           <Property Name="DisparosTotalesJugador2" Type="int" Nullable="false" />
           <Property Name="DisparosExitososJugador1" Type="int" Nullable="false" />
           <Property Name="DisparosExitososJugador2" Type="int" Nullable="false" />
+          <Property Name="AntiEscudo1" Type="bit" Nullable="false" />
+          <Property Name="AntiEscudo2" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Partida_Nave">
           <Key>
@@ -504,7 +506,6 @@
           <EntitySet Name="Moderador" EntityType="MBPdbModel.Moderador" />
           <EntitySet Name="Nave" EntityType="MBPdbModel.Nave" />
           <EntitySet Name="Pais" EntityType="MBPdbModel.Pais" />
-          <EntitySet Name="Partida" EntityType="MBPdbModel.Partida" />
           <EntitySet Name="Partida_Nave" EntityType="MBPdbModel.Partida_Nave" />
           <EntitySet Name="PartidaHistorica" EntityType="MBPdbModel.PartidaHistorica" />
           <EntitySet Name="PartidaVivo" EntityType="MBPdbModel.PartidaVivo" />
@@ -527,14 +528,6 @@
           <AssociationSet Name="fk_Jugador_Usuario1" Association="MBPdbModel.fk_Jugador_Usuario1">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Jugador" EntitySet="Jugador" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Partida_Jugador1" Association="MBPdbModel.fk_Partida_Jugador1">
-            <End Role="Jugador" EntitySet="Jugador" />
-            <End Role="Partida" EntitySet="Partida" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Partida_Jugador2" Association="MBPdbModel.fk_Partida_Jugador2">
-            <End Role="Jugador" EntitySet="Jugador" />
-            <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
           <AssociationSet Name="fk_Partida_Jugador3" Association="MBPdbModel.fk_Partida_Jugador3">
             <End Role="Jugador" EntitySet="Jugador" />
@@ -572,13 +565,22 @@
             <End Role="Nave" EntitySet="Nave" />
             <End Role="Tablero_Virtual_2" EntitySet="Tablero_Virtual_2" />
           </AssociationSet>
-          <AssociationSet Name="fk_Partida_has_Nave_Partida1" Association="MBPdbModel.fk_Partida_has_Nave_Partida1">
-            <End Role="Partida" EntitySet="Partida" />
-            <End Role="Partida_Nave" EntitySet="Partida_Nave" />
-          </AssociationSet>
           <AssociationSet Name="Jugador_Poder" Association="MBPdbModel.Jugador_Poder">
             <End Role="Jugador" EntitySet="Jugador" />
             <End Role="Poder" EntitySet="Poder" />
+          </AssociationSet>
+          <EntitySet Name="Partida" EntityType="MBPdbModel.Partida" />
+          <AssociationSet Name="fk_Partida_Jugador1" Association="MBPdbModel.fk_Partida_Jugador1">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Partida_Jugador2" Association="MBPdbModel.fk_Partida_Jugador2">
+            <End Role="Jugador" EntitySet="Jugador" />
+            <End Role="Partida" EntitySet="Partida" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Partida_has_Nave_Partida1" Association="MBPdbModel.fk_Partida_has_Nave_Partida1">
+            <End Role="Partida" EntitySet="Partida" />
+            <End Role="Partida_Nave" EntitySet="Partida_Nave" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cuenta">
@@ -624,13 +626,13 @@
           <NavigationProperty Name="Estadistica" Relationship="MBPdbModel.fk_Estadistica_Jugador1" FromRole="Jugador" ToRole="Estadistica" />
           <NavigationProperty Name="Pais" Relationship="MBPdbModel.fk_Jugador_Pais1" FromRole="Jugador" ToRole="Pais" />
           <NavigationProperty Name="Usuario" Relationship="MBPdbModel.fk_Jugador_Usuario1" FromRole="Jugador" ToRole="Usuario" />
-          <NavigationProperty Name="Partida" Relationship="MBPdbModel.fk_Partida_Jugador1" FromRole="Jugador" ToRole="Partida" />
-          <NavigationProperty Name="Partida1" Relationship="MBPdbModel.fk_Partida_Jugador2" FromRole="Jugador" ToRole="Partida" />
           <NavigationProperty Name="PartidaVivo" Relationship="MBPdbModel.fk_Partida_Jugador3" FromRole="Jugador" ToRole="PartidaVivo" />
           <NavigationProperty Name="PartidaVivo1" Relationship="MBPdbModel.fk_Partida_Jugador4" FromRole="Jugador" ToRole="PartidaVivo" />
           <NavigationProperty Name="PartidaHistorica" Relationship="MBPdbModel.fk_Partida_Jugador5" FromRole="Jugador" ToRole="PartidaHistorica" />
           <NavigationProperty Name="PartidaHistorica1" Relationship="MBPdbModel.fk_Partida_Jugador6" FromRole="Jugador" ToRole="PartidaHistorica" />
           <NavigationProperty Name="Poder" Relationship="MBPdbModel.Jugador_Poder" FromRole="Jugador" ToRole="Poder" />
+          <NavigationProperty Name="Partida" Relationship="MBPdbModel.fk_Partida_Jugador1" FromRole="Jugador" ToRole="Partida" />
+          <NavigationProperty Name="Partida1" Relationship="MBPdbModel.fk_Partida_Jugador2" FromRole="Jugador" ToRole="Partida" />
         </EntityType>
         <EntityType Name="Moderador">
           <Key>
@@ -652,7 +654,7 @@
           <Property Name="idNave" Type="Int32" Nullable="false" />
           <Property Name="TamanoX" Type="Int32" Nullable="false" />
           <Property Name="Puntaje" Type="Int32" Nullable="false" />
-          <Property Name="Imagen" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="TamanoY" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
@@ -668,31 +670,6 @@
           <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Jugador" Relationship="MBPdbModel.fk_Jugador_Pais1" FromRole="Pais" ToRole="Jugador" />
           <NavigationProperty Name="Moderador" Relationship="MBPdbModel.fk_Moderador_Pais1" FromRole="Pais" ToRole="Moderador" />
-        </EntityType>
-        <EntityType Name="Partida">
-          <Key>
-            <PropertyRef Name="idPartida" />
-          </Key>
-          <Property Name="idPartida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Publico" Type="Boolean" Nullable="false" />
-          <Property Name="DisparosJugador1" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Jugador1_idCuenta" Type="Int32" Nullable="false" />
-          <Property Name="Jugador2_idCuenta" Type="Int32" Nullable="false" />
-          <Property Name="Tamano" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <Property Name="DisparosJugador2" Type="Int32" Nullable="false" />
-          <Property Name="TurnoActual" Type="Boolean" Nullable="false" />
-          <Property Name="DisparosRestantes" Type="Int32" Nullable="false" />
-          <Property Name="PuntajeJugador1" Type="Int32" Nullable="false" />
-          <Property Name="PuntajeJugador2" Type="Int32" Nullable="false" />
-          <Property Name="DisparosTotalesJugador1" Type="Int32" Nullable="false" />
-          <Property Name="DisparosTotalesJugador2" Type="Int32" Nullable="false" />
-          <Property Name="DisparosExitososJugador1" Type="Int32" Nullable="false" />
-          <Property Name="DisparosExitososJugador2" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Jugador" Relationship="MBPdbModel.fk_Partida_Jugador1" FromRole="Partida" ToRole="Jugador" />
-          <NavigationProperty Name="Jugador1" Relationship="MBPdbModel.fk_Partida_Jugador2" FromRole="Partida" ToRole="Jugador" />
-          <NavigationProperty Name="Partida_Nave" Relationship="MBPdbModel.fk_Partida_has_Nave_Partida1" FromRole="Partida" ToRole="Partida_Nave" />
         </EntityType>
         <EntityType Name="Partida_Nave">
           <Key>
@@ -836,30 +813,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Partida_Jugador1">
-          <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="1" />
-          <End Type="MBPdbModel.Partida" Role="Partida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Jugador">
-              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
-            </Principal>
-            <Dependent Role="Partida">
-              <PropertyRef Name="Jugador1_idCuenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Partida_Jugador2">
-          <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="1" />
-          <End Type="MBPdbModel.Partida" Role="Partida" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Jugador">
-              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
-            </Principal>
-            <Dependent Role="Partida">
-              <PropertyRef Name="Jugador2_idCuenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Partida_Jugador3">
           <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="1" />
           <End Type="MBPdbModel.PartidaVivo" Role="PartidaVivo" Multiplicity="*" />
@@ -968,6 +921,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Jugador_Poder">
+          <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="*" />
+          <End Type="MBPdbModel.Poder" Role="Poder" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Partida">
+          <Key>
+            <PropertyRef Name="idPartida" />
+          </Key>
+          <Property Name="idPartida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Publico" Type="Boolean" Nullable="false" />
+          <Property Name="DisparosJugador1" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Jugador1_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="Jugador2_idCuenta" Type="Int32" Nullable="false" />
+          <Property Name="Tamano" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="DisparosJugador2" Type="Int32" Nullable="false" />
+          <Property Name="TurnoActual" Type="Boolean" Nullable="false" />
+          <Property Name="DisparosRestantes" Type="Int32" Nullable="false" />
+          <Property Name="PuntajeJugador1" Type="Int32" Nullable="false" />
+          <Property Name="PuntajeJugador2" Type="Int32" Nullable="false" />
+          <Property Name="DisparosTotalesJugador1" Type="Int32" Nullable="false" />
+          <Property Name="DisparosTotalesJugador2" Type="Int32" Nullable="false" />
+          <Property Name="DisparosExitososJugador1" Type="Int32" Nullable="false" />
+          <Property Name="DisparosExitososJugador2" Type="Int32" Nullable="false" />
+          <Property Name="AntiEscudo1" Type="Boolean" Nullable="false" />
+          <Property Name="AntiEscudo2" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Jugador" Relationship="MBPdbModel.fk_Partida_Jugador1" FromRole="Partida" ToRole="Jugador" />
+          <NavigationProperty Name="Jugador1" Relationship="MBPdbModel.fk_Partida_Jugador2" FromRole="Partida" ToRole="Jugador" />
+          <NavigationProperty Name="Partida_Nave" Relationship="MBPdbModel.fk_Partida_has_Nave_Partida1" FromRole="Partida" ToRole="Partida_Nave" />
+        </EntityType>
+        <Association Name="fk_Partida_Jugador1">
+          <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="1" />
+          <End Type="MBPdbModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="Jugador1_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Partida_Jugador2">
+          <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="1" />
+          <End Type="MBPdbModel.Partida" Role="Partida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jugador">
+              <PropertyRef Name="Usuario_Cuenta_idCuenta" />
+            </Principal>
+            <Dependent Role="Partida">
+              <PropertyRef Name="Jugador2_idCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Partida_has_Nave_Partida1">
           <End Type="MBPdbModel.Partida" Role="Partida" Multiplicity="1" />
           <End Type="MBPdbModel.Partida_Nave" Role="Partida_Nave" Multiplicity="*" />
@@ -979,10 +987,6 @@
               <PropertyRef Name="Partida_idPartida" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="Jugador_Poder">
-          <End Type="MBPdbModel.Jugador" Role="Jugador" Multiplicity="*" />
-          <End Type="MBPdbModel.Poder" Role="Poder" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1063,29 +1067,6 @@
               <MappingFragment StoreEntitySet="Pais">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="idPais" ColumnName="idPais" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Partida">
-            <EntityTypeMapping TypeName="MBPdbModel.Partida">
-              <MappingFragment StoreEntitySet="Partida">
-                <ScalarProperty Name="DisparosExitososJugador2" ColumnName="DisparosExitososJugador2" />
-                <ScalarProperty Name="DisparosExitososJugador1" ColumnName="DisparosExitososJugador1" />
-                <ScalarProperty Name="DisparosTotalesJugador2" ColumnName="DisparosTotalesJugador2" />
-                <ScalarProperty Name="DisparosTotalesJugador1" ColumnName="DisparosTotalesJugador1" />
-                <ScalarProperty Name="PuntajeJugador2" ColumnName="PuntajeJugador2" />
-                <ScalarProperty Name="PuntajeJugador1" ColumnName="PuntajeJugador1" />
-                <ScalarProperty Name="DisparosRestantes" ColumnName="DisparosRestantes" />
-                <ScalarProperty Name="TurnoActual" ColumnName="TurnoActual" />
-                <ScalarProperty Name="DisparosJugador2" ColumnName="DisparosJugador2" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Tamano" ColumnName="Tamano" />
-                <ScalarProperty Name="Jugador2_idCuenta" ColumnName="Jugador2_idCuenta" />
-                <ScalarProperty Name="Jugador1_idCuenta" ColumnName="Jugador1_idCuenta" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="DisparosJugador1" ColumnName="DisparosJugador1" />
-                <ScalarProperty Name="Publico" ColumnName="Publico" />
-                <ScalarProperty Name="idPartida" ColumnName="idPartida" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1185,6 +1166,31 @@
               <ScalarProperty Name="Usuario_Cuenta_idCuenta" ColumnName="Jugador_Usuario_Cuenta_idCuenta" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Partida">
+            <EntityTypeMapping TypeName="MBPdbModel.Partida">
+              <MappingFragment StoreEntitySet="Partida">
+                <ScalarProperty Name="AntiEscudo2" ColumnName="AntiEscudo2" />
+                <ScalarProperty Name="AntiEscudo1" ColumnName="AntiEscudo1" />
+                <ScalarProperty Name="DisparosExitososJugador2" ColumnName="DisparosExitososJugador2" />
+                <ScalarProperty Name="DisparosExitososJugador1" ColumnName="DisparosExitososJugador1" />
+                <ScalarProperty Name="DisparosTotalesJugador2" ColumnName="DisparosTotalesJugador2" />
+                <ScalarProperty Name="DisparosTotalesJugador1" ColumnName="DisparosTotalesJugador1" />
+                <ScalarProperty Name="PuntajeJugador2" ColumnName="PuntajeJugador2" />
+                <ScalarProperty Name="PuntajeJugador1" ColumnName="PuntajeJugador1" />
+                <ScalarProperty Name="DisparosRestantes" ColumnName="DisparosRestantes" />
+                <ScalarProperty Name="TurnoActual" ColumnName="TurnoActual" />
+                <ScalarProperty Name="DisparosJugador2" ColumnName="DisparosJugador2" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Tamano" ColumnName="Tamano" />
+                <ScalarProperty Name="Jugador2_idCuenta" ColumnName="Jugador2_idCuenta" />
+                <ScalarProperty Name="Jugador1_idCuenta" ColumnName="Jugador1_idCuenta" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="DisparosJugador1" ColumnName="DisparosJugador1" />
+                <ScalarProperty Name="Publico" ColumnName="Publico" />
+                <ScalarProperty Name="idPartida" ColumnName="idPartida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

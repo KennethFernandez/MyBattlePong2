@@ -22,9 +22,11 @@ namespace MBP.Logica
             partida.DisparosJugador1 = partidaModel.disparos;
             partida.DisparosJugador2 = partidaModel.disparos;
             partida.DisparosRestantes = partidaModel.disparos;
+            partida.AntiEscudo1 = false;
+            partida.AntiEscudo2 = false;
 
             // Selecciona quien es el primer jugador (Aplicar metodo aleatorio)
-            partida.TurnoActual = true;
+            partida.TurnoActual = true; // IniciaJugador1, el que crea la partida
 
             // Asigna los datos del otro modelo
             partida.Fecha = DateTime.Now;
@@ -107,7 +109,6 @@ namespace MBP.Logica
             {
                 respuesta.puntosLocal = partida.PuntajeJugador1;
                 respuesta.puntosRetador = partida.PuntajeJugador2;
-                respuesta.disparosRestantes = partida.DisparosRestantes;
                 if (partida.TurnoActual)
                 {
                     respuesta.enMiTurno = true;
@@ -121,7 +122,6 @@ namespace MBP.Logica
             {
                 respuesta.puntosLocal = partida.PuntajeJugador1;
                 respuesta.puntosRetador = partida.PuntajeJugador2;
-                respuesta.disparosRestantes = partida.DisparosRestantes;
                 if (!partida.TurnoActual)
                 {
                     respuesta.enMiTurno = true;
@@ -149,6 +149,7 @@ namespace MBP.Logica
                     listaNaves.Add(casilla);
                 }
             }
+            respuesta.disparosRestantes = partida.DisparosRestantes;
             respuesta.tableroJugador = listaNaves;
             return respuesta;
         }

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Poderes\EstrategiaActivarPoder.cs" />
     <Compile Include="ActualizarEstadisticasJugador.cs" />
     <Compile Include="AES.cs" />
     <Compile Include="AgregarAdministrador.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Interfaz\IEncriptacion.cs" />
     <Compile Include="Interfaz\IEstrategiaDisparo.cs" />
     <Compile Include="Interfaz\IModificarUsuario.cs" />
+    <Compile Include="Interfaz\IPoder.cs" />
     <Compile Include="Mapper\MapperAdministrador.cs" />
     <Compile Include="Mapper\MapperDecorator.cs" />
     <Compile Include="Mapper\MapperJugador.cs" />
@@ -87,6 +89,13 @@
     <Compile Include="Disparos\ProcesarDisparoSimple.cs" />
     <Compile Include="Disparos\ProcesarDisparo_1H.cs" />
     <Compile Include="Disparos\ProcesarDisparo_1V.cs" />
+    <Compile Include="Poderes\PoderAntiescudo.cs" />
+    <Compile Include="Poderes\PoderEspia.cs" />
+    <Compile Include="Poderes\PoderNull.cs" />
+    <Compile Include="Poderes\PoderSalvavidas.cs" />
+    <Compile Include="Poderes\PoderTiroExtra.cs" />
+    <Compile Include="Poderes\PoderTiroExtraTurno.cs" />
+    <Compile Include="Poderes\PoderTresTirosExtra.cs" />
     <Compile Include="UsuarioLogica.cs" />
     <Compile Include="Mapper\MapperModelos.cs" />
     <Compile Include="Disparos\ProcesarDisparo.cs" />

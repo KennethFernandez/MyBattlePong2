@@ -131,5 +131,10 @@ namespace MBP.Servicio
         {
             return new GestionarPartidaOnline().navesDePartida(idPartida);
         }
+
+        public RespuestaPoderModel activarPoder(int idJugador, int idPartida, int idPoder)
+        {
+            return new EstrategiaActivarPoder().activarEfectoPoder(idPartida, idJugador, idPoder);
+        }
     }
 }

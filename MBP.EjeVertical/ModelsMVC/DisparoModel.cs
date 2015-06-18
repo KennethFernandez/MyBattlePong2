@@ -12,5 +12,6 @@ namespace MBP.CapaTransversal.ModelsMVC
         public int idPartida { get; set; }
         public int idJugador { get; set; }
         public int tipoDisparo { get; set; }
+        public int dir { get; set; }
     }
 }

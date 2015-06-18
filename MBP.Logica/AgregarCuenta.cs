@@ -10,6 +10,9 @@ namespace MBP.Logica
 {
     public class AgregarCuenta
     {
+        /**
+         * 
+         **/
         public Cuenta agregarCuenta(RegistrarseModel model) {
             Cuenta cuenta = new Cuenta();
             IEncriptacion encrip = new FabricaEncriptacion().fabricaEncripta(1);
@@ -18,6 +21,11 @@ namespace MBP.Logica
             cuenta.Estado = "1";
             return cuenta;
         }
+
+        /**
+         * 
+         * 
+         **/
         public Usuario agregarUsuario(RegistrarseModel model) {
             Usuario user = new Usuario();
             user.Email = model.Email;

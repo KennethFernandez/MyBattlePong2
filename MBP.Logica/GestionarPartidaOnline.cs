@@ -12,12 +12,20 @@ namespace MBP.Logica
     public class GestionarPartidaOnline
     {
 
+        /**
+         * 
+         * 
+         **/
         public List<PartidaModel2> obtenerPartidasDisponibles()
         {
             List<Partida> partidas = new ObtenerModelos().obtenerListaPartidaOn();
             return new MapperModelos().partidaDataModelApartidaViewModel(partidas);
         }
 
+        /**
+         * 
+         * 
+         **/
         public TableroModel2 obtenerPartidaOnline(int idPartida, int idJugador)
         {
             ObtenerModelos obtenerModelos = new ObtenerModelos();
@@ -37,6 +45,10 @@ namespace MBP.Logica
             return respuesta;
         }
 
+        /**
+         * 
+         * 
+         **/
         public int ingresarPartidaOnline(PartidaModel partida)
         {
             // Verifica si el jugador ya tiene creada una partida antes y la borra
@@ -65,6 +77,10 @@ namespace MBP.Logica
             return idPartida;
         }
 
+        /**
+         * 
+         * 
+         **/
         public bool cambiarTurnoJuego(int idPartida)
         {
             Partida partida = new ObtenerModelos().buscarPartida(idPartida);
@@ -73,12 +89,13 @@ namespace MBP.Logica
                 if (partida.TurnoActual)
                 {
                     partida.DisparosRestantes = partida.DisparosJugador2;
+                    partida.TurnoActual = false;
                 }
                 else
                 {
                     partida.DisparosRestantes = partida.DisparosJugador1;
+                    partida.TurnoActual = true;
                 }
-                partida.TurnoActual = !partida.TurnoActual;
                 new ModificarModelos().actualizarPartida(partida);
                 return true;
             }
@@ -88,7 +105,10 @@ namespace MBP.Logica
             }
         }
 
-
+        /**
+         * 
+         * 
+         **/
         public List<NaveModel2> navesDePartida(int idPartida)
         {
             List<Partida_Nave> lista =  new ObtenerModelos().obtenerNavesDePartida(idPartida);

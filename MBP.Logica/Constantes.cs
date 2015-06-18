@@ -46,5 +46,9 @@ namespace MBP.Logica
         public static int tipoDisparoBomba = 2;
         public static int tipoDisparo_1V = 3;
         public static int tipoDisparo_1H = 4;
+
+        // Direccion del disparo
+        public static int masEje = 1;
+        public static int menosEje = -1;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using MBP.CapaTransversal.ModelsMVC;
-using MBP.Datos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MBP.Logica
 {
-    public interface IEstrategiaDisparo
+    public interface IPoder
     {
-        DisparoModel2 procesarDisparoTablero(DisparoModel disparo, int tablero, Partida partida);
+        RespuestaPoderModel activarEfectoPoder(int idPartida, int idJugador);
     }
 }

@@ -13,5 +13,6 @@ namespace MBP.CapaTransversal.ModelsMVC
         public int turnosRestantes { get; set; }
         public int idJugadorActual { get; set; }
         public bool finalPartida { get; set; }
+        public List<int[]> casillas { get; set; }
     }
 }

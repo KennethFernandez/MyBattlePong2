@@ -1,4 +1,5 @@
 ﻿using MBP.CapaTransversal.ModelsMVC;
+using MBP.Datos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace MBP.Logica
 {
     public class ProcesarDisparo_1V : IEstrategiaDisparo
     {
-        public int procesarDisparoOnline(DisparoModel disparo)
+        public DisparoModel2 procesarDisparoTablero(DisparoModel disparo, int tablero, Partida partida)
         {
-            return 0;
+            return null;
         }
     }
 }

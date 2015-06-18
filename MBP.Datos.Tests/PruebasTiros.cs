@@ -17,6 +17,12 @@ namespace MBP.Datos.Tests
             partida.idJugadorCreador = J1;
             partida.permisos = true;
             partida.tamano = 10;
+            List<int[]> naves = new List<int[]>();
+            int[] nave = new int[2];
+            nave[0] = 1;
+            nave[1] = 3;
+            naves.Add(nave);
+            partida.naves = naves;
             FachadaServicio fachadaServicio = new FachadaServicio();
             int idPartida = fachadaServicio.ingresarPartidaOnline(partida);
             Assert.AreNotEqual(idPartida, 0);
@@ -251,21 +257,11 @@ namespace MBP.Datos.Tests
             Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
             disparo.x = 2;
             disparo.y = 5;
-            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoFinal);
+            Assert.AreEqual(fachadaServicio.disparo(disparo).finalPartida, true);
 
             int cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida, 2);
             Assert.AreEqual(0, cantidadCasillas);
             cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida, 1);
-            //            Assert.AreEqual(4, cantidadCasillas);
-            /**
-            Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
-            Assert.AreEqual(90,partidaDatos.PuntajeJugador1);
-            Assert.AreEqual(60,partidaDatos.PuntajeJugador2);
-            Assert.AreEqual(13, partidaDatos.DisparosTotalesJugador1);
-            Assert.AreEqual(9, partidaDatos.DisparosTotalesJugador2);
-            Assert.AreEqual(12, partidaDatos.DisparosExitososJugador1);
-            Assert.AreEqual(8, partidaDatos.DisparosExitososJugador2);
-            **/
         }
 
 

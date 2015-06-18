@@ -123,6 +123,7 @@
     <Compile Include="ModelsMVC\PartidaModel2.cs" />
     <Compile Include="ModelsMVC\RegistrarseExtModel.cs" />
     <Compile Include="ModelsMVC\RegistrarseModel.cs" />
+    <Compile Include="ModelsMVC\RespuestaPoderModel.cs" />
     <Compile Include="ModelsMVC\TipoUsuarioModel.cs" />
     <Compile Include="ModelsMVC\UsuarioContraModel.cs" />
     <Compile Include="ModelsMVC\UsuarioModel.cs" />

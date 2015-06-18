@@ -31,25 +31,67 @@ namespace MBP.Logica
                     procesadorDisparo = new ProcesarDisparoSimple();
                     break;
             }
-            int resultado = procesadorDisparo.procesarDisparoOnline(disparo);
-            ObtenerModelos obtener = new ObtenerModelos();
             Partida partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
 
+            DisparoModel2 resultado = procesarDisparoOnline(disparo, partida, procesadorDisparo);
+
+            ObtenerModelos obtener = new ObtenerModelos();
             // Verifica si algun tablero se quedo sin naves
             int navesTab1 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador1);
             int navesTab2 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador2);
             if (navesTab1 == 0)
             {
-                resultado = Constantes.disparoFinal;
+                resultado.finalPartida = true;
                 new FinalizarPartida().finalizarPartida(partida.idPartida, 2);
             }
             else if (navesTab2 == 0)
             {
-                resultado = Constantes.disparoFinal;
+                resultado.finalPartida = true;
                 new FinalizarPartida().finalizarPartida(partida.idPartida, 1);
             }
-            DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
-            return respuesta;
+            return resultado;
+        }
+
+        private DisparoModel2 procesarDisparoOnline(DisparoModel disparo, Partida partida, IEstrategiaDisparo estrategia)
+        {
+            partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
+            DisparoModel2 resultado; // Resultado de la partida
+            int tablero;
+            // Verifica cual jugador es el que realiza el disparo
+            if (partida.Jugador1_idCuenta == disparo.idJugador && partida.TurnoActual)  // Disparo lo realiza el jugador 1
+            {
+                tablero = Constantes.tableroJugador2;
+                if (partida.DisparosRestantes == 1)     // Cambia de turno si es necesario
+                {
+                    partida.TurnoActual = !partida.TurnoActual;
+                    partida.DisparosRestantes = partida.DisparosJugador2;
+                }
+                else
+                {
+                    partida.DisparosRestantes--;
+                }
+                resultado = estrategia.procesarDisparoTablero(disparo, tablero,partida); // Procesa el disparo en el tablero 2
+            }
+            else if (partida.Jugador2_idCuenta == disparo.idJugador && !partida.TurnoActual) // Disparo lo realiza el jugador 2
+            {
+                tablero = Constantes.tableroJugador1;
+                if (partida.DisparosRestantes == 1) // Cambia de turno si es necesario
+                {
+                    partida.TurnoActual = !partida.TurnoActual;
+                    partida.DisparosRestantes = partida.DisparosJugador1;
+                }
+                else
+                {
+                    partida.DisparosRestantes--; // Resta un turno a la partida
+                }
+                resultado = estrategia.procesarDisparoTablero(disparo, tablero, partida); // Procesa el disparo en el tablero 1
+            }
+            else
+            {
+                resultado = null; // Notifica que el jugador no esta en su turno
+            }
+            new ModificarModelos().actualizarPartida(partida); // Actualiza el modelo de la partida en la base de datos
+            return resultado;
         }
     }
 }
