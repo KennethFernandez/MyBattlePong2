@@ -129,8 +129,8 @@ namespace MBP.Datos.Tests
             Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoFallido);
             disparo.x = 0;
             disparo.y = 1;
-            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoNoEsSuTurno);
-            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoNoEsSuTurno);
+            Assert.AreEqual(fachadaServicio.disparo(disparo), null);
+            Assert.AreEqual(fachadaServicio.disparo(disparo), null);
             disparo.idJugador = 4;
             disparo.x = 1;
             disparo.y = 1;
@@ -162,7 +162,7 @@ namespace MBP.Datos.Tests
             disparo.x = 0;
             disparo.y = 1;
             fachadaServicio.pasarTurnoPartida(idPartida);
-            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoNoEsSuTurno);
+            Assert.AreEqual(fachadaServicio.disparo(disparo), null);
             disparo.idJugador = 4;
             Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoEscudo);
             disparo.x = 1;
@@ -273,6 +273,129 @@ namespace MBP.Datos.Tests
             FachadaServicio fachadaServicio = new FachadaServicio();
             int cantidadCasillas = new ObtenerModelos().navesSinDestruir(idPartida, 1);
             Assert.AreEqual(12, cantidadCasillas);
+        }
+
+        [TestMethod]
+        public void TestMethod6()
+        {
+            int idPartida = armarTablero(2, 4, 10);
+            FachadaServicio fachadaServicio = new FachadaServicio();
+
+            DisparoModel disparo = new DisparoModel();
+            disparo.idPartida = idPartida;
+            disparo.idJugador = 2;
+            disparo.tipoDisparo = 1;
+
+            disparo.x = 1;
+            disparo.y = 1;
+            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
+            disparo.tipoDisparo = Constantes.tipoDisparo_1H;
+            disparo.dir = -1;
+            DisparoModel2 res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(2, res.casillas.Count);
+            int[] casilla1 = res.casillas[0];
+            int[] casilla2 = res.casillas[1];
+            Assert.AreEqual(Constantes.disparoFallido, casilla1[2]);
+            Assert.AreEqual(Constantes.disparoEscudo, casilla2[2]);
+
+            disparo.x = 0;
+            disparo.y = 1;
+            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
+
+            disparo.x = 0;
+            disparo.y = 0;
+            disparo.tipoDisparo = Constantes.tipoDisparo_1H;
+            disparo.dir = 1;
+            res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(Constantes.disparoExitoso,res.resultado);
+            Assert.AreEqual(1, res.casillas.Count);
+            int [] casilla = res.casillas[0];
+            Assert.AreEqual(Constantes.disparoExitoso, casilla[2]);
+
+            disparo.x = 2;
+            disparo.y = 0;
+            disparo.tipoDisparo = Constantes.tipoDisparo_1H;
+            disparo.dir = -1;
+            res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(2, res.casillas.Count);
+            casilla1 = res.casillas[0];
+            casilla2 = res.casillas[1];
+            Assert.AreEqual(Constantes.disparoFallido, casilla1[2]);
+            Assert.AreEqual(Constantes.disparoExitoso, casilla2[2]);
+
+
+            disparo.x = 8;
+            disparo.y = 7;
+            disparo.tipoDisparo = Constantes.tipoDisparo_1H;
+            disparo.dir = 1;
+            res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(2, res.casillas.Count);
+            casilla1 = res.casillas[0];
+            casilla2 = res.casillas[1];
+            Assert.AreEqual(Constantes.disparoFallido, casilla1[2]);
+            Assert.AreEqual(8, casilla1[0]);
+            Assert.AreEqual(7, casilla1[1]);
+            Assert.AreEqual(Constantes.disparoFallido, casilla2[2]);
+            Assert.AreEqual(9, casilla2[0]);
+            Assert.AreEqual(7, casilla2[1]);
+
+            Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
+            Assert.AreEqual(partidaDatos.DisparosJugador1, new ObtenerModelos().obtieneNave(2).Puntaje);
+
+        }
+
+        [TestMethod]
+        public void TestMethod7()
+        {
+            int idPartida = armarTablero(2, 4, 10);
+            FachadaServicio fachadaServicio = new FachadaServicio();
+
+            DisparoModel disparo = new DisparoModel();
+            disparo.idPartida = idPartida;
+            disparo.idJugador = 2;
+            disparo.tipoDisparo = 1;
+
+            disparo.x = 1;
+            disparo.y = 1;
+            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
+
+            disparo.x = 1;
+            disparo.y = 0;
+            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
+
+            disparo.x = 0;
+            disparo.y = 1;
+            disparo.tipoDisparo = Constantes.tipoDisparo_1V;
+            disparo.dir = -1;
+            DisparoModel2 res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(2, res.casillas.Count);
+            int[] casilla1 = res.casillas[0];
+            int[] casilla2 = res.casillas[1];
+            Assert.AreEqual(Constantes.disparoEscudo, casilla1[2]);
+            Assert.AreEqual(Constantes.disparoExitoso, casilla2[2]);
+
+            disparo.x = 0;
+            disparo.y = 1;
+            Assert.AreEqual(fachadaServicio.disparo(disparo).resultado, Constantes.disparoExitoso);
+
+            disparo.x = 8;
+            disparo.y = 7;
+            disparo.tipoDisparo = Constantes.tipoDisparo_1H;
+            disparo.dir = 1;
+            res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(2, res.casillas.Count);
+            casilla1 = res.casillas[0];
+            casilla2 = res.casillas[1];
+            Assert.AreEqual(Constantes.disparoFallido, casilla1[2]);
+            Assert.AreEqual(8, casilla1[0]);
+            Assert.AreEqual(7, casilla1[1]);
+            Assert.AreEqual(Constantes.disparoFallido, casilla2[2]);
+            Assert.AreEqual(9, casilla2[0]);
+            Assert.AreEqual(7, casilla2[1]);
+
+            Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
+            Assert.AreEqual(partidaDatos.DisparosJugador1, new ObtenerModelos().obtieneNave(2).Puntaje);
+
         }
     }
 }

@@ -81,14 +81,6 @@ namespace MBP.Logica
             {
                 respuesta.idJugadorActual = partida.Jugador2_idCuenta;
             }
-            if (resultado == Constantes.disparoFinal)
-            {
-                respuesta.finalPartida = true;
-            }
-            else
-            {
-                respuesta.finalPartida = false;
-            }
             respuesta.puntajeJugador1 = partida.PuntajeJugador1;
             respuesta.puntajeJugador2 = partida.PuntajeJugador2;
             respuesta.turnosRestantes = partida.DisparosRestantes;

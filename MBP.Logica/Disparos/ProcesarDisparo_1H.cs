@@ -10,11 +10,47 @@ namespace MBP.Logica
 {
     public class ProcesarDisparo_1H : IEstrategiaDisparo
     {
-        private bool poder = false;
+
         public DisparoModel2 procesarDisparoTablero(DisparoModel disparo, int tablero, Partida partida)
         {
+            int resDisparo = procesarDisparoTableroAux(disparo,tablero,partida);
+            DisparoModel2 respuesta;
+            if (resDisparo != Constantes.disparoExitoso)
+            {
+                int[] xy1 = new int[3];
+                xy1[0] = disparo.x;
+                xy1[1] = disparo.y;
+                xy1[2] = resDisparo;
+                disparo.x += disparo.dir;
+                resDisparo = procesarDisparoTableroAux(disparo, tablero, partida);
+                int[] xy2 = new int[3];
+                xy2[0] = disparo.x;
+                xy2[1] = disparo.y;
+                xy2[2] = resDisparo;
+                List<int[]> casillas = new List<int[]>();
+                casillas.Add(xy1);
+                casillas.Add(xy2);
+                respuesta = new MapperModelos().respuestaDisparoModel(partida, resDisparo);
+                respuesta.casillas = casillas;
+            }
+            else
+            {
+                int[] xy1 = new int[3];
+                xy1[0] = disparo.x;
+                xy1[1] = disparo.y;
+                xy1[2] = resDisparo;
+                List<int[]> casillas = new List<int[]>();
+                casillas.Add(xy1);
+                respuesta = new MapperModelos().respuestaDisparoModel(partida, resDisparo);
+                respuesta.casillas = casillas;
+            }
+            return respuesta;
+        }
+
+        public int procesarDisparoTableroAux(DisparoModel disparo, int tablero, Partida partida)
+        {
             // Carga la casilla de las posiciones
-            int resultado;
+            int resultado = Constantes.disparoFallido;
             Tablero_Virtual casilla = new ObtenerModelos().obtenerCasillaTablero(tablero, disparo.idPartida, disparo.x, disparo.y);
             if (casilla != null)                        // Verifica si la casilla existe
             {
@@ -42,10 +78,11 @@ namespace MBP.Logica
             }
             new ModificarModelos().actualizarCasilla(casilla, tablero);
             // Verifica si la nave fue destruida y aumenta los puntaje
-            this.siNaveDestruida(casilla, tablero,partida);
+            if (resultado == Constantes.disparoExitoso)
+            siNaveDestruida(casilla, tablero,partida);
             // Aumenta la cantidad de tiros exitosos 
             this.actualizarPuntajesJugadores(tablero, resultado, partida);
-            return null;
+            return resultado;
         }
 
         public void actualizarPuntajesJugadores(int tablero, int resultado, Partida partida)

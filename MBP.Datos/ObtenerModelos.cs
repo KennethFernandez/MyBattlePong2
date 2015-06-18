@@ -283,14 +283,14 @@ namespace MBP.Datos
                     var query = (from st in db.Tablero_Virtual_1
                                  where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == idNaveTablero
                                  select st);
-                    return query.Count();
+                    return query == null ? 5 : query.Count();
                 }
                 else
                 {
                     var query = (from st in db.Tablero_Virtual_2
                                  where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == idNaveTablero
                                  select st);
-                    return query.Count();
+                    return query == null ? 5 : query.Count();
                 }
             }
 

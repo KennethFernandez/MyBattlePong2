@@ -95,6 +95,7 @@ namespace MBP.Logica
             // Verifica si la nave fue destruida y aumenta los puntaje
             siNaveDestruida(casilla, tablero,partida);
             // Aumenta la cantidad de tiros exitosos 
+            if (resultado == Constantes.disparoExitoso)
             this.actualizarPuntajesJugadores(tablero, resultado, partida);
             DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
             return respuesta;
