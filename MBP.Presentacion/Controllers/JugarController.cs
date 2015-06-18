@@ -17,5 +17,19 @@ namespace MBP.Presentacion.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Jugarw()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult DataNave()
+        {
+            var person = new int[]{2,2,2};
+            return Json(person, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

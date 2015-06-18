@@ -29,7 +29,6 @@ namespace MBP.Datos
 
 
 
-
         public bool eliminarPartida(int idPartida)
         {
             using (var db = new MyBattlePongEntities())

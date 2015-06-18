@@ -23,11 +23,11 @@ namespace MBP.Datos.Tests
         public void LoginCorrecto()
         {
             InicioModel inicio = new InicioModel();
-            inicio.Usuario = "rlopez";
-            inicio.Contrasena = "rlopez";
+            inicio.Usuario = "kfer";
+            inicio.Contrasena = "1234";
             FachadaServicio fachada = new FachadaServicio();
             UsuarioModel usuario = fachada.verificarLogin(inicio);
-            Assert.AreEqual(usuario.datos[1, 1], "1");
+            Assert.AreEqual(usuario.datos[1, 1], "2");
         }
 
         [TestMethod]
@@ -85,10 +85,10 @@ namespace MBP.Datos.Tests
         {
             FachadaServicio fachada = new FachadaServicio();
             UsuarioContraModel model = new UsuarioContraModel();
-            model.username = "rlopez";
-            model.contrasena = "rlopez1";
-            model.contrasenaConf = "rlopez1";
-            model.contrasenaVieja = "rlopez";
+            model.username = "kfer";
+            model.contrasena = "1234";
+            model.contrasenaConf = "1234";
+            model.contrasenaVieja = "1234";
             Assert.IsTrue(fachada.modificarContrasena(model));
         }
         [TestMethod]

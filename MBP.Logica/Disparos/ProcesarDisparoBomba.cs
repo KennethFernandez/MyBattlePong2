@@ -67,11 +67,47 @@ namespace MBP.Logica
                 resultado = Constantes.disparoFallido;  // Notifica que el disparo fue fallido
             }
             new ModificarModelos().actualizarCasilla(casilla, tablero);
+            actualizarPuntajesJugadores(tablero, resultado, partida);
             // Aumenta la cantidad de tiros exitosos 
+            DisparoModel2 respuesta;
             if (resultado == Constantes.disparoExitoso)
-                this.actualizarPuntajesJugadores(tablero, resultado, partida);
-            DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
+            {
+                respuesta = eliminarNave(casilla, tablero, partida);
+            }
+            else
+            {
+                respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
+            }
             return respuesta;
+        }
+
+        /**
+         * Coloca los campos de la nave en destruido y arma el objeto de respuesta del disparo
+         * 
+         **/
+
+        public DisparoModel2 eliminarNave(Tablero_Virtual casilla, int tablero, Partida partida)
+        {
+            List<Tablero_Virtual> casillas = new ObtenerModelos().casillasSinDestruirNave(partida.idPartida, tablero, casilla.NumeroNave);
+            List<int[]> casillasDestruidas = new List<int[]>();
+            NaveDestruida(casilla,tablero,partida);
+            actualizarPuntajesJugadores(tablero, casillas.Count, partida);
+            int[] xy = new int[3];
+            xy[0] = casilla.x;
+            xy[1] = casilla.y;
+            xy[2] = Constantes.disparoExitoso;
+            casillasDestruidas.Add(xy);
+            foreach (Tablero_Virtual item in casillas)
+            {
+                int[] xyTemp = new int[3];
+                xyTemp[0] = item.x;
+                xyTemp[1] = item.y;
+                xyTemp[2] = Constantes.disparoExitoso;
+                casillasDestruidas.Add(xyTemp);
+            }
+            DisparoModel2 resultado = new MapperModelos().respuestaDisparoModel(partida, Constantes.disparoExitoso);
+            resultado.casillas = casillasDestruidas;
+            return resultado;
         }
 
 
@@ -81,23 +117,20 @@ namespace MBP.Logica
          * 
          * 
          * */
-        private void actualizarPuntajesJugadores(int tablero, int resultado, Partida partida)
+        private void actualizarPuntajesJugadores(int tablero, int cantidad, Partida partida)
         {
-            if (tablero == 1)
+            for (int i = 0; i < cantidad; i++)
             {
-                if (resultado == Constantes.disparoExitoso)
+                if (tablero == 1)
                 {
                     partida.DisparosExitososJugador2++;
+                    partida.DisparosTotalesJugador2++;                       // Aumenta la cantidad de disparos del jugador 2
                 }
-                partida.DisparosTotalesJugador2++;                       // Aumenta la cantidad de disparos del jugador 2
-            }
-            else
-            {
-                if (resultado == Constantes.disparoExitoso)
+                else
                 {
                     partida.DisparosExitososJugador1++;
+                    partida.DisparosTotalesJugador1++;                       // Aumenta la cantidad de disparos del jugador 2
                 }
-                partida.DisparosTotalesJugador1++;                       // Aumenta la cantidad de disparos del jugador 2
             }
         }
     }

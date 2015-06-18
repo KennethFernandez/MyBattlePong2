@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MBP.Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,19 @@ namespace MBP.Logica
         public void obtenerPartidasVivo()
         {
 
+        }
+
+        public bool disparoDispositivo(int numVaso, int idDispositivo)
+        {
+            if (numVaso != -1)
+            {
+                return false;
+            }
+            else
+            {
+
+                return new GestionarDispositivos().actualizarDispositivo(idDispositivo);
+            }
         }
  
     }

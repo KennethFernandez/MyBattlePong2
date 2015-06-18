@@ -38,7 +38,8 @@
 
     imagenPre.setAttribute("src", "/MyBattlePong2/Upload/Perfil/fondo5.jpg");
     imagenPre.setAttribute("class", "Nave");
-    imagenPre.setAttribute("id", "n10");
+    var idDeNave = clicked_id.toString() + "h";
+    imagenPre.setAttribute("id", idDeNave);
     imagenPre.style.top = baseY + movimientoY  + "px";
     imagenPre.style.right = baseX + movimientoX + "px";
     imagenPre.style.width = 20 + "px";
@@ -65,7 +66,7 @@
     chatHub.client.addNewMessageToPage = function (name, msg, bool) {
 
         console.log(bool);
-        var chatWin = $("#chatWindow");;
+        var chatWin = $("#chatWindow");
 
         if (bool) {
 

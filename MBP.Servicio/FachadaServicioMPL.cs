@@ -11,8 +11,7 @@ namespace MBP.Servicio
     {
         public bool ProcesarDisapro(int numVaso, int idDispositivo)
         {
-            ProcesarDisparo procesarDisparo = new ProcesarDisparo();
-            return true;
+            return new GestionarPartidaVivo().disparoDispositivo(numVaso,idDispositivo);
         }
     }
 }

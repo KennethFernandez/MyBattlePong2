@@ -63,6 +63,7 @@
     <Compile Include="PruebaPoderes.cs" />
     <Compile Include="PruebasTablero.cs" />
     <Compile Include="PruebasTiros.cs" />
+    <Compile Include="PruebaCreacionPartida.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MBP.Datos\MBP.Datos.csproj">

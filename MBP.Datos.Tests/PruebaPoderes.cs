@@ -81,12 +81,10 @@ namespace MBP.Datos.Tests
             int resultado1 = lista1.Count;
             int resultado2 = lista2.Count;
             Assert.AreEqual(lista1[0].Nombre, obtener.obtenerPoder(1).Nombre);
-            Assert.AreEqual(lista1[1].Nombre, obtener.obtenerPoder(2).Nombre);
-            Assert.AreEqual(lista1[2].Nombre, obtener.obtenerPoder(6).Nombre);
-            Assert.AreEqual(lista1[3].Nombre, obtener.obtenerPoder(9).Nombre);
-            Assert.AreEqual(lista2[0].Nombre, obtener.obtenerPoder(3).Nombre);
-            Assert.AreEqual(lista2[1].Nombre, obtener.obtenerPoder(8).Nombre);
-            Assert.AreEqual(lista2[2].Nombre, obtener.obtenerPoder(10).Nombre);
+            Assert.AreEqual(lista1[1].Nombre, obtener.obtenerPoder(4).Nombre);
+            Assert.AreEqual(lista1[2].Nombre, obtener.obtenerPoder(9).Nombre);
+            Assert.AreEqual(lista1[3].Nombre, obtener.obtenerPoder(10).Nombre);
+            Assert.AreEqual(0,lista2.Count);
             Assert.AreEqual(10, new ObtenerModelos().obtenerListaPoderes().Count);
         }
 

@@ -242,6 +242,8 @@ namespace MBP.Datos
                         casilla.NumeroNave = us.NumeroNave;
                         casilla.Partida_idPartida = us.Partida_idPartida;
                         casilla.Poder = us.Poder;
+                        casilla.x = us.x;
+                        casilla.y = us.y;
                         return casilla;
                     }
                     else
@@ -264,6 +266,8 @@ namespace MBP.Datos
                         casilla.NumeroNave = us.NumeroNave;
                         casilla.Poder = us.Poder;
                         casilla.Partida_idPartida = us.Partida_idPartida;
+                        casilla.x = us.x;
+                        casilla.y = us.y;
                         return casilla;
                     }
                     else
@@ -318,6 +322,7 @@ namespace MBP.Datos
             }
 
         }
+
 
         public void obtienePais(int id)
         {
@@ -456,6 +461,60 @@ namespace MBP.Datos
                 }
                 return listaNaves;
             }
+        }
+
+        public List<Tablero_Virtual> casillasSinDestruirNave(int idPartida, int tablero, int numNave)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                List<Tablero_Virtual> resultado = new List<Tablero_Virtual>();
+                if (tablero == 1)
+                {
+                    var query = (from st in db.Tablero_Virtual_1
+                                 where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == numNave
+                                 select st);
+
+                    foreach (Tablero_Virtual_1 item in query)
+                    {
+                        Tablero_Virtual casilla = new Tablero_Virtual();
+                        casilla.Destruido = item.Destruido;
+                        casilla.Id = item.Id;
+                        casilla.Nave_idNave = item.Nave_idNave;
+                        item.Destruido = true;
+                        casilla.NumeroNave = item.NumeroNave;
+                        casilla.Partida_idPartida = item.Partida_idPartida;
+                        casilla.Poder = item.Poder;
+                        casilla.x = item.x;
+                        casilla.y = item.y;
+                        resultado.Add(casilla);
+                    }
+                    db.SaveChanges();
+                    return resultado;
+                }
+                else
+                {
+                    var query = (from st in db.Tablero_Virtual_2
+                                 where st.Partida_idPartida == idPartida && st.Destruido == false && st.NumeroNave == numNave
+                                 select st);
+                    foreach (Tablero_Virtual_2 item in query)
+                    {
+                        Tablero_Virtual casilla = new Tablero_Virtual();
+                        casilla.Destruido = item.Destruido;
+                        casilla.Id = item.Id;
+                        casilla.Nave_idNave = item.Nave_idNave;
+                        casilla.NumeroNave = item.NumeroNave;
+                        casilla.Partida_idPartida = item.Partida_idPartida;
+                        casilla.Poder = item.Poder;
+                        item.Destruido = true;
+                        casilla.x = item.x;
+                        casilla.y = item.y;
+                        resultado.Add(casilla);
+                    }
+                    db.SaveChanges();
+                    return resultado;
+                }
+            }
+
         }
         
 

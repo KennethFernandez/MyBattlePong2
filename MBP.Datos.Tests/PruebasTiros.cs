@@ -397,5 +397,46 @@ namespace MBP.Datos.Tests
             Assert.AreEqual(partidaDatos.DisparosJugador1, new ObtenerModelos().obtieneNave(2).Puntaje);
 
         }
+
+        [TestMethod]
+        public void TestMethod8()
+        {
+            int idPartida = armarTablero(2, 4, 10);
+            FachadaServicio fachadaServicio = new FachadaServicio();
+
+            DisparoModel disparo = new DisparoModel();
+            disparo.idPartida = idPartida;
+            disparo.idJugador = 2;
+            disparo.tipoDisparo = Constantes.tipoDisparoBomba;
+
+            disparo.x = 1;
+            disparo.y = 1;
+
+            DisparoModel2 res = fachadaServicio.disparo(disparo);
+            Assert.AreEqual(4, res.casillas.Count);
+            int[] casilla1 = res.casillas[0];
+            int[] casilla2 = res.casillas[1];
+            int[] casilla3 = res.casillas[2];
+            int[] casilla4 = res.casillas[3];
+            Assert.AreEqual(2, casilla1[2]);
+            Assert.AreEqual(2, casilla2[2]);
+            Assert.AreEqual(2, casilla3[2]);
+            Assert.AreEqual(2, casilla4[2]);
+
+            Assert.AreEqual(1, casilla1[0]);
+            Assert.AreEqual(0, casilla2[0]);
+            Assert.AreEqual(0, casilla3[0]);
+            Assert.AreEqual(1, casilla4[0]);
+
+            Assert.AreEqual(1, casilla1[1]);
+            Assert.AreEqual(0, casilla2[1]);
+            Assert.AreEqual(1, casilla3[1]);
+            Assert.AreEqual(0, casilla4[1]);
+
+
+            //Partida partidaDatos = new ObtenerModelos().buscarPartida(idPartida);
+            //Assert.AreEqual(partidaDatos.DisparosJugador1, new ObtenerModelos().obtieneNave(2).Puntaje);
+
+        }
     }
 }

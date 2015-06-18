@@ -15,7 +15,7 @@ namespace MBP.Presentacion.Controllers
     {
         public string Get(int numVaso, int idDispositivo)
         {
-            return "respuesta: " + new FachadaServicioMPL().ProcesarDisapro(numVaso, idDispositivo);
+            return "-"+new FachadaServicioMPL().ProcesarDisapro(numVaso, idDispositivo)+"-";
         }
     }
 }

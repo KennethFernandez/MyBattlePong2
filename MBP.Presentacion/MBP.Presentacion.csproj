@@ -256,10 +256,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\LogoMyBattlePong.png" />
+    <Content Include="javascripts\AcomodadorDeNaves.js" />
     <Content Include="javascripts\Calendar.js" />
     <Content Include="javascripts\chat.js" />
     <Content Include="javascripts\Colspan.js" />
     <Content Include="javascripts\DragDrop.js" />
+    <Content Include="javascripts\GeneradorNaves.js" />
     <Content Include="javascripts\header.js" />
     <Content Include="javascripts\ObtenerRuta.js" />
     <Content Include="javascripts\Ocultar2.js" />

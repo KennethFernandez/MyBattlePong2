@@ -11,28 +11,13 @@ namespace MBP.Logica
     public class ProcesarDisparoSimple : IEstrategiaDisparo
     {
 
-        public bool ProcesarDisaproLive(int numVaso, int idDispositivo)
-        {
-            // Verifica un disparo
-            if ((numVaso >= 0) && (idDispositivo >= 0))
-            {
-                return true;
-            }
-            // Anuncia precencia
-            else
-            {
-                return new GestionarDispositivos().actualizarDispositivo(idDispositivo);
-            }
-        }
-
-
 
         /**
          * Verifica si la casilla que se destruyo era la ultima de una nave
          * 
          **/
 
-        public bool siNaveDestruida(Tablero_Virtual casilla, int tablero, Partida partida)
+        private bool siNaveDestruida(Tablero_Virtual casilla, int tablero, Partida partida)
         {
             int cantidadCasillas = new ObtenerModelos().consultarSiNaveDestruida(casilla.NumeroNave, casilla.Partida_idPartida, tablero);
             if (cantidadCasillas == 0) // Verifica que la nave no tengo mas casillas en no destruido
@@ -93,9 +78,9 @@ namespace MBP.Logica
             }
             new ModificarModelos().actualizarCasilla(casilla, tablero);
             // Verifica si la nave fue destruida y aumenta los puntaje
+            if (resultado == Constantes.disparoExitoso)
             siNaveDestruida(casilla, tablero,partida);
             // Aumenta la cantidad de tiros exitosos 
-            if (resultado == Constantes.disparoExitoso)
             this.actualizarPuntajesJugadores(tablero, resultado, partida);
             DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
             return respuesta;

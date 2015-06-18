@@ -1,40 +1,42 @@
 ﻿$(function(){
 
-        var clicked_id = $(this).attr('id');
-        var XY = clicked_id.toString().split(",");
+    $.ajax({
+            url: '',
+            type: 'GET',
+            dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: { }, //id: id },
+            success: function (person) {
 
-        var baseX = 565;
-        var baseY = 54;
+                var posicionX = person[0];
 
-        //565 en x y 64 en y son las posiciones iniciales
+                var baseX = 565;
+                var baseY = 53;
 
-        // 20 en alto y en ancho por cada casilla
+                //565 en x y 64 en y son las posiciones iniciales
 
-        var movimientoX = -25 * parseInt(XY[0]);
-        var movimientoY =  25 * parseInt(XY[1]);
+                // 20 en alto y en ancho por cada casilla
 
-        var disparar = true;
+                var movimientoX = -25*posicionX;
+                var movimientoY = 25;
 
-        var imagenPre = document.createElement("IMG");
+                var imagenPre = document.createElement("IMG");
 
-        var hit = true;
+                var locacionImagen = "/MBP.Presentacion/Images/LogoMyBattlePong.png";
 
-        var locacionImagen;
+                imagenPre.setAttribute("src", locacionImagen);
+                imagenPre.setAttribute("class", "Nave");
+                imagenPre.setAttribute("id", "n10");
+                imagenPre.style.top = baseY + movimientoY + "px";
+                imagenPre.style.right = baseX + movimientoX + "px";
+                imagenPre.style.width = 20 + "px";
+                imagenPre.style.height = 20 + "px";
 
-        if (hit) {
-            locacionImagen = "/MyBattlePong2/Images/verde.png";
-        } else {
-            locacionImagen = "/MyBattlePong2/Images/rojo.jpg";
-        }
-
-        document.getElementById(clicked_id.toString()).setAttribute("src", locacionImagen);
-
-        imagenPre.setAttribute("src", "/MyBattlePong2/Upload/Perfil/fondo5.jpg");
-        imagenPre.setAttribute("class", "Nave");
-        imagenPre.setAttribute("id", "n10");
-        imagenPre.style.top = baseY + movimientoY  + "px";
-        imagenPre.style.right = baseX + movimientoX + "px";
-        imagenPre.style.width = 20 + "px";
-        imagenPre.style.height = 20 + "px";
+                var element = document.getElementById("NavesSta");
+                element.appendChild(imagenPre);
+            }
+        });
 
     });
