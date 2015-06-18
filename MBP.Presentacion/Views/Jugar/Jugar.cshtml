@@ -23,12 +23,14 @@
         <br>
         <img src="/MBP.Presentacion/Images/rojo.jpg" alt="Sample Image" width="100" />
         <br><br>
+        <p id="rData">
+        </p>
         <div class="Poderes">
             <table id="hk" class="Tabla_naranaja">
                 <tbody>
                     @for (int i = 0; i < 10; i++)
                     {
-                        <tr><td>Poder i</td> </tr>}
+                        <tr><td>Poder @i</td> </tr>}
                 </tbody>
             </table>
         </div>
@@ -37,14 +39,14 @@
     <div id="center" align="center">
 
         <div id="left2">
-            <div align="center">Tiros restantes: 2</div>
-            <div align="center">Turno: 3</div>
+            <div align="center" id="restantes">Tiros restantes: </div>
+            <div align="center">Turno: <div id="turno"></div></div>
         </div>
         <div id="center2">
             <div align="center">Tiempo restante <span id="time"></span>s</div>
         </div>
         <div id="right2">
-            <div align="center">Puntos: 3</div>
+            <div align="center">Puntos: <div id="puntos"></div></div>
         </div>
         <div class="NavesSta" id="NavesSta">
         </div>

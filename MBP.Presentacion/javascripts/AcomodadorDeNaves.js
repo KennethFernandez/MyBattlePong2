@@ -65,7 +65,7 @@
 
     chatHub.client.addNewMessageToPage = function (name, msg, bool) {
 
-        console.log(bool);
+        //console.log(bool);
         var chatWin = $("#chatWindow");
 
         if (bool) {

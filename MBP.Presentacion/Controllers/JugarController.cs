@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MBP.CapaTransversal.ModelsMVC;
+using MBP.Servicio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,11 +25,22 @@ namespace MBP.Presentacion.Controllers
             return View();
         }
 
-        [HttpGet]
-        public ActionResult DataNave()
+        public string DataNave()
         {
-            var person = new int[]{2,2,2};
-            return Json(person, JsonRequestBehavior.AllowGet);
+
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(361, 2);
+            string concatenado = tablero.disparosRestantes.ToString() + ",";
+            return "3";
+        }
+
+        public string DatosGenerales()
+        {
+
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(361, 2);
+            string concatenado = tablero.disparosRestantes.ToString() + ",";
+            concatenado += tablero.enMiTurno ? "t," : "f,";
+            concatenado += tablero.puntosLocal.ToString();
+            return concatenado;
         }
 
 

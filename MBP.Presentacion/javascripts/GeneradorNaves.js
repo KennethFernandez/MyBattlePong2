@@ -1,42 +1,50 @@
-﻿$(function(){
+﻿$(function () {
 
-    $.ajax({
-            url: '',
-            type: 'GET',
-            dataType: 'json',
-            // we set cache: false because GET requests are often cached by browsers
-            // IE is particularly aggressive in that respect
-            cache: false,
-            data: { }, //id: id },
-            success: function (person) {
+    var url2 = "DatosGenerales";
+    $.get(url2, null, function (data) {
+    
+        console.log(data);
 
-                var posicionX = person[0];
+        var datos = data.toString().split(",");
 
-                var baseX = 565;
-                var baseY = 53;
+        $("#puntos").html(datos[2]);
+        $("#restantes").html(datos[0]);
+        $("#turno").html(datos[1]);
 
-                //565 en x y 64 en y son las posiciones iniciales
+    });
 
-                // 20 en alto y en ancho por cada casilla
+    var url = "DataNave";
+    $.get(url, null, function (data) {
 
-                var movimientoX = -25*posicionX;
-                var movimientoY = 25;
+            console.log(data);
 
-                var imagenPre = document.createElement("IMG");
+            var posicionX = parseInt(data);
 
-                var locacionImagen = "/MBP.Presentacion/Images/LogoMyBattlePong.png";
+            var baseX = 565;
+            var baseY = 53;
 
-                imagenPre.setAttribute("src", locacionImagen);
-                imagenPre.setAttribute("class", "Nave");
-                imagenPre.setAttribute("id", "n10");
-                imagenPre.style.top = baseY + movimientoY + "px";
-                imagenPre.style.right = baseX + movimientoX + "px";
-                imagenPre.style.width = 20 + "px";
-                imagenPre.style.height = 20 + "px";
+            //565 en x y 64 en y son las posiciones iniciales
 
-                var element = document.getElementById("NavesSta");
-                element.appendChild(imagenPre);
-            }
-        });
+            // 20 en alto y en ancho por cada casilla
+
+            var movimientoX = -25*posicionX;
+            var movimientoY = 25;
+
+            var imagenPre = document.createElement("IMG");
+
+            var locacionImagen = "/MBP.Presentacion/Images/LogoMyBattlePong.png";
+
+            imagenPre.setAttribute("src", locacionImagen);
+            imagenPre.setAttribute("class", "Nave");
+            imagenPre.setAttribute("id", "n10");
+            imagenPre.style.top = baseY + movimientoY + "px";
+            imagenPre.style.right = baseX + movimientoX + "px";
+            imagenPre.style.width = 20 + "px";
+            imagenPre.style.height = 20 + "px";
+
+            var element = document.getElementById("NavesSta");
+            element.appendChild(imagenPre);
+
+    });
 
     });
