@@ -30,7 +30,7 @@ namespace MBP.Logica
                 List<int[]> casillas = new List<int[]>();
                 casillas.Add(xy1);
                 casillas.Add(xy2);
-                respuesta = new MapperModelos().respuestaDisparoModel(partida, resDisparo);
+                respuesta = new MapperModelos().respuestaDisparoModel(partida, resDisparo, disparo.idJugador);
                 respuesta.casillas = casillas;
             }
             else
@@ -41,7 +41,7 @@ namespace MBP.Logica
                 xy1[2] = resDisparo;
                 List<int[]> casillas = new List<int[]>();
                 casillas.Add(xy1);
-                respuesta = new MapperModelos().respuestaDisparoModel(partida, resDisparo);
+                respuesta = new MapperModelos().respuestaDisparoModel(partida, resDisparo, disparo.idJugador);
                 respuesta.casillas = casillas;
             }
             return respuesta;

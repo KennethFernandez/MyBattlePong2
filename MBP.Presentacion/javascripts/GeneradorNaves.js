@@ -2,23 +2,33 @@
 
     var url2 = "DatosGenerales";
     $.get(url2, null, function (data) {
-    
-        console.log(data);
 
         var datos = data.toString().split(",");
 
-        $("#puntos").html(datos[2]);
-        $("#restantes").html(datos[0]);
-        $("#turno").html(datos[1]);
+        $("#puntos").html("Puntos: " + datos[2]);
+        $("#restantes").html("Tiros restantes: " + datos[0]);
+        $("#turno").html("Turno: " + datos[1]);
 
     });
 
     var url = "DataNave";
     $.get(url, null, function (data) {
 
-            console.log(data);
+        var datos = data.toString().split(",");
 
-            var posicionX = parseInt(data);
+        var variableX    = "";
+        var variableY    = "";
+        var tamanoX      = "";
+        var tamanoY      = "";
+        var direccionimg = "";
+
+        for (var i = 0; i < datos.length -1; i += 5) {
+
+            variableX =     parseInt(datos[i]);
+            variableY =     parseInt(datos[i + 1]);
+            tamanoX =       parseInt(datos[i + 2]);
+            tamanoY =       parseInt(datos[i + 3]);
+            direccionimg =  datos[i + 4];
 
             var baseX = 565;
             var baseY = 53;
@@ -27,8 +37,8 @@
 
             // 20 en alto y en ancho por cada casilla
 
-            var movimientoX = -25*posicionX;
-            var movimientoY = 25;
+            var movimientoX = -25 * (variableX + tamanoX - 1);
+            var movimientoY =  25*variableY;
 
             var imagenPre = document.createElement("IMG");
 
@@ -39,12 +49,13 @@
             imagenPre.setAttribute("id", "n10");
             imagenPre.style.top = baseY + movimientoY + "px";
             imagenPre.style.right = baseX + movimientoX + "px";
-            imagenPre.style.width = 20 + "px";
-            imagenPre.style.height = 20 + "px";
+            imagenPre.style.width =  20*tamanoX + "px";
+            imagenPre.style.height = 20*tamanoY + "px";
 
             var element = document.getElementById("NavesSta");
             element.appendChild(imagenPre);
 
+        }
     });
 
     });

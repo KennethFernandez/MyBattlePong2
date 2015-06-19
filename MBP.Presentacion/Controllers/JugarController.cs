@@ -2,6 +2,7 @@
 using MBP.Servicio;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,36 +14,99 @@ namespace MBP.Presentacion.Controllers
         //
         // GET: /Jugar/
 
+        int idPartida = 377;
+        int idJugador = 6;
+
         [HttpGet]
         public ActionResult Jugar()
         {
-            return View();
+            IList<PoderModel2> poderes = new FachadaServicio().poderesDeJugador(idJugador);
+            return View(poderes);
         }
 
         [HttpPost]
-        public ActionResult Jugarw()
+        public ActionResult Termino()
         {
-            return View();
+
+            return RedirectToAction("Buscar", "Buscar"); ;
         }
 
         public string DataNave()
         {
 
-            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(361, 2);
-            string concatenado = tablero.disparosRestantes.ToString() + ",";
-            return "3";
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, idJugador);
+            string respuesta = "";
+
+            foreach (CasillaModel2 item in tablero.tableroJugador)
+            {
+                respuesta += item.X + ",";
+                respuesta += item.Y + ",";
+                respuesta += item.mas_X + ",";
+                respuesta += item.mas_Y +",";
+                respuesta += item.imagen +",";
+            }
+            return respuesta;
         }
 
         public string DatosGenerales()
         {
 
-            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(361, 2);
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, idJugador);
             string concatenado = tablero.disparosRestantes.ToString() + ",";
             concatenado += tablero.enMiTurno ? "t," : "f,";
             concatenado += tablero.puntosLocal.ToString();
             return concatenado;
         }
 
+        public bool PasarTurno()
+        {
+
+            bool valor = new FachadaServicio().pasarTurnoPartida(idPartida);
+           return valor;
+            
+        }
+
+        public string Disparo(int x, int y, int tipo)
+        {
+
+            Debug.Write("x: "+x+" y: "+y+"tipo: "+tipo);
+
+            DisparoModel disparo = new DisparoModel();
+            disparo.x = x;
+            disparo.y = y;
+            disparo.tipoDisparo = tipo;
+            disparo.idPartida = idPartida;
+            disparo.idJugador = idJugador;
+            DisparoModel2 resultado = new FachadaServicio().disparo(disparo);
+            string respuesta = "";
+            if (resultado != null)
+            {
+                respuesta += resultado.resultado + ",";
+                respuesta += resultado.turnosRestantes + ",";
+                respuesta += resultado.puntajeJugadorActual + ",";
+                respuesta += resultado.esSuTurno? "t," : "f,";
+                respuesta += resultado.finalPartida;
+            }
+            return respuesta;
+
+        }
+
+        public string DesbloquearPoderes()
+        {
+            IList<PoderModel2> poderes = new FachadaServicio().desbloquearPoderes(idJugador);
+            string resultado = "Has desbloqueado la habilidad: ";
+            foreach (PoderModel2 item in poderes)
+            {
+                resultado += (item.nombre+" \n");
+            }
+            return resultado;
+        }
+
+
+        public string ActivarPoder(int idPoder)
+        {
+            return "";
+        }
 
     }
 }

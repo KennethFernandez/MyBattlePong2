@@ -59,6 +59,8 @@ namespace MBP.Datos.Tests
 
 
                 TableroModel tablero = new TableroModel();
+                tablero.escudoX = 0;
+                tablero.escudoY = 0;
                 tablero.idJugador = J1;
                 tablero.idPartida = idPartida;
                 tablero.tablero = casillas;
@@ -75,7 +77,7 @@ namespace MBP.Datos.Tests
             public void TestMethod1()
             {
                 //new EliminarModelos().eliminarNavesPartida(262);
-                int idPartida = armarTablero(2, 4, 10);
+                int idPartida = armarTablero(6, 4, 100);
                 FachadaServicio fachadaServicio = new FachadaServicio();
                 TableroModel2 tablero = fachadaServicio.recuperarTableroPartida(idPartida, 2);
                 int x = new FachadaServicio().navesDePartida(idPartida).Count;

@@ -82,7 +82,7 @@ namespace MBP.Logica
             siNaveDestruida(casilla, tablero,partida);
             // Aumenta la cantidad de tiros exitosos 
             this.actualizarPuntajesJugadores(tablero, resultado, partida);
-            DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
+            DisparoModel2 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado,disparo.idJugador);
             return respuesta;
         }
 

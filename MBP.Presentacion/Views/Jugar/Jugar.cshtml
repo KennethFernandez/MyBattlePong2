@@ -4,7 +4,6 @@
 }
 
 @section Scripts{
-
     <script type="text/javascript" src="../javascripts/chat.js"></script>
     <script type="text/javascript" src="../javascripts/redips-drag-min.js"></script>
     <script type="text/javascript" src="../javascripts/script1.js"></script>
@@ -13,6 +12,7 @@
     <script type="text/javascript" src="../javascripts/Contador.js"></script>
     <script type="text/javascript" src="../javascripts/AcomodadorDeNaves.js"></script>
     <script type="text/javascript" src="../javascripts/GeneradorNaves.js"></script>
+    <script type="text/javascript" src="../javascripts/Poder.js"></script>
 }
 
 <div align="center">
@@ -26,11 +26,13 @@
         <p id="rData">
         </p>
         <div class="Poderes">
-            <table id="hk" class="Tabla_naranaja">
+@model List<MBP.CapaTransversal.ModelsMVC.PoderModel2>
+            <table id="hk" class="Tabla_naranaja"> Poderes
                 <tbody>
-                    @for (int i = 0; i < 10; i++)
+                    @foreach (var item in Model)
                     {
-                        <tr><td>Poder @i</td> </tr>}
+                        <tr><td><input id="@item.idPoder" class="boton_base3" type='button' value="@item.nombre" /></td> </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -40,13 +42,13 @@
 
         <div id="left2">
             <div align="center" id="restantes">Tiros restantes: </div>
-            <div align="center">Turno: <div id="turno"></div></div>
+            <div align="center" id="turno">Turno:</div>
         </div>
         <div id="center2">
             <div align="center">Tiempo restante <span id="time"></span>s</div>
         </div>
         <div id="right2">
-            <div align="center">Puntos: <div id="puntos"></div></div>
+            <div align="center" id="puntos">Puntos:</div>
         </div>
         <div class="NavesSta" id="NavesSta">
         </div>
@@ -94,7 +96,7 @@
 
 
     <div id="right2" align="center">
-        <input type="image" class="botonImagen2" id="TurnoAli" src="/MBP.Presentacion/Images/rojo.jpg">
+        <input type="image" class="botonImagen2" id="TurnoEne" src="/MBP.Presentacion/Images/rojo.jpg">
         <label>Miguel</label>
         <br>
         <img src="/MBP.Presentacion/Images/rojo.jpg" alt="Sample Image" width="100" />

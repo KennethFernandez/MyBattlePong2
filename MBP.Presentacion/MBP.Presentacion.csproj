@@ -261,9 +261,11 @@
     <Content Include="javascripts\Calendar.js" />
     <Content Include="javascripts\chat.js" />
     <Content Include="javascripts\Colspan.js" />
+    <Content Include="javascripts\Contador.js" />
     <Content Include="javascripts\DragDrop.js" />
     <Content Include="javascripts\GeneradorNaves.js" />
     <Content Include="javascripts\header.js" />
+    <Content Include="javascripts\Poder.js" />
     <Content Include="javascripts\ObtenerRuta.js" />
     <Content Include="javascripts\Ocultar2.js" />
     <Content Include="javascripts\OcultarOpciones.js" />

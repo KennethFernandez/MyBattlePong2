@@ -72,11 +72,11 @@ namespace MBP.Logica
             DisparoModel2 respuesta;
             if (resultado == Constantes.disparoExitoso)
             {
-                respuesta = eliminarNave(casilla, tablero, partida);
+                respuesta = eliminarNave(casilla, tablero, partida, disparo);
             }
             else
             {
-                respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado);
+                respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado, disparo.idJugador);
             }
             return respuesta;
         }
@@ -86,7 +86,7 @@ namespace MBP.Logica
          * 
          **/
 
-        public DisparoModel2 eliminarNave(Tablero_Virtual casilla, int tablero, Partida partida)
+        public DisparoModel2 eliminarNave(Tablero_Virtual casilla, int tablero, Partida partida, DisparoModel disparo)
         {
             List<Tablero_Virtual> casillas = new ObtenerModelos().casillasSinDestruirNave(partida.idPartida, tablero, casilla.NumeroNave);
             List<int[]> casillasDestruidas = new List<int[]>();
@@ -105,7 +105,7 @@ namespace MBP.Logica
                 xyTemp[2] = Constantes.disparoExitoso;
                 casillasDestruidas.Add(xyTemp);
             }
-            DisparoModel2 resultado = new MapperModelos().respuestaDisparoModel(partida, Constantes.disparoExitoso);
+            DisparoModel2 resultado = new MapperModelos().respuestaDisparoModel(partida, Constantes.disparoExitoso, disparo.idJugador);
             resultado.casillas = casillasDestruidas;
             return resultado;
         }

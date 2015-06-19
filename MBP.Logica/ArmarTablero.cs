@@ -65,6 +65,7 @@ namespace MBP.Logica
             if (tablero.escudoX != -1 && tablero.escudoY != -1)
             {
                 Tablero_Virtual casilla = new ObtenerModelos().obtenerCasillaTablero(numTablero, tablero.idPartida, tablero.escudoX, tablero.escudoY);
+                if(casilla != null)
                 casilla.Poder++;
                 new ModificarModelos().actualizarCasilla(casilla, numTablero);
             }

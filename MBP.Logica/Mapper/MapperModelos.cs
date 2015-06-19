@@ -70,19 +70,19 @@ namespace MBP.Logica
          * 
          **/
 
-        public DisparoModel2 respuestaDisparoModel(Partida partida, int resultado)
+        public DisparoModel2 respuestaDisparoModel(Partida partida, int resultado, int idJugador)
         {
             DisparoModel2 respuesta = new DisparoModel2();
-            if (partida.TurnoActual)
+            if (idJugador == partida.Jugador1_idCuenta)
             {
-                respuesta.idJugadorActual = partida.Jugador1_idCuenta;
+                respuesta.puntajeJugadorActual = partida.PuntajeJugador1;
+                respuesta.esSuTurno = partida.TurnoActual;
             }
             else
             {
-                respuesta.idJugadorActual = partida.Jugador2_idCuenta;
+                respuesta.puntajeJugadorActual = partida.PuntajeJugador2;
+                respuesta.esSuTurno = !partida.TurnoActual;
             }
-            respuesta.puntajeJugador1 = partida.PuntajeJugador1;
-            respuesta.puntajeJugador2 = partida.PuntajeJugador2;
             respuesta.turnosRestantes = partida.DisparosRestantes;
             respuesta.resultado = resultado;
             return respuesta;
