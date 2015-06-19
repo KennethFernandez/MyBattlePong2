@@ -52,5 +52,32 @@ namespace MBP.Logica
         {
             return new ModificarModelos().desactivarNave(idNave);
         }
+
+        public NaveModel obtenerNave(string nombre)
+        {
+            ObtenerModelos obtener = new ObtenerModelos();
+            Nave nave = obtener.obtenerNave(nombre);
+            NaveModel nuevaNave = new NaveModel();
+            nuevaNave.Id = nave.idNave;
+            nuevaNave.imagen = nave.Imagen;
+            nuevaNave.nombre = nave.Nombre;
+            nuevaNave.puntaje = nave.Puntaje;
+            nuevaNave.nombreCreadas = " ";
+            nuevaNave.tamanoX = nave.TamanoX;
+            nuevaNave.tamanoY = nave.TamanoY;
+            return nuevaNave;
+        }
+
+        public List<string> obtenerListaNombreNaves()
+        {
+            ObtenerModelos obtener = new ObtenerModelos();
+            List<Nave> listaNaves = obtener.obtenerListaNaves();
+            List<string> lista = new List<string>();
+            foreach (var item in listaNaves) {
+                lista.Add(item.Nombre);
+            }
+            return lista;
+        }
+
     }
 }

@@ -118,6 +118,7 @@
     <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\MBPLController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RegistrarseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -221,6 +222,7 @@
     <Content Include="javascripts\DragDrop.js" />
     <Content Include="javascripts\header.js" />
     <Content Include="javascripts\ObtenerRuta.js" />
+    <Content Include="javascripts\Ocultar2.js" />
     <Content Include="javascripts\OcultarOpciones.js" />
     <Content Include="javascripts\redips-drag-min.js" />
     <Content Include="javascripts\redips-drag-source.js" />
@@ -228,6 +230,7 @@
     <Content Include="javascripts\redips-table.js" />
     <Content Include="javascripts\script1.js" />
     <Content Include="javascripts\script2.js" />
+    <Content Include="javascripts\ScriptNave.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\HelperCF.cshtml" />
@@ -254,6 +257,8 @@
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -350,10 +355,11 @@
     <Content Include="Views\Registrarse\Registrarse.cshtml" />
     <Content Include="Views\Catalogo\Catalogo.cshtml" />
     <Content Include="Views\Perfil\Perfil.cshtml" />
+    <Content Include="Views\Buscar\Buscar.cshtml" />
+    <Content Include="Views\Colocacion\Colocacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Buscar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

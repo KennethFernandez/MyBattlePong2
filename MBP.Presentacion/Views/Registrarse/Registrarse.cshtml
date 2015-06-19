@@ -39,25 +39,26 @@
             @Html.TextBoxFor(x => x.ModeloBase.Apellido, new { @class = "input1" })
             <br>
             <br>
-            
+
 
             <div class="Administrador">
 
                 <p>País:</p>
-                @Html.TextBoxFor(x => x.ModeloExt.Pais, new { @class = "input1" })
+                @Html.DropDownListFor(x => x.ModeloExt.Pais, new SelectList(ViewBag.Lista))
                 <br>
                 <br>
 
             </div>
 
-            </div>
+        </div>
 
         <div id="right">
 
             <div class="Administrador">
 
-                <p>Genero:</p>
-                @Html.TextBoxFor(x => x.ModeloExt.Genero, new { @class = "input1" })
+                <p>Masculino o Femenino:</p>
+                Masculino @Html.RadioButtonFor(x => x.ModeloExt.Genero, "M", new { @checked = true }) Femenino
+                @Html.RadioButtonFor(x => x.ModeloExt.Genero, "F", new { @checked = true })
                 <p>*Fecha de Nacimiento:</p>
                 @Html.TextBoxFor(x => x.ModeloExt.FechaNacimiento, new { @class = "datepicker" })
                 <br />
@@ -75,7 +76,7 @@
 
                 <div class="Moderador">
                     <p>*Descripción Personal:</p>
-                    @Html.TextAreaFor(x => x.ModeloJugador.DescripcionPersonal,5,1,new { @class = "input2" })
+                    @Html.TextAreaFor(x => x.ModeloJugador.DescripcionPersonal, 5, 1, new { @class = "input2" })
                     <br>
 
                 </div>
@@ -83,7 +84,7 @@
 
             </div>
             <br>
-            <input type="submit" value="Registrarse" class="boton_base"/>
+            <input type="submit" value="Registrarse" class="boton_base" />
             <br>
             <br>
 

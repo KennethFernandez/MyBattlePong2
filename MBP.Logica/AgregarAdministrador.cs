@@ -14,10 +14,12 @@ namespace MBP.Logica
         {
             AgregarCuenta agregarCuenta = new AgregarCuenta();
             Cuenta cuenta = agregarCuenta.agregarCuenta(model.ModeloBase);
-            Usuario usuario = agregarCuenta.agregarUsuario(model.ModeloBase);
+            
             AgregarModelos nuevo = new AgregarModelos();
             ObtenerModelos obtenerDatos = new ObtenerModelos();
+
             nuevo.agregarCuenta(cuenta);
+            Usuario usuario = agregarCuenta.agregarUsuario(model.ModeloBase);
             int idCuenta = obtenerDatos.obtenerIdCuenta(model.ModeloBase.Login);
             usuario.Cuenta_idCuenta = idCuenta;
             nuevo.agregarUsuario(usuario);

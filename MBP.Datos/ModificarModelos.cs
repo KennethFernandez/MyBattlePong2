@@ -94,29 +94,32 @@ namespace MBP.Datos
         }
         public string modificaNave(Nave nave)
         {
-            try{
+            try
+            {
                 using (var db = new MyBattlePongEntities())
                 {
-  
+
                     /**Nave NuevaNave = db.Nave.Find(nave.idNave);
                     NuevaNave.Nombre = nave.Nombre;
                     NuevaNave.Puntaje = nave.Puntaje;
                     NuevaNave.TamanoX = nave.TamanoX;
                     NuevaNave.TamanoY = nave.TamanoY;
                     NuevaNave.Imagen = nave.Imagen;**/
-                    Nave NaveAct = db.Nave.Find(nave.idNave);
+                    Nave NaveAct = db.Nave.Where(m => m.Nombre == nave.Nombre).FirstOrDefault();
+                    nave.idNave = NaveAct.idNave;
                     db.Entry(NaveAct).CurrentValues.SetValues(nave);
                     db.SaveChanges();
                     return "Nave modificada";
                 }
             }
-                catch{
-                    //error en base de datos
-                    return "Error en conectar con la base de datos";
-                }
-                
-
+            catch
+            {
+                //error en base de datos
+                return "Error en conectar con la base de datos";
             }
+
+
+        }
 
         public bool modificarContrasena(Cuenta cuenta)
         {
@@ -128,6 +131,50 @@ namespace MBP.Datos
                 return true;
             }
         }
+         public bool actualizarPartida(Partida partida)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+
+                    Partida partidaAct = db.Partida.Find(partida.idPartida);
+                    db.Entry(partidaAct).CurrentValues.SetValues(partida);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
+        }
+
+        public bool actualizarEstadistica(Estadistica estadistica)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+
+                    Estadistica itemAct = db.Estadistica.Find(estadistica.Jugador_Usuario_Cuenta_idCuenta);
+                    db.Entry(itemAct).CurrentValues.SetValues(estadistica);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
+        }
+
+
+
+       
+    
     }
     }
 

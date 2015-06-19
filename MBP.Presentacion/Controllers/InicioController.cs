@@ -29,7 +29,6 @@ namespace MBP.Presentacion.Controllers
             partida.tamano = 10;
             new FachadaServicio().IngresarPartidaOnline(partida);
             Console.WriteLine("Prueba iniciada");
-
             **/
             return View();
         }
@@ -65,9 +64,10 @@ namespace MBP.Presentacion.Controllers
                 {
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("jugador");
+                    Session["usuario"] = usuario;
                    // Session["Tipo"] = "Jugador";
                    // Debug.WriteLine(ViewBag.CategoryID);
-                    return RedirectToAction("Catalogo", "Catalogo");
+                    return RedirectToAction("Perfil", "Perfil");
                     // FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     //Session["MyMenu"] = null;
                     //return RedirectToAction("Catalogo", "Catalogo");
@@ -76,15 +76,15 @@ namespace MBP.Presentacion.Controllers
                 {
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("moderador");
-                    ViewBag.CategoryID = "Moderador";
-                    return View();
+                    Session["usuario"] = usuario;
+                    return RedirectToAction("Perfil", "Perfil");
                 }
                 else if (usuario.datos[1, 1] == "3")
                 {
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("administrador");
-                    ViewBag.CategoryID = "Administrador";
-                    return View();
+                    Session["usuario"] = usuario;
+                    return RedirectToAction("Catalogo", "Catalogo");
                 }
                 else {
                     Debug.WriteLine("user invalido");

@@ -22,9 +22,10 @@ namespace MBP.Logica
             Pais pais = obtenerDatos.obtenerPais(jugador.Pais_idPais);
             Estadistica estadistica = obtenerDatos.obtenerEstadistica(cuenta.idCuenta);
             data = new string[,]{{"id",usuario.Cuenta_idCuenta.ToString()},{"tipo",usuario.Tipo},
-            {"Nombre",usuario.Nombre},{"Apellido",usuario.Apellido},{"Pais",pais.Nombre},{"email",usuario.Email},
+            {"login",cuenta.Login},{"Nombre",usuario.Nombre},{"Apellido",usuario.Apellido},
+            {"email",usuario.Email},{"fecha de inscripcion al sistema",usuario.FechaInscripcion.ToString()},
             {"fecha de nacimiento",jugador.FechaNacimiento.ToString()},{"genero",jugador.Genero},{"foto",jugador.Foto},
-            {"fecha de inscripcion al sistema",usuario.FechaInscripcion.ToString()},{"descripcion personal",jugador.DescripcionPersonal},
+            {"Pais",pais.Nombre},{"Descripcion",jugador.DescripcionPersonal},
             {"total de partidas jugadas",estadistica.TotalPartidas.ToString()},
             {"total de partidas ganadas/perdidas",estadistica.TotalGanadas+"/"+(CalculoEstadisticas.perdidas(estadistica.TotalPartidas,estadistica.TotalGanadas))},
             {"porcentaje de efectividad de partidas", CalculoEstadisticas.porcentajeEfectividad(estadistica.TotalPartidas, estadistica.TotalGanadas)+"%"},

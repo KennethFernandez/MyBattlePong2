@@ -52,5 +52,10 @@ namespace MBP.Logica
             IAgregarUsuario nuevo = new FabricaAgregarUsuario().fabricaAgregUsuario(model.ModeloBase.Tipo);
             return nuevo.agregarUsuario(model);
         }
+
+        public List<string> obtenerListaPaises() {
+            ObtenerModelos obtenerDatos = new ObtenerModelos();
+            return obtenerDatos.obtenerListaPaises();
+        }
     }
 }

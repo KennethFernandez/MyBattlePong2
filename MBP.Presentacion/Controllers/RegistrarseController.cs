@@ -23,6 +23,8 @@ namespace MBP.Presentacion.Controllers
             model.ModeloJugador = new JugadorModel();
             model.ModeloModerador = new ModeradorModel();
             TipoUsuarioModel tipo = new TipoUsuarioModel();
+            FachadaServicio servicio = new FachadaServicio();
+            ViewBag.Lista = servicio.obtenerListaPaises();
             ViewBag.CategoryID = tipo.TypeList;
             return View(model);
         }
@@ -32,8 +34,8 @@ namespace MBP.Presentacion.Controllers
         {
 
 
-            HttpPostedFileBase file = (HttpPostedFileBase)Session["imagen"];
-            file.SaveAs("d:\\Perfil\\" + file.FileName);
+            //HttpPostedFileBase file = (HttpPostedFileBase)Session["imagen"];
+            //file.SaveAs("d:\\Perfil\\" + file.FileName);
             Debug.WriteLine("tipoooooooooooooooooooooooooooooo: ");
             if (model.ModeloBase.PasswordConf == model.ModeloBase.Password)
             {

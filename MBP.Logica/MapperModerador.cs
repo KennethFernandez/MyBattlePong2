@@ -22,9 +22,10 @@ namespace MBP.Logica
             Pais pais = obtenerDatos.obtenerPais(moderador.Pais_idPais);
 
             data = new string[,]{{"id",usuario.Cuenta_idCuenta.ToString()},{"tipo",usuario.Tipo},
-            {"Nombre",usuario.Nombre},{"Apellido",usuario.Apellido},{"Pais",pais.Nombre},{"email",usuario.Email},
+            {"login",cuenta.Login},{"Nombre",usuario.Nombre},{"Apellido",usuario.Apellido},
+            {"email",usuario.Email},{"fecha de inscripcion al sistema",usuario.FechaInscripcion.ToString()},
             {"fecha de nacimiento",moderador.FechaNacimiento.ToString()},{"genero",moderador.Genero},{"foto",moderador.Foto},
-            {"fecha de inscripcion al sistema",usuario.FechaInscripcion.ToString()},{"local",moderador.Local}};
+            {"Pais",pais.Nombre},{"local",moderador.Local}};
             usuarioModel.datos = data;
             return usuarioModel;
         }

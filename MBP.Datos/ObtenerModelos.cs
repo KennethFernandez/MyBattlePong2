@@ -174,6 +174,16 @@ namespace MBP.Datos
                 return lista;
             }
         }
+        public Nave obtenerNave(string nombre)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Nave
+                            where st.Nombre == nombre 
+                            select st).FirstOrDefault();
+                return query == null ? new Nave() : query;
+            }
+        }
 
 
     }
