@@ -104,7 +104,8 @@ namespace MBP.Datos
                     NuevaNave.TamanoX = nave.TamanoX;
                     NuevaNave.TamanoY = nave.TamanoY;
                     NuevaNave.Imagen = nave.Imagen;**/
-                    Nave NaveAct = db.Nave.Find(nave.idNave);
+                    Nave NaveAct = db.Nave.Where(m => m.Nombre == nave.Nombre).FirstOrDefault();
+                    nave.idNave = NaveAct.idNave;
                     db.Entry(NaveAct).CurrentValues.SetValues(nave);
                     db.SaveChanges();
                     return "Nave modificada";

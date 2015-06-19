@@ -63,10 +63,11 @@ namespace MBP.Presentacion.Controllers
                 FachadaServicio fachada = new FachadaServicio();
                 UsuarioModel usuario = fachada.verificarLogin(model);
 
-                Session["NombreUsuario"] = usuario.datos[3, 1];
+                
 
                 if (usuario.datos[1, 1] == "1")
                 {
+                    Session["NombreUsuario"] = usuario.datos[3, 1];
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("jugador");
                     Session["usuario"] = usuario;
@@ -79,6 +80,7 @@ namespace MBP.Presentacion.Controllers
                 }
                 else if (usuario.datos[1, 1] == "2")
                 {
+                    Session["NombreUsuario"] = usuario.datos[3, 1];
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("moderador");
                     //ViewBag.CategoryID = "Moderador";
@@ -87,11 +89,12 @@ namespace MBP.Presentacion.Controllers
                 }
                 else if (usuario.datos[1, 1] == "3")
                 {
+                    Session["NombreUsuario"] = usuario.datos[3, 1];
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("administrador");
                     //ViewBag.CategoryID = "Administrador";
                     Session["usuario"] = usuario;
-                    return RedirectToAction("Jugar", "Jugar");
+                    return RedirectToAction("Catalogo", "Catalogo");
                 }
                 else {
                     Debug.WriteLine("user invalido");

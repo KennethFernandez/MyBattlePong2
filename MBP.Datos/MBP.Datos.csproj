@@ -104,6 +104,9 @@
       <DependentUpon>MyBattlePongEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>MyBattlePongEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tablero_Virtual.cs" />
     <Compile Include="Tablero_Virtual_1.cs">
       <DependentUpon>MyBattlePongEntities.tt</DependentUpon>

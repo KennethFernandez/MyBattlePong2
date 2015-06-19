@@ -173,6 +173,17 @@ namespace MBP.Datos
             }
         }
 
+        public Nave obtenerNave(string nombre)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Nave
+                             where st.Nombre == nombre
+                             select st).FirstOrDefault();
+                return query == null ? new Nave() : query;
+            }
+        }
+
         public List<Tablero_Virtual> obtenerCasillasDeTablero(int tablero, int idPartida)
         {
             List<Tablero_Virtual> lista = new List<Tablero_Virtual>();
@@ -360,7 +371,7 @@ namespace MBP.Datos
                     return partida;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

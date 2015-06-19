@@ -136,5 +136,16 @@ namespace MBP.Servicio
         {
             return new EstrategiaActivarPoder().activarEfectoPoder(idPartida, idJugador, idPoder);
         }
+
+        public List<string> obtenerListaNombreNaves()
+        {
+            GestionarNave obtener = new GestionarNave();
+            return obtener.obtenerListaNombreNaves();
+        }
+        public NaveModel obtenerNave(string nombre)
+        {
+            GestionarNave obtener = new GestionarNave();
+            return obtener.obtenerNave(nombre);
+        }
     }
 }

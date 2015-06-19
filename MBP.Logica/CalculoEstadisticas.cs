@@ -13,7 +13,7 @@ namespace MBP.Logica
         }
         public static int porcentajeEfectividad(int total, int victorias)
         {
-            return total == 0 ? 0 : victorias / total * 100;
+            return total == 0 ? 0 : victorias * 100 / total;
         }
 
         public static int ranking(int victorias, int derrotas, int puntos)
