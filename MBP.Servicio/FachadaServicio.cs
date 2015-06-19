@@ -136,5 +136,10 @@ namespace MBP.Servicio
         {
             return new EstrategiaActivarPoder().activarEfectoPoder(idPartida, idJugador, idPoder);
         }
+
+        public bool rendirse(int idJugador, int idPartida)
+        {
+            return true;
+        }
     }
 }

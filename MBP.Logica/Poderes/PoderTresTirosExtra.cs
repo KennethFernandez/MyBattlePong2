@@ -21,6 +21,7 @@ namespace MBP.Logica
             partida.DisparosRestantes+=3;
             RespuestaPoderModel respuesta = new RespuestaPoderModel();
             respuesta.resultado = new ModificarModelos().actualizarPartida(partida);
+            respuesta.disparosRestantes = partida.DisparosRestantes;
             return respuesta;
         }
     }

@@ -13,7 +13,7 @@ namespace MBP.Logica
         public RespuestaPoderModel activarEfectoPoder(int idPartida, int idJugador)
         {
             RespuestaPoderModel respuesta = new RespuestaPoderModel();
-            respuesta.resultado = true;
+            respuesta.disparosRestantes = 0;
             return respuesta;;
         }
     }

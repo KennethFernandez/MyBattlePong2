@@ -8,6 +8,7 @@ namespace MBP.CapaTransversal.ModelsMVC
     public class RespuestaPoderModel
     {
         public bool resultado { get; set; }
+        public int disparosRestantes { get; set; }
         public int[] Espia { get; set; }
 
     }

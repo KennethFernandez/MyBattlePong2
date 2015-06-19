@@ -77,5 +77,15 @@ namespace MBP.Logica
         {
             return true;
         }
+
+        public bool rendirse(int idPartida, int idJugador)
+        {
+            Partida partida = new ObtenerModelos().buscarPartida(idPartida);
+            if(partida.Jugador1_idCuenta == idJugador){
+                return finalizarPartida(idPartida,2);
+            }else{
+                return finalizarPartida(idPartida,1);
+            }
+        }
     }
 }

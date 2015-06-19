@@ -78,7 +78,7 @@ namespace MBP.Logica
         }
 
         /**
-         * 
+         * Cambia el turno de la partida y la pasa al otro jugador
          * 
          **/
         public bool cambiarTurnoJuego(int idPartida)
@@ -106,7 +106,7 @@ namespace MBP.Logica
         }
 
         /**
-         * 
+         *  Recupera la lista de naves para crear el tablero de juego
          * 
          **/
         public List<NaveModel2> navesDePartida(int idPartida)
@@ -114,5 +114,7 @@ namespace MBP.Logica
             List<Partida_Nave> lista =  new ObtenerModelos().obtenerNavesDePartida(idPartida);
             return new MapperNavesPartida().mapperNavesDatosANavesModel2(lista);
         }
+
+
     }
 }

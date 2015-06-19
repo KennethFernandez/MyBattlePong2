@@ -14,7 +14,7 @@ namespace MBP.Presentacion.Controllers
         //
         // GET: /Jugar/
 
-        int idPartida = 377;
+        int idPartida = 379;
         int idJugador = 6;
 
         [HttpGet]
@@ -103,9 +103,18 @@ namespace MBP.Presentacion.Controllers
         }
 
 
-        public string ActivarPoder(int idPoder)
+        public string ActivarPoderSencillo(int idPoder)
         {
-            return "";
+            RespuestaPoderModel resultado = new FachadaServicio().activarPoder(idJugador,idPartida,idPoder);
+            string respuesta = resultado.resultado.ToString();
+            if(idPoder == 4){
+                respuesta += ","+resultado.Espia[0] + "," + resultado.Espia[1];
+            }
+            else
+            {
+                respuesta += "," + resultado.disparosRestantes;
+            }
+            return respuesta;
         }
 
     }
