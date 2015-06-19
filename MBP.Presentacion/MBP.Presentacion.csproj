@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CatalogoController.cs" />
+    <Compile Include="Controllers\GestionarPoderesController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\MBPLController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -231,6 +232,7 @@
     <Content Include="javascripts\script1.js" />
     <Content Include="javascripts\script2.js" />
     <Content Include="javascripts\ScriptNave.js" />
+    <Content Include="javascripts\ScriptPoder.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\HelperCF.cshtml" />
@@ -357,6 +359,7 @@
     <Content Include="Views\Perfil\Perfil.cshtml" />
     <Content Include="Views\Buscar\Buscar.cshtml" />
     <Content Include="Views\Colocacion\Colocacion.cshtml" />
+    <Content Include="Views\GestionarPoderes\GestionarPoderes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

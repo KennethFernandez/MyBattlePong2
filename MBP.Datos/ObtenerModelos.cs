@@ -174,6 +174,34 @@ namespace MBP.Datos
                 return lista;
             }
         }
+
+        public List<Poder> obtenerListaPoderes()
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Poder
+                             select st);
+                List<Poder> lista = new List<Poder>();
+                foreach (var item in query)
+                {
+                    lista.Add(item);
+
+                }
+                return lista;
+            }
+        }
+
+        public Poder obtenerPoder(string nombre)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Poder
+                             where st.Nombre == nombre
+                             select st).FirstOrDefault();
+                return query == null ? new Poder() : query;
+            }
+        }
+
         public Nave obtenerNave(string nombre)
         {
             using (var db = new MyBattlePongEntities())

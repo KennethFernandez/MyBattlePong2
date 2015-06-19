@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.Title = "GestionarPoderes";
+}
+
+@section scripts{
+    <script type="text/javascript" src="../javascripts/ScriptPoder.js"></script>
+    <link href="~/Content/ButtonONOFF.css" rel="stylesheet" type="text/css">
+
+}
+
+<div id="cont" align="center">
+    @model MBP.CapaTransversal.ModelsMVC.PoderModel
+    @using (Html.BeginForm("GestionarPoderes", "GestionarPoderes", FormMethod.Post,
+                new { enctype = "multipart/form-data" }))
+    {
+        <div id="left">
+            <p>
+                Lista de poderes disponibles
+                @Html.DropDownListFor(x => x.Nombre, new SelectList(ViewBag.ListaPoder), new { @id = "NombrePoder" })
+            </p>
+
+            <div id="right">
+                <br />
+                <label>Experiencia:    </label><br>
+                @Html.TextBoxFor(x => x.Experiencia, new { @class = "input1", @id = "ExpPoder" })
+
+                <br />
+                <label>Victorias:    </label><br>
+                @Html.TextBoxFor(x => x.Victorias, new { @class = "input1", @id = "VictPoder" })
+
+                <br />
+                <label>Puntaje:    </label><br>
+                @Html.TextBoxFor(x => x.Puntos, new { @class = "input1", @id = "PuntPoder" })
+
+                <br />
+                <label>Derrotas:    </label><br>
+                @Html.TextBoxFor(x => x.Derrotas, new { @class = "input1", @id = "DerrPoder" })
+
+                <br />
+                <label>Ranking:    </label><br>
+                @Html.TextBoxFor(x => x.Ranking, new { @class = "input1", @id = "RankPoder" })
+                <br /><br />
+
+                <br /><br />
+                <input type="submit" name="Modificar" class="boton_base" value="Modificar" />
+
+            </div>
+
+        </div>
+    }
+
+
+</div>

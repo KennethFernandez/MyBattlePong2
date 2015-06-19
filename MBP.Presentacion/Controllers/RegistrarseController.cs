@@ -48,7 +48,7 @@ namespace MBP.Presentacion.Controllers
                 else {
                     Debug.WriteLine("Error");
                 }
-                return RedirectToAction("Registrarse", "Registrarse");
+                return RedirectToAction("Inicio", "Inicio");
             }
             else
             {

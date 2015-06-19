@@ -121,6 +121,28 @@ namespace MBP.Datos
 
         }
 
+        public bool modificarPoder(Poder poder)
+        {
+            try
+            {
+                using (var db = new MyBattlePongEntities())
+                {
+                    Poder poderAct = db.Poder.Where(m => m.Nombre == poder.Nombre).FirstOrDefault();
+                    poder.idPoder = poderAct.idPoder;
+                    db.Entry(poderAct).CurrentValues.SetValues(poder);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                //error en base de datos
+                return false;
+            }
+
+
+        }
+
         public bool modificarContrasena(Cuenta cuenta)
         {
             using (var db = new MyBattlePongEntities())

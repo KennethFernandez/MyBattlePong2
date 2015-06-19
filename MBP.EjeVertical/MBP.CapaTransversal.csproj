@@ -116,6 +116,7 @@
     <Compile Include="ModelsMVC\InicioModel.cs" />
     <Compile Include="ModelsMVC\JugadorModel.cs" />
     <Compile Include="ModelsMVC\ModeradorModel.cs" />
+    <Compile Include="ModelsMVC\PoderModel.cs" />
     <Compile Include="ModelsMVC\RegistrarseExtModel.cs" />
     <Compile Include="ModelsMVC\RegistrarseModel.cs" />
     <Compile Include="ModelsMVC\TipoUsuarioModel.cs" />

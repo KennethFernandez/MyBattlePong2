@@ -77,7 +77,7 @@ namespace MBP.Presentacion.Controllers
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("moderador");
                     Session["usuario"] = usuario;
-                    return RedirectToAction("Perfil", "Perfil");
+                    return RedirectToAction("GestionarPoderes", "GestionarPoderes");
                 }
                 else if (usuario.datos[1, 1] == "3")
                 {

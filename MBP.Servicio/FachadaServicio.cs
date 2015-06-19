@@ -42,8 +42,6 @@ namespace MBP.Servicio
             return gestionarNave.modificarNave(nave);
         }
 
-
-
         public bool desactivarNave(int idNave)
         {
             GestionarNave gestionar = new GestionarNave();
@@ -88,6 +86,25 @@ namespace MBP.Servicio
             GestionarNave obtener = new GestionarNave();
             return obtener.obtenerListaNombreNaves();
         }
+
+        public List<string> obtenerListaPoderes()
+        {
+            GestionarPoderes gestionar = new GestionarPoderes();
+            return gestionar.obtenerPoderes();
+        }
+
+        public PoderModel obtenerPoder(string nombre)
+        {
+            GestionarPoderes gestionar = new GestionarPoderes();
+            return gestionar.obtenerPoder(nombre);
+        }
+
+        public bool modificarPoder(PoderModel poder)
+        {
+            GestionarPoderes gestionar = new GestionarPoderes();
+            return gestionar.modificarPoder(poder);
+        }
+
         public NaveModel obtenerNave(string nombre) {
             GestionarNave obtener = new GestionarNave();
             return obtener.obtenerNave(nombre);

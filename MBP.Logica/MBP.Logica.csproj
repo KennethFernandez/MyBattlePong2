@@ -64,6 +64,7 @@
     <Compile Include="GestionarNave.cs" />
     <Compile Include="GestionarPartidaOnline.cs" />
     <Compile Include="GestionarPartidaVivo.cs" />
+    <Compile Include="GestionarPoderes.cs" />
     <Compile Include="IAgregarUsuario.cs" />
     <Compile Include="IEncriptacion.cs" />
     <Compile Include="IModificarUsuario.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="MapperModerador.cs" />
     <Compile Include="MapperNull.cs" />
     <Compile Include="IMapperUsuario.cs" />
+    <Compile Include="MapperPoderes.cs" />
     <Compile Include="ModificarAdministrador.cs" />
     <Compile Include="ModificarJugador.cs" />
     <Compile Include="ModificarModerador.cs" />

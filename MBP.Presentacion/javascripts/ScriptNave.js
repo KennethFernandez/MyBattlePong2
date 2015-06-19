@@ -15,7 +15,7 @@
             console.log((listaInfo[5] == "True") ? true : false);
             console.log(listaInfo[5]);
 
-        }); value
+        }); 
 
 
     });
