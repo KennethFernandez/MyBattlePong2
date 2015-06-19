@@ -119,7 +119,7 @@
           <Key>
             <PropertyRef Name="idPartidaHistorica" />
           </Key>
-          <Property Name="idPartidaHistorica" Type="int" Nullable="false" />
+          <Property Name="idPartidaHistorica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ganador" Type="int" Nullable="false" />
           <Property Name="NavesDestruidas1" Type="int" Nullable="false" />
           <Property Name="NavesDestruidas2" Type="int" Nullable="false" />

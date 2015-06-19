@@ -92,6 +92,15 @@
         });
     });
 
+    $('#rendirse').click(function () {
+        console.log("Poder 10");
+        $.get("rendirse", null, function (data) {
+            if (data == "True") {
+                window.alert("Te has rendido");
+            }
+        });
+    });
+
 
 
 

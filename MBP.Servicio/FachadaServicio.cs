@@ -139,7 +139,7 @@ namespace MBP.Servicio
 
         public bool rendirse(int idJugador, int idPartida)
         {
-            return true;
+            return new FinalizarPartida().rendirse(idPartida,idJugador);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MBP.Presentacion.Controllers
         //
         // GET: /Jugar/
 
-        int idPartida = 379;
+        int idPartida = 386;
         int idJugador = 6;
 
         [HttpGet]
@@ -115,6 +115,12 @@ namespace MBP.Presentacion.Controllers
                 respuesta += "," + resultado.disparosRestantes;
             }
             return respuesta;
+        }
+
+        public string rendirse()
+        {
+            bool resultado = new FachadaServicio().rendirse(idJugador,idPartida);
+            return resultado.ToString();
         }
 
     }

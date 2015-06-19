@@ -61,10 +61,9 @@ namespace MBP.Logica
             partidaHistorica.Ganador = jugadorGanador;
             partidaHistorica.Jugador1_idCuenta = partida.Jugador1_idCuenta;
             partidaHistorica.Jugador2_idCuenta = partida.Jugador2_idCuenta;
-            //partidaHistorica.NavesDestruidas1 = 
-            //partidaHistorica.NavesDestruidas2 =
-            AgregarModelos agregarModelos = new AgregarModelos();
-            agregarModelos.agregaPartidaHistorica(partidaHistorica);
+            partidaHistorica.NavesDestruidas1 = 0;
+            partidaHistorica.NavesDestruidas2 = 0;
+            new AgregarModelos().agregaPartidaHistorica(partidaHistorica);
 
             // Elimina la partida de la lista de partidas
             EliminarModelos eliminarModelos = new EliminarModelos();
@@ -75,15 +74,36 @@ namespace MBP.Logica
 
         public bool cancelarPartida(int idPartida)
         {
-            return true;
+            return new EliminarModelos().eliminarPartida(idPartida);
         }
+
+        /**
+         * Un jugador se rinde de la partida
+         * 
+         **/
 
         public bool rendirse(int idPartida, int idJugador)
         {
-            Partida partida = new ObtenerModelos().buscarPartida(idPartida);
-            if(partida.Jugador1_idCuenta == idJugador){
+            ObtenerModelos obtener =  new ObtenerModelos();
+            Partida partida = obtener.buscarPartida(idPartida);
+            List<Partida_Nave> lista = new ObtenerModelos().obtenerNavesDePartida(idPartida);
+            if(partida.Jugador1_idCuenta == idJugador){     // Se rendio el jugador 1
+                partida.PuntajeJugador2 = 0;
+                foreach (Partida_Nave item in lista)        // Se le da la totalida  de los puntajes de las naves
+                {
+                    Nave nave = obtener.obtieneNave(item.Nave_idNave);
+                    partida.PuntajeJugador2 += (nave.Puntaje * item.Cantidad);
+                }
+                new ModificarModelos().actualizarPartida(partida);
                 return finalizarPartida(idPartida,2);
-            }else{
+            }else{                                            // Se rindio el jugador 2
+                partida.PuntajeJugador1 = 0;
+                foreach (Partida_Nave item in lista)         // Se le da la totalida  de los puntajes de las naves
+                {
+                    Nave nave = obtener.obtieneNave(item.Nave_idNave);
+                    partida.PuntajeJugador1 += (nave.Puntaje * item.Cantidad);
+                }
+                new ModificarModelos().actualizarPartida(partida);
                 return finalizarPartida(idPartida,1);
             }
         }

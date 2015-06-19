@@ -265,7 +265,7 @@
     <Content Include="javascripts\DragDrop.js" />
     <Content Include="javascripts\GeneradorNaves.js" />
     <Content Include="javascripts\header.js" />
-    <Content Include="javascripts\Poder.js" />
+    <Content Include="javascripts\PartidaOnline.js" />
     <Content Include="javascripts\ObtenerRuta.js" />
     <Content Include="javascripts\Ocultar2.js" />
     <Content Include="javascripts\OcultarOpciones.js" />
