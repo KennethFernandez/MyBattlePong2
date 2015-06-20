@@ -17,6 +17,7 @@ namespace MBP.Logica
             ObtenerModelos obtenerDatos = new ObtenerModelos();
             IEncriptacion encrip = new FabricaEncriptacion().fabricaEncripta(1);
             model.Contrasena = encrip.encriptar(model.Contrasena);
+
             Cuenta cuenta = obtenerDatos.obtenerCuenta(model.Usuario, model.Contrasena);
             Debug.WriteLine("idCuenta: " + cuenta.idCuenta);
             Usuario usuario = obtenerDatos.obtenerUsuario(cuenta.idCuenta);

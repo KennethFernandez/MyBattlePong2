@@ -80,10 +80,10 @@ namespace MBP.Datos.Tests
             List<Poder> lista2 = obtener.obtenerPoderesJugador(4);
             int resultado1 = lista1.Count;
             int resultado2 = lista2.Count;
-            Assert.AreEqual(lista1[0].Nombre, obtener.obtenerPoder(1).Nombre);
-            Assert.AreEqual(lista1[1].Nombre, obtener.obtenerPoder(4).Nombre);
-            Assert.AreEqual(lista1[2].Nombre, obtener.obtenerPoder(9).Nombre);
-            Assert.AreEqual(lista1[3].Nombre, obtener.obtenerPoder(10).Nombre);
+            Assert.AreEqual(lista1[0].Nombre, obtener.obtenerPoder("Tiro extra").Nombre);
+            Assert.AreEqual(lista1[1].Nombre, obtener.obtenerPoder("Espia").Nombre);
+            Assert.AreEqual(lista1[2].Nombre, obtener.obtenerPoder("Salvavidas").Nombre);
+            Assert.AreEqual(lista1[3].Nombre, obtener.obtenerPoder("Anti-Escudo").Nombre);
             Assert.AreEqual(0,lista2.Count);
             Assert.AreEqual(10, new ObtenerModelos().obtenerListaPoderes().Count);
         }

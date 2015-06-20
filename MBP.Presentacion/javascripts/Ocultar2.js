@@ -1,20 +1,18 @@
 ﻿$(function () {
-
-    var value =document.getElementById('mode').value;
-
-    if (value == "1") {
+    var mode = document.getElementById('mode').value;
+    if (mode == "1") {
         $('.Administrador').show();
         $('.Moderador').show();
         $('.Jugador').hide();
     }
-    else if (value == "2") {
+    else if (mode == "2") {
         $('.Administrador').show();
         $('.Jugador').show();
         $('.Moderador').hide();
-        
-    } else {                 
+
+    } else {
         $('.Administrador').hide();
     }
 
-    });
+});
 

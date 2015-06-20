@@ -141,5 +141,33 @@ namespace MBP.Servicio
         {
             return new FinalizarPartida().rendirse(idPartida,idJugador);
         }
+        public List<string> obtenerListaNombreNaves()
+        {
+            GestionarNave obtener = new GestionarNave();
+            return obtener.obtenerListaNombreNaves();
+        }
+        public NaveModel obtenerNave(string nombre)
+        {
+            GestionarNave obtener = new GestionarNave();
+            return obtener.obtenerNave(nombre);
+        }
+
+        public List<string> obtenerListaPoderes()
+        {
+            GestionarPoderes gestionar = new GestionarPoderes();
+            return gestionar.obtenerPoderes();
+        }
+
+        public PoderModel obtenerPoder(string nombre)
+        {
+            GestionarPoderes gestionar = new GestionarPoderes();
+            return gestionar.obtenerPoder(nombre);
+        }
+
+        public bool modificarPoder(PoderModel poder)
+        {
+            GestionarPoderes gestionar = new GestionarPoderes();
+            return gestionar.modificarPoder(poder);
+        }
     }
 }

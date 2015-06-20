@@ -4,25 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0550dcf912264531a379d2dc329ff2cc" Name="Diagram1" ZoomLevel="62">
-        <EntityTypeShape EntityType="MBPdbModel.Cuenta" Width="1.5" PointX="1.5" PointY="9" />
-        <EntityTypeShape EntityType="MBPdbModel.Dispositivo" Width="1.5" PointX="0.75" PointY="2" />
-        <EntityTypeShape EntityType="MBPdbModel.Estadistica" Width="1.5" PointX="8.25" PointY="14.125" />
-        <EntityTypeShape EntityType="MBPdbModel.Jugador" Width="1.5" PointX="6" PointY="11.875" />
-        <EntityTypeShape EntityType="MBPdbModel.Moderador" Width="1.5" PointX="3" PointY="12.625" />
-        <EntityTypeShape EntityType="MBPdbModel.Nave" Width="1.5" PointX="8.25" PointY="0.75" />
-        <EntityTypeShape EntityType="MBPdbModel.Pais" Width="1.5" PointX="0.75" PointY="13" />
-        <EntityTypeShape EntityType="MBPdbModel.Partida_Nave" Width="1.5" PointX="10.5" PointY="6.25" />
-        <EntityTypeShape EntityType="MBPdbModel.PartidaHistorica" Width="1.5" PointX="8.25" PointY="20.5" />
-        <EntityTypeShape EntityType="MBPdbModel.PartidaVivo" Width="1.5" PointX="8.25" PointY="10.375" />
-        <EntityTypeShape EntityType="MBPdbModel.Poder" Width="1.5" PointX="8.25" PointY="17.25" />
-        <EntityTypeShape EntityType="MBPdbModel.Tablero_Virtual_1" Width="1.5" PointX="10.5" PointY="9.25" />
-        <EntityTypeShape EntityType="MBPdbModel.Tablero_Virtual_2" Width="1.5" PointX="10.5" PointY="2.75" />
-        <EntityTypeShape EntityType="MBPdbModel.Usuario" Width="1.5" PointX="3.75" PointY="8.5" />
+      <Diagram DiagramId="af6d8bceedd5451484403f8831493932" Name="Diagram1">
+        <EntityTypeShape EntityType="MBPdbModel.Cuenta" Width="1.5" PointX="1.5" PointY="7.875" />
+        <EntityTypeShape EntityType="MBPdbModel.Dispositivo" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MBPdbModel.Estadistica" Width="1.5" PointX="8.25" PointY="7.25" />
+        <EntityTypeShape EntityType="MBPdbModel.Jugador" Width="1.5" PointX="6" PointY="10.875" />
+        <EntityTypeShape EntityType="MBPdbModel.Moderador" Width="1.5" PointX="3" PointY="11.625" />
+        <EntityTypeShape EntityType="MBPdbModel.Nave" Width="1.5" PointX="8.25" PointY="23.125" />
+        <EntityTypeShape EntityType="MBPdbModel.Pais" Width="1.5" PointX="0.75" PointY="12" />
+        <EntityTypeShape EntityType="MBPdbModel.Partida" Width="1.5" PointX="8.25" PointY="17" />
+        <EntityTypeShape EntityType="MBPdbModel.Partida_Nave" Width="1.5" PointX="10.5" PointY="18.625" />
+        <EntityTypeShape EntityType="MBPdbModel.PartidaHistorica" Width="1.5" PointX="8.25" PointY="10.375" />
+        <EntityTypeShape EntityType="MBPdbModel.PartidaVivo" Width="1.5" PointX="8.25" PointY="3.625" />
+        <EntityTypeShape EntityType="MBPdbModel.Poder" Width="1.5" PointX="8.25" PointY="13.75" />
+        <EntityTypeShape EntityType="MBPdbModel.Tablero_Virtual_1" Width="1.5" PointX="10.5" PointY="21.5" />
+        <EntityTypeShape EntityType="MBPdbModel.Tablero_Virtual_2" Width="1.5" PointX="10.5" PointY="25" />
+        <EntityTypeShape EntityType="MBPdbModel.Usuario" Width="1.5" PointX="3.75" PointY="7.5" />
         <AssociationConnector Association="MBPdbModel.fk_Usuario_Cuenta" />
         <AssociationConnector Association="MBPdbModel.fk_Estadistica_Jugador1" />
         <AssociationConnector Association="MBPdbModel.fk_Jugador_Pais1" />
         <AssociationConnector Association="MBPdbModel.fk_Jugador_Usuario1" />
+        <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador1" />
+        <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador2" />
         <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador3" />
         <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador4" />
         <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador5" />
@@ -32,11 +35,8 @@
         <AssociationConnector Association="MBPdbModel.fk_Partida_has_Nave_Nave1" />
         <AssociationConnector Association="MBPdbModel.fk_Tablero_Virtual_Nave1" />
         <AssociationConnector Association="MBPdbModel.fk_Tablero_Virtual_Nave2" />
-        <AssociationConnector Association="MBPdbModel.Jugador_Poder" />
-        <EntityTypeShape EntityType="MBPdbModel.Partida" Width="1.5" PointX="8.25" PointY="24.25" />
-        <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador1" />
-        <AssociationConnector Association="MBPdbModel.fk_Partida_Jugador2" />
         <AssociationConnector Association="MBPdbModel.fk_Partida_has_Nave_Partida1" />
+        <AssociationConnector Association="MBPdbModel.Jugador_Poder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestionarPoderes.cs" />
     <Compile Include="Poderes\EstrategiaActivarPoder.cs" />
     <Compile Include="ActualizarEstadisticasJugador.cs" />
     <Compile Include="AES.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Disparos\ProcesarDisparoSimple.cs" />
     <Compile Include="Disparos\ProcesarDisparo_1H.cs" />
     <Compile Include="Disparos\ProcesarDisparo_1V.cs" />
+    <Compile Include="Poderes\MapperPoderes.cs" />
     <Compile Include="Poderes\PoderAntiescudo.cs" />
     <Compile Include="Poderes\PoderEspia.cs" />
     <Compile Include="Poderes\PoderNull.cs" />

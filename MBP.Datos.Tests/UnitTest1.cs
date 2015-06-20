@@ -12,8 +12,8 @@ namespace MBP.Datos.Tests
         public void FalloLogin()
         {
             InicioModel inicio = new InicioModel();
-            inicio.Usuario = "pollo";
-            inicio.Contrasena = "pollo1";
+            inicio.Usuario = "jgonzalez";
+            inicio.Contrasena = "sdfdhs";
             FachadaServicio fachada = new FachadaServicio();
             UsuarioModel usuario = fachada.verificarLogin(inicio);
             Assert.AreEqual(usuario.datos[1,1],"-1");
@@ -23,11 +23,11 @@ namespace MBP.Datos.Tests
         public void LoginCorrecto()
         {
             InicioModel inicio = new InicioModel();
-            inicio.Usuario = "kfer";
-            inicio.Contrasena = "1234";
+            inicio.Usuario = "jgonzalez";
+            inicio.Contrasena = "dvdvfdf";
             FachadaServicio fachada = new FachadaServicio();
             UsuarioModel usuario = fachada.verificarLogin(inicio);
-            Assert.AreEqual(usuario.datos[1, 1], "2");
+            Assert.AreEqual(usuario.datos[1, 1], "1");
         }
 
         [TestMethod]

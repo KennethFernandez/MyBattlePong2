@@ -9,70 +9,73 @@ using System.Web.Mvc;
 
 namespace MBP.Presentacion.Controllers
 {
-    public class RegistrarseController : Controller
-    {
-        // GET: Registrarse
-         [HttpGet]
-        public ActionResult Registrarse()
+
+        public class RegistrarseController : Controller
         {
-            var model = new CompositeRegModel();
-
-             
-            model.ModeloBase = new RegistrarseModel();
-            model.ModeloExt = new RegistrarseExtModel();
-            model.ModeloJugador = new JugadorModel();
-            model.ModeloModerador = new ModeradorModel();
-            TipoUsuarioModel tipo = new TipoUsuarioModel();
-            FachadaServicio servicio = new FachadaServicio();
-            ViewBag.Lista = servicio.obtenerListaPaises();
-            ViewBag.CategoryID = tipo.TypeList;
-            return View(model);
-        }
-
-         [HttpPost]
-         public ActionResult Registrarse(CompositeRegModel model)
-        {
-
-
-            //HttpPostedFileBase file = (HttpPostedFileBase)Session["imagen"];
-            //file.SaveAs("d:\\Perfil\\" + file.FileName);
-            Debug.WriteLine("tipoooooooooooooooooooooooooooooo: ");
-            if (model.ModeloBase.PasswordConf == model.ModeloBase.Password)
+            // GET: Registrarse
+            [HttpGet]
+            public ActionResult Registrarse()
             {
-                Debug.WriteLine("igueleeees");
-                FachadaServicio fachada = new FachadaServicio();
-                if (fachada.agregarNuevoUser(model) == true)
+                var model = new CompositeRegModel();
+
+
+                model.ModeloBase = new RegistrarseModel();
+                model.ModeloExt = new RegistrarseExtModel();
+                model.ModeloJugador = new JugadorModel();
+                model.ModeloModerador = new ModeradorModel();
+                TipoUsuarioModel tipo = new TipoUsuarioModel();
+                FachadaServicio servicio = new FachadaServicio();
+                ViewBag.Lista = servicio.obtenerListaPaises();
+                ViewBag.CategoryID = tipo.TypeList;
+                return View(model);
+            }
+
+            [HttpPost]
+            public ActionResult Registrarse(CompositeRegModel model)
+            {
+
+
+                //HttpPostedFileBase file = (HttpPostedFileBase)Session["imagen"];
+                //file.SaveAs("d:\\Perfil\\" + file.FileName);
+                Debug.WriteLine("tipoooooooooooooooooooooooooooooo: ");
+                if (model.ModeloBase.PasswordConf == model.ModeloBase.Password)
                 {
-                    Debug.WriteLine("Bien");
+                    Debug.WriteLine("igueleeees");
+                    FachadaServicio fachada = new FachadaServicio();
+                    if (fachada.agregarNuevoUser(model) == true)
+                    {
+                        Debug.WriteLine("Bien");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Error");
+                    }
+                    return RedirectToAction("Inicio", "Inicio");
                 }
-                else {
-                    Debug.WriteLine("Error");
+                else
+                {
+                    Debug.WriteLine("direfenteeeees");
+                    return RedirectToAction("Registrarse", "Registrarse");
                 }
-                return RedirectToAction("Registrarse", "Registrarse");
+
             }
-            else
+
+            [HttpPost]
+            public ActionResult Upload(HttpPostedFileBase file)
             {
-                Debug.WriteLine("direfenteeeees");
-                return RedirectToAction("Registrarse", "Registrarse");
+
+
+                Session["imagen"] = file;
+                file.SaveAs("d:\\Perfil\\" + file.FileName);
+                return Json(new
+                {
+                    Success = true,
+                    FileName = file.FileName,
+                    FileSize = file.ContentLength
+                }, JsonRequestBehavior.AllowGet);
             }
-            
+
+
         }
-
-         [HttpPost]
-         public ActionResult Upload(HttpPostedFileBase file)
-         {
-
-             
-             Session["imagen"] = file;
-             file.SaveAs("d:\\Perfil\\" + file.FileName);
-             return Json(new
-             {
-                 Success = true,
-                 FileName = file.FileName,
-                 FileSize = file.ContentLength
-             }, JsonRequestBehavior.AllowGet);
-         }
-
-
-    }
+    
 }

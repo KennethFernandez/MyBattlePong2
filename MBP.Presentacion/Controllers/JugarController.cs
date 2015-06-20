@@ -14,8 +14,8 @@ namespace MBP.Presentacion.Controllers
         //
         // GET: /Jugar/
 
-        int idPartida = 565;
-        int idJugador = 6;
+        int idPartida = 7;
+        int idJugador = 1;
 
         [HttpGet]
         public ActionResult Jugar()

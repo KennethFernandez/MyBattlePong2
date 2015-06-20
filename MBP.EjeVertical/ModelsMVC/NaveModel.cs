@@ -14,5 +14,6 @@ namespace MBP.CapaTransversal.ModelsMVC
         public string nombre { get; set; }
         public bool estado { get; set; }
         public int Id { get; set; }
+        public string nombreCreadas { get; set; }
     }
 }

@@ -3,7 +3,6 @@
     Page.Title = "Ingresar";
 }
 
-
 <!--La división principal de la página-->
 <div align="center">
 
@@ -19,6 +18,8 @@
         @Html.PasswordFor(x => x.Contrasena, new { @class = "input1" })
 
         <br /><br />
+        <p>@ViewData["msg"]</p>
+        <br />
         <input type="submit" value="Ingresar" class="boton_base" />
         <br />
 

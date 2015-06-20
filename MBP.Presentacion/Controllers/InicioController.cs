@@ -18,18 +18,8 @@ namespace MBP.Presentacion.Controllers
         [HttpGet]
         public ActionResult Inicio()
         {
-            /**
-            Console.WriteLine("Prueba iniciada");
-            PartidaModel partida = new PartidaModel();
-            partida.disparos = 12;
-            partida.idJugadorCreador = 1;
-            partida.permisos = true;
-            int[,] naves = new int[7, 2] { { 1, 3 }, { 2, 4 }, { 3, 1 }, { 4, 4 }, { 5, 3 }, { 6, 3 }, { 4, 5 } };
-            partida.navesTipo = naves;
-            partida.tamano = 10;
-            new FachadaServicio().IngresarPartidaOnline(partida);
-            Console.WriteLine("Prueba iniciada");
-            **/
+            Session["rol"] = "";
+            ViewData["msg"] = "";
             return View();
         }
 
@@ -38,7 +28,9 @@ namespace MBP.Presentacion.Controllers
         {
             FormsAuthentication.SignOut();
             Session["MyMenu"] = null;
-            return RedirectToAction("Index", "Home");
+            Session["rol"] = null;
+            Session["usuario"] = null;
+            return RedirectToAction("Inicio", "Inicio");
         }
 
         [HttpPost]
@@ -55,23 +47,16 @@ namespace MBP.Presentacion.Controllers
                 // solo deja pasar si son iguales si no regresa a la página de inicio.
                 // , new { modelo =  UsuarioModel}
 
-                Debug.WriteLine("user: ,"+model.Usuario+",");
-                Debug.WriteLine("contra: " + model.Contrasena);
-
-                
 
                 FachadaServicio fachada = new FachadaServicio();
                 UsuarioModel usuario = fachada.verificarLogin(model);
-
-                Session["NombreUsuario"] = usuario.datos[3, 1];
-
                 if (usuario.datos[1, 1] == "1")
                 {
-                    Debug.WriteLine("user valido");
-                    Debug.WriteLine("jugador");
+
                     Session["usuario"] = usuario;
-                   // Session["Tipo"] = "Jugador";
-                   // Debug.WriteLine(ViewBag.CategoryID);
+                    Session["rol"] = "Jugador";
+                    // Session["Tipo"] = "Jugador";
+                    // Debug.WriteLine(ViewBag.CategoryID);
                     return RedirectToAction("Perfil", "Perfil");
                     // FormsAuthentication.SetAuthCookie(model.Usuario, true);
                     //Session["MyMenu"] = null;
@@ -79,29 +64,29 @@ namespace MBP.Presentacion.Controllers
                 }
                 else if (usuario.datos[1, 1] == "2")
                 {
-                    Debug.WriteLine("user valido");
-                    Debug.WriteLine("moderador");
-                    //ViewBag.CategoryID = "Moderador";
+
                     Session["usuario"] = usuario;
+                    Session["rol"] = "Moderador";
                     return RedirectToAction("Perfil", "Perfil");
                 }
                 else if (usuario.datos[1, 1] == "3")
                 {
-                    Debug.WriteLine("user valido");
-                    Debug.WriteLine("administrador");
-                    //ViewBag.CategoryID = "Administrador";
+
                     Session["usuario"] = usuario;
-                    return RedirectToAction("Jugar", "Jugar");
+                    Session["rol"] = "Administrador";
+                    return RedirectToAction("Catalogo", "Catalogo");
                 }
-                else {
-                    Debug.WriteLine("user invalido");
+                else
+                {
+                    ViewData["msg"] = "Usuario o password incorrecto";
                     return View();
                 }
 
             }
             else
             {
-                Debug.WriteLine("modelo invalido");
+                ViewData["msg"] = "Favor ingrese usuario y password";
+
                 return View();
             }
         }

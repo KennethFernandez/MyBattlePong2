@@ -121,6 +121,7 @@
     <Compile Include="ModelsMVC\ModeradorModel.cs" />
     <Compile Include="ModelsMVC\NaveModel2.cs" />
     <Compile Include="ModelsMVC\PartidaModel2.cs" />
+    <Compile Include="ModelsMVC\PoderModel.cs" />
     <Compile Include="ModelsMVC\RegistrarseExtModel.cs" />
     <Compile Include="ModelsMVC\RegistrarseModel.cs" />
     <Compile Include="ModelsMVC\RespuestaPoderModel.cs" />

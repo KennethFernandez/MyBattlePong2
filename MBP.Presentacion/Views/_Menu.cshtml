@@ -1,16 +1,19 @@
 ﻿@{
     var menus = new[]
                 {
-                   new { LinkText="Catálogo", ActionName="Catalogo",ControllerName="Catalogo",Roles="Administrador"  },
-                   new { LinkText="About", ActionName="About",ControllerName="Home",Roles="Anonymous"  },
-                   new { LinkText="Contact", ActionName="Contact",ControllerName="Home",Roles="Anonymous"  },
-                   new { LinkText="Dashboard", ActionName="Index",ControllerName="Dealer",Roles="Dealer"  },
-                   new { LinkText="Dashboard", ActionName="Index",ControllerName="Admin",Roles="Administrator"  },
-                   new { LinkText="Administration", ActionName="GetUsers",ControllerName="Admin",Roles="Administrator"  },
-                   new { LinkText="My Profile", ActionName="GetDealerInfo",ControllerName="Dealer",Roles="Dealer,PublicUser"  },
-                   new { LinkText="Products", ActionName="GetProducts",ControllerName="Product",Roles="Dealer,Administrator"  },
-                   new { LinkText="Search", ActionName="SearchProducts",ControllerName="Product",Roles="PublicUser,Dealer,Administrator"  },
-                   new { LinkText="Purchase History", ActionName="GetHistory",ControllerName="Product",Roles="PublicUser"  },
+                   new { LinkText="Catalogo", ActionName="Catalogo",ControllerName="Catalogo",Roles="Administrador"  },
+                   new { LinkText="Poderes", ActionName="GestionarPoderes",ControllerName="GestionarPoderes",Roles="Administrador"  },
+                   new { LinkText="Perfil", ActionName="Perfil",ControllerName="Perfil",Roles="Administrador"  },
+                   new { LinkText="Salir", ActionName="LogOff",ControllerName="Inicio",Roles="Administrador"  },
+                   new { LinkText="Perfil", ActionName="Perfil",ControllerName="Perfil",Roles="Moderador"  },
+                   new { LinkText="ConfigPartVido", ActionName="Perfil",ControllerName="Perfil",Roles="Moderador"  },
+                   new { LinkText="IniciarPartVivo", ActionName="Perfil",ControllerName="Perfil",Roles="Moderador"  },
+                   new { LinkText="Salir", ActionName="LogOff",ControllerName="Inicio",Roles="Moderador"  },
+                   new { LinkText="Perfil", ActionName="Perfil",ControllerName="Perfil",Roles="Jugador"  },
+                   new { LinkText="CrearPartida", ActionName="Perfil",ControllerName="Perfil",Roles="Jugador"  },
+                   new { LinkText="BuscarAceptarPartida", ActionName="Perfil",ControllerName="Perfil",Roles="Jugador"  },
+                   new { LinkText="Salir", ActionName="LogOff",ControllerName="Inicio",Roles="Jugador"  }
+
 
                 };
 }
@@ -18,7 +21,8 @@
 <ul id="menu" class="MenuBarHorizontal">
     @if (true)
     {
-        String[] roles = {"Administrador"};
+        String[] roles = new String[] { (string)Session["rol"] };
+
         var links = from item in menus
                     where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                     .Any(x => roles.Contains(x) || x == "All")

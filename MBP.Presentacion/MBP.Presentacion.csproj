@@ -154,6 +154,7 @@
     <Compile Include="Controllers\ColocacionController.cs" />
     <Compile Include="Controllers\CrearController.cs" />
     <Compile Include="Controllers\DatosController.cs" />
+    <Compile Include="Controllers\GestionarPoderesController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\JugarController.cs" />
     <Compile Include="Controllers\MBPLController.cs" />
@@ -286,6 +287,8 @@
     <Content Include="javascripts\redips-table.js" />
     <Content Include="javascripts\script1.js" />
     <Content Include="javascripts\script2.js" />
+    <Content Include="javascripts\ScriptNave.js" />
+    <Content Include="javascripts\ScriptPoder.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Code\HelperCF.cshtml" />
@@ -411,6 +414,7 @@
     <Content Include="Views\Buscar\Buscar.cshtml" />
     <Content Include="Views\Colocacion\Colocacion.cshtml" />
     <Content Include="Views\Jugar\Jugar.cshtml" />
+    <Content Include="Views\GestionarPoderes\GestionarPoderes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -455,7 +459,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>9578</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/MBP.Presentacion</IISUrl>
+          <IISUrl>http://localhost/MBP.Presentacion2</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

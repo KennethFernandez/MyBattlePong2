@@ -13,7 +13,7 @@ namespace MBP.Datos
                 using (var db = new MyBattlePongEntities())
                 {
                     var query = (from st in db.Cuenta
-                                 where st.Login == username && st.Contrasena == password
+                                 where (st.Contrasena == password && st.Login == username)
                                  select st).FirstOrDefault();
                     return query == null ? new Cuenta() : query;
                 }
@@ -409,17 +409,6 @@ namespace MBP.Datos
             }
         }
 
-        public Poder obtenerPoder(int idPoder)
-        {
-            using (var db = new MyBattlePongEntities())
-            {
-                var query = (from st in db.Poder
-                             where st.idPoder == idPoder
-                             select st);
-                return query.FirstOrDefault();
-            }
-        }
-
 
         public List<Poder> obtenerPoderesJugador(int idJugador)
         {
@@ -463,6 +452,28 @@ namespace MBP.Datos
             }
         }
 
+        public Nave obtenerNave(string nombre)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Nave
+                             where st.Nombre == nombre
+                             select st).FirstOrDefault();
+                return query == null ? new Nave() : query;
+            }
+        }
+        
+
+        public Poder obtenerPoder(string nombre)
+        {
+            using (var db = new MyBattlePongEntities())
+            {
+                var query = (from st in db.Poder
+                             where st.Nombre == nombre
+                             select st).FirstOrDefault();
+                return query == null ? new Poder() : query;
+            }
+        }
         public List<Tablero_Virtual> casillasSinDestruirNave(int idPartida, int tablero, int numNave)
         {
             using (var db = new MyBattlePongEntities())
