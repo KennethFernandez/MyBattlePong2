@@ -12,6 +12,25 @@
 }
 
 <div align="center">
+    
+
+    <div id="left2">
+        <div align="center">Jugador 1</div>
+        <div align="center">Tiros restantes: 2</div>
+        <div align="center">Puntos: 3</div>
+    </div>
+    <div id="center2">
+        <div align="center">Tiempo restante <span id="time"></span>s</div>
+    </div>
+    <div id="right2">
+        <div align="center">Jugador 2</div>
+        <div align="center">Tiros restantes: 2</div>
+        <div align="center">Puntos: 3</div>
+    </div>
+
+</div>
+
+<div align="center">
     <div id="left2" align="center">
         <div id="main-container">
             <!-- tables inside this DIV could have draggable content -->
@@ -109,25 +128,30 @@
                     </div>
                 </div><!-- main container -->
 
-                    <div id="right2" align="center">
+                <div id="right2" align="center">
 
-                        <label for='name' id='name'>@Session["Usuario"]</label>
-                        <br>
-                        <img src="~/Upload/Perfil/fondo2.jpg" alt="Sample Image" width="200" />
-                        <br>
-                        <label for='name' id='name'>Tablero: 10x10</label>
-                        <br>
-                        <label for='name' id='name'>Disparos: 2</label>
-                        <br><br>
-                        <table id="hk2" class="Tabla_naranaja">
-                            <tbody>
-                                <tr><td>Poder1</td></tr>
-                                <tr><td>Poder2</td></tr>
-                                <tr><td>Poder3</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <label for='name' id='name'>@Session["Usuario"]</label>
+                    <br>
+                    <img src="~/Upload/Perfil/fondo2.jpg" alt="Sample Image" width="200" />
+                    <br>
+                    <label for='name' id='name'>Tablero: 10x10</label>
+                    <br>
+                    <label for='name' id='name'>Disparos: 2</label>
+                    <br><br>
+                    <table id="hk2" class="Tabla_naranaja">
+                        <tbody>
+                            <tr><td>Poder1</td></tr>
+                            <tr><td>Poder2</td></tr>
+                            <tr><td>Poder3</td></tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
         </div>
     </div>
+</div>
+<div align="center">
+    <input type="submit" value="Comenzar" class="boton_base"/>
+    <input type="submit" value="Terminar Partida" class="boton_base" />
+    <input type="submit" value="Siguiente Turno" class="boton_base" />
 </div>
