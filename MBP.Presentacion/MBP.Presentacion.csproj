@@ -159,6 +159,7 @@
     <Compile Include="Controllers\MBPLController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RegistrarseController.cs" />
+    <Compile Include="CrearTableroPruebas.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +191,7 @@
     <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\Lados.css" />
+    <Content Include="Content\msgBoxLight.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -256,7 +258,15 @@
     <Content Include="Content\Untitled-2.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\alert.png" />
+    <Content Include="Images\blanco.png" />
+    <Content Include="Images\confirm.png" />
+    <Content Include="Images\error.png" />
+    <Content Include="Images\info.png" />
     <Content Include="Images\LogoMyBattlePong.png" />
+    <Content Include="Images\msgBoxBackGround.png" />
+    <Content Include="Images\rojo.jpg" />
+    <Content Include="Images\verde.png" />
     <Content Include="javascripts\AcomodadorDeNaves.js" />
     <Content Include="javascripts\Calendar.js" />
     <Content Include="javascripts\chat.js" />
@@ -265,6 +275,7 @@
     <Content Include="javascripts\DragDrop.js" />
     <Content Include="javascripts\GeneradorNaves.js" />
     <Content Include="javascripts\header.js" />
+    <Content Include="javascripts\jquery.msgBox.js" />
     <Content Include="javascripts\PartidaOnline.js" />
     <Content Include="javascripts\ObtenerRuta.js" />
     <Content Include="javascripts\Ocultar2.js" />

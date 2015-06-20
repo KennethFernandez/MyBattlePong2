@@ -77,6 +77,13 @@ namespace MBP.Logica
             else
             {
                 respuesta = new MapperModelos().respuestaDisparoModel(partida, resultado, disparo.idJugador);
+                List<int[]> casillasDestruidas = new List<int[]>();
+                int[] xy = new int[3];
+                xy[0] = disparo.x;
+                xy[1] = disparo.y;
+                xy[2] = Constantes.disparoFallido;
+                casillasDestruidas.Add(xy);
+                respuesta.casillas = casillasDestruidas;
             }
             return respuesta;
         }

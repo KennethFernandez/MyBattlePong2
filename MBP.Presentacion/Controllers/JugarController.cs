@@ -14,12 +14,15 @@ namespace MBP.Presentacion.Controllers
         //
         // GET: /Jugar/
 
-        int idPartida = 386;
+        int idPartida = 565;
         int idJugador = 6;
 
         [HttpGet]
         public ActionResult Jugar()
         {
+            Debug.Write("------------------------ "+idPartida+" ------------------------------------------");
+            Session["tipoDisparo"] = 1;
+            Session["dirDisparo"] = 1;
             IList<PoderModel2> poderes = new FachadaServicio().poderesDeJugador(idJugador);
             return View(poderes);
         }
@@ -66,26 +69,60 @@ namespace MBP.Presentacion.Controllers
             
         }
 
-        public string Disparo(int x, int y, int tipo)
+        public string Disparo(int x, int y)
         {
+            int tipo;
+            // Recupera los datos de la sesion para conocer el tipo
+            bool result = Int32.TryParse(Session["tipoDisparo"].ToString(), out tipo);
+            if (false == result)
+            {
+                tipo = 1;
+            }
+            int dir;
+            result = Int32.TryParse(Session["dirDisparo"].ToString(), out dir);
+            if (false == result)
+            {
+                dir = 1;
+            }
+            //Reinicia los valores de la sesion para el siguiente disparo
+            Session["tipoDisparo"] = 1;
+            Session["dirDisparo"] = 1;
 
-            Debug.Write("x: "+x+" y: "+y+"tipo: "+tipo);
 
+            Debug.Write("x: " + x + " y: " + y + "tipo: " + tipo + "dir: " + dir);
             DisparoModel disparo = new DisparoModel();
             disparo.x = x;
             disparo.y = y;
             disparo.tipoDisparo = tipo;
             disparo.idPartida = idPartida;
             disparo.idJugador = idJugador;
+            disparo.dir = dir;
             DisparoModel2 resultado = new FachadaServicio().disparo(disparo);
             string respuesta = "";
             if (resultado != null)
             {
-                respuesta += resultado.resultado + ",";
-                respuesta += resultado.turnosRestantes + ",";
-                respuesta += resultado.puntajeJugadorActual + ",";
-                respuesta += resultado.esSuTurno? "t," : "f,";
-                respuesta += resultado.finalPartida;
+                if (tipo == 1)
+                {
+                    respuesta += resultado.resultado + ",";
+                    respuesta += resultado.turnosRestantes + ",";
+                    respuesta += resultado.puntajeJugadorActual + ",";
+                    respuesta += resultado.esSuTurno ? "t," : "f,";
+                    respuesta += resultado.finalPartida;
+                }
+                else
+                {
+                    respuesta += resultado.resultado + ",";
+                    respuesta += resultado.turnosRestantes + ",";
+                    respuesta += resultado.puntajeJugadorActual + ",";
+                    respuesta += resultado.esSuTurno ? "t," : "f,";
+                    respuesta += resultado.finalPartida + ",";
+                    foreach (int[] item in resultado.casillas)
+                    {
+                        respuesta += item[0]+ ",";
+                        respuesta += item[1]+ ",";
+                        respuesta += item[2]+ ",";
+                    }
+                }
             }
             return respuesta;
 
@@ -115,6 +152,32 @@ namespace MBP.Presentacion.Controllers
                 respuesta += "," + resultado.disparosRestantes;
             }
             return respuesta;
+        }
+
+        public string ActivarPoderDisparo(int idPoder)
+        {
+            switch (idPoder)
+            {
+                case 6:
+                    Session["tipoDisparo"] = 2;
+                    break;
+                case 7:
+                    Session["tipoDisparo"] = 3;
+                    break;
+                case 8:
+                    Session["tipoDisparo"] = 4;
+                    break;
+                default:
+                    Session["tipoDisparo"] = 1;
+                    break;
+            }
+            return "True";
+        }
+
+        public string DireccionDisparo(int dir)
+        {
+            Session["dirDisparo"] = dir;
+            return "True";
         }
 
         public string rendirse()

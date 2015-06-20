@@ -29,27 +29,53 @@
 
     var url2 = "Disparo";
 
-    $.get(url2, { x:  parseInt(XY[0]), y:  parseInt(XY[1]), tipo: 1 }, function (data) {
+    $.get(url2, { x:  parseInt(XY[0]), y:  parseInt(XY[1])}, function (data) {
 
         var locacionDisparo = "/MyBattlePong2/Images/rojo.jpg";
         var datos = data.toString().split(",");
 
-        console.log(datos[0]);
+        console.log("----------------------");
+        console.log(datos.length);
+        console.log("----------------------");
+
         console.log(datos[0].toString() == "2");
-
-      
-        if (datos[0].toString() == "2") {
-         locacionDisparo = "/MBP.Presentacion/Images/verde.png";
-        }
-
-        $("#" + clicked_id.toString()).attr("src", locacionDisparo); 
-        document.getElementById(clicked_id.toString()).setAttribute("src", locacionDisparo);
 
         $("#puntos").html("Puntos: " + datos[2]);
         $("#restantes").html("Tiros restantes: " + datos[1]);
         $("#turno").html("Turno: " + datos[3]);
+        
+        //for (var i = 0; i < datos.length -1; i += 5) {
+        
+        if (datos.length <= 5) {
+            if (datos[0].toString() == "2") {
+                locacionDisparo = "/MBP.Presentacion/Images/verde.png";
+            }
 
-        console.log(datos[4]);
+            $("#" + clicked_id.toString()).attr("src", locacionDisparo);
+            document.getElementById(clicked_id.toString()).setAttribute("src", locacionDisparo);
+
+        } else {
+            console.log("-----------Tiro diferente ------------");
+            console.log(datos.length - 1);
+            console.log("---------");
+            for (var i = 5; i < datos.length - 1; i += 3) {
+
+                console.log(datos[i]);
+                console.log(datos[i+1]);
+                console.log(datos[i + 2]);
+                
+                var casilla = datos[i] + "," + datos[i + 1];
+                console.log(casilla);
+
+                locacionDisparo = "/MyBattlePong2/Images/rojo.jpg";
+                if (datos[i+2].toString() == "2") {
+                    locacionDisparo = "/MBP.Presentacion/Images/verde.png";
+                }
+
+                $("#" + casilla.toString()).attr("src", locacionDisparo);
+                document.getElementById(casilla.toString()).setAttribute("src", locacionDisparo);
+            }
+        }
 
         // Finalizo
         if (datos[4] == "True") {
