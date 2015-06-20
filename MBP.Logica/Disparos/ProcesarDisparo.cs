@@ -31,25 +31,35 @@ namespace MBP.Logica
                     procesadorDisparo = new ProcesarDisparoSimple();
                     break;
             }
+
             Partida partida = new ObtenerModelos().buscarPartida(disparo.idPartida);
 
-            DisparoModel2 resultado = procesarDisparoOnline(disparo, partida, procesadorDisparo);
+            if (partida != null)
+            {
+                DisparoModel2 resultado = procesarDisparoOnline(disparo, partida, procesadorDisparo);
 
-            ObtenerModelos obtener = new ObtenerModelos();
-            // Verifica si algun tablero se quedo sin naves
-            int navesTab1 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador1);
-            int navesTab2 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador2);
-            if (navesTab1 == 0)
-            {
-                resultado.finalPartida = true;
-                new FinalizarPartida().finalizarPartida(partida.idPartida, 2);
+                ObtenerModelos obtener = new ObtenerModelos();
+                // Verifica si algun tablero se quedo sin naves
+                int navesTab1 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador1);
+                int navesTab2 = obtener.navesSinDestruir(disparo.idPartida, Constantes.tableroJugador2);
+                if (navesTab1 == 0)
+                {
+                    resultado.finalPartida = true;
+                    new FinalizarPartida().finalizarPartida(partida.idPartida, 2);
+                }
+                else if (navesTab2 == 0)
+                {
+                    resultado.finalPartida = true;
+                    new FinalizarPartida().finalizarPartida(partida.idPartida, 1);
+                }
+                return resultado;
             }
-            else if (navesTab2 == 0)
+            else
             {
+                DisparoModel2 resultado = new DisparoModel2();
                 resultado.finalPartida = true;
-                new FinalizarPartida().finalizarPartida(partida.idPartida, 1);
+                return resultado;
             }
-            return resultado;
         }
 
         private DisparoModel2 procesarDisparoOnline(DisparoModel disparo, Partida partida, IEstrategiaDisparo estrategia)

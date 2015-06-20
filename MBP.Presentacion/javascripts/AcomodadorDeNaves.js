@@ -18,9 +18,6 @@
 
         // 20 en alto y en ancho por cada casilla
 
-    var movimientoX = -25 * parseInt(XY[0]);
-    var movimientoY =  25 * parseInt(XY[1]);
-
     var locacionImagen = "/MyBattlePong2/Images/rojo.jpg";
 
     var idDeNave = clicked_id.toString() + "h";
@@ -34,9 +31,9 @@
         var locacionDisparo = "/MyBattlePong2/Images/rojo.jpg";
         var datos = data.toString().split(",");
 
-        console.log("----------------------");
-        console.log(datos.length);
-        console.log("----------------------");
+        //console.log("----------------------");
+        //console.log(datos.length);
+        //console.log("----------------------");
 
         console.log(datos[0].toString() == "2");
 
@@ -47,6 +44,10 @@
         //for (var i = 0; i < datos.length -1; i += 5) {
         
         if (datos.length <= 5) {
+
+            var movimientoX = -25 * parseInt(XY[0]);
+            var movimientoY = 25 * parseInt(XY[1]);
+
             if (datos[0].toString() == "2") {
                 locacionDisparo = "/MBP.Presentacion/Images/verde.png";
             }
@@ -54,11 +55,29 @@
             $("#" + clicked_id.toString()).attr("src", locacionDisparo);
             document.getElementById(clicked_id.toString()).setAttribute("src", locacionDisparo);
 
+            var Xpos = baseX + movimientoX;
+            var Ypos = baseY + movimientoY;
+
+            var html = " <img src=\"" + locacionImagen + "\" class=\"Nave\"id=\"" + idDeNave + "\" style=\"top: "
+                                      + Ypos + "px" + "; right:" + Xpos + "px" +
+                                      "; width: 20px; height: 20px;\" >";
+
+
+            // Call the Send method on the hub.
+            var lbltext = document.getElementById('name').innerHTML;
+
+            chatHub.server.send(lbltext, html, $("#sala").val() + "cosa", "2");///$("#usuario").val());
+
+            $('#message').val('').focus();
+
         } else {
             console.log("-----------Tiro diferente ------------");
             console.log(datos.length - 1);
             console.log("---------");
             for (var i = 5; i < datos.length - 1; i += 3) {
+
+                var movimientoX = -25 * parseInt(datos[i]);
+                var movimientoY = 25 * parseInt(datos[i+1]);
 
                 console.log(datos[i]);
                 console.log(datos[i+1]);
@@ -74,6 +93,21 @@
 
                 $("#" + casilla.toString()).attr("src", locacionDisparo);
                 document.getElementById(casilla.toString()).setAttribute("src", locacionDisparo);
+
+                var Xpos = baseX + movimientoX;
+                var Ypos = baseY + movimientoY;
+
+                var html = " <img src=\"" + locacionImagen + "\" class=\"Nave\"id=\"" + idDeNave + "\" style=\"top: "
+                                          + Ypos + "px" + "; right:" + Xpos + "px" +
+                                          "; width: 20px; height: 20px;\" >";
+
+
+                // Call the Send method on the hub.
+                var lbltext = document.getElementById('name').innerHTML;
+
+                chatHub.server.send(lbltext, html, $("#sala").val() + "cosa", "2");///$("#usuario").val());
+
+                $('#message').val('').focus();
             }
         }
 
@@ -82,28 +116,27 @@
 
             var url2 = "DesbloquearPoderes";
             $.get(url2, null, function (data) {
-                window.alert(data);
+                $("#mensaje").val("True");
+                $.msgBox({
+                    title: "Partida Ganada",
+                    content: data,
+                    type: "error",
+                    buttons: [{ value: "OK" }],
+                    success: function (result) {
+                        var url = "../Inicio/Inicio";
+                        var form = $('<form action="' + url + '" method="post">' +
+                          '<input type="text" name="api_url" value="' + url + '" />' +
+                          '</form>');
+                        $('body').append(form);
+                        form.submit();
+                    }
+                });
                 $.post("Termino", null, function (data) { }, "html");
+                
             });
-
         }
-
     });
 
-    var Xpos = baseX + movimientoX;
-    var Ypos = baseY + movimientoY;
-
-    var html = " <img src=\"" + locacionImagen + "\" class=\"Nave\"id=\"" + idDeNave + "\" style=\"top: "
-                              + Ypos + "px" + "; right:" + Xpos + "px" +
-                              "; width: 20px; height: 20px;\" >";
-
-
-        // Call the Send method on the hub.
-    var lbltext = document.getElementById('name').innerHTML;
-
-    chatHub.server.send(lbltext, html, $("#sala").val() + "cosa", "2");///$("#usuario").val());
-
-    $('#message').val('').focus();
 
     }
 

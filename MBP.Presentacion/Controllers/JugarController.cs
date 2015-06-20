@@ -14,16 +14,15 @@ namespace MBP.Presentacion.Controllers
         //
         // GET: /Jugar/
 
-        int idPartida = 565;
-        int idJugador = 6;
+        int idPartida = 588;
 
         [HttpGet]
         public ActionResult Jugar()
         {
-            Debug.Write("------------------------ "+idPartida+" ------------------------------------------");
+            //Debug.Write("------------------------ "+idPartida+" ------------------------------------------");
             Session["tipoDisparo"] = 1;
             Session["dirDisparo"] = 1;
-            IList<PoderModel2> poderes = new FachadaServicio().poderesDeJugador(idJugador);
+            IList<PoderModel2> poderes = new FachadaServicio().poderesDeJugador(Int32.Parse(Session["idJugador"].ToString()));
             return View(poderes);
         }
 
@@ -37,7 +36,7 @@ namespace MBP.Presentacion.Controllers
         public string DataNave()
         {
 
-            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, idJugador);
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, Int32.Parse(Session["idJugador"].ToString()));
             string respuesta = "";
 
             foreach (CasillaModel2 item in tablero.tableroJugador)
@@ -54,10 +53,18 @@ namespace MBP.Presentacion.Controllers
         public string DatosGenerales()
         {
 
-            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, idJugador);
-            string concatenado = tablero.disparosRestantes.ToString() + ",";
-            concatenado += tablero.enMiTurno ? "t," : "f,";
-            concatenado += tablero.puntosLocal.ToString();
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, Int32.Parse(Session["idJugador"].ToString()));
+            string concatenado = "";
+            if (tablero != null)
+            {
+                concatenado += tablero.disparosRestantes.ToString() + ",";
+                concatenado += tablero.enMiTurno ? "t," : "f,";
+                concatenado += tablero.puntosLocal.ToString();
+            }
+            else
+            {
+                concatenado = "0,f,0";
+            }
             return concatenado;
         }
 
@@ -95,7 +102,7 @@ namespace MBP.Presentacion.Controllers
             disparo.y = y;
             disparo.tipoDisparo = tipo;
             disparo.idPartida = idPartida;
-            disparo.idJugador = idJugador;
+            disparo.idJugador = Int32.Parse(Session["idJugador"].ToString());
             disparo.dir = dir;
             DisparoModel2 resultado = new FachadaServicio().disparo(disparo);
             string respuesta = "";
@@ -130,7 +137,7 @@ namespace MBP.Presentacion.Controllers
 
         public string DesbloquearPoderes()
         {
-            IList<PoderModel2> poderes = new FachadaServicio().desbloquearPoderes(idJugador);
+            IList<PoderModel2> poderes = new FachadaServicio().desbloquearPoderes(Int32.Parse(Session["idJugador"].ToString()));
             string resultado = "Has desbloqueado la habilidad: ";
             foreach (PoderModel2 item in poderes)
             {
@@ -142,7 +149,7 @@ namespace MBP.Presentacion.Controllers
 
         public string ActivarPoderSencillo(int idPoder)
         {
-            RespuestaPoderModel resultado = new FachadaServicio().activarPoder(idJugador,idPartida,idPoder);
+            RespuestaPoderModel resultado = new FachadaServicio().activarPoder(Int32.Parse(Session["idJugador"].ToString()), idPartida, idPoder);
             string respuesta = resultado.resultado.ToString();
             if(idPoder == 4){
                 respuesta += ","+resultado.Espia[0] + "," + resultado.Espia[1];
@@ -182,8 +189,27 @@ namespace MBP.Presentacion.Controllers
 
         public string rendirse()
         {
-            bool resultado = new FachadaServicio().rendirse(idJugador,idPartida);
+            bool resultado = new FachadaServicio().rendirse(Int32.Parse(Session["idJugador"].ToString()), idPartida);
             return resultado.ToString();
+        }
+
+        public string heartbeat()
+        {
+            TableroModel2 tablero = new FachadaServicio().recuperarTableroPartida(idPartida, Int32.Parse(Session["idJugador"].ToString()));
+            string respuesta = "";
+            if (tablero != null)
+            {
+                respuesta += tablero.enMiTurno ? "t," : "f,";
+                respuesta += tablero.disparosRestantes + ",";
+                respuesta += tablero.puntosLocal;
+            }
+            else
+            {
+                respuesta += "0,";
+                respuesta += "0,";
+                respuesta += "0";
+            }
+            return respuesta;
         }
 
     }

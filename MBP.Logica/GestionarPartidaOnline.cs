@@ -32,17 +32,25 @@ namespace MBP.Logica
             Partida partida = obtenerModelos.buscarPartida(idPartida);
             List<Tablero_Virtual> tablero;
             TableroModel2 respuesta;
-            if (partida.Jugador1_idCuenta == idJugador)
+            if (partida != null)
             {
-                tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador1, idPartida);
-                respuesta = new MapperModelos().partidaATableroModel2(tablero, partida, Constantes.tableroJugador1);
+                if (partida.Jugador1_idCuenta == idJugador)
+                {
+                    tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador1, idPartida);
+                    respuesta = new MapperModelos().partidaATableroModel2(tablero, partida, Constantes.tableroJugador1);
+                    return respuesta;
+                }
+                else
+                {
+                    tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador2, idPartida);
+                    respuesta = new MapperModelos().partidaATableroModel2(tablero, partida, Constantes.tableroJugador2);
+                    return respuesta;
+                }
             }
             else
             {
-                tablero = obtenerModelos.obtenerCasillasDeTablero(Constantes.tableroJugador2, idPartida);
-                respuesta = new MapperModelos().partidaATableroModel2(tablero, partida, Constantes.tableroJugador2);
+                return null;
             }
-            return respuesta;
         }
 
         /**

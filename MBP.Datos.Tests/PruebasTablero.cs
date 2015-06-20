@@ -77,9 +77,9 @@ namespace MBP.Datos.Tests
             public void TestMethod1()
             {
                 //new EliminarModelos().eliminarNavesPartida(262);
-                int idPartida = armarTablero(6, 4, 100);
+                int idPartida = armarTablero(6, 4, 4);
                 FachadaServicio fachadaServicio = new FachadaServicio();
-                TableroModel2 tablero = fachadaServicio.recuperarTableroPartida(idPartida, 2);
+                TableroModel2 tablero = fachadaServicio.recuperarTableroPartida(idPartida, 6);
                 int x = new FachadaServicio().navesDePartida(idPartida).Count;
                 Assert.AreEqual(1, x);
                 Assert.AreEqual(4, tablero.tableroJugador.Count);

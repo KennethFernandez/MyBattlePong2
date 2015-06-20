@@ -70,6 +70,7 @@ namespace MBP.Presentacion.Controllers
                     Debug.WriteLine("user valido");
                     Debug.WriteLine("jugador");
                     Session["usuario"] = usuario;
+                    Session["idJugador"] = 4;
                    // Session["Tipo"] = "Jugador";
                    // Debug.WriteLine(ViewBag.CategoryID);
                     return RedirectToAction("Perfil", "Perfil");
@@ -83,6 +84,7 @@ namespace MBP.Presentacion.Controllers
                     Debug.WriteLine("moderador");
                     //ViewBag.CategoryID = "Moderador";
                     Session["usuario"] = usuario;
+                    Session["idJugador"] = 4;
                     return RedirectToAction("Perfil", "Perfil");
                 }
                 else if (usuario.datos[1, 1] == "3")
@@ -91,6 +93,7 @@ namespace MBP.Presentacion.Controllers
                     Debug.WriteLine("administrador");
                     //ViewBag.CategoryID = "Administrador";
                     Session["usuario"] = usuario;
+                    Session["idJugador"] = 6;
                     return RedirectToAction("Jugar", "Jugar");
                 }
                 else {
